@@ -90,6 +90,8 @@ Returns graph counts plus useful maintenance signals:
 - inference-challenge coverage and formal inferences with no mapped inference-level objection,
 - premise claims that currently lack direct support or challenge,
 - evidence nodes with and without source references,
+- evidence nodes missing an explicit limitations discussion,
+- factual/historical claims that still have sources but no incoming evidence node,
 - source-heavy debate nodes that may need evidence atomization,
 - indexed sources still awaiting summaries,
 - summarized sources not yet integrated,
