@@ -14,6 +14,9 @@ references:
     note: Jewish overview of why Judaism does not accept Jesus as Messiah and how messianic expectations are framed.
   - source: my-jewish-learning-who-is-the-messiah
     note: Jewish overview of messianic expectations, including the Maimonidean criteria often raised in Jewish-Christian discussion.
+  - source: maimonides-mishneh-torah-kings-wars-11
+    locator: "chapter 11"
+    note: Primary rabbinic formulation of messianic criteria and an explicit rejection of Jesus as the promised Messiah.
   - source: williams-history-of-faith-in-jesus
     note: Historical context for how rapidly devotion to Jesus emerged among his earliest followers.
 tags:
