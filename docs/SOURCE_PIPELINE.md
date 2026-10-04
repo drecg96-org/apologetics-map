@@ -74,6 +74,32 @@ A secondary source can suggest a biblical connection, but the agent should inspe
 
 A source becomes **integrated** automatically as soon as a graph node references it.
 
+## Evidence-first integration
+
+Do not treat a source citation as though it were itself an evidential proposition.
+
+When a source supports a checkable historical, factual, textual, scientific, or survey datum, prefer the path:
+
+```text
+source → evidence node → claim/premise → argument
+```
+
+rather than jumping directly from a source record to a high-level apologetic conclusion.
+
+A good evidence node should:
+
+- state **one checkable datum or proposition**;
+- use `evidence_for` to identify the claim(s) whose confidence it bears on;
+- cite the strongest available primary and/or scholarly sources;
+- declare `status.scholarship` to describe reception of that proposition, using `unknown` when the map cannot yet assess it responsibly;
+- explain **why it matters**;
+- explain **what it does not establish**;
+- identify important challenges or source limitations where relevant.
+
+Evidence nodes are not truth scores. `consensus`, `majority`, `contested`, and `minority` describe scholarly reception of the stated proposition, not the probability that Christianity is true.
+
+When a source mainly contains argumentation rather than a discrete datum, it can still cite an argument, objection, or response directly. The evidence-first rule is specifically meant to stop historical/factual claims from disappearing inside source lists or apologetic prose.
+
 ## Perspective balance and steelmanning
 
 The map is Christian apologetics, but the research pipeline must not make opposing positions easier to answer by sourcing them mainly through Christian descriptions of them.
