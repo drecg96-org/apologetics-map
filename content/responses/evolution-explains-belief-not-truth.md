@@ -26,6 +26,8 @@ references:
   - source: street-darwinian-dilemma
   - source: sep-moral-realism
   - source: apologia-moral-argument
+  - source: moral-realism-and-evolutionary-debunking-arguments-237903db
+    note: Shafer-Landau's chapter appears in the handbook section against debunking arguments and supports separating genealogy from an automatic defeat of realism.
 ---
 
 # Response
