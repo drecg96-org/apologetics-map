@@ -17,6 +17,11 @@ tags:
   - resurrection
   - christianity
   - inference
+conversation:
+  follows:
+    - resurrection-would-strongly-support-divine-vindication
+  label: distinguish what still needs proof
+  priority: 20
 status:
   editorial: reviewed
   scholarship: majority
