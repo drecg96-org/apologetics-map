@@ -26,7 +26,7 @@ const graph = toGraphPayload(nodes);
 <BaseLayout title={topic.title} description={topic.summary}>
   <section class="hero page-width hero-compact">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href={base}>Map</a><span>›</span><a href={base + "topics/"}>Topics</a><span>›</span>
+      <a href={base}>Debate Explorer</a><span>›</span><a href={base + "topics/"}>Topics</a><span>›</span>
       <span aria-current="page">{topic.title}</span>
     </nav>
     <p class="eyebrow">Topic</p>
@@ -38,15 +38,31 @@ const graph = toGraphPayload(nodes);
     </div>
   </section>
 
-  <section class="map-section">
+  <section class="map-section primary-explorer-section">
     <div class="section-heading page-width">
       <div>
-        <p class="eyebrow">Debate map</p>
-        <h2>{topic.title} debate flow</h2>
+        <p class="eyebrow">Primary view</p>
+        <h2>{topic.title} Debate Explorer</h2>
       </div>
-      <p>Debate Flow shows conversational order; Line Explorer lets you step through a branch; Knowledge Atlas shows semantic relationships.</p>
+      <p>Follow a line interactively, then open a position when you want its full explanation and sources.</p>
     </div>
-    <GraphExplorer client:load graph={graph} basePath={base} initialTopic={topic.id} />
+    <GraphExplorer
+      client:load
+      graph={graph}
+      basePath={base}
+      initialTopic={topic.id}
+      initialMode="line"
+      availableModes={["line"]}
+    />
+  </section>
+
+  <section class="page-width topic-map-callout">
+    <div>
+      <p class="eyebrow">Maps & orientation</p>
+      <h2>See the {topic.title} structure at a glance.</h2>
+      <p>Use the dedicated maps view for the conversational tree or semantic knowledge graph.</p>
+    </div>
+    <a href={base + "maps/"}>Open maps →</a>
   </section>
 
   <section class="page-width node-index">
