@@ -2,7 +2,7 @@
 id: morality
 title: Morality
 type: topic
-summary: Moral realism, moral knowledge, moral obligation, relativism, and connections between morality and God.
+summary: Start here for the debate over whether morality is objective, what follows if it is not, and what could ground it if it is.
 topics:
   - christianity
 relationships:

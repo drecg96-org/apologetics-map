@@ -2,7 +2,7 @@
 id: is-moral-realism-true
 title: Are any moral truths objectively true?
 type: question
-summary: "The first-stage metaethical question: are any moral truths or obligations valid independently of individual or social approval?"
+summary: "Are any moral claims true regardless of what an individual or society thinks?"
 topics:
   - morality
 relationships:

@@ -17,8 +17,8 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
 <BaseLayout title="Debate Explorer">
   <section class="hero page-width">
     <p class="eyebrow">Debate Explorer</p>
-    <h1>Pick a topic. Follow the line.</h1>
-    <p>Start with the main question, choose the response that fits, and keep going.</p>
+    <h1>Pick a topic. Start with the question.</h1>
+    <p>Then follow the claims, arguments, objections, and responses.</p>
     <div class="hero-onboarding">
       <span>Need the legend?</span>
       <a href={base + "guide/"}>Get oriented →</a>
@@ -37,7 +37,7 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
         <p class="eyebrow">Primary view</p>
         <h2>Debate Explorer</h2>
       </div>
-      <p>Topic → question → position → reasons and counters. Open any note for the details.</p>
+      <p>Typical flow: topic → question → claim → argument → objection → response.</p>
     </div>
     <GraphExplorer
       client:load
