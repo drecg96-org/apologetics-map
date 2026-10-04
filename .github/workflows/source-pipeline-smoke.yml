@@ -25,6 +25,11 @@ jobs:
           node-version: 24
       - run: npm install --no-audit --no-fund
 
+      - name: Validate local Scripture lookup
+        run: |
+          npm run scripture:stats
+          npm run scripture:lookup -- Romans 2:14-15 > /tmp/scripture-lookup.json
+
       - name: Generate agent integration packet
         run: npm run sources:packet -- sep-moral-arguments-god > /tmp/source-packet.json
 
