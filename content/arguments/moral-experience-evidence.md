@@ -22,6 +22,8 @@ conversation:
 references:
   - source: apologia-moral-argument
   - source: sep-moral-realism
+  - source: the-moral-argument-for-god-s-existence-1e1d2769
+    note: Wood presents moral phenomena as pervasive experiential data that can motivate an explanatory argument for God.
 ---
 
 # Argument
