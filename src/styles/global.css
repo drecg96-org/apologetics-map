@@ -1377,3 +1377,216 @@ footer {
   margin: .85rem 0 .65rem;
 }
 
+
+
+/* Start Here / onboarding guide */
+.hero-onboarding {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem .75rem;
+  margin-top: .4rem;
+  padding: .65rem .8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  font-size: .84rem;
+}
+
+.hero-onboarding span { color: var(--muted); }
+.hero-onboarding a { color: var(--accent); font-weight: 800; text-decoration: none; }
+
+.guide-hero { padding-bottom: 2rem; }
+
+.guide-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .7rem 1rem;
+  margin-top: 1.25rem;
+}
+
+.guide-actions a {
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.guide-primary-action {
+  padding: .62rem .8rem;
+  border: 1px solid var(--accent);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--accent) 10%, var(--panel));
+  color: var(--text);
+}
+
+.guide-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.guide-step-grid,
+.guide-definition-grid,
+.guide-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .8rem;
+}
+
+.guide-definition-grid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.guide-step,
+.guide-panel,
+.guide-definition,
+.guide-relationship-list article,
+.guide-start-card,
+.guide-note {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--panel);
+}
+
+.guide-step {
+  position: relative;
+  padding: 1.1rem;
+}
+
+.guide-step-number {
+  position: absolute;
+  top: .9rem;
+  right: .9rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.guide-step h3,
+.guide-panel h3 {
+  margin: .45rem 0 .4rem;
+  font-size: 1.05rem;
+}
+
+.guide-step p:not(.eyebrow),
+.guide-panel p,
+.guide-definition p,
+.guide-relationship-list p,
+.guide-note p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.guide-step a,
+.guide-panel a {
+  display: inline-flex;
+  margin-top: .8rem;
+  font-size: .82rem;
+  font-weight: 800;
+}
+
+.guide-muted {
+  display: inline-flex;
+  margin-top: .8rem;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+.guide-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .8rem;
+}
+
+.guide-panel {
+  padding: 1rem;
+}
+
+.guide-definition {
+  display: grid;
+  gap: .7rem;
+  align-content: start;
+  padding: .9rem;
+}
+
+.guide-definition .type-badge {
+  justify-self: start;
+}
+
+.guide-relationship-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65rem;
+}
+
+.guide-relationship-list article {
+  padding: .85rem;
+}
+
+.guide-relationship-list strong {
+  display: block;
+  margin-bottom: .2rem;
+  color: var(--accent);
+  text-transform: capitalize;
+}
+
+.guide-note {
+  margin-top: .8rem;
+  padding: .95rem 1rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, transparent), transparent 60%),
+    var(--panel);
+}
+
+.guide-note strong {
+  display: block;
+  margin-bottom: .2rem;
+}
+
+.guide-start-card {
+  padding: clamp(1.2rem, 4vw, 2rem);
+}
+
+.guide-start-card h2 {
+  margin: .25rem 0 .7rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+
+.guide-start-card ol {
+  margin: 1rem 0 0;
+  padding-left: 1.35rem;
+}
+
+.guide-start-card li {
+  margin: .45rem 0;
+  color: var(--muted);
+}
+
+.guide-start-card li strong { color: var(--text); }
+
+.guide-last {
+  padding-bottom: 5rem;
+}
+
+@media (max-width: 900px) {
+  .guide-step-grid,
+  .guide-outcome-grid,
+  .guide-relationship-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .guide-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-onboarding {
+    display: flex;
+  }
+}
