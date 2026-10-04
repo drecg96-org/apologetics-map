@@ -14,6 +14,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - moral-grounding-theism
+  label: objection
+  priority: 40
 references:
   - source: apologia-moral-argument
   - source: adams-finite-infinite-goods
