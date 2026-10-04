@@ -63,6 +63,11 @@ argument:
       role: premise
       label: P7
       note: Cumulative force must be discounted for overlap rather than assuming independence.
+    - id: p8
+      node: cumulative-theism-must-count-counterevidence
+      role: premise
+      label: P8
+      note: The cumulative judgment must include evil, hiddenness, diversity, and other negative evidence.
     - id: c1
       node: cumulative-natural-theology-supports-personal-theism
       role: conclusion
@@ -84,10 +89,11 @@ argument:
       from:
         - ic1
         - p7
+        - p8
       to: c1
       kind: abductive
       label: dependence-aware synthesis
-      note: Support personal theism only after accounting for shared assumptions and non-independent evidence.
+      note: Support personal theism only if convergence remains positive after accounting for shared assumptions, non-independent evidence, and serious counterevidence.
 references:
   - source: sep-natural-theology-2026
     note: Neutral framework for the argument families.
