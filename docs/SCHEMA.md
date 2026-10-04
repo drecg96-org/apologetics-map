@@ -49,12 +49,17 @@ conversation:
     - objective-morality
   label: objection
   priority: 30
+  terminal:
+    kind: accepted-commitment
+    label: Position accepted
+    note: No contradiction has been established; this debate line intentionally stops here.
 ```
 
 - `follows` lists the node IDs that can immediately precede this node in a debate.
 - `opening: true` marks a useful starting position.
 - `label` is the short move label shown on debate-flow edges.
 - `priority` is an optional non-negative integer used to keep common branches visually ordered.
+- `terminal` marks an intentional endpoint rather than an unmapped dead end. Supported kinds are `accepted-commitment`, `concession`, and `unresolved`. Use `label` and `note` to explain why the line ends.
 
 ## Topic membership
 

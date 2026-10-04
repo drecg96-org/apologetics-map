@@ -7,7 +7,7 @@ topics:
   - morality
 relationships:
   - type: responds_to
-    target: morality-is-subjective
+    target: can-society-be-morally-wrong
   - type: supports
     target: objective-morality
 tags:
@@ -17,23 +17,19 @@ status:
   editorial: reviewed
 conversation:
   follows:
-    - morality-is-subjective
-  label: response
-  priority: 30
+    - can-society-be-morally-wrong
+  label: yes — society can be wrong
+  priority: 10
 references:
   - source: sep-moral-realism
 ---
 
 # Response
 
-If a society's approval constitutes moral truth, then a society could not be morally mistaken merely by approving an action.
+If an entire society can be morally mistaken about something it approves, then social approval cannot be the complete standard of moral truth. The society's consensus may explain what people believe, what its laws enforce, and what conduct it rewards or punishes without making those standards morally correct.
 
-A useful crux question is therefore:
-
-**Can a whole society be morally wrong about something it approves?**
-
-If the answer is yes, then social approval cannot be the complete standard. If the answer is no, the view accepts the implication that moral criticism across societies is ultimately criticism from one set of standards rather than discovery of an independent moral error.
+The next question is therefore what standard allows the society itself to be judged mistaken. That moves the discussion back toward moral realism rather than directly to theism; a secular moral realist can agree that consensus is not ultimate.
 
 ## Limit
 
-This is not a proof of moral realism. Sophisticated constructivists and relativists can explain criticism and reform without positing fully stance-independent moral facts. The point is to expose the underlying commitment clearly.
+This is not a proof that objective morality exists, and it does not establish that God grounds moral truth. It only rules out social approval as the complete truth-maker if society-wide moral error is admitted.
