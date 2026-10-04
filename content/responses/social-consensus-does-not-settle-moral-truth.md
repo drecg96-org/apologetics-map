@@ -17,9 +17,9 @@ status:
   editorial: reviewed
 conversation:
   follows:
-    - morality-is-subjective
-  label: response
-  priority: 30
+    - can-society-be-morally-wrong
+  label: yes — society can be wrong
+  priority: 10
 references:
   - source: sep-moral-realism
 ---
