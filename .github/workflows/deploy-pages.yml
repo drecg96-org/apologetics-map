@@ -28,6 +28,9 @@ jobs:
       - name: Validate graph
         run: npm run validate
       - name: Build Astro site
+        env:
+          PUBLIC_NODE_FEEDBACK_ENDPOINT: ${{ vars.NODE_FEEDBACK_ENDPOINT }}
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
         run: npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4

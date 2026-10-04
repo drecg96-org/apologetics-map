@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "validate": "tsx scripts/validate-graph.ts",
-    "build": "npm run validate && astro build && npm run check:links",
+    "build": "npm run validate && npm run check:worker && astro build && npm run check:links",
     "preview": "astro preview",
     "check:links": "tsx scripts/check-links.ts",
     "sources:harvest": "tsx scripts/harvest-sources.ts",
@@ -14,7 +14,8 @@
     "scripture:lookup": "tsx scripts/scripture.ts lookup",
     "scripture:scan": "tsx scripts/scripture.ts scan",
     "scripture:stats": "tsx scripts/scripture.ts stats",
-    "graph": "tsx scripts/graph-cli.ts"
+    "graph": "tsx scripts/graph-cli.ts",
+    "check:worker": "tsc --noEmit -p worker/tsconfig.json"
   },
   "engines": {
     "node": ">=24"

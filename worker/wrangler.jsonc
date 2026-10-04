@@ -1,0 +1,21 @@
+{
+  "name": "apologetics-map-feedback",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-04",
+  "observability": { "enabled": true },
+  "vars": {
+    "GITHUB_OWNER": "drecg96-org",
+    "GITHUB_REPO": "apologetics-map",
+    "SITE_ORIGIN": "https://drecg96-org.github.io",
+    "SITE_BASE_PATH": "/apologetics-map",
+    "ALLOWED_ORIGINS": "https://drecg96-org.github.io",
+    "TURNSTILE_EXPECTED_HOSTNAME": "drecg96-org.github.io"
+  },
+  "secrets": {
+    "required": [
+      "GITHUB_APP_CLIENT_ID",
+      "GITHUB_APP_PEM",
+      "TURNSTILE_SECRET_KEY"
+    ]
+  }
+}

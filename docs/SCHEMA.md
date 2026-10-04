@@ -71,6 +71,23 @@ topics:
 
 Every topic ID must resolve to a node whose type is `topic`.
 
+## Provenance
+
+Canonical nodes may record where the idea entered the graph without changing the node's semantic type:
+
+```yaml
+origin:
+  kind: user-feedback
+  github_issues:
+    - 143
+```
+
+Supported origin kinds are `authored`, `user-feedback`, `source-integration`, and `agent-research`. `github_issues` stores positive GitHub issue numbers and can contain multiple independent submissions that resolve to the same canonical idea. An optional `note` may explain unusual provenance.
+
+A user-submitted objection is still `type: objection`; a user-submitted question is still `type: question`. Provenance describes where the node came from, not what the node means.
+
+See [NODE_FEEDBACK_SETUP.md](NODE_FEEDBACK_SETUP.md) for the issue-to-graph triage workflow.
+
 ## Status
 
 ```yaml

@@ -1819,6 +1819,17 @@ footer {
   font-weight: 800;
 }
 
+.node-feedback-form label > span small {
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 600;
+}
+
+.node-feedback-turnstile {
+  min-height: 65px;
+}
+
+.node-feedback-form input,
 .node-feedback-form select,
 .node-feedback-form textarea {
   width: 100%;
@@ -1836,6 +1847,7 @@ footer {
   line-height: 1.5;
 }
 
+.node-feedback-form input:focus,
 .node-feedback-form select:focus,
 .node-feedback-form textarea:focus {
   outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
@@ -1882,6 +1894,11 @@ footer {
 .node-feedback-actions .node-feedback-submit {
   border-color: var(--accent);
   background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+}
+
+.node-feedback-actions .node-feedback-submit:disabled {
+  cursor: wait;
+  opacity: .62;
 }
 
 .node-feedback-note {
