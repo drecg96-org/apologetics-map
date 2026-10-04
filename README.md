@@ -35,8 +35,10 @@ src/
   styles/
   schema.ts
 scripts/
+  graph-cli.ts
   validate-graph.ts
 docs/
+  AGENT_GRAPH_CLI.md
   SCHEMA.md
 ```
 
@@ -53,6 +55,24 @@ npm run dev
 
 Then open the local Astro URL shown in the terminal.
 
+## Agent graph CLI
+
+The graph can be queried deterministically without loading the whole repository into an agent context.
+
+```bash
+npm run graph -- node objective-morality
+npm run graph -- neighbors objective-morality --depth 2
+npm run graph -- line morality-is-subjective --depth 4
+npm run graph -- path objective-morality moral-grounding-theism
+npm run graph -- search "moral error"
+npm run graph -- topic morality
+npm run graph -- sources objective-morality
+npm run graph -- stats
+npm run graph -- packet objective-morality --depth 2
+```
+
+Commands emit JSON by default and support `--compact` for one-line output. See [docs/AGENT_GRAPH_CLI.md](docs/AGENT_GRAPH_CLI.md).
+
 ## Validate and build
 
 ```bash
@@ -60,6 +80,6 @@ npm run validate
 npm run build
 ```
 
-Pull requests run both graph validation and the production Astro build automatically. A merge to `main` triggers the GitHub Pages deployment workflow.
+Pull requests run graph validation, graph-CLI smoke tests, and the production Astro build automatically. A merge to `main` triggers the GitHub Pages deployment workflow.
 
 **Design rule:** the canonical source data remains a graph. Semantic relationships describe what claims do to one another; conversation flow separately describes which move can follow which in a debate.
