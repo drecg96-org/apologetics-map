@@ -2,7 +2,13 @@
 
 Apologetics Map is a version-controlled knowledge graph for Christian theology, apologetics, objections, counterarguments, evidence, sources, and worldview comparisons.
 
-The canonical data is plain Markdown with YAML frontmatter. Each file represents one reusable intellectual node. Relationships in frontmatter turn those files into a directed graph that powers both article-style reference pages and an interactive debate map.
+The canonical data is plain Markdown with YAML frontmatter. Each file represents one reusable intellectual node. Relationships in frontmatter turn those files into a directed graph that powers article-style reference pages, a global atlas, and focused debate-line views.
+
+## Live site
+
+The production viewer deploys from `main` to GitHub Pages:
+
+**https://drecg96-org.github.io/apologetics-map/**
 
 ## Repository layout
 
@@ -48,6 +54,6 @@ npm run validate
 npm run build
 ```
 
-Pull requests run both graph validation and the production Astro build automatically.
+Pull requests run both graph validation and the production Astro build automatically. A merge to `main` triggers the GitHub Pages deployment workflow.
 
 **Design rule:** the viewer may render a tree or map, but the canonical source data remains a graph.

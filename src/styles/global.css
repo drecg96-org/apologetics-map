@@ -263,3 +263,55 @@ footer {
   .graph-toolbar { align-items: stretch; flex-direction: column; }
   .node-layout { grid-template-columns: 1fr; }
 }
+
+
+.position-section {
+  padding: 2rem 0 .5rem;
+}
+
+.position-section .section-heading {
+  align-items: end;
+}
+
+.position-graph {
+  width: 100%;
+  height: min(58vh, 560px);
+  min-height: 420px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+
+.position-node-label {
+  display: grid;
+  gap: 5px;
+  padding: 11px 12px;
+  text-align: left;
+}
+
+.position-node-label span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.position-node-label strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.position-graph .react-flow__node {
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .position-section { padding-top: 1.4rem; }
+  .position-graph {
+    height: 520px;
+    min-height: 520px;
+  }
+}

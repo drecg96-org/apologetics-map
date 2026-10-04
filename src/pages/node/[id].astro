@@ -1,6 +1,7 @@
 ---
+import DebatePosition from "../../components/DebatePosition";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { loadGraph } from "../../lib/graph";
+import { loadGraph, toGraphPayload } from "../../lib/graph";
 
 export async function getStaticPaths() {
   const { nodes } = await loadGraph();
@@ -12,10 +13,11 @@ const { nodes, byId } = await loadGraph();
 const node = byId.get(id!);
 
 if (!node) {
-  throw new Error(`Unknown node: ${id}`);
+  throw new Error("Unknown node: " + id);
 }
 
 const base = import.meta.env.BASE_URL;
+const graph = toGraphPayload(nodes);
 const outgoing = node.relationships.map((relationship) => ({
   ...relationship,
   node: byId.get(relationship.target)!,
@@ -36,7 +38,7 @@ const incoming = nodes.flatMap((candidate) =>
     <a class="back-link" href={base}>← Back to map</a>
 
     <header class="node-header">
-      <span class={`type-badge type-${node.type}`}>{node.type}</span>
+      <span class={"type-badge type-" + node.type}>{node.type}</span>
       <h1>{node.title}</h1>
       {node.summary && <p class="lede">{node.summary}</p>}
       <div class="meta-row">
@@ -45,6 +47,22 @@ const incoming = nodes.flatMap((candidate) =>
         {node.status?.christian && <span>Christian: {node.status.christian}</span>}
       </div>
     </header>
+
+    {(incoming.length > 0 || outgoing.length > 0) && (
+      <section class="position-section" aria-labelledby="position-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Debate line</p>
+            <h2 id="position-heading">Current position</h2>
+          </div>
+          <p>
+            Read left to right: earlier moves → this position → replies → next counters.
+            Tap any node to jump there.
+          </p>
+        </div>
+        <DebatePosition client:load graph={graph} currentId={node.id} basePath={base} />
+      </section>
+    )}
 
     <div class="node-layout">
       <div class="prose" set:html={node.html} />
@@ -56,7 +74,7 @@ const incoming = nodes.flatMap((candidate) =>
             <div class="link-stack">
               {node.topics.map((topicId) => {
                 const topic = byId.get(topicId);
-                return topic && <a href={`${base}node/${topic.id}/`}>{topic.title}</a>;
+                return topic && <a href={base + "node/" + topic.id + "/"}>{topic.title}</a>;
               })}
             </div>
           </section>
@@ -64,10 +82,10 @@ const incoming = nodes.flatMap((candidate) =>
 
         {outgoing.length > 0 && (
           <section>
-            <h2>Outgoing</h2>
+            <h2>Possible replies</h2>
             <div class="link-stack">
               {outgoing.map((item) => (
-                <a href={`${base}node/${item.node.id}/`}>
+                <a href={base + "node/" + item.node.id + "/"}>
                   <span>{item.type.replaceAll("_", " ")}</span>
                   <strong>{item.node.title}</strong>
                 </a>
@@ -78,10 +96,10 @@ const incoming = nodes.flatMap((candidate) =>
 
         {incoming.length > 0 && (
           <section>
-            <h2>Incoming</h2>
+            <h2>Earlier moves</h2>
             <div class="link-stack">
               {incoming.map((item) => (
-                <a href={`${base}node/${item.node.id}/`}>
+                <a href={base + "node/" + item.node.id + "/"}>
                   <span>{item.type.replaceAll("_", " ")} from</span>
                   <strong>{item.node.title}</strong>
                 </a>
