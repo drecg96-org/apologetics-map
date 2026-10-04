@@ -55,7 +55,7 @@ See [docs/AGENT_GRAPH_CLI.md](docs/AGENT_GRAPH_CLI.md) for the full command cont
 
 ## Node feedback issues
 
-Every canonical node page includes **Respond / ask a question**. The form captures a reader's question, response, objection, correction, or request for evidence and hands it to GitHub as a prefilled issue.
+Every canonical node page includes **Respond / ask a question**. The form captures a reader's question, response, objection, correction, or request for evidence. Without backend configuration it opens a prefilled GitHub issue; with the optional Cloudflare Worker + GitHub App configured it submits directly through the site.
 
 These issues use the title prefix `[Node feedback]` and include a `<!-- node-feedback:v1 -->` marker plus:
 
@@ -71,6 +71,8 @@ npm run graph -- packet <node-id> --depth 2
 ```
 
 Treat the issue as proposed conversational input, not automatically-correct graph content. Check sources and nearby argument structure before editing Markdown, and close or reference the issue from the integrating PR.
+
+**Issues contain conversations; nodes contain ideas.** Keep canonical node types semantic and record user-feedback provenance with `origin.github_issues`. See [docs/NODE_FEEDBACK_SETUP.md](docs/NODE_FEEDBACK_SETUP.md) for GitHub App/Cloudflare setup and the complete issue-to-graph workflow.
 
 
 ## Repository layout
