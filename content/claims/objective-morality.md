@@ -17,13 +17,13 @@ status:
   christian: broad-consensus
 conversation:
   opening: true
-  follows: []
+  follows:
+    []
   label: opening
   priority: 20
 conversation:
   opening: true
-  follows:
-    []
+  follows: []
   label: opening
   priority: 20
 references:
