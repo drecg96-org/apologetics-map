@@ -504,15 +504,15 @@ function sourceClass(sourceNode: any) {
       return issueUrl.toString();
     }
 
-    function showFeedbackStatus(message: string, fallbackUrl?: string) {
+    function showFeedbackStatus(message: string, linkUrl?: string, linkLabel = "View GitHub issue.") {
       const status = feedbackDialog?.querySelector<HTMLElement>("[data-node-feedback-status]");
       if (!status) return;
       status.replaceChildren(document.createTextNode(message));
-      if (fallbackUrl) {
+      if (linkUrl) {
         status.append(document.createTextNode(" "));
         const link = document.createElement("a");
-        link.href = fallbackUrl;
-        link.textContent = "Open a prefilled GitHub issue instead.";
+        link.href = linkUrl;
+        link.textContent = linkLabel;
         status.append(link);
       }
     }
@@ -581,7 +581,11 @@ function sourceClass(sourceNode: any) {
         );
       } catch {
         (window as any).turnstile?.reset();
-        showFeedbackStatus("Direct submission is unavailable right now.", fallbackUrl);
+        showFeedbackStatus(
+          "Direct submission is unavailable right now.",
+          fallbackUrl,
+          "Open a prefilled GitHub issue instead.",
+        );
       } finally {
         if (submitButton) submitButton.disabled = false;
       }
