@@ -14,6 +14,11 @@ tags:
 status:
   editorial: draft
   scholarship: contested
+conversation:
+  follows:
+    - moral-grounding-theism
+  label: support
+  priority: 30
 references:
   - source: apologia-moral-argument
   - source: evans-god-moral-obligation
