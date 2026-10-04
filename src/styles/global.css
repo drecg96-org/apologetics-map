@@ -1809,6 +1809,10 @@ footer {
   gap: .9rem;
 }
 
+.node-feedback-form[hidden] {
+  display: none;
+}
+
 .node-feedback-form label {
   display: grid;
   gap: .38rem;
