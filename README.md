@@ -28,6 +28,10 @@ The production viewer deploys from `main` to GitHub Pages:
 - **Debate Map** is a secondary spatial view for orienting yourself in conversational branches.
 - **Knowledge Graph** is a secondary semantic view for inspecting support, objections, dependencies, evidence, and related structure.
 
+## Research-depth roadmap
+
+The staged plan for formal argument mapping, atomic evidence, the resurrection gold-standard branch, cumulative-case expansion, hard objections, comparative religion, discovery/cruxes, and later practice features lives in [docs/DEPTH_AND_ARGUMENT_MAPPING_ROADMAP.md](docs/DEPTH_AND_ARGUMENT_MAPPING_ROADMAP.md).
+
 ## Agent / automation quick start
 
 **If you are an agent working in this repository, prefer the graph CLI over scanning every Markdown file.** The CLI loads the same validated canonical graph used by the site and returns bounded JSON that is cheaper and easier to reason over.
