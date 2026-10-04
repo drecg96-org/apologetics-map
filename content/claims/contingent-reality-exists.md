@@ -2,7 +2,7 @@
 id: contingent-reality-exists
 title: Contingent reality exists
 type: claim
-summary: At least some concrete realities exist contingently: they exist but could have failed to exist or could have been otherwise.
+summary: "At least some concrete realities exist contingently: they exist but could have failed to exist or could have been otherwise."
 topics:
   - existence-of-god
 relationships: []
