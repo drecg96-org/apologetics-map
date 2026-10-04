@@ -5,6 +5,7 @@ type: source
 summary: Christian apologetics ministry built around extended university-campus dialogues in which Cliffe Knechtle and Stuart Knechtle answer skeptical questions about God, Jesus, evidence, morality, suffering, salvation, Scripture, and competing worldviews.
 topics:
   - christianity
+  - morality
 relationships: []
 tags:
   - christian

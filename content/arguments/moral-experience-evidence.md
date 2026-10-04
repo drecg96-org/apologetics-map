@@ -20,19 +20,25 @@ conversation:
   label: support
   priority: 10
 references:
-  - source: apologia-moral-argument
   - source: sep-moral-realism
+  - source: reasonable-faith-metaethical-foundations
+  - source: reasonable-faith-objective-not-absolute
+  - source: alex-oconnor-ethical-emotivism
+    note: Direct anti-realist alternative to treating moral experience as perception of objective facts.
+  - source: apologia-moral-argument
 ---
 
 # Argument
 
 In clear cases, people often experience moral judgment as truth-apt: cruelty seems wrong, not merely disliked.
 
-A realist can treat this appearance as defeasible evidence. We normally begin by trusting experience unless there is a reason to think the relevant faculty is unreliable.
+A realist can treat this appearance as **defeasible prima facie evidence**. Craig explicitly frames the case this way: moral experience can rationally justify belief in objective moral values and duties unless there is a defeater, roughly analogous to beginning with ordinary perceptual experience rather than global skepticism.
 
 ## Objection
 
-Moral experience may be explainable through culture, emotion, social coordination, or evolutionary selection. If those processes explain why the belief occurs without needing objective moral facts, the evidential force of the experience may be reduced.
+Moral experience may be explainable through culture, emotion, social coordination, or evolutionary selection. O'Connor's emotivist approach goes further: the experience may not be the perception of a truth-apt moral fact at all.
+
+If those processes explain why the judgment occurs without any sensitivity to objective moral facts, the evidential force of the experience may be reduced.
 
 ## Limit
 

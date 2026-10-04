@@ -5,6 +5,7 @@ type: source
 summary: OCCA-maintained collection of John Lennox's books, articles, debates, interviews, and talks on Christianity, science, philosophy, AI, suffering, biblical interpretation, and faith and reason.
 topics:
   - christianity
+  - morality
 relationships: []
 tags:
   - christian

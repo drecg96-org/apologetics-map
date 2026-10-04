@@ -37,11 +37,15 @@ Erik Wielenberg, for example, develops a non-theistic normative realism in which
 
 This is one of the strongest objections to the moral argument because it grants the argument's moral-realist starting point while rejecting the proposed theistic ground.
 
+It should also be kept separate from atheistic **anti-realism**. Alex O'Connor's emotivism and Wielenberg's robust realism are both non-theistic positions, but they disagree at the first step about whether moral propositions are objectively true at all.
+
 The debate then becomes comparative:
 
 - Are brute or necessary normative facts metaphysically acceptable?
 - Does obligation require a personal authority?
 - Does theism explain moral knowledge better?
 - Is God a genuine explanation or just another unexplained necessary reality?
+- Can impersonal normative reasons be genuinely binding without a commander?
+- Which view has the lower explanatory cost: necessary moral facts or a necessarily good personal ground?
 
 A serious moral argument must engage these questions rather than treating secular realism as unavailable.

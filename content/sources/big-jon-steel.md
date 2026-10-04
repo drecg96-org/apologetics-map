@@ -5,6 +5,7 @@ type: source
 summary: Christian livestream and call-in apologetics source centered on open challenges such as "Convince Me To Leave Christianity," audience Q&A, worldview justification, and responses to atheist, Muslim, and cultural objections.
 topics:
   - christianity
+  - morality
 relationships: []
 tags:
   - christian
