@@ -26,7 +26,7 @@ source:
   stance: mixed
   identifiers:
     doi: 10.1093/oso/9780198826019.001.0001
-    isbn: 9780198826019
+    isbn: "9780198826019"
 ---
 
 # Source
