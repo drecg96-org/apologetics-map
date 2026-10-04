@@ -23,6 +23,8 @@ conversation:
   priority: 20
 references:
   - source: sep-moral-realism
+  - source: reasonable-faith-craig-harris-morality-debate
+    note: Direct debate over whether natural facts about conscious well-being can ground objective morality.
   - source: apologia-moral-argument
 ---
 
@@ -35,3 +37,5 @@ If such an account can explain both value and genuine obligation without appeali
 ## The crux
 
 The debate is not whether flourishing matters. The harder question is whether descriptive facts about flourishing are sufficient to generate genuinely normative conclusions about what anyone *ought* to do, including an agent who rejects the relevant goals.
+
+This creates an explicit **is–ought branch**. Critics argue that a theory cannot simply move from facts about what improves conscious lives to an authoritative obligation to promote those outcomes. Naturalists can reply that if moral properties are identical with or constituted by relevant natural properties, demanding a separate bridge may beg the question against moral naturalism.
