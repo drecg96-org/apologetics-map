@@ -63,7 +63,23 @@ const references = node.references
   .filter((item) => item.node?.type === "source");
 
 const evidenceNodes = semanticIncoming
-  .filter((item) => item.type === "evidence_for" || item.node.type === "evidence");
+  .filter((item) => item.type === "evidence_for" || item.node.type === "evidence")
+  .map((item) => {
+    const challengeNodes = nodes.filter((candidate) =>
+      candidate.relationships.some(
+        (relationship) =>
+          relationship.target === item.node.id
+          && (relationship.type === "challenges" || relationship.type === "contradicts"),
+      ),
+    );
+    return {
+      ...item,
+      challengeNodes,
+      sourceTitles: item.node.references
+        .map((reference) => byId.get(reference.source)?.title)
+        .filter(Boolean),
+    };
+  });
 
 const inferenceChallenges = node.argument
   ? nodes.flatMap((candidate) =>
@@ -288,9 +304,18 @@ function sourceClass(sourceNode: any) {
               <div class="evidence-grid">
                 {evidenceNodes.map((item) => (
                   <a class="evidence-card" href={base + "node/" + item.node.id + "/"}>
-                    <span class="type-badge type-evidence">evidence</span>
+                    <div class="evidence-card-head">
+                      <span class="type-badge type-evidence">evidence</span>
+                      {item.node.status?.scholarship && <span>{item.node.status.scholarship}</span>}
+                    </div>
                     <strong>{item.node.title}</strong>
                     {item.node.summary && <p>{item.node.summary}</p>}
+                    <div class="evidence-card-meta">
+                      <span>{item.node.references.length} source{item.node.references.length === 1 ? "" : "s"}</span>
+                      <span>{item.challengeNodes.length} mapped challenge{item.challengeNodes.length === 1 ? "" : "s"}</span>
+                    </div>
+                    {item.sourceTitles[0] && <p class="evidence-card-trail"><strong>Source:</strong> {item.sourceTitles[0]}</p>}
+                    {item.challengeNodes[0] && <p class="evidence-card-trail"><strong>Challenge:</strong> {item.challengeNodes[0].title}</p>}
                   </a>
                 ))}
               </div>

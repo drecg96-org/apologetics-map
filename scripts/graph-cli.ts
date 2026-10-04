@@ -444,6 +444,10 @@ async function main() {
     const debateNodes = nodes.filter((node) => node.type !== "source" && node.type !== "topic");
     const argumentNodes = nodes.filter((node) => node.type === "argument");
     const evidenceNodes = nodes.filter((node) => node.type === "evidence");
+    const historicalClaimTags = new Set([
+      "historical-jesus", "early-christianity", "textual-criticism",
+      "manuscript", "archaeology", "survey", "roman-history",
+    ]);
     const structuredPremiseIds = new Set(
       argumentNodes.flatMap((node) =>
         (node.argument?.statements ?? [])
@@ -523,6 +527,15 @@ async function main() {
         total: evidenceNodes.length,
         withSources: evidenceNodes.filter((node) => node.references.length > 0).length,
         withoutSources: evidenceNodes.filter((node) => node.references.length === 0).map((node) => node.id).sort(),
+        withoutExplicitLimits: evidenceNodes.filter((node) =>
+          !/(what this does not|does not establish|limits?|limitations?)/i.test(node.body)
+        ).map((node) => node.id).sort(),
+        historicalClaimsWithoutEvidence: nodes.filter((node) => {
+          if (node.type !== "claim" || node.references.length === 0) return false;
+          if (!node.tags.some((tag) => historicalClaimTags.has(tag))) return false;
+          const incoming = indexes.semanticIncoming.get(node.id) ?? [];
+          return !incoming.some((edge) => edge.type === "evidence_for" || byId.get(edge.source)?.type === "evidence");
+        }).map((node) => node.id).sort(),
       },
       sourcing: {
         debateNodesWithoutReferences: debateNodes.filter((node) => node.references.length === 0).map((node) => node.id).sort(),

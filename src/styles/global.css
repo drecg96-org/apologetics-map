@@ -903,6 +903,38 @@ footer {
   text-decoration: none;
 }
 
+.evidence-card-head,
+.evidence-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+}
+
+.evidence-card-head > span:not(.type-badge),
+.evidence-card-meta span {
+  padding: .18rem .42rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: .64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.evidence-card-meta {
+  margin-top: auto;
+}
+
+.evidence-card .evidence-card-trail {
+  font-size: .72rem;
+  line-height: 1.35;
+}
+
+.evidence-card .evidence-card-trail strong {
+  color: var(--text);
+}
+
 .evidence-card p,
 .source-card p {
   margin: 0;

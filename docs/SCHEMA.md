@@ -183,6 +183,40 @@ references:
 
 Referenced IDs must exist and have `type: source`.
 
+## Evidence nodes
+
+Evidence nodes represent **checkable propositions or data**, not merely citations.
+
+Minimum expectations:
+
+- at least one `references` source;
+- at least one `evidence_for` relationship to a claim;
+- an explicit `status.scholarship` reception label (use `unknown` if it cannot yet be assessed responsibly);
+- prose explaining why the datum matters and what it does **not** establish.
+
+Example:
+
+```yaml
+---
+id: early-tradition-example
+title: An early source preserves a pre-existing tradition
+type: evidence
+topics:
+  - christianity
+relationships:
+  - type: evidence_for
+    target: resurrection-proclamation-emerged-very-early
+status:
+  scholarship: majority
+references:
+  - source: example-scholarly-source
+---
+```
+
+A source is where the datum comes from; an evidence node is the proposition extracted from that source that bears on another claim. Prefer `source → evidence → claim/premise` for historical, factual, textual, scientific, and survey data.
+
+Reception labels describe how the **evidence proposition** is situated in scholarship. They are not probabilities, truth scores, or a statement of how strongly the evidence supports Christianity.
+
 ## Scripture
 
 Bible passages are first-class node metadata:
