@@ -1,6 +1,6 @@
 ---
 id: yaqeen-finding-and-following-jesus
-title: Finding and Following Jesus: The Muslim Claim to the Messiah
+title: "Finding and Following Jesus: The Muslim Claim to the Messiah"
 type: source
 summary: Muslim apologetic presentation of Jesus as Messiah and prophet while rejecting his divinity and the Christian crucifixion-resurrection account.
 topics:
