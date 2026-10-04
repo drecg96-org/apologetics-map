@@ -1,5 +1,5 @@
 version: 1
-max_new_sources: 12
+max_new_sources: 8
 
 providers:
   web:
@@ -54,20 +54,42 @@ providers:
 
   openalex:
     enabled: true
-    per_query: 3
+    per_query: 2
     queries:
       - topic: morality
         query: moral arguments existence of God objective moral obligations
+        required_any:
+          - god
+          - theism
+          - theistic
+          - divine
       - topic: morality
         query: divine command theory moral obligation
+        required_any:
+          - divine
+          - command
       - topic: morality
         query: secular moral realism God
+        required_any:
+          - secular
+          - realism
+          - realist
 
   crossref:
     enabled: true
-    per_query: 3
+    per_query: 2
     queries:
       - topic: morality
         query: moral argument God objective morality
+        required_any:
+          - god
+          - theism
+          - theistic
+          - divine
       - topic: morality
         query: evolutionary debunking moral realism
+        required_any:
+          - evolution
+          - evolutionary
+          - debunking
+          - realism
