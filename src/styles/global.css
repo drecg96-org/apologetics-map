@@ -1140,3 +1140,49 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+
+.primary-explorer-section {
+  margin-top: 0;
+}
+
+.orientation-callout,
+.topic-map-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.orientation-callout h2,
+.topic-map-callout h2 {
+  margin: .2rem 0 .35rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.orientation-callout p:not(.eyebrow),
+.topic-map-callout p:not(.eyebrow) {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.orientation-link,
+.topic-map-callout > a {
+  flex: 0 0 auto;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 760px) {
+  .orientation-callout,
+  .topic-map-callout {
+    display: grid;
+    gap: .8rem;
+  }
+}

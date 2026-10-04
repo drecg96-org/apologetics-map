@@ -1,0 +1,44 @@
+---
+import GraphExplorer from "../../components/GraphExplorer";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadGraph, toGraphPayload } from "../../lib/graph";
+
+const { nodes } = await loadGraph();
+const graph = toGraphPayload(nodes);
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Maps">
+  <section class="hero page-width hero-compact">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={base}>Debate Explorer</a><span>›</span><span aria-current="page">Maps</span>
+    </nav>
+    <p class="eyebrow">Orientation & exploration</p>
+    <h1>Maps</h1>
+    <p>
+      Use Debate Map to see conversational branches as a spatial tree, or switch to
+      Knowledge Graph to inspect support, challenge, dependency, evidence, and other
+      semantic relationships.
+    </p>
+  </section>
+
+  <section class="map-section">
+    <div class="section-heading page-width">
+      <div>
+        <p class="eyebrow">Secondary views</p>
+        <h2>Debate Map & Knowledge Graph</h2>
+      </div>
+      <p>
+        These views are designed for orientation and exploration. For following an
+        argument step-by-step, use Debate Explorer.
+      </p>
+    </div>
+    <GraphExplorer
+      client:load
+      graph={graph}
+      basePath={base}
+      initialMode="debate"
+      availableModes={["debate", "atlas"]}
+    />
+  </section>
+</BaseLayout>
