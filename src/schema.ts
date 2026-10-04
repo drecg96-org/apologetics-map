@@ -27,6 +27,11 @@ export const ReferenceSchema = z.object({
   note: z.string().min(1).optional(),
 });
 
+export const ScriptureReferenceSchema = z.object({
+  reference: z.string().min(1),
+  note: z.string().min(1).optional(),
+});
+
 export const ConversationSchema = z.object({
   follows: z.array(slug).default([]),
   opening: z.boolean().optional(),
@@ -46,7 +51,7 @@ export const SourceProcessingSchema = z.object({
   reviewed: z.boolean().default(false),
   summary_version: z.number().int().min(1).optional(),
   discovery: z.object({
-    provider: z.enum(["web", "openalex", "crossref", "youtube", "manual", "other"]),
+    provider: z.enum(["web", "openalex", "crossref", "rss", "youtube", "manual", "other"]),
     query: z.string().min(1).optional(),
     retrieved_at: z.string().min(1).optional(),
     external_id: z.string().min(1).optional(),
@@ -62,6 +67,7 @@ export const NodeSchema = z.object({
   relationships: z.array(RelationshipSchema).default([]),
   conversation: ConversationSchema.optional(),
   references: z.array(ReferenceSchema).default([]),
+  scripture: z.array(ScriptureReferenceSchema).default([]),
   tags: z.array(slug).default([]),
   aliases: z.array(z.string().min(1)).default([]),
   status: z.object({

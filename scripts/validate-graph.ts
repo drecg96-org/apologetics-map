@@ -2,6 +2,7 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import YAML from "yaml";
 import { NodeSchema, type ApologeticsMapNode } from "../src/schema.js";
+import { parseScriptureReference, scriptureStats } from "../src/lib/scripture.js";
 
 const CONTENT_ROOT = path.resolve("content");
 
@@ -96,6 +97,12 @@ async function main() {
       }
     }
 
+    for (const scripture of item.node.scripture) {
+      if (!parseScriptureReference(scripture.reference)) {
+        errors.push(`${item.file}: invalid Scripture reference "${scripture.reference}"`);
+      }
+    }
+
     if (item.node.processing && item.node.type !== "source") {
       errors.push(`${item.file}: processing metadata is only valid on source nodes`);
     }
@@ -106,6 +113,14 @@ async function main() {
 
   if (files.length === 0) errors.push("content/: no graph nodes found");
 
+  const scripture = await scriptureStats().catch((error) => {
+    errors.push(`data/scripture/web: unable to load corpus — ${error instanceof Error ? error.message : String(error)}`);
+    return null;
+  });
+  if (scripture && (scripture.books !== 66 || scripture.chapters !== 1189 || scripture.verses < 31000)) {
+    errors.push(`data/scripture/web: expected full 66-book canon, found ${scripture.books} books / ${scripture.chapters} chapters / ${scripture.verses} verses`);
+  }
+
   if (errors.length > 0) {
     console.error("\nApologetics Map validation failed:\n");
     for (const error of errors) console.error(`- ${error}`);
@@ -114,7 +129,7 @@ async function main() {
   }
 
   const edgeCount = loaded.reduce((total, item) => total + item.node.relationships.length, 0);
-  console.log(`Apologetics Map valid: ${loaded.length} nodes, ${edgeCount} explicit relationships.`);
+  console.log(`Apologetics Map valid: ${loaded.length} nodes, ${edgeCount} explicit relationships, ${scripture?.verses ?? 0} WEB verses.`);
 }
 
 main().catch((error) => {

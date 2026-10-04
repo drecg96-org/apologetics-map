@@ -1315,3 +1315,65 @@ footer {
   .source-toolbar label:first-child { grid-column: 1 / -1; }
   .source-result-row { align-items: flex-start; flex-direction: column; gap: .2rem; }
 }
+
+/* Local Scripture references */
+.scripture-section {
+  margin-top: 2.4rem;
+}
+
+.scripture-grid {
+  display: grid;
+  gap: .8rem;
+}
+
+.scripture-card {
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+.scripture-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .7rem;
+}
+
+.scripture-card-head strong {
+  font-size: 1rem;
+}
+
+.scripture-card-head span {
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.scripture-verses {
+  display: grid;
+  gap: .35rem;
+}
+
+.scripture-verses p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.scripture-verses sup {
+  color: var(--muted);
+  font-size: .67em;
+  font-weight: 800;
+}
+
+.scripture-note,
+.scripture-truncated {
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.scripture-note {
+  margin: .85rem 0 .65rem;
+}
+
