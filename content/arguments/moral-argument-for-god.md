@@ -19,6 +19,7 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+  christian: contested
 conversation:
   follows:
     - what-grounds-objective-morality
@@ -66,6 +67,13 @@ references:
     note: Broad treatment engaging moral value, human dignity, and evolutionary naturalism.
   - source: adams-moral-arguments-theistic-belief
     note: Classic philosophical treatment of moral considerations supporting theistic belief.
+scripture:
+  - reference: Romans 2:14-15
+    note: Biblical grounding for conscience and moral knowledge within the Christian worldview; not a premise a non-Christian must first accept.
+  - reference: Micah 6:8
+    note: Presents moral good as something God discloses and requires rather than something created by social approval.
+  - reference: Genesis 1:26-27
+    note: Christian grounding for the special dignity and moral significance of human persons as bearers of God's image.
 ---
 
 # Argument
