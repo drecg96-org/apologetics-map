@@ -25,6 +25,7 @@ status:
 conversation:
   follows:
     - what-grounds-objective-morality
+    - which-natural-theology-line-should-we-test
   label: theistic grounding argument
   priority: 20
 argument:

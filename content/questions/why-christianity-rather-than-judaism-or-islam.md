@@ -34,6 +34,7 @@ conversation:
   opening: true
   follows:
     - christian-specificity-requires-further-discriminators
+    - revelation-claims-require-comparative-testing
   label: compare Abrahamic faiths
   priority: 25
 origin:

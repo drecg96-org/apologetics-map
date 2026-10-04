@@ -23,6 +23,7 @@ conversation:
   follows:
     - what-most-drives-your-skepticism
     - christianity-specific-skepticism
+    - revelation-claims-require-comparative-testing
   label: test Jesus historically
   priority: 30
 status:
