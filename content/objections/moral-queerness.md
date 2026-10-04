@@ -10,8 +10,6 @@ relationships:
     target: objective-morality
   - type: supports
     target: moral-error-theory
-  - type: related_to
-    target: epistemic-norms-companions-in-guilt
 tags:
   - error-theory
   - anti-realism
@@ -42,9 +40,11 @@ If the answer requires a special category of normative properties plus a special
 
 ## Where this leads
 
-The queerness objection can motivate error theory, but it does not itself establish error theory. A realist can instead argue that normativity is not uniquely mysterious—for example, by comparing moral norms with apparently objective norms of rational belief.
+The queerness objection can motivate error theory, but it does not itself establish error theory.
 
-That is why the companions-in-guilt branch is a natural response route here.
+A realist can reply in several ways: identify moral properties with natural properties, treat some normative reasons as fundamental, use a constructivist account, appeal to a theistic ground, or argue through companions-in-guilt that normativity is not uniquely mysterious.
+
+The map therefore keeps the objection upstream of the grounding debate while allowing later grounding theories to answer its metaphysical challenge in different ways.
 
 ## Theistic relevance
 
