@@ -15,6 +15,11 @@ tags:
   - kalam
   - cosmological-argument
   - beginning
+conversation:
+  follows:
+    - does-cosmic-beginning-point-to-a-cause
+  label: conditionally accept a transcendent cause
+  priority: 20
 status:
   editorial: reviewed
   scholarship: contested
