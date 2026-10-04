@@ -21,10 +21,6 @@ conversation:
     - what-most-drives-your-skepticism
   label: the arguments don't get me there
   priority: 20
-  terminal:
-    kind: unresolved
-    label: Argument-specific replies needed
-    note: The next layer should branch into cosmological, teleological, moral, ontological, and other arguments rather than answering natural theology generically.
 references:
   - source: oppy-arguing-about-gods
     note: Systematically evaluates major families of arguments for monotheism from a skeptical perspective.
