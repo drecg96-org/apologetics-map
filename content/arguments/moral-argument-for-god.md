@@ -31,6 +31,8 @@ references:
   - source: adams-finite-infinite-goods
   - source: evans-god-moral-obligation
   - source: wielenberg-robust-ethics
+  - source: reasonable-faith-metaethical-foundations
+    note: Theistic advocacy source defending the grounding step and distinguishing grounding from moral behavior.
 ---
 
 # Argument
@@ -42,6 +44,12 @@ A common contemporary form can be stated roughly as:
 3. Therefore, objective morality provides evidence for such a personal moral foundation.
 
 Some versions are framed deductively, but the comparative version is more transparent about where the real dispute lies: premise 2.
+
+## Formulations
+
+Popular apologetic presentations often use a conditional form: without God there would be no objective moral values or duties; objective moral values and duties exist; therefore God exists.
+
+This map uses the comparative formulation above because it makes the contested explanatory step explicit and gives rival accounts—such as secular moral realism and naturalistic theories—a clear place in the debate.
 
 ## What the argument is not
 

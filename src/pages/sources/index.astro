@@ -6,45 +6,182 @@ const { nodes } = await loadGraph();
 const base = import.meta.env.BASE_URL;
 const sources = nodes.filter((node) => node.type === "source");
 
+const referenceCounts = new Map<string, number>();
+for (const node of nodes) {
+  for (const reference of node.references) {
+    referenceCounts.set(reference.source, (referenceCounts.get(reference.source) ?? 0) + 1);
+  }
+}
+
 function sourceClass(source) {
   if (source.source?.kind === "primary-source" || source.source?.kind === "scripture") return "Primary";
-  if (["book", "paper", "article"].includes(source.source?.kind ?? "")) return "Academic";
   if (source.tags.includes("apologetics")) return "Apologetics";
+  if (["book", "paper", "article"].includes(source.source?.kind ?? "")) return "Academic";
   return "Reference";
 }
+
+function sourceStage(source) {
+  const integrated = (referenceCounts.get(source.id) ?? 0) > 0;
+  const summarized = source.processing?.summarized ?? Boolean(source.summary);
+  const indexed = source.processing?.indexed ?? true;
+  if (integrated) return "integrated";
+  if (summarized) return "summarized";
+  if (indexed) return "indexed";
+  return "discovered";
+}
+
+const stageCounts = sources.reduce((counts, source) => {
+  const stage = sourceStage(source);
+  counts[stage] = (counts[stage] ?? 0) + 1;
+  return counts;
+}, {} as Record<string, number>);
+
+const sourceKinds = [...new Set(sources.map((source) => source.source?.kind).filter(Boolean))].sort();
+const sourceTopics = [...new Set(sources.flatMap((source) => source.topics))].sort();
 ---
 
 <BaseLayout title="Sources">
   <section class="hero page-width hero-compact">
     <p class="eyebrow">Research shelf</p>
-    <h1>Sources</h1>
+    <h1>Source library</h1>
     <p>
-      Primary, academic, apologetics, and reference material used by nodes in the map.
-      Source type is shown explicitly so advocacy and scholarship are not blurred together.
+      Discovered material moves through indexing, summarization, and graph integration.
+      Integration is derived from live graph references, so the status cannot drift from the content.
     </p>
   </section>
 
-  <section class="page-width node-index">
-    <div class="source-grid">
-      {sources.map((source) => (
-        <article class="source-card">
-          <div class="source-card-head">
-            <span class="source-class">{sourceClass(source)}</span>
-            <span>{source.source?.kind ?? "source"}</span>
-          </div>
-          <h2><a href={base + "node/" + source.id + "/"}>{source.title}</a></h2>
-          <p class="source-meta">
-            {source.source?.authors?.join(", ")}
-            {source.source?.year && " · " + source.source.year}
-            {source.source?.publisher && " · " + source.source.publisher}
-          </p>
-          {source.summary && <p>{source.summary}</p>}
-          <div class="source-actions">
-            <a href={base + "node/" + source.id + "/"}>Reference page</a>
-            {source.source?.url && <a href={source.source.url} target="_blank" rel="noreferrer">Original ↗</a>}
-          </div>
-        </article>
-      ))}
-    </div>
+  <section class="page-width source-pipeline-summary" aria-label="Source pipeline summary">
+    <div><strong>{sources.length}</strong><span>Total sources</span></div>
+    <div><strong>{stageCounts.indexed ?? 0}</strong><span>Awaiting summary</span></div>
+    <div><strong>{stageCounts.summarized ?? 0}</strong><span>Summarized</span></div>
+    <div><strong>{stageCounts.integrated ?? 0}</strong><span>Integrated</span></div>
   </section>
+
+  <section class="page-width source-library">
+    <div class="source-toolbar" aria-label="Source filters">
+      <label>
+        <span>Search</span>
+        <input id="source-search" type="search" placeholder="Title, author, tag, publisher…" autocomplete="off" />
+      </label>
+      <label>
+        <span>Pipeline</span>
+        <select id="source-stage">
+          <option value="">All stages</option>
+          <option value="discovered">Discovered</option>
+          <option value="indexed">Indexed / needs summary</option>
+          <option value="summarized">Summarized / not integrated</option>
+          <option value="integrated">Integrated</option>
+        </select>
+      </label>
+      <label>
+        <span>Type</span>
+        <select id="source-kind">
+          <option value="">All types</option>
+          {sourceKinds.map((kind) => <option value={kind}>{kind}</option>)}
+        </select>
+      </label>
+      <label>
+        <span>Topic</span>
+        <select id="source-topic">
+          <option value="">All topics</option>
+          {sourceTopics.map((topic) => <option value={topic}>{topic}</option>)}
+        </select>
+      </label>
+    </div>
+
+    <div class="source-result-row">
+      <strong id="source-result-count">{sources.length} sources</strong>
+      <span>Use “needs summary” as the agent work queue.</span>
+    </div>
+
+    <div class="source-grid" id="source-grid">
+      {sources.map((source) => {
+        const stage = sourceStage(source);
+        const integrations = referenceCounts.get(source.id) ?? 0;
+        const searchable = [
+          source.title,
+          source.summary,
+          source.source?.authors?.join(" "),
+          source.source?.publisher,
+          source.source?.role,
+          source.source?.stance,
+          source.tags.join(" "),
+          source.topics.join(" "),
+        ].filter(Boolean).join(" ").toLowerCase();
+
+        return (
+          <article
+            class="source-card source-library-card"
+            data-source-card
+            data-search={searchable}
+            data-stage={stage}
+            data-kind={source.source?.kind ?? ""}
+            data-topics={source.topics.join(" ")}
+          >
+            <div class="source-card-head">
+              <span class="source-class">{sourceClass(source)}</span>
+              <span>{source.source?.kind ?? "source"}</span>
+              <span class={"pipeline-badge pipeline-" + stage}>{stage}</span>
+            </div>
+            <h2><a href={base + "node/" + source.id + "/"}>{source.title}</a></h2>
+            <p class="source-meta">
+              {source.source?.authors?.join(", ")}
+              {source.source?.year && " · " + source.source.year}
+              {source.source?.publisher && " · " + source.source.publisher}
+            </p>
+            {source.summary
+              ? <p>{source.summary}</p>
+              : <p class="awaiting-summary">Metadata indexed. Awaiting agent summary.</p>}
+            <div class="source-pipeline-meta">
+              {source.source?.role && <span>{source.source.role}</span>}
+              {source.source?.difficulty && <span>{source.source.difficulty}</span>}
+              {source.source?.stance && <span>{source.source.stance}</span>}
+              {integrations > 0 && <span>{integrations} graph reference{integrations === 1 ? "" : "s"}</span>}
+            </div>
+            <div class="source-actions">
+              <a href={base + "node/" + source.id + "/"}>Reference page</a>
+              {source.source?.url && <a href={source.source.url} target="_blank" rel="noreferrer">Original ↗</a>}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <p id="source-empty" class="source-empty" hidden>No sources match these filters.</p>
+  </section>
+
+  <script is:inline>
+    const search = document.querySelector("#source-search");
+    const stage = document.querySelector("#source-stage");
+    const kind = document.querySelector("#source-kind");
+    const topic = document.querySelector("#source-topic");
+    const count = document.querySelector("#source-result-count");
+    const empty = document.querySelector("#source-empty");
+    const cards = [...document.querySelectorAll("[data-source-card]")];
+
+    function applySourceFilters() {
+      const query = (search?.value ?? "").trim().toLowerCase();
+      const stageValue = stage?.value ?? "";
+      const kindValue = kind?.value ?? "";
+      const topicValue = topic?.value ?? "";
+      let visible = 0;
+
+      for (const card of cards) {
+        const matches =
+          (!query || card.dataset.search?.includes(query)) &&
+          (!stageValue || card.dataset.stage === stageValue) &&
+          (!kindValue || card.dataset.kind === kindValue) &&
+          (!topicValue || (card.dataset.topics ?? "").split(" ").includes(topicValue));
+        card.hidden = !matches;
+        if (matches) visible += 1;
+      }
+
+      if (count) count.textContent = visible + (visible === 1 ? " source" : " sources");
+      if (empty) empty.hidden = visible !== 0;
+    }
+
+    [search, stage, kind, topic].forEach((control) => {
+      control?.addEventListener(control === search ? "input" : "change", applySourceFilters);
+    });
+  </script>
 </BaseLayout>

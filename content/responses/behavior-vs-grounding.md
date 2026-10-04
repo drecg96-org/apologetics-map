@@ -23,6 +23,8 @@ conversation:
   priority: 30
 references:
   - source: apologia-moral-argument
+  - source: reasonable-faith-metaethical-foundations
+    note: Craig explicitly concedes that non-theists may live morally while separating that question from metaethical grounding.
 ---
 
 # Response

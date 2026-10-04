@@ -34,6 +34,20 @@ export const ConversationSchema = z.object({
   priority: z.number().int().min(0).optional(),
 });
 
+export const SourceProcessingSchema = z.object({
+  discovered: z.boolean().default(true),
+  indexed: z.boolean().default(false),
+  summarized: z.boolean().default(false),
+  reviewed: z.boolean().default(false),
+  summary_version: z.number().int().min(1).optional(),
+  discovery: z.object({
+    provider: z.enum(["web", "openalex", "crossref", "youtube", "manual", "other"]),
+    query: z.string().min(1).optional(),
+    retrieved_at: z.string().min(1).optional(),
+    external_id: z.string().min(1).optional(),
+  }).strict().optional(),
+}).strict();
+
 export const NodeSchema = z.object({
   id: slug,
   title: z.string().min(1),
@@ -50,6 +64,7 @@ export const NodeSchema = z.object({
     scholarship: z.enum(["unknown", "consensus", "majority", "contested", "minority"]).optional(),
     christian: z.enum(["unknown", "broad-consensus", "tradition-specific", "contested"]).optional(),
   }).optional(),
+  processing: SourceProcessingSchema.optional(),
   source: z.object({
     kind: z.enum([
       "book", "article", "paper", "website", "scripture",
@@ -59,6 +74,14 @@ export const NodeSchema = z.object({
     year: z.union([z.string().min(1), z.number().int()]).optional(),
     publisher: z.string().min(1).optional(),
     url: z.url().optional(),
+    role: z.enum(["primer", "defense", "objection", "debate", "scholarship", "context", "reference"]).optional(),
+    difficulty: z.enum(["beginner", "intermediate", "advanced"]).optional(),
+    stance: z.enum(["supports", "challenges", "mixed", "neutral"]).optional(),
+    identifiers: z.object({
+      doi: z.string().min(1).optional(),
+      isbn: z.string().min(1).optional(),
+      openalex: z.string().min(1).optional(),
+    }).strict().optional(),
   }).optional(),
 }).strict();
 
