@@ -1,6 +1,6 @@
 type Env = {
   GITHUB_APP_CLIENT_ID: string;
-  GITHUB_PRIVATE_KEY: string;
+  GITHUB_APP_PEM: string;
   TURNSTILE_SECRET_KEY: string;
   GITHUB_OWNER: string;
   GITHUB_REPO: string;
@@ -70,7 +70,7 @@ export default {
     }
 
     try {
-      const jwt = await createAppJwt(env.GITHUB_APP_CLIENT_ID, env.GITHUB_PRIVATE_KEY);
+      const jwt = await createAppJwt(env.GITHUB_APP_CLIENT_ID, env.GITHUB_APP_PEM);
       const installationId = await getInstallationId(jwt, env);
       const token = await createInstallationToken(jwt, installationId, env);
       const issue = await createIssue(token, parsed.value, env);
@@ -284,7 +284,7 @@ function githubFetch(url: string, bearer: string, init: RequestInit = {}): Promi
   return fetch(url, { ...init, headers });
 }
 
-async function createAppJwt(clientId: string, privateKeyPem: string): Promise<string> {
+async function createAppJwt(clientId: string, pem: string): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   const header = base64Url(new TextEncoder().encode(JSON.stringify({ alg: "RS256", typ: "JWT" })));
   const payload = base64Url(new TextEncoder().encode(JSON.stringify({
@@ -293,9 +293,10 @@ async function createAppJwt(clientId: string, privateKeyPem: string): Promise<st
     iss: clientId,
   })));
   const signingInput = header + "." + payload;
+  const keyBytes = new Uint8Array(pemToPkcs8(pem));
   const key = await crypto.subtle.importKey(
     "pkcs8",
-    pemToPkcs8(privateKeyPem),
+    keyBytes.buffer,
     { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
     false,
     ["sign"],
