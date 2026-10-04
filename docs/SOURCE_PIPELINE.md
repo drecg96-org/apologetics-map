@@ -3,7 +3,7 @@
 The source pipeline deliberately separates cheap deterministic discovery from model-assisted interpretation.
 
 ```text
-web seeds / OpenAlex / Crossref
+web seeds / RSS / YouTube / OpenAlex / Crossref
             ↓
       source harvester
             ↓
@@ -47,11 +47,11 @@ npm run sources:harvest -- --dry-run
 npm run sources:harvest
 ```
 
-The first implementation intentionally limits itself to explicit trusted web pages (metadata fetch only), OpenAlex, Crossref, deterministic URL/DOI/ID deduplication, and a hard cap on new sources per run.
+Discovery supports explicit trusted web pages, RSS/Atom feeds, YouTube channel upload feeds, OpenAlex, Crossref, deterministic URL/DOI/ID deduplication, retry/backoff, and a hard cap on new sources per run. YouTube discovery resolves a configured channel URL to its public channel feed; it stores video metadata/links, not scraped transcripts.
 
 It does not mirror full copyrighted pages. The repository stores source metadata, provenance, and agent-authored summaries.
 
-The scheduled GitHub Action runs twice weekly and opens a PR containing only newly discovered metadata records.
+The scheduled GitHub Action runs twice weekly and opens a PR containing only newly discovered metadata records. Changes to the harvester or its configuration on `main` also trigger a harvest, which makes new source adapters self-testing after merge.
 
 ## Agent handoff
 
@@ -71,9 +71,25 @@ The packet contains source metadata plus the existing graph neighborhood for the
 
 A source becomes **integrated** automatically as soon as a graph node references it.
 
+## Local Scripture corpus
+
+The complete 66-book World English Bible (WEB) is vendored under `data/scripture/web/` for offline lookup and model context. The text is public domain. The JSON snapshot is generated from the official eBible WEB USFM distribution.
+
+Useful commands:
+
+```bash
+npm run scripture:stats
+npm run scripture:lookup -- Romans 2:14-15
+npm run scripture:scan -- content/claims/example.md
+```
+
+Graph nodes can declare a `scripture` list. The viewer renders the local WEB passage and generates an ESV link on YouVersion without storing copyrighted ESV text.
+
+Source packets also detect Bible references in the source record and attach local WEB context for the summarization/integration agent.
+
 ## Expansion path
 
-Next adapters can use the same candidate contract: YouTube channel upload metadata, RSS/Atom, curated sitemaps, Google Books/Open Library, and Scripture-reference extraction. Those adapters should keep the same rule: discover broadly, summarize selectively, and integrate only with provenance.
+Next adapters can use the same candidate contract for curated sitemaps, Google Books/Open Library, citation expansion, and richer topic-aware ranking. Those adapters should keep the same rule: discover broadly, summarize selectively, and integrate only with provenance.
 
 
 ## Curated creator hubs

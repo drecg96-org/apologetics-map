@@ -4,10 +4,20 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "23 10 * * 1,4"
+  push:
+    branches:
+      - main
+    paths:
+      - "config/source-harvest.yml"
+      - "scripts/harvest-sources.ts"
 
 permissions:
   contents: write
   pull-requests: write
+
+concurrency:
+  group: source-harvest
+  cancel-in-progress: false
 
 jobs:
   harvest:
@@ -37,4 +47,8 @@ jobs:
           git add content/sources/harvested
           git commit -m "Harvest source candidates"
           git push origin "$branch"
-          gh pr create             --base main             --head "$branch"             --title "Harvest source candidates"             --body "Automated metadata-only source discovery. These records are indexed but intentionally unsummarized and unintegrated; review them in the Source Library / Integration Queue."
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "Harvest source candidates" \
+            --body "Automated metadata-only source discovery from curated RSS/YouTube feeds and scholarly APIs. These records are indexed but intentionally unsummarized and unintegrated; review them in the Source Library / Integration Queue."

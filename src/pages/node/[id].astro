@@ -2,6 +2,7 @@
 import DebatePosition from "../../components/DebatePosition";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { loadGraph, toGraphPayload } from "../../lib/graph";
+import { lookupScriptureReference } from "../../lib/scripture";
 
 export async function getStaticPaths() {
   const { nodes } = await loadGraph();
@@ -58,6 +59,13 @@ const references = node.references
 
 const evidenceNodes = semanticIncoming
   .filter((item) => item.type === "evidence_for" || item.node.type === "evidence");
+
+const scriptureReferences = (await Promise.all(
+  node.scripture.map(async (entry) => {
+    const lookup = await lookupScriptureReference(entry.reference);
+    return lookup ? { ...entry, lookup } : null;
+  }),
+)).filter(Boolean);
 
 function sourceClass(sourceNode: any) {
   if (!sourceNode) return "Reference";
@@ -160,6 +168,40 @@ function sourceClass(sourceNode: any) {
         )}
 
         <div class="prose" set:html={node.html} />
+
+        {scriptureReferences.length > 0 && (
+          <section class="scripture-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Scripture</p>
+                <h2>Biblical references</h2>
+              </div>
+              <p>WEB text is stored locally for research context; ESV links open on YouVersion.</p>
+            </div>
+            <div class="scripture-grid">
+              {scriptureReferences.map((entry) => entry && (
+                <article class="scripture-card">
+                  <div class="scripture-card-head">
+                    <strong>{entry.lookup.canonical}</strong>
+                    <span>WEB</span>
+                  </div>
+                  <div class="scripture-verses">
+                    {entry.lookup.verses.slice(0, 12).map((verse) => (
+                      <p><sup>{verse.verse}</sup> {verse.text}</p>
+                    ))}
+                    {entry.lookup.verses.length > 12 && (
+                      <p class="scripture-truncated">Showing the first 12 verses of this passage.</p>
+                    )}
+                  </div>
+                  {entry.note && <p class="scripture-note">{entry.note}</p>}
+                  <a class="external-source" href={entry.lookup.youVersionEsvUrl} target="_blank" rel="noreferrer">
+                    Read ESV on YouVersion ↗
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
         {(references.length > 0 || evidenceNodes.length > 0) && (
           <section class="evidence-section">

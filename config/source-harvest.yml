@@ -1,5 +1,5 @@
-version: 1
-max_new_sources: 8
+version: 2
+max_new_sources: 16
 
 providers:
   web:
@@ -17,40 +17,33 @@ providers:
         role: scholarship
         difficulty: advanced
         stance: mixed
-        tags:
-          - academic-reference
+        tags: [academic-reference]
 
       - id: reasonable-faith-metaethical-foundations
         topic: morality
         url: https://www.reasonablefaith.org/writings/scholarly-writings/the-existence-of-god/the-indispensability-of-theological-meta-ethical-foundations-for-morality/
         title: The Indispensability of Theological Meta-Ethical Foundations for Morality
         kind: article
-        authors:
-          - William Lane Craig
+        authors: [William Lane Craig]
         year: 1997
         publisher: Reasonable Faith
         role: defense
         difficulty: intermediate
         stance: supports
-        tags:
-          - apologetics
-          - moral-argument
+        tags: [apologetics, moral-argument]
 
       - id: reasonable-faith-formulating-moral-argument
         topic: morality
         url: https://www.reasonablefaith.org/writings/question-answer/formulating-the-moral-argument/
         title: Formulating the Moral Argument
         kind: article
-        authors:
-          - William Lane Craig
+        authors: [William Lane Craig]
         year: 2011
         publisher: Reasonable Faith
         role: primer
         difficulty: beginner
         stance: supports
-        tags:
-          - apologetics
-          - moral-argument
+        tags: [apologetics, moral-argument]
 
       # Curated creator hubs. Existing source nodes are deduplicated by id/url;
       # keeping these here makes the scheduled harvester health-check the trusted entry points.
@@ -184,26 +177,65 @@ providers:
           - apologetics
           - creator-hub
 
+
+  rss:
+    enabled: true
+    per_feed: 3
+    feeds:
+      - topic: christianity
+        url: https://coldcasechristianity.com/feed/
+        publisher: Cold-Case Christianity
+        required_any: [Jesus, Bible, resurrection, God, Christianity, evidence, apologetic, atheist, gospel]
+        tags: [entry-point, evidential-apologetics]
+      - topic: christianity
+        url: https://crossexamined.org/feed/
+        publisher: CrossExamined
+        required_any: [Jesus, Bible, resurrection, God, Christianity, evidence, apologetic, atheist, morality, Islam]
+        tags: [entry-point, apologetics]
+
+  youtube:
+    enabled: true
+    per_channel: 3
+    channels:
+      - topic: christianity
+        channel_url: https://www.youtube.com/@CapturingChristianity
+        publisher: Capturing Christianity
+        required_any: [God, Jesus, Bible, resurrection, Christianity, atheist, atheism, evidence, apologetic, morality, Islam]
+        tags: [entry-point, video]
+      - topic: christianity
+        channel_url: https://www.youtube.com/@InspiringPhilosophy
+        publisher: Inspiring Philosophy
+        required_any: [God, Jesus, Bible, resurrection, Christianity, atheist, atheism, evidence, apologetic, morality, history]
+        tags: [entry-point, video]
+      - topic: christianity
+        channel_url: https://www.youtube.com/@TestifyApologetics
+        publisher: Testify
+        required_any: [Jesus, Bible, resurrection, gospel, evidence, Christianity, apologetic, history]
+        tags: [entry-point, video, evidential-apologetics]
+      - topic: christianity
+        channel_url: https://www.youtube.com/@ReasonableFaithOrg
+        publisher: Reasonable Faith
+        required_any: [God, Jesus, resurrection, Christianity, atheist, atheism, morality, moral, apologetic, debate]
+        tags: [entry-point, video, apologetics]
+      - topic: christianity
+        channel_url: https://www.youtube.com/@ColdCaseChristianity
+        publisher: Cold-Case Christianity
+        required_any: [Jesus, Bible, resurrection, gospel, evidence, Christianity, apologetic]
+        tags: [entry-point, video, evidential-apologetics]
+
   openalex:
     enabled: true
     per_query: 2
     queries:
       - topic: morality
         query: moral arguments existence of God objective moral obligations
-        required_any:
-          - god
-          - theism
-          - theistic
-          - divine
+        required_any: [god, theism, theistic, divine]
       - topic: morality
         query: divine command theory moral obligation
-        required_any:
-          - divine
-          - command
+        required_any: [divine, command]
       - topic: morality
         query: secular moral realism God
-        required_any:
-          - secular
+        required_any: [secular]
 
   crossref:
     enabled: true
@@ -211,14 +243,7 @@ providers:
     queries:
       - topic: morality
         query: moral argument God objective morality
-        required_any:
-          - god
-          - theism
-          - theistic
-          - divine
+        required_any: [god, theism, theistic, divine]
       - topic: morality
         query: evolutionary debunking moral realism
-        required_any:
-          - evolution
-          - evolutionary
-          - debunking
+        required_any: [evolution, evolutionary, debunking]

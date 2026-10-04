@@ -10,7 +10,10 @@
     "preview": "astro preview",
     "check:links": "tsx scripts/check-links.ts",
     "sources:harvest": "tsx scripts/harvest-sources.ts",
-    "sources:packet": "tsx scripts/source-packet.ts"
+    "sources:packet": "tsx scripts/source-packet.ts",
+    "scripture:lookup": "tsx scripts/scripture.ts lookup",
+    "scripture:scan": "tsx scripts/scripture.ts scan",
+    "scripture:stats": "tsx scripts/scripture.ts stats"
   },
   "engines": {
     "node": ">=24"
