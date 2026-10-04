@@ -56,4 +56,4 @@ npm run build
 
 Pull requests run both graph validation and the production Astro build automatically. A merge to `main` triggers the GitHub Pages deployment workflow.
 
-**Design rule:** the viewer may render a tree or map, but the canonical source data remains a graph.
+**Design rule:** the canonical source data remains a graph. Semantic relationships describe what claims do to one another; conversation flow separately describes which move can follow which in a debate.
