@@ -23,6 +23,11 @@ tags:
   - resurrection
   - crucifixion
   - historical-jesus
+conversation:
+  follows:
+    - what-can-history-establish-about-jesus
+  label: start with crucifixion
+  priority: 30
 status:
   editorial: draft
   scholarship: consensus

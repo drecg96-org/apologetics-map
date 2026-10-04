@@ -27,6 +27,7 @@ tags:
 conversation:
   follows:
     - why-christianity-rather-than-judaism-or-islam
+    - jesus-was-executed-by-crucifixion
   label: test resurrection
   priority: 20
 origin:

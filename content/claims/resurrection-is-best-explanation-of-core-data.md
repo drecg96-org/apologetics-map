@@ -28,6 +28,12 @@ tags:
   - abduction
   - miracle
   - christianity
+conversation:
+  follows:
+    - minimal-data-resurrection-argument
+    - abductive-case-for-resurrection
+  label: accept resurrection as best explanation
+  priority: 35
 status:
   editorial: draft
   scholarship: contested

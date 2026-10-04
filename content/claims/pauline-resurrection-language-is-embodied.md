@@ -21,6 +21,11 @@ tags:
   - paul
   - first-corinthians
   - embodiment
+conversation:
+  follows:
+    - what-did-earliest-christians-mean-by-resurrection
+  label: resurrection means transformed embodiment
+  priority: 25
 status:
   editorial: draft
   scholarship: contested
