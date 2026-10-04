@@ -409,6 +409,20 @@ function sourceClass(sourceNode: any) {
               : "GitHub will open with a prefilled issue. Review it there, then submit it to the repository."}
           </p>
         </form>
+
+        <section class="node-feedback-success" data-node-feedback-success hidden aria-live="polite">
+          <div class="node-feedback-success-icon" aria-hidden="true">✓</div>
+          <p class="eyebrow">Submission complete</p>
+          <h2>Thanks for contributing</h2>
+          <p>
+            Your submission was received and will be processed shortly.
+            Check back on this node later to see any updates that come from it.
+          </p>
+          <div class="node-feedback-success-actions">
+            <a href="#" data-node-feedback-issue-link hidden>View submitted issue ↗</a>
+            <button type="button" data-close-node-feedback>Close</button>
+          </div>
+        </section>
       </div>
     </dialog>
   </article>
@@ -435,9 +449,30 @@ function sourceClass(sourceNode: any) {
 
     const feedbackDialog = document.querySelector<HTMLDialogElement>("[data-node-feedback-dialog]");
     const feedbackForm = feedbackDialog?.querySelector<HTMLFormElement>("[data-node-feedback-form]");
+    const feedbackSuccess = feedbackDialog?.querySelector<HTMLElement>("[data-node-feedback-success]");
+    const feedbackIntro = feedbackDialog?.querySelector<HTMLElement>(".node-feedback-intro");
+    const feedbackIssueLink = feedbackDialog?.querySelector<HTMLAnchorElement>("[data-node-feedback-issue-link]");
+
+    function resetFeedbackDialog() {
+      feedbackForm?.reset();
+      if (feedbackForm) feedbackForm.hidden = false;
+      if (feedbackSuccess) feedbackSuccess.hidden = true;
+      if (feedbackIntro) feedbackIntro.hidden = false;
+      if (feedbackIssueLink) {
+        feedbackIssueLink.hidden = true;
+        feedbackIssueLink.removeAttribute("href");
+      }
+      showFeedbackStatus(
+        "This creates a public GitHub issue through Apologetics Map Bot. Your name is optional.",
+      );
+      (window as any).turnstile?.reset();
+    }
 
     document.querySelectorAll<HTMLButtonElement>("[data-open-node-feedback]").forEach((button) => {
-      button.addEventListener("click", () => feedbackDialog?.showModal());
+      button.addEventListener("click", () => {
+        resetFeedbackDialog();
+        feedbackDialog?.showModal();
+      });
     });
 
     feedbackDialog?.querySelectorAll<HTMLButtonElement>("[data-close-node-feedback]").forEach((button) => {
@@ -575,10 +610,13 @@ function sourceClass(sourceNode: any) {
 
         feedbackForm.reset();
         (window as any).turnstile?.reset();
-        showFeedbackStatus(
-          result.issueUrl ? "Submitted. Your response is now in the review queue." : "Submitted successfully.",
-          result.issueUrl,
-        );
+        feedbackForm.hidden = true;
+        if (feedbackIntro) feedbackIntro.hidden = true;
+        if (feedbackSuccess) feedbackSuccess.hidden = false;
+        if (feedbackIssueLink && result.issueUrl) {
+          feedbackIssueLink.href = result.issueUrl;
+          feedbackIssueLink.hidden = false;
+        }
       } catch {
         (window as any).turnstile?.reset();
         showFeedbackStatus(
