@@ -14,6 +14,11 @@ status:
   editorial: draft
   scholarship: contested
   christian: broad-consensus
+conversation:
+  follows:
+    - moral-argument-for-god
+  label: conclusion
+  priority: 20
 references:
   - source: apologia-moral-argument
   - source: beliefmap-god-existence-morality

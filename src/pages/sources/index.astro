@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadGraph } from "../../lib/graph";
+
+const { nodes } = await loadGraph();
+const base = import.meta.env.BASE_URL;
+const sources = nodes.filter((node) => node.type === "source");
+
+function sourceClass(source) {
+  if (source.source?.kind === "primary-source" || source.source?.kind === "scripture") return "Primary";
+  if (["book", "paper", "article"].includes(source.source?.kind ?? "")) return "Academic";
+  if (source.tags.includes("apologetics")) return "Apologetics";
+  return "Reference";
+}
+---
+
+<BaseLayout title="Sources">
+  <section class="hero page-width hero-compact">
+    <p class="eyebrow">Research shelf</p>
+    <h1>Sources</h1>
+    <p>
+      Primary, academic, apologetics, and reference material used by nodes in the map.
+      Source type is shown explicitly so advocacy and scholarship are not blurred together.
+    </p>
+  </section>
+
+  <section class="page-width node-index">
+    <div class="source-grid">
+      {sources.map((source) => (
+        <article class="source-card">
+          <div class="source-card-head">
+            <span class="source-class">{sourceClass(source)}</span>
+            <span>{source.source?.kind ?? "source"}</span>
+          </div>
+          <h2><a href={base + "node/" + source.id + "/"}>{source.title}</a></h2>
+          <p class="source-meta">
+            {source.source?.authors?.join(", ")}
+            {source.source?.year && " · " + source.source.year}
+            {source.source?.publisher && " · " + source.source.publisher}
+          </p>
+          {source.summary && <p>{source.summary}</p>}
+          <div class="source-actions">
+            <a href={base + "node/" + source.id + "/"}>Reference page</a>
+            {source.source?.url && <a href={source.source.url} target="_blank" rel="noreferrer">Original ↗</a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

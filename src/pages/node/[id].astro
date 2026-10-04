@@ -18,12 +18,13 @@ if (!node) {
 
 const base = import.meta.env.BASE_URL;
 const graph = toGraphPayload(nodes);
-const outgoing = node.relationships.map((relationship) => ({
+
+const semanticOutgoing = node.relationships.map((relationship) => ({
   ...relationship,
   node: byId.get(relationship.target)!,
 }));
 
-const incoming = nodes.flatMap((candidate) =>
+const semanticIncoming = nodes.flatMap((candidate) =>
   candidate.relationships
     .filter((relationship) => relationship.target === node.id)
     .map((relationship) => ({
@@ -31,11 +32,55 @@ const incoming = nodes.flatMap((candidate) =>
       node: candidate,
     })),
 );
+
+const previousMoves = graph.flowEdges
+  .filter((edge) => edge.target === node.id)
+  .sort((a, b) => a.priority - b.priority)
+  .map((edge) => ({ ...edge, node: byId.get(edge.source)! }))
+  .filter((item) => item.node);
+
+const nextMoves = graph.flowEdges
+  .filter((edge) => edge.source === node.id)
+  .sort((a, b) => a.priority - b.priority)
+  .map((edge) => ({ ...edge, node: byId.get(edge.target)! }))
+  .filter((item) => item.node);
+
+const topicNodes = node.topics
+  .map((topicId) => byId.get(topicId))
+  .filter(Boolean);
+
+const references = node.references
+  .map((reference) => ({
+    ...reference,
+    node: byId.get(reference.source),
+  }))
+  .filter((item) => item.node?.type === "source");
+
+const evidenceNodes = semanticIncoming
+  .filter((item) => item.type === "evidence_for" || item.node.type === "evidence");
+
+function sourceClass(sourceNode: any) {
+  if (!sourceNode) return "Reference";
+  if (sourceNode.source?.kind === "primary-source" || sourceNode.source?.kind === "scripture") return "Primary";
+  if (["book", "paper", "article"].includes(sourceNode.source?.kind ?? "")) return "Academic";
+  if (sourceNode.tags.includes("apologetics")) return "Apologetics";
+  return "Reference";
+}
 ---
 
 <BaseLayout title={node.title} description={node.summary}>
   <article class="node-page page-width">
-    <a class="back-link" href={base}>← Back to map</a>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={base}>Map</a>
+      {topicNodes[0] && (
+        <>
+          <span>›</span>
+          <a href={base + "topic/" + topicNodes[0]!.id + "/"}>{topicNodes[0]!.title}</a>
+        </>
+      )}
+      <span>›</span>
+      <span aria-current="page">{node.title}</span>
+    </nav>
 
     <header class="node-header">
       <span class={"type-badge type-" + node.type}>{node.type}</span>
@@ -48,7 +93,7 @@ const incoming = nodes.flatMap((candidate) =>
       </div>
     </header>
 
-    {(incoming.length > 0 || outgoing.length > 0) && (
+    {(previousMoves.length > 0 || nextMoves.length > 0) && (
       <section class="position-section" aria-labelledby="position-heading">
         <div class="section-heading">
           <div>
@@ -56,35 +101,139 @@ const incoming = nodes.flatMap((candidate) =>
             <h2 id="position-heading">Current position</h2>
           </div>
           <p>
-            Read left to right: earlier moves → this position → replies → next counters.
-            Tap any node to jump there.
+            This view follows conversational order rather than semantic arrow direction.
+            Tap a move to continue that branch.
           </p>
         </div>
         <DebatePosition client:load graph={graph} currentId={node.id} basePath={base} />
       </section>
     )}
 
+    {(previousMoves.length > 0 || nextMoves.length > 0) && (
+      <section class="move-strip" aria-label="Debate navigation">
+        {previousMoves.length > 0 && (
+          <div>
+            <p class="eyebrow">Earlier move</p>
+            <div class="move-cards">
+              {previousMoves.map((item) => (
+                <a href={base + "node/" + item.node.id + "/"}>
+                  <span>{item.label}</span>
+                  <strong>{item.node.title}</strong>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+        {nextMoves.length > 0 && (
+          <div>
+            <p class="eyebrow">Continue from here</p>
+            <div class="move-cards">
+              {nextMoves.map((item) => (
+                <a href={base + "node/" + item.node.id + "/"}>
+                  <span>{item.label}</span>
+                  <strong>{item.node.title}</strong>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+    )}
+
     <div class="node-layout">
-      <div class="prose" set:html={node.html} />
+      <div>
+        {node.type === "source" && node.source && (
+          <section class="source-detail">
+            <p class="eyebrow">Source details</p>
+            <dl>
+              {node.source.kind && <><dt>Type</dt><dd>{node.source.kind}</dd></>}
+              {node.source.authors && <><dt>Author</dt><dd>{node.source.authors.join(", ")}</dd></>}
+              {node.source.year && <><dt>Year</dt><dd>{node.source.year}</dd></>}
+              {node.source.publisher && <><dt>Publisher</dt><dd>{node.source.publisher}</dd></>}
+            </dl>
+            {node.source.url && (
+              <a class="external-source" href={node.source.url} target="_blank" rel="noreferrer">
+                Open original source ↗
+              </a>
+            )}
+          </section>
+        )}
+
+        <div class="prose" set:html={node.html} />
+
+        {(references.length > 0 || evidenceNodes.length > 0) && (
+          <section class="evidence-section">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Evidence & sources</p>
+                <h2>What this node is built on</h2>
+              </div>
+            </div>
+
+            {evidenceNodes.length > 0 && (
+              <div class="evidence-grid">
+                {evidenceNodes.map((item) => (
+                  <a class="evidence-card" href={base + "node/" + item.node.id + "/"}>
+                    <span class="type-badge type-evidence">evidence</span>
+                    <strong>{item.node.title}</strong>
+                    {item.node.summary && <p>{item.node.summary}</p>}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {references.length > 0 && (
+              <div class="source-grid">
+                {references.map((reference) => {
+                  const source = reference.node!;
+                  return (
+                    <article class="source-card">
+                      <div class="source-card-head">
+                        <span class="source-class">{sourceClass(source)}</span>
+                        {source.source?.kind && <span>{source.source.kind}</span>}
+                      </div>
+                      <h3><a href={base + "node/" + source.id + "/"}>{source.title}</a></h3>
+                      <p class="source-meta">
+                        {source.source?.authors?.join(", ")}
+                        {source.source?.year && " · " + source.source.year}
+                        {source.source?.publisher && " · " + source.source.publisher}
+                      </p>
+                      {reference.locator && <p><strong>Locator:</strong> {reference.locator}</p>}
+                      {reference.note && <p>{reference.note}</p>}
+                      <div class="source-actions">
+                        <a href={base + "node/" + source.id + "/"}>Reference page</a>
+                        {source.source?.url && (
+                          <a href={source.source.url} target="_blank" rel="noreferrer">Original ↗</a>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        )}
+      </div>
 
       <aside class="relationship-panel">
-        {node.topics.length > 0 && (
+        {topicNodes.length > 0 && (
           <section>
             <h2>Topics</h2>
             <div class="link-stack">
-              {node.topics.map((topicId) => {
-                const topic = byId.get(topicId);
-                return topic && <a href={base + "node/" + topic.id + "/"}>{topic.title}</a>;
-              })}
+              {topicNodes.map((topic) => topic && (
+                <a href={base + "topic/" + topic.id + "/"}>
+                  <strong>{topic.title}</strong>
+                </a>
+              ))}
             </div>
           </section>
         )}
 
-        {outgoing.length > 0 && (
+        {semanticOutgoing.length > 0 && (
           <section>
-            <h2>Possible replies</h2>
+            <h2>Semantic relationships</h2>
             <div class="link-stack">
-              {outgoing.map((item) => (
+              {semanticOutgoing.map((item) => (
                 <a href={base + "node/" + item.node.id + "/"}>
                   <span>{item.type.replaceAll("_", " ")}</span>
                   <strong>{item.node.title}</strong>
@@ -94,11 +243,11 @@ const incoming = nodes.flatMap((candidate) =>
           </section>
         )}
 
-        {incoming.length > 0 && (
+        {semanticIncoming.length > 0 && (
           <section>
-            <h2>Earlier moves</h2>
+            <h2>Referenced by</h2>
             <div class="link-stack">
-              {incoming.map((item) => (
+              {semanticIncoming.slice(0, 12).map((item) => (
                 <a href={base + "node/" + item.node.id + "/"}>
                   <span>{item.type.replaceAll("_", " ")} from</span>
                   <strong>{item.node.title}</strong>

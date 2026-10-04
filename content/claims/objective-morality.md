@@ -15,6 +15,11 @@ status:
   editorial: reviewed
   scholarship: contested
   christian: broad-consensus
+conversation:
+  opening: true
+  follows: []
+  label: opening
+  priority: 20
 references:
   - source: apologia-moral-argument
   - source: beliefmap-god-existence-morality

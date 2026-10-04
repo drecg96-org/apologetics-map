@@ -18,6 +18,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - objective-morality
+  label: objection
+  priority: 30
 references:
   - source: sep-moral-realism
   - source: mackie-ethics-inventing-right-and-wrong

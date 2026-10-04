@@ -16,6 +16,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - moral-argument-for-god
+  label: objection
+  priority: 10
 references:
   - source: wielenberg-robust-ethics
   - source: sep-moral-realism

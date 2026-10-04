@@ -15,6 +15,11 @@ tags:
   - ethics
 status:
   editorial: reviewed
+conversation:
+  follows:
+    - morality-is-subjective
+  label: response
+  priority: 30
 references:
   - source: sep-moral-realism
 ---

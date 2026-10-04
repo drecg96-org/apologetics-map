@@ -17,6 +17,11 @@ status:
   editorial: reviewed
   scholarship: contested
   christian: broad-consensus
+conversation:
+  follows:
+    - euthyphro-dilemma
+  label: response
+  priority: 40
 references:
   - source: adams-finite-infinite-goods
   - source: evans-god-moral-obligation

@@ -14,6 +14,11 @@ tags:
 status:
   editorial: draft
   scholarship: contested
+conversation:
+  follows:
+    - objective-morality
+  label: support
+  priority: 10
 references:
   - source: apologia-moral-argument
   - source: sep-moral-realism

@@ -14,6 +14,11 @@ tags:
 status:
   editorial: draft
   scholarship: minority
+conversation:
+  follows:
+    - what-grounds-objective-morality
+  label: alternative
+  priority: 40
 references:
   - source: mackie-ethics-inventing-right-and-wrong
   - source: sep-moral-realism

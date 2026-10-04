@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadGraph } from "../../lib/graph";
+
+const { nodes } = await loadGraph();
+const base = import.meta.env.BASE_URL;
+const topics = nodes.filter((node) => node.type === "topic");
+---
+
+<BaseLayout title="Topics">
+  <section class="hero page-width hero-compact">
+    <p class="eyebrow">Browse by subject</p>
+    <h1>Topics</h1>
+    <p>Start with a debate area, then move through its claims, objections, replies, evidence, and sources.</p>
+  </section>
+
+  <section class="page-width topic-grid">
+    {topics.map((topic) => {
+      const members = nodes.filter((node) => node.id !== topic.id && node.topics.includes(topic.id));
+      const debateNodes = members.filter((node) => node.type !== "source");
+      const sources = members.filter((node) => node.type === "source");
+      return (
+        <a class="topic-card" href={base + "topic/" + topic.id + "/"}>
+          <span class="type-badge type-topic">topic</span>
+          <h2>{topic.title}</h2>
+          {topic.summary && <p>{topic.summary}</p>}
+          <div class="topic-counts">
+            <span>{debateNodes.length} debate nodes</span>
+            <span>{sources.length} sources</span>
+          </div>
+        </a>
+      );
+    })}
+  </section>
+</BaseLayout>

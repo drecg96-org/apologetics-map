@@ -16,6 +16,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: consensus
+conversation:
+  follows:
+    - atheists-can-be-moral
+  label: response
+  priority: 30
 references:
   - source: apologia-moral-argument
 ---

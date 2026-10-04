@@ -15,6 +15,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - objective-morality
+  label: objection
+  priority: 50
 references:
   - source: street-darwinian-dilemma
   - source: sep-moral-realism

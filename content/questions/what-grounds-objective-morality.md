@@ -11,6 +11,11 @@ relationships:
 tags:
   - metaethics
   - moral-ontology
+conversation:
+  opening: true
+  follows: []
+  label: opening
+  priority: 10
 status:
   editorial: draft
   scholarship: contested

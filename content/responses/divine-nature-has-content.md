@@ -14,6 +14,11 @@ tags:
 status:
   editorial: draft
   scholarship: contested
+conversation:
+  follows:
+    - divine-nature-tautology
+  label: response
+  priority: 40
 references:
   - source: apologia-moral-argument
   - source: adams-finite-infinite-goods
