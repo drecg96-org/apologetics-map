@@ -81,6 +81,7 @@ const argumentMap = node.argument ? {
       title: statementNode.title,
       summary: statementNode.summary,
       scholarship: statementNode.status?.scholarship,
+      sourceCount: statementNode.references.length,
       supportCount: incoming.filter((item) => item.type === "supports" || item.type === "evidence_for").length,
       challengeCount: incoming.filter((item) => item.type === "challenges" || item.type === "contradicts").length,
     };
