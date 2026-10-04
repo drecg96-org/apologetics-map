@@ -19,6 +19,7 @@ if (!node) {
 
 const base = import.meta.env.BASE_URL;
 const graph = toGraphPayload(nodes);
+const focusedMapUrl = base + "maps/?focus=" + encodeURIComponent(node.id) + "&depth=2" + (node.type === "source" ? "&sources=1" : "");
 
 const semanticOutgoing = node.relationships.map((relationship) => ({
   ...relationship,
@@ -98,6 +99,10 @@ function sourceClass(sourceNode: any) {
         {node.status?.editorial && <span>Editorial: {node.status.editorial}</span>}
         {node.status?.scholarship && <span>Scholarship: {node.status.scholarship}</span>}
         {node.status?.christian && <span>Christian: {node.status.christian}</span>}
+      </div>
+      <div class="node-share-actions">
+        <button type="button" data-copy-current-link>Copy direct link</button>
+        <a href={focusedMapUrl}>Open focused map →</a>
       </div>
     </header>
 
@@ -310,4 +315,21 @@ function sourceClass(sourceNode: any) {
       </aside>
     </div>
   </article>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>("[data-copy-current-link]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const canonicalUrl = window.location.origin + window.location.pathname;
+        try {
+          await navigator.clipboard.writeText(canonicalUrl);
+          const original = button.textContent;
+          button.textContent = "Copied";
+          window.setTimeout(() => { button.textContent = original; }, 1600);
+        } catch {
+          button.textContent = "Copy failed";
+          window.setTimeout(() => { button.textContent = "Copy direct link"; }, 1600);
+        }
+      });
+    });
+  </script>
 </BaseLayout>
