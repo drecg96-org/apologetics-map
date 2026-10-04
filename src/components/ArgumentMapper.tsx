@@ -24,6 +24,13 @@ type ArgumentStatement = {
   challengeCount: number;
 };
 
+type InferenceChallenge = {
+  nodeId: string;
+  title: string;
+  summary?: string;
+  note?: string;
+};
+
 type ArgumentInference = {
   id: string;
   from: string[];
@@ -31,6 +38,7 @@ type ArgumentInference = {
   kind: string;
   label?: string;
   note?: string;
+  challenges: InferenceChallenge[];
 };
 
 type Props = {
@@ -140,6 +148,9 @@ export default function ArgumentMapper({
               <div className="argument-inference-label">
                 <span>{inference.kind}</span>
                 <strong>{inference.label ?? "inference"}</strong>
+                {inference.challenges.length > 0 && (
+                  <em>{inference.challenges.length} inference challenge{inference.challenges.length === 1 ? "" : "s"}</em>
+                )}
               </div>
             ),
           },
@@ -218,11 +229,20 @@ export default function ArgumentMapper({
           nodesDraggable={false}
           nodesConnectable={false}
           onNodeClick={(_, node) => {
-            if (!node.id.startsWith("statement-")) return;
-            const localId = node.id.slice("statement-".length);
-            const statement = statements.find((candidate) => candidate.id === localId);
-            if (!statement) return;
-            window.location.href = basePath + "node/" + statement.nodeId + "/";
+            if (node.id.startsWith("statement-")) {
+              const localId = node.id.slice("statement-".length);
+              const statement = statements.find((candidate) => candidate.id === localId);
+              if (!statement) return;
+              window.location.href = basePath + "node/" + statement.nodeId + "/";
+              return;
+            }
+            if (node.id.startsWith("inference-")) {
+              const localId = node.id.slice("inference-".length);
+              document.getElementById("inference-challenges-" + localId)?.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }
           }}
         >
           <Background gap={22} size={1} />
@@ -238,6 +258,31 @@ export default function ArgumentMapper({
           </a>
         ))}
       </div>
+      {inferences.some((inference) => inference.challenges.length > 0) && (
+        <div className="argument-inference-challenges">
+          {inferences
+            .filter((inference) => inference.challenges.length > 0)
+            .map((inference) => (
+              <section key={inference.id} id={"inference-challenges-" + inference.id}>
+                <div className="argument-inference-challenge-heading">
+                  <span>{inference.id.toUpperCase()} · inference challenge</span>
+                  <strong>{inference.label ?? inference.kind}</strong>
+                  {inference.note && <p>{inference.note}</p>}
+                </div>
+                <div className="argument-inference-challenge-cards">
+                  {inference.challenges.map((challenge) => (
+                    <a key={challenge.nodeId} href={basePath + "node/" + challenge.nodeId + "/"}>
+                      <span>Objection to inference</span>
+                      <strong>{challenge.title}</strong>
+                      {challenge.note && <p>{challenge.note}</p>}
+                      {!challenge.note && challenge.summary && <p>{challenge.summary}</p>}
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))}
+        </div>
+      )}
     </div>
   );
 }
