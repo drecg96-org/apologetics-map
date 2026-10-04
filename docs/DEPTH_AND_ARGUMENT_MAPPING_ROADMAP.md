@@ -4,6 +4,17 @@ This roadmap turns Apologetics Map from a strong graph/navigation shell into a d
 
 The priority is **depth before breadth**. We should finish representative debate trunks to a high standard, learn what the graph model needs, and only then scale the same standard across more topics.
 
+## Tracking issues
+
+- [M0 — Formal argument mapper and quality baseline](https://github.com/drecg96-org/apologetics-map/issues/58)
+- [M1 — Atomic evidence and scholarly reception](https://github.com/drecg96-org/apologetics-map/issues/59)
+- [M2 — Gold-standard resurrection and historical-Christianity trunk](https://github.com/drecg96-org/apologetics-map/issues/60)
+- [M3 — Cumulative case from skepticism to Christianity](https://github.com/drecg96-org/apologetics-map/issues/61)
+- [M4 — Hard-objection suite](https://github.com/drecg96-org/apologetics-map/issues/62)
+- [M5 — Christianity vs Judaism, Islam, and competing revelation](https://github.com/drecg96-org/apologetics-map/issues/63)
+- [M6 — Cruxes, question routing, and discovery](https://github.com/drecg96-org/apologetics-map/issues/64)
+- [M7 — Breadth expansion and graph-grounded practice](https://github.com/drecg96-org/apologetics-map/issues/65)
+
 ## Target identity
 
 Apologetics Map should become:
