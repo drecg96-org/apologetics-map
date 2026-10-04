@@ -38,6 +38,27 @@ Supported types: `supports`, `challenges`, `responds_to`, `depends_on`, `qualifi
 
 Do not duplicate inverse edges. The viewer derives incoming relationships from the canonical outgoing edges.
 
+
+## Conversation flow
+
+Semantic relationships and conversational order are deliberately separate.
+
+```yaml
+conversation:
+  opening: false
+  follows:
+    - objective-morality
+  label: objection
+  priority: 30
+```
+
+- `follows` lists the node IDs that can immediately precede this node in a debate.
+- `opening: true` marks a useful starting position.
+- `label` is the short move label shown on debate-flow edges, such as `objection`, `response`, `support`, or `clarification`.
+- `priority` is an optional non-negative integer used to keep common branches visually ordered.
+
+This is intentionally independent of semantic direction. For example, an objection may semantically `challenge` a claim (objection → claim) while conversationally it `follows` that claim (claim → objection).
+
 ## Topic membership
 
 ```yaml
