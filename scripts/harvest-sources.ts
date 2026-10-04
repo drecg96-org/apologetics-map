@@ -25,7 +25,11 @@ type Candidate = {
   indexed: boolean;
 };
 
-type QueryTarget = { topic: string; query: string };
+type QueryTarget = {
+  topic: string;
+  query: string;
+  required_any?: string[];
+};
 type WebSeed = Omit<Candidate, "provider" | "indexed" | "externalId">;
 
 type HarvestConfig = {
@@ -40,7 +44,7 @@ type HarvestConfig = {
 const SOURCE_ROOT = path.resolve("content/sources");
 const HARVEST_ROOT = path.join(SOURCE_ROOT, "harvested");
 const CONFIG_FILE = path.resolve("config/source-harvest.yml");
-const USER_AGENT = "apologetics-map-source-harvester/0.1 (+https://github.com/drecg96-org/apologetics-map)";
+const USER_AGENT = "apologetics-map-source-harvester/0.2 (+https://github.com/drecg96-org/apologetics-map)";
 const dryRun = process.argv.includes("--dry-run");
 
 function slugify(value: string) {
@@ -56,6 +60,32 @@ function idFor(candidate: Candidate) {
   const fingerprint = candidate.doi ?? candidate.externalId ?? candidate.url;
   const suffix = createHash("sha1").update(fingerprint).digest("hex").slice(0, 8);
   return `${slugify(candidate.title) || "source"}-${suffix}`;
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchWithRetry(url: URL | string, accept: string, label: string): Promise<Response> {
+  let lastStatus = 0;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const response = await fetch(url, {
+      headers: { "user-agent": USER_AGENT, accept },
+      signal: AbortSignal.timeout(20000),
+    });
+    lastStatus = response.status;
+    if (response.ok) return response;
+    if (response.status !== 429 && response.status < 500) {
+      throw new Error(`${label} returned ${response.status}`);
+    }
+
+    const retryAfter = Number(response.headers.get("retry-after"));
+    const backoffMs = Number.isFinite(retryAfter) && retryAfter > 0
+      ? Math.min(retryAfter * 1000, 5000)
+      : 1000 * (attempt + 1);
+    await sleep(backoffMs);
+  }
+  throw new Error(`${label} returned ${lastStatus} after retries`);
 }
 
 async function markdownFiles(dir: string): Promise<string[]> {
@@ -103,15 +133,22 @@ function relevance(title: string, query: string) {
   return slugify(query).split("-").filter((word) => word.length > 3 && !STOP.has(word) && titleWords.has(word)).length;
 }
 
+function passesRequiredTerms(title: string, target: QueryTarget) {
+  if (!target.required_any?.length) return true;
+  const normalized = ` ${slugify(title).replaceAll("-", " ")} `;
+  return target.required_any.some((term) => normalized.includes(` ${slugify(term).replaceAll("-", " ")} `));
+}
+
+function relevantToTarget(title: string, target: QueryTarget) {
+  return passesRequiredTerms(title, target) && relevance(title, target.query) >= 1;
+}
+
 async function webCandidates(seeds: WebSeed[]): Promise<Candidate[]> {
   const candidates: Candidate[] = [];
   for (const seed of seeds) {
     let indexed = false;
     try {
-      const response = await fetch(seed.url, {
-        headers: { "user-agent": USER_AGENT, accept: "text/html,application/xhtml+xml" },
-        signal: AbortSignal.timeout(15000),
-      });
+      const response = await fetchWithRetry(seed.url, "text/html,application/xhtml+xml", "web seed");
       indexed = response.ok;
     } catch {
       indexed = false;
@@ -122,6 +159,7 @@ async function webCandidates(seeds: WebSeed[]): Promise<Candidate[]> {
       externalId: seed.url,
       indexed,
     });
+    await sleep(350);
   }
   return candidates;
 }
@@ -131,18 +169,13 @@ async function openAlexCandidates(target: QueryTarget, limit: number): Promise<C
   url.searchParams.set("search", target.query);
   url.searchParams.set("per-page", String(Math.max(limit * 3, 10)));
 
-  const response = await fetch(url, {
-    headers: { "user-agent": USER_AGENT, accept: "application/json" },
-    signal: AbortSignal.timeout(15000),
-  });
-  if (!response.ok) throw new Error(`OpenAlex returned ${response.status}`);
-
+  const response = await fetchWithRetry(url, "application/json", "OpenAlex");
   const payload = await response.json() as { results?: Array<Record<string, unknown>> };
   const candidates: Candidate[] = [];
 
   for (const work of payload.results ?? []) {
     const title = typeof work.title === "string" ? work.title : "";
-    if (!title || relevance(title, target.query) < 1) continue;
+    if (!title || !relevantToTarget(title, target)) continue;
 
     const doi = canonicalDoi(typeof work.doi === "string" ? work.doi : undefined);
     const openalex = typeof work.id === "string" ? work.id : undefined;
@@ -188,19 +221,14 @@ async function crossrefCandidates(target: QueryTarget, limit: number): Promise<C
   url.searchParams.set("query.bibliographic", target.query);
   url.searchParams.set("rows", String(Math.max(limit * 3, 10)));
 
-  const response = await fetch(url, {
-    headers: { "user-agent": USER_AGENT, accept: "application/json" },
-    signal: AbortSignal.timeout(15000),
-  });
-  if (!response.ok) throw new Error(`Crossref returned ${response.status}`);
-
+  const response = await fetchWithRetry(url, "application/json", "Crossref");
   const payload = await response.json() as { message?: { items?: Array<Record<string, unknown>> } };
   const candidates: Candidate[] = [];
 
   for (const item of payload.message?.items ?? []) {
     const rawTitle = Array.isArray(item.title) ? item.title[0] : item.title;
     const title = typeof rawTitle === "string" ? rawTitle : "";
-    if (!title || relevance(title, target.query) < 1) continue;
+    if (!title || !relevantToTarget(title, target)) continue;
 
     const doi = canonicalDoi(typeof item.DOI === "string" ? item.DOI : undefined);
     const resolvedUrl = typeof item.URL === "string" ? item.URL : doi ? `https://doi.org/${doi}` : undefined;
@@ -298,20 +326,22 @@ async function main() {
   if (config.providers?.openalex?.enabled !== false) {
     for (const target of config.providers?.openalex?.queries ?? []) {
       try {
-        candidates.push(...await openAlexCandidates(target, config.providers?.openalex?.per_query ?? 3));
+        candidates.push(...await openAlexCandidates(target, config.providers?.openalex?.per_query ?? 2));
       } catch (error) {
         console.warn(error instanceof Error ? error.message : String(error));
       }
+      await sleep(1250);
     }
   }
 
   if (config.providers?.crossref?.enabled !== false) {
     for (const target of config.providers?.crossref?.queries ?? []) {
       try {
-        candidates.push(...await crossrefCandidates(target, config.providers?.crossref?.per_query ?? 3));
+        candidates.push(...await crossrefCandidates(target, config.providers?.crossref?.per_query ?? 2));
       } catch (error) {
         console.warn(error instanceof Error ? error.message : String(error));
       }
+      await sleep(1250);
     }
   }
 
@@ -326,7 +356,7 @@ async function main() {
     seen.add(key);
     if (existing.ids.has(id) || existing.urls.has(candidate.url) || (doi && existing.dois.has(doi))) continue;
     selected.push({ id, candidate });
-    if (selected.length >= (config.max_new_sources ?? 12)) break;
+    if (selected.length >= (config.max_new_sources ?? 8)) break;
   }
 
   if (!selected.length) {
