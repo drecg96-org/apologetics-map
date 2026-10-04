@@ -52,6 +52,138 @@ providers:
           - apologetics
           - moral-argument
 
+      # Curated creator hubs. Existing source nodes are deduplicated by id/url;
+      # keeping these here makes the scheduled harvester health-check the trusted entry points.
+      - id: john-lennox-resource-library
+        topic: christianity
+        url: https://johnlennox.org/
+        title: John Lennox — Official Resource Library
+        kind: website
+        authors:
+          - John Lennox
+        publisher: OCCA The Oxford Centre for Christian Apologetics
+        role: reference
+        difficulty: intermediate
+        stance: supports
+        tags:
+          - christian
+          - apologetics
+          - creator-hub
+
+      - id: give-me-an-answer-cliffe-stuart
+        topic: christianity
+        url: https://givemeananswer.org/
+        title: Give Me An Answer — Cliffe and Stuart Knechtle
+        kind: website
+        authors:
+          - Cliffe Knechtle
+          - Stuart Knechtle
+        publisher: Give Me An Answer
+        role: reference
+        difficulty: beginner
+        stance: supports
+        tags:
+          - christian
+          - apologetics
+          - creator-hub
+
+      - id: big-jon-steel
+        topic: christianity
+        url: https://bigjonsteel.com/
+        title: Big Jon Steel
+        kind: website
+        authors:
+          - Big Jon Steel
+        publisher: Big Jon Steel
+        role: reference
+        difficulty: beginner
+        stance: supports
+        tags:
+          - christian
+          - apologetics
+          - creator-hub
+
+      - id: nicholas-bowling
+        topic: christianity
+        url: https://linktr.ee/NicholasBowling
+        title: Nicholas Bowling
+        kind: website
+        authors:
+          - Nicholas Bowling
+        publisher: Nicholas Bowling
+        role: reference
+        difficulty: beginner
+        stance: supports
+        tags:
+          - christian
+          - evangelism
+          - creator-hub
+
+      - id: bryce-crawford
+        topic: christianity
+        url: https://brycecrawford.org/
+        title: Bryce Crawford
+        kind: website
+        authors:
+          - Bryce Crawford
+        publisher: Bryce Crawford Ministries
+        role: reference
+        difficulty: beginner
+        stance: supports
+        tags:
+          - christian
+          - evangelism
+          - creator-hub
+
+      - id: alex-oconnor-within-reason
+        topic: christianity
+        url: https://www.alexoconnor.com/about
+        title: Alex O'Connor — Within Reason
+        kind: website
+        authors:
+          - Alex O'Connor
+        publisher: Alex O'Connor / Within Reason
+        role: objection
+        difficulty: intermediate
+        stance: challenges
+        tags:
+          - atheist
+          - agnostic-atheist
+          - skeptic
+          - creator-hub
+
+      - id: william-lane-craig-reasonable-faith
+        topic: christianity
+        url: https://www.reasonablefaith.org/
+        title: William Lane Craig — Reasonable Faith
+        kind: website
+        authors:
+          - William Lane Craig
+        publisher: Reasonable Faith
+        role: reference
+        difficulty: advanced
+        stance: supports
+        tags:
+          - christian
+          - apologetics
+          - creator-hub
+
+      - id: wes-huff-resource-library
+        topic: christianity
+        url: https://www.wesleyhuff.com/
+        title: Wes Huff — Resource Library
+        kind: website
+        authors:
+          - Wesley Huff
+        publisher: Wesley Huff
+        role: reference
+        difficulty: intermediate
+        stance: supports
+        tags:
+          - christian
+          - apologetics
+          - creator-hub
+
   openalex:
     enabled: true
     per_query: 2

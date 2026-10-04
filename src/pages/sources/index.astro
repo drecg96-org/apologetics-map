@@ -15,7 +15,9 @@ for (const node of nodes) {
 
 function sourceClass(source) {
   if (source.source?.kind === "primary-source" || source.source?.kind === "scripture") return "Primary";
+  if (source.tags.includes("atheist") || source.tags.includes("skeptic")) return "Skeptical";
   if (source.tags.includes("apologetics")) return "Apologetics";
+  if (source.tags.includes("christian")) return "Christian";
   if (["book", "paper", "article"].includes(source.source?.kind ?? "")) return "Academic";
   return "Reference";
 }
@@ -105,6 +107,7 @@ const sourceTopics = [...new Set(sources.flatMap((source) => source.topics))].so
           source.source?.publisher,
           source.source?.role,
           source.source?.stance,
+          source.aliases.join(" "),
           source.tags.join(" "),
           source.topics.join(" "),
         ].filter(Boolean).join(" ").toLowerCase();
