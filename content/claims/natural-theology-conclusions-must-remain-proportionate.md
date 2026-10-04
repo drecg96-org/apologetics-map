@@ -2,7 +2,7 @@
 id: natural-theology-conclusions-must-remain-proportionate
 title: Natural-theology conclusions must remain proportionate to their arguments
 type: claim
-summary: Cosmological, fine-tuning, moral, consciousness, reason, and experience arguments support different partial conclusions and should not be treated as individually proving the entireism or Christianity.
+summary: Cosmological, fine-tuning, moral, consciousness, reason, and experience arguments support different partial conclusions and should not be treated as individually proving theism or Christianity.
 topics:
   - existence-of-god
 relationships:
