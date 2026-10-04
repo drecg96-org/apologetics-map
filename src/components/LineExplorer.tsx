@@ -278,7 +278,7 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
     <div className="line-explorer">
       <aside className="line-outline" aria-label="Debate outline">
         <div className="line-outline-head">
-          <span>Full debate</span>
+          <span>Debate structure</span>
           <strong>{lineNodes.length} mapped notes</strong>
         </div>
         <div className="line-tree">
@@ -319,17 +319,29 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
           <h3>{current.title}</h3>
           {current.summary && <p>{current.summary}</p>}
           <div className="line-current-actions">
-            <a href={basePath + "node/" + current.id + "/"}>Open full reference →</a>
+            <a href={current.type === "topic"
+              ? basePath + "topic/" + current.id + "/"
+              : basePath + "node/" + current.id + "/"}>
+              {current.type === "topic" ? "Open topic →" : "Open full reference →"}
+            </a>
           </div>
         </article>
 
         <section className="line-responses">
           <div className="line-section-head">
             <div>
-              <span className="line-kicker">{terminal && responses.length === 0 ? "Line outcome" : "Next moves"}</span>
+              <span className="line-kicker">
+                {terminal && responses.length === 0
+                  ? "Line outcome"
+                  : current.type === "topic"
+                    ? "Start with a question"
+                    : "Next moves"}
+              </span>
               <h4>
                 {responses.length
-                  ? "Common responses"
+                  ? current.type === "topic"
+                    ? "Main questions"
+                    : "Common responses"
                   : terminal?.label ?? "End of this mapped line"}
               </h4>
             </div>
