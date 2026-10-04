@@ -5,6 +5,7 @@ type: source
 summary: Christian evangelist and podcast host whose ministry combines Scripture teaching, street and campus evangelism, conversations with secular guests, testimony, and practical Christian discipleship.
 topics:
   - christianity
+  - morality
 relationships: []
 tags:
   - christian
