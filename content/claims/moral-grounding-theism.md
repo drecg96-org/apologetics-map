@@ -35,6 +35,18 @@ references:
     note: Recent theistic defense arguing that objective moral truths require a divine personal ground.
   - source: what-is-a-divine-command-theory-of-moral-obligation-4db447d7
     note: Evans develops the specific divine-command account of how a personal God could ground binding obligation.
+  - source: baggett-walls-god-and-goodness
+    note: Contemporary divine-nature grounding account.
+  - source: quinn-divine-commands-moral-requirements
+    note: Systematic philosophical treatment of theistic moral requirements.
+  - source: murphy-essay-divine-authority
+    note: Analysis of divine authority and obligation.
+  - source: hare-gods-call
+    note: Theistic ethics developed alongside human autonomy.
+  - source: adams-divine-command-metaethics-modified-again
+    note: Influential modified theistic metaethics.
+  - source: alston-what-euthyphro-should-have-said
+    note: Philosophical response to the Euthyphro problem.
 ---
 
 # Claim
