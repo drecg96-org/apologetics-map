@@ -2,7 +2,7 @@
 id: wes-huff-can-i-trust-the-bible-right-text
 title: Can I Trust the Bible? Episode 2 — The Right Text
 type: source
-summary: Wes Huff introduces the textual-transmission question behind modern Bibles: how manuscripts and textual criticism are used to assess whether the text available today substantially reflects the ancient New Testament writings.
+summary: Wes Huff introduces how manuscripts and textual criticism are used to assess whether modern Bible texts substantially reflect the ancient New Testament writings.
 topics:
   - christianity
 relationships: []
