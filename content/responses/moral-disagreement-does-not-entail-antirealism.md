@@ -16,6 +16,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - moral-disagreement
+  label: response
+  priority: 40
 references:
   - source: sep-moral-realism
 ---

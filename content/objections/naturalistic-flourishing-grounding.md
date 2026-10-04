@@ -16,6 +16,11 @@ tags:
 status:
   editorial: draft
   scholarship: contested
+conversation:
+  follows:
+    - moral-argument-for-god
+  label: objection
+  priority: 20
 references:
   - source: sep-moral-realism
   - source: apologia-moral-argument

@@ -17,6 +17,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - evolutionary-debunking
+  label: response
+  priority: 50
 references:
   - source: street-darwinian-dilemma
   - source: sep-moral-realism

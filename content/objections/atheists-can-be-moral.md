@@ -14,6 +14,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: consensus
+conversation:
+  follows:
+    - moral-argument-for-god
+  label: objection
+  priority: 30
 references:
   - source: apologia-moral-argument
 ---
