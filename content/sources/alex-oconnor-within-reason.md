@@ -5,6 +5,7 @@ type: source
 summary: Skeptical philosophy-of-religion source from Alex O'Connor, an agnostic atheist host and public debater whose work engages arguments for God, the problem of evil, biblical scholarship, Christianity, ethics, and conversations with both religious and secular thinkers.
 topics:
   - christianity
+  - morality
 relationships: []
 tags:
   - atheist
