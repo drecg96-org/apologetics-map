@@ -13,12 +13,6 @@ tags:
   - moral-ontology
 conversation:
   opening: true
-  follows:
-    []
-  label: opening
-  priority: 10
-conversation:
-  opening: true
   follows: []
   label: opening
   priority: 10

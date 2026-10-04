@@ -23,11 +23,6 @@ conversation:
     - objective-morality
   label: objection
   priority: 30
-conversation:
-  follows:
-    - objective-morality
-  label: objection
-  priority: 30
 references:
   - source: sep-moral-realism
   - source: mackie-ethics-inventing-right-and-wrong

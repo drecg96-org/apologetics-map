@@ -19,11 +19,6 @@ conversation:
     - objective-morality
   label: support
   priority: 20
-conversation:
-  follows:
-    - objective-morality
-  label: support
-  priority: 20
 references:
   - source: apologia-moral-argument
   - source: sep-moral-realism
