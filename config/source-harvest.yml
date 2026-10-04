@@ -72,8 +72,6 @@ providers:
         query: secular moral realism God
         required_any:
           - secular
-          - realism
-          - realist
 
   crossref:
     enabled: true
@@ -92,4 +90,3 @@ providers:
           - evolution
           - evolutionary
           - debunking
-          - realism
