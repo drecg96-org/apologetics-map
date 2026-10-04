@@ -164,7 +164,7 @@ export default function DebatePosition({ graph, currentId, basePath }: Props) {
         }}
       >
         <Background gap={22} size={1} />
-        <Controls />
+        <Controls showInteractive={false} />
       </ReactFlow>
     </div>
   );
