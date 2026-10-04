@@ -10,6 +10,12 @@ The production viewer deploys from `main` to GitHub Pages:
 
 **https://drecg96-org.github.io/apologetics-map/**
 
+## Viewer roles
+
+- **Debate Explorer** is the primary interaction: follow one debate position at a time, choose common responses, and keep the nested line visible.
+- **Debate Map** is a secondary spatial view for orienting yourself in conversational branches.
+- **Knowledge Graph** is a secondary semantic view for inspecting support, objections, dependencies, evidence, and related structure.
+
 ## Repository layout
 
 ```text
