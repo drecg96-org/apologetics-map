@@ -6,4 +6,6 @@ It accepts only structured node-feedback submissions from allowed origins, valid
 
 Do not put GitHub or Turnstile secrets in the Astro site or GitHub Pages build.
 
+For Cloudflare Builds, use the repository's `main` branch with `worker` as the root directory and `npx wrangler@latest deploy` as the deploy command.
+
 See [../docs/NODE_FEEDBACK_SETUP.md](../docs/NODE_FEEDBACK_SETUP.md) for setup and deployment.
