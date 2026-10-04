@@ -8,10 +8,6 @@ topics:
 relationships:
   - type: addresses
     target: morality-is-subjective
-  - type: supports
-    target: categorical-reasons-support-realism
-  - type: related_to
-    target: what-kind-of-ought
 tags:
   - normativity
   - moral-reasons
@@ -22,7 +18,8 @@ status:
 conversation:
   follows:
     - social-relativism-accepted
-  label: pivot — normative reasons
+    - categorical-moral-oughts
+  label: test desire-independent reasons
   priority: 20
 references:
   - source: sep-moral-realism
@@ -33,18 +30,22 @@ references:
 
 Suppose a person wants to harm an innocent person, does not care about the victim, does not fear punishment, does not value social cooperation, and has no desire that would be served by refraining.
 
-Does that person nevertheless have a genuine moral reason not to do it? In ordinary language: **should** the person refrain even if the person does not want to, and even if no social or prudential incentive changes their mind?
+Does that person nevertheless have a genuine moral reason not to do it? In ordinary language: **should** the person refrain even if the person does not want to and no prudential or social incentive changes their mind?
 
 ## If the answer is yes
 
-The reason appears not to depend entirely on the agent's present desires. The discussion can then ask what gives that **ought** or **should** its authority.
+The reason is not exhausted by the agent's present desires. The conversation can then ask what gives that reason its normative authority.
 
 This is the categorical sense of "ought": the claim remains valid even when the agent's preferences point in the opposite direction.
 
 ## If the answer is no
 
-The position accepts that an agent whose desires are sufficiently different may have no categorical moral reason to refrain from serious wrongdoing. Social sanctions, prudential reasons, other people's preferences, and instrumental "shoulds" may remain, but no desire-independent moral "ought" has been admitted.
+The position accepts that an agent whose desires are sufficiently different may have no categorical moral reason to refrain. Social sanctions, prudential reasons, other people's preferences, and instrumental "shoulds" can remain, but no desire-independent moral reason has been admitted.
+
+## Why this is useful
+
+This question converts an abstract dispute about "objective morality" into a narrower issue about reasons for action. It is therefore a useful pivot after someone consistently accepts the society-relative consequences of subjectivism.
 
 ## Limit
 
-This does not by itself establish theism or even a specific form of moral realism. It isolates whether genuinely categorical normative reasons are part of the worldview.
+A yes answer does not establish theism or a complete moral realism. It establishes, at most, that some normativity appears to outrun the agent's contingent desires.

@@ -5,9 +5,7 @@ type: claim
 summary: At least some moral propositions are true independently of an individual's or society's approval.
 topics:
   - morality
-relationships:
-  - type: supports
-    target: moral-argument-for-god
+relationships: []
 tags:
   - moral-realism
   - ethics
@@ -41,16 +39,17 @@ For this map, **objective** means that the truth or authority of a moral judgmen
 
 That does **not** mean every moral rule is exceptionless, that every culture recognizes the same rules, or that circumstances never matter. Those are different claims about absoluteness and universality.
 
+It also helps to separate three things that can travel together but need not be identical:
+
+- **Objective moral truth:** some moral propositions are true independently of approval.
+- **Objective moral value:** some things or persons have value independently of approval.
+- **Objective moral obligation:** some agents really ought or ought not act in certain ways independently of approval.
+
 ## What this claim commits us to
 
-If deliberately torturing a child for amusement is objectively wrong, then it would remain wrong even if:
+If a moral judgment is objective, changing everyone's attitude toward it would not by itself reverse its truth.
 
-- the perpetrator sincerely approved of it,
-- a whole society celebrated it,
-- the society won politically or militarily, and
-- no one remained who verbally condemned it.
-
-The claim is therefore stronger than "I strongly dislike this" or "our society forbids this."
+That is stronger than saying "I strongly dislike this," "our society forbids this," or "this frustrates goals that I happen to share."
 
 ## What this claim does not establish
 
@@ -59,14 +58,15 @@ This is a claim about moral ontology. It does not by itself establish:
 - how humans know moral truths,
 - whether everyone agrees about them,
 - whether all moral statements are objective,
-- whether moral truths are natural or non-natural, or
+- whether moral truths are natural or non-natural,
+- whether categorical moral obligations exist in every disputed case, or
 - whether God is required to ground them.
 
 Moral realism is broader than theism. A person can affirm objective moral facts while rejecting God, which is why secular moral realism is a central branch rather than a footnote.
 
 ## Why people find it plausible
 
-Moral experience often presents at least some judgments as discoveries rather than inventions. The language of moral error and reform also seems to allow that individuals and whole societies can be mistaken.
+Moral experience often presents at least some judgments as discoveries rather than inventions. The language of moral error, obligation, and reform also seems to allow that individuals and whole societies can be mistaken.
 
 Those appearances are evidence to assess, not proof. Anti-realists can explain moral language through emotion, prescription, social construction, evolutionary history, or error theory.
 
@@ -75,6 +75,9 @@ Those appearances are evidence to assess, not proof. Anti-realists can explain m
 From here the debate should split before moving to God:
 
 1. **Clarify the claim:** objective is not the same as absolute or universally believed.
-2. **Support realism:** moral experience, moral progress, and apparent society-wide error.
-3. **Challenge realism:** disagreement, evolutionary debunking, queerness, error theory, and non-cognitivism.
-4. **Only if realism survives:** ask what, if anything, grounds objective value and obligation.
+2. **Clarify normativity:** what kind of "ought" or "should" is being asserted?
+3. **Support realism:** moral experience, moral fallibility, moral progress, society-wide error, desire-independent reasons, and companions-in-guilt arguments.
+4. **Challenge realism:** disagreement, evolutionary debunking, queerness, error theory, and non-cognitivism.
+5. **Only if realism is provisionally accepted:** ask what, if anything, grounds objective value and obligation.
+
+The grounding stage should not be used as though it were itself evidence that realism is true.

@@ -1,8 +1,8 @@
 ---
 id: morality-is-subjective
-title: Morality is subjective or socially constructed
+title: Morality is subjective, constructed, or otherwise anti-realist
 type: objection
-summary: Moral judgments may depend on individual attitudes, cultural conventions, or social construction rather than stance-independent moral facts.
+summary: Moral judgments may depend on attitudes or conventions, or moral language may fail to report stance-independent moral facts at all.
 topics:
   - morality
 relationships:
@@ -10,20 +10,9 @@ relationships:
     target: objective-morality
   - type: related_to
     target: moral-disagreement
-  - type: related_to
-    target: moral-error-theory
-  - type: related_to
-    target: moral-noncognitivism-emotivism
-  - type: related_to
-    target: can-society-be-morally-wrong
-  - type: related_to
-    target: can-individual-be-morally-mistaken
-  - type: related_to
-    target: do-agents-have-reasons-independent-of-desire
-  - type: related_to
-    target: are-epistemic-norms-objective
 tags:
   - moral-relativism
+  - anti-realism
   - ethics
 status:
   editorial: reviewed
@@ -31,7 +20,7 @@ status:
 conversation:
   follows:
     - objective-morality
-  label: objection
+  label: anti-realist objection
   priority: 30
 references:
   - source: sep-moral-realism
@@ -40,30 +29,33 @@ references:
 
 # Objection
 
-Moral judgments may ultimately reflect individual attitudes, social conventions, evolutionary pressures, or cultural construction rather than stance-independent moral facts.
+Moral judgments may ultimately depend on individual attitudes, social conventions, idealized procedures, or other standpoints rather than stance-independent moral facts. More radical anti-realist views deny that ordinary moral utterances report objective facts at all.
 
 ## Important branches
 
-This label covers positions that should not be conflated:
+These positions should not be conflated:
 
 - **Individual subjectivism:** moral truth depends on an individual's attitudes.
 - **Cultural relativism:** moral truth depends on social norms.
 - **Constructivism:** moral standards arise from an idealized procedure, standpoint, or rational construction.
-- **Non-cognitivism or expressivism:** moral language may primarily express attitudes, prescriptions, or commitments rather than report facts. Alex O'Connor's current self-described ethical emotivism is an example of this branch.
+- **Non-cognitivism or expressivism:** moral language may primarily express attitudes, prescriptions, or commitments rather than report facts.
 - **Error theory:** moral claims purport to state objective facts, but no such facts exist.
 
-The next useful move in conversation is therefore usually a clarification question: *subjective in what sense?*
+The useful next move is therefore usually a clarification question: **subjective or anti-realist in what sense?**
 
-This matters because the responses diverge. A cultural relativist needs an account of society-wide moral error; an error theorist accepts truth-apt moral language but denies the relevant facts; an emotivist questions whether moral utterances were truth-claims in the first place.
+## Pressure tests
 
-## Main realism-pressure lines
+Different versions face different questions:
 
-Once the position is clear, test different dimensions rather than relying on one intuition pump:
+- **Society-wide error:** can an entire approving society nevertheless be morally mistaken?
+- **Individual fallibility:** can you sincerely approve of an action and still be morally wrong about it?
+- **Ought/should:** when you say someone "should" act differently, is that merely conditional on goals or is it categorical?
+- **Moral progress:** is reform genuine correction or only change relative to values we now endorse?
+- **Desire-independent reasons:** can someone have a moral reason to refrain even if none of their desires favors restraint?
+- **Epistemic normativity:** if there are objective norms of rational belief, why think normativity is impossible specifically in morality?
 
-- Can an entire approving society still be morally wrong?
-- Can an individual sincerely approve of something and still be morally mistaken?
-- Can there be genuine moral progress rather than mere preference change?
-- Can an agent have a moral reason to refrain from harm regardless of what they desire?
-- Are there objective epistemic norms, and if so, why reject objective normativity specifically in morality?
+A sophisticated anti-realist can answer these questions without contradiction. The purpose of the map is to identify the resulting commitments accurately rather than assume that one uncomfortable example refutes the position.
 
-If the person consistently accepts the anti-realist implications of one line, that line should terminate and the conversation should pivot to another independent question.
+## Debate discipline
+
+If a person knowingly accepts the implication exposed by one pressure test, stop repeating that same test more dramatically. Either record the accepted commitment or pivot to a genuinely independent line.

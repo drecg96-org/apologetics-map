@@ -8,8 +8,6 @@ topics:
 relationships:
   - type: addresses
     target: morality-is-subjective
-  - type: supports
-    target: moral-fallibility-supports-realism
 tags:
   - moral-realism
   - subjectivism
@@ -20,7 +18,8 @@ status:
 conversation:
   follows:
     - social-relativism-accepted
-  label: pivot — moral fallibility
+    - morality-is-subjective
+  label: test moral fallibility
   priority: 10
 references:
   - source: sep-moral-realism
@@ -31,13 +30,15 @@ references:
 
 Could you sincerely believe that some action is morally permissible and nevertheless be morally mistaken about it?
 
-The question is aimed at individual subjectivism rather than cultural relativism. If moral truth is constituted by an individual's current attitudes, it becomes difficult to explain what it means for that individual's sincere moral judgment to be false.
+The question is aimed most directly at **actual-attitude subjectivism**. If moral truth is constituted by an individual's current approval, it becomes difficult to explain how a sincere moral judgment could be false while accurately reporting the attitude that supposedly makes it true.
 
 ## If the answer is yes
 
-Ask what makes the judgment mistaken. If the answer appeals to a standard beyond the individual's present attitudes, the discussion has introduced something more than simple subjectivism.
+Ask what makes the judgment mistaken.
 
-A common reply is that the person would judge differently if better informed, more coherent, or more rational. That is a substantive move: the next question is why those idealized standards have normative authority.
+If the answer appeals to a standard beyond the individual's present attitudes, the conversation has moved beyond simple actual-attitude subjectivism.
+
+A common reply is that the person would judge differently if better informed, more coherent, or more rational. That is a substantive move rather than a defeat: the next question is why those idealized conditions have normative authority.
 
 ## If the answer is no
 
@@ -45,4 +46,4 @@ The view accepts that there is no stance-independent moral error at the individu
 
 ## Limit
 
-This is not by itself a proof of moral realism. Its role is to distinguish genuine moral correction from mere preference change.
+This question does not refute every anti-realist theory. Constructivists, idealized subjectivists, and non-cognitivists have more sophisticated accounts of correction and consistency. Its role is to expose what simple subjectivism can and cannot mean by genuine moral error.
