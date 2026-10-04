@@ -10,6 +10,8 @@ relationships:
     target: hell-includes-divine-judgment
   - type: qualifies
     target: hell-as-self-exclusion-from-god
+  - type: addresses
+    target: can-someone-be-saved-after-death
 tags:
   - hell
   - judgment
@@ -60,3 +62,7 @@ The hybrid view inherits the central challenge to the self-exclusion model:
 **Was the person's separation actually a sufficiently informed and free refusal of God?**
 
 That is exactly why the nonresistant-nonbelief branch remains necessary.
+
+A second question follows immediately: **when does that refusal become final?**
+
+Some Christian traditions treat death as the end of the period in which repentance is possible. Other Christian and philosophical models allow postmortem freedom, corrective punishment, or eventual reconciliation. The map therefore treats "Can someone be saved after death?" as a separate debate rather than assuming an answer inside the self-exclusion model.
