@@ -95,6 +95,13 @@ async function main() {
         errors.push(`${item.file}: reference "${reference.source}" resolves to type "${source.node.type}", not "source"`);
       }
     }
+
+    if (item.node.processing && item.node.type !== "source") {
+      errors.push(`${item.file}: processing metadata is only valid on source nodes`);
+    }
+    if (item.node.processing?.summarized && !item.node.summary) {
+      errors.push(`${item.file}: processing.summarized=true requires a summary`);
+    }
   }
 
   if (files.length === 0) errors.push("content/: no graph nodes found");

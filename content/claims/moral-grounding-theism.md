@@ -25,6 +25,8 @@ references:
   - source: adams-finite-infinite-goods
   - source: evans-god-moral-obligation
   - source: wielenberg-robust-ethics
+  - source: reasonable-faith-metaethical-foundations
+    note: A contemporary apologetic defense of the claim that theism grounds value, obligation, and accountability.
 ---
 
 # Claim

@@ -38,7 +38,6 @@ Supported types: `supports`, `challenges`, `responds_to`, `depends_on`, `qualifi
 
 Do not duplicate inverse edges. The viewer derives incoming relationships from the canonical outgoing edges.
 
-
 ## Conversation flow
 
 Semantic relationships and conversational order are deliberately separate.
@@ -54,10 +53,8 @@ conversation:
 
 - `follows` lists the node IDs that can immediately precede this node in a debate.
 - `opening: true` marks a useful starting position.
-- `label` is the short move label shown on debate-flow edges, such as `objection`, `response`, `support`, or `clarification`.
+- `label` is the short move label shown on debate-flow edges.
 - `priority` is an optional non-negative integer used to keep common branches visually ordered.
-
-This is intentionally independent of semantic direction. For example, an objection may semantically `challenge` a claim (objection → claim) while conversationally it `follows` that claim (claim → objection).
 
 ## Topic membership
 
@@ -94,6 +91,48 @@ references:
 ```
 
 Referenced IDs must exist and have `type: source`.
+
+## Source processing
+
+Source nodes may track deterministic discovery and model-assisted summarization:
+
+```yaml
+processing:
+  discovered: true
+  indexed: true
+  summarized: false
+  reviewed: false
+  summary_version: 1
+  discovery:
+    provider: web
+    query: moral argument objective morality
+    retrieved_at: 2026-10-04T12:45:00Z
+```
+
+`processing` is valid only on `type: source` nodes. If `summarized: true`, the source must also have a top-level `summary`.
+
+Integration is intentionally **derived**, not stored: a source is integrated when another graph node points to it through `references`.
+
+Optional source metadata also supports:
+
+```yaml
+source:
+  role: primer
+  difficulty: beginner
+  stance: supports
+  identifiers:
+    doi: 10.xxxx/example
+    isbn: "..."
+    openalex: https://openalex.org/W...
+```
+
+Roles: `primer | defense | objection | debate | scholarship | context | reference`.
+
+Difficulty: `beginner | intermediate | advanced`.
+
+Stance: `supports | challenges | mixed | neutral`.
+
+See [SOURCE_PIPELINE.md](SOURCE_PIPELINE.md) for harvesting and agent integration.
 
 ## Markdown body
 

@@ -1,0 +1,73 @@
+version: 1
+max_new_sources: 12
+
+providers:
+  web:
+    enabled: true
+    seeds:
+      - id: sep-moral-arguments-god
+        topic: morality
+        url: https://plato.stanford.edu/entries/moral-arguments-god/
+        title: Moral Arguments for the Existence of God
+        kind: article
+        authors:
+          - C. Stephen Evans
+          - David Baggett
+        publisher: Stanford Encyclopedia of Philosophy
+        role: scholarship
+        difficulty: advanced
+        stance: mixed
+        tags:
+          - academic-reference
+
+      - id: reasonable-faith-metaethical-foundations
+        topic: morality
+        url: https://www.reasonablefaith.org/writings/scholarly-writings/the-existence-of-god/the-indispensability-of-theological-meta-ethical-foundations-for-morality/
+        title: The Indispensability of Theological Meta-Ethical Foundations for Morality
+        kind: article
+        authors:
+          - William Lane Craig
+        year: 1997
+        publisher: Reasonable Faith
+        role: defense
+        difficulty: intermediate
+        stance: supports
+        tags:
+          - apologetics
+          - moral-argument
+
+      - id: reasonable-faith-formulating-moral-argument
+        topic: morality
+        url: https://www.reasonablefaith.org/writings/question-answer/formulating-the-moral-argument/
+        title: Formulating the Moral Argument
+        kind: article
+        authors:
+          - William Lane Craig
+        year: 2011
+        publisher: Reasonable Faith
+        role: primer
+        difficulty: beginner
+        stance: supports
+        tags:
+          - apologetics
+          - moral-argument
+
+  openalex:
+    enabled: true
+    per_query: 3
+    queries:
+      - topic: morality
+        query: moral arguments existence of God objective moral obligations
+      - topic: morality
+        query: divine command theory moral obligation
+      - topic: morality
+        query: secular moral realism God
+
+  crossref:
+    enabled: true
+    per_query: 3
+    queries:
+      - topic: morality
+        query: moral argument God objective morality
+      - topic: morality
+        query: evolutionary debunking moral realism

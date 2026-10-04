@@ -8,7 +8,9 @@
     "validate": "tsx scripts/validate-graph.ts",
     "build": "npm run validate && astro build && npm run check:links",
     "preview": "astro preview",
-    "check:links": "tsx scripts/check-links.ts"
+    "check:links": "tsx scripts/check-links.ts",
+    "sources:harvest": "tsx scripts/harvest-sources.ts",
+    "sources:packet": "tsx scripts/source-packet.ts"
   },
   "engines": {
     "node": ">=24"
