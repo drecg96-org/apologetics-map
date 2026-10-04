@@ -5,7 +5,13 @@ type: topic
 summary: Moral realism, moral knowledge, moral obligation, relativism, and connections between morality and God.
 topics:
   - christianity
-relationships: []
+relationships:
+  - type: related_to
+    target: what-grounds-objective-morality
+  - type: related_to
+    target: objective-morality
+  - type: related_to
+    target: moral-argument-for-god
 tags:
   - ethics
   - apologetics
@@ -15,4 +21,12 @@ status:
 
 # Morality
 
-Debates about objective and subjective morality, moral knowledge, moral obligation, evolutionary explanations of moral intuitions, and related arguments.
+This cluster separates several questions that are often blurred together in conversation:
+
+- Are any moral claims objectively true?
+- How could we know moral truths?
+- What, if anything, grounds moral value and obligation?
+- Does God explain moral facts better than secular alternatives?
+- Do disagreement and evolutionary explanations undermine moral realism?
+
+The map intentionally includes both theistic and non-theistic realist positions so the debate does not collapse into a false choice between Christianity and relativism.

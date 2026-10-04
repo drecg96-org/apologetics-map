@@ -8,26 +8,33 @@ topics:
 relationships:
   - type: challenges
     target: objective-morality
+  - type: related_to
+    target: moral-disagreement
+  - type: related_to
+    target: moral-error-theory
 tags:
   - moral-relativism
   - ethics
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
+references:
+  - source: sep-moral-realism
+  - source: mackie-ethics-inventing-right-and-wrong
 ---
 
 # Objection
 
-Moral judgments may ultimately reflect individual attitudes, social conventions, evolutionary pressures, or cultural construction rather than objective moral facts.
+Moral judgments may ultimately reflect individual attitudes, social conventions, evolutionary pressures, or cultural construction rather than stance-independent moral facts.
 
-## Why someone might hold this
+## Important branches
 
-Common motivations include persistent moral disagreement, cultural variation, naturalistic explanations of moral intuitions, and skepticism about objective moral properties.
+This label covers positions that should not be conflated:
 
-## Branches to map
+- **Individual subjectivism:** moral truth depends on an individual's attitudes.
+- **Cultural relativism:** moral truth depends on social norms.
+- **Constructivism:** moral standards arise from an idealized procedure, standpoint, or rational construction.
+- **Non-cognitivism or expressivism:** moral language does not function primarily to report independent facts.
+- **Error theory:** moral claims purport to state objective facts, but no such facts exist.
 
-- individual subjectivism
-- cultural relativism
-- expressivism / non-cognitivism
-- constructivism
-- error theory
+The next useful move in conversation is therefore usually a clarification question: *subjective in what sense?*
