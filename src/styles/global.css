@@ -315,3 +315,80 @@ footer {
     min-height: 520px;
   }
 }
+
+
+/* React Flow chrome should inherit the site's theme rather than its light defaults. */
+.react-flow__controls {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: 0 6px 18px rgba(0,0,0,.14);
+}
+
+.react-flow__controls-button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: 0;
+}
+
+.react-flow__controls-button:hover {
+  background: color-mix(in srgb, var(--panel) 76%, var(--bg));
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor;
+  color: inherit;
+}
+
+.react-flow__minimap {
+  width: 168px !important;
+  height: 108px !important;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.14);
+}
+
+.react-flow__minimap-mask {
+  fill: color-mix(in srgb, var(--bg) 78%, transparent);
+}
+
+.react-flow__minimap-node {
+  fill: var(--muted);
+  stroke: var(--line);
+}
+
+.react-flow__attribution {
+  border-radius: 5px 0 0 0;
+  background: color-mix(in srgb, var(--panel) 90%, transparent) !important;
+  color: var(--muted) !important;
+}
+
+.react-flow__attribution a {
+  color: inherit !important;
+}
+
+@media (max-width: 760px) {
+  .graph-shell .react-flow__minimap {
+    display: none;
+  }
+
+  .react-flow__controls {
+    left: 14px;
+    bottom: 14px;
+  }
+
+  .react-flow__controls-button {
+    width: 42px;
+    height: 42px;
+  }
+}
