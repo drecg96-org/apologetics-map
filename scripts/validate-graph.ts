@@ -116,6 +116,18 @@ async function main() {
       );
     }
 
+    if (item.node.type === "evidence") {
+      if (item.node.references.length === 0) {
+        errors.push(`${item.file}: evidence nodes must cite at least one source`);
+      }
+      if (!item.node.relationships.some((relationship) => relationship.type === "evidence_for")) {
+        errors.push(`${item.file}: evidence nodes must point to at least one claim with evidence_for`);
+      }
+      if (!item.node.status?.scholarship) {
+        errors.push(`${item.file}: evidence nodes must declare status.scholarship, using unknown when reception cannot yet be assessed`);
+      }
+    }
+
     if (item.node.argument) {
       if (item.node.type !== "argument") {
         errors.push(`${item.file}: argument structure is only valid on argument nodes`);
