@@ -445,8 +445,8 @@ async function main() {
     const argumentNodes = nodes.filter((node) => node.type === "argument");
     const evidenceNodes = nodes.filter((node) => node.type === "evidence");
     const historicalClaimTags = new Set([
-      "history", "historical-jesus", "resurrection", "textual-criticism",
-      "manuscript", "archaeology", "survey",
+      "historical-jesus", "early-christianity", "textual-criticism",
+      "manuscript", "archaeology", "survey", "roman-history",
     ]);
     const structuredPremiseIds = new Set(
       argumentNodes.flatMap((node) =>
