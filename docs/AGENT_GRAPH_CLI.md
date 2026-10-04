@@ -87,6 +87,7 @@ Returns graph counts plus useful maintenance signals:
 - semantic edge and debate-move counts,
 - debate openings, terminal nodes, and accidental-looking dead ends,
 - structured vs. unstructured argument coverage,
+- inference-challenge coverage and formal inferences with no mapped inference-level objection,
 - premise claims that currently lack direct support or challenge,
 - evidence nodes with and without source references,
 - source-heavy debate nodes that may need evidence atomization,
@@ -106,7 +107,7 @@ npm run graph -- packet objective-morality --depth 2
 
 Produces a bounded context packet containing:
 
-- the complete root node and body,
+- the complete root node and body, including formal argument structure or inference-challenge targets when present,
 - nearby semantic and debate nodes,
 - edges inside the requested neighborhood,
 - an outgoing nested debate line,
