@@ -14,7 +14,7 @@
   "secrets": {
     "required": [
       "GITHUB_APP_CLIENT_ID",
-      "GITHUB_PRIVATE_KEY",
+      "GITHUB_APP_PEM",
       "TURNSTILE_SECRET_KEY"
     ]
   }
