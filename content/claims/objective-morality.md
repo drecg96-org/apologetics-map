@@ -5,14 +5,20 @@ type: claim
 summary: At least some moral propositions are true independently of an individual's or society's approval.
 topics:
   - morality
-relationships: []
+relationships:
+  - type: supports
+    target: moral-argument-for-god
 tags:
   - moral-realism
   - ethics
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
   christian: broad-consensus
+references:
+  - source: apologia-moral-argument
+  - source: beliefmap-god-existence-morality
+  - source: sep-moral-realism
 ---
 
 # Claim
@@ -23,9 +29,10 @@ At least some moral propositions are true independently of an individual's or so
 
 This is a claim about moral ontology. It does not by itself establish how humans know moral truths, whether everyone agrees about them, or whether God is required to ground them.
 
-## Questions to develop
+Moral realism is broader than theism. A person can affirm objective moral facts while rejecting God, which is why secular moral realism is a central branch of this map rather than a footnote.
 
-- What does "objective" mean?
-- Does disagreement count against objectivity?
-- Can moral realism be naturalistic?
-- If objective obligations exist, what best explains them?
+## Why people find this plausible
+
+Clear cases often seem to be wrong in a way that survives approval, disagreement, or social victory. The intuition behind the claim is that a society could unanimously approve an atrocity and still be mistaken.
+
+That intuition is evidence to be assessed, not a proof. Anti-realists dispute what moral experience commits us to, and realists disagree about what makes moral truths true.

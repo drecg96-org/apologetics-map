@@ -14,13 +14,21 @@ tags:
   - moral-relativism
   - ethics
 status:
-  editorial: draft
+  editorial: reviewed
+references:
+  - source: sep-moral-realism
 ---
 
 # Response
 
-If a society's approval constitutes moral truth, then a society could not be morally mistaken merely by approving an action. If we still want to say a society can be wrong about something it collectively endorses, the relevant standard cannot simply be identical to that society's approval.
+If a society's approval constitutes moral truth, then a society could not be morally mistaken merely by approving an action.
+
+A useful crux question is therefore:
+
+**Can a whole society be morally wrong about something it approves?**
+
+If the answer is yes, then social approval cannot be the complete standard. If the answer is no, the view accepts the implication that moral criticism across societies is ultimately criticism from one set of standards rather than discovery of an independent moral error.
 
 ## Limit
 
-This is not a proof of moral realism. A sophisticated anti-realist can reject the premise or explain moral criticism without stance-independent moral facts. Its role is to identify the next crux rather than prematurely declare the debate finished.
+This is not a proof of moral realism. Sophisticated constructivists and relativists can explain criticism and reform without positing fully stance-independent moral facts. The point is to expose the underlying commitment clearly.
