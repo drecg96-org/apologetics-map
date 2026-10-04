@@ -24,6 +24,10 @@ conversation:
     - are-epistemic-norms-objective
   label: yes — objective normativity admitted
   priority: 15
+references:
+  - source: cuneo-normative-web
+    locator: "Introduction; chapters 2–4"
+    note: Cuneo develops the epistemic-normativity companion into a positive argument for moral realism.
 ---
 
 # Argument
@@ -36,9 +40,11 @@ The moral realist can therefore ask what relevant difference allows objective ep
 
 ## What this argument actually does
 
-The argument is strongest as a **defeater-defeater** against a general queerness objection. It does not directly prove that any particular moral claim is true.
+For this map's conversational use, the argument is strongest as a **defeater-defeater** against a general queerness objection. It does not directly prove that any particular moral claim is true.
 
 Instead, it argues that if we already tolerate objective normativity in epistemology, then normativity as such cannot be dismissed merely for being non-descriptive or action-guiding.
+
+Cuneo develops a stronger version. His core argument is that if moral facts do not exist, then relevantly similar epistemic facts do not exist; epistemic facts do exist; therefore moral facts exist and moral realism follows. Accepting that stronger conclusion requires defending both the moral-epistemic parity premise and objective epistemic normativity.
 
 ## Anti-realist replies
 
