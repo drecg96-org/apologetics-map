@@ -23,6 +23,10 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
       question, choose a common response, and follow the line while keeping the wider
       debate visible. Maps remain available for orientation and deeper graph exploration.
     </p>
+    <div class="hero-onboarding">
+      <span>New to the map?</span>
+      <a href={base + "guide/"}>Start with the 3-minute orientation →</a>
+    </div>
     <div class="stats" aria-label="Graph statistics">
       <span><strong>{nodes.length}</strong> nodes</span>
       <span><strong>{graph.flowEdges.length}</strong> debate moves</span>
