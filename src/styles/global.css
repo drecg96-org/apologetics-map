@@ -196,11 +196,54 @@ a { color: inherit; }
 
 .graph-toolbar-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: .75rem;
+  gap: .55rem .75rem;
   color: var(--muted);
   font-size: .75rem;
+}
+
+.graph-focus-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: .45rem;
+  align-items: center;
+  padding: .45rem .5rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.graph-focus-row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.graph-focus-row select {
+  width: auto;
+  min-width: 86px;
+}
+
+.graph-focus-row button,
+.graph-share-button,
+.node-share-actions button {
+  min-height: 34px;
+  padding: .4rem .6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: .75rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.graph-focus-row button:hover,
+.graph-share-button:hover,
+.node-share-actions button:hover {
+  border-color: var(--muted);
 }
 
 .source-toggle {
@@ -259,6 +302,20 @@ a { color: inherit; }
 .node-header { padding: 2rem 0; border-bottom: 1px solid var(--line); }
 .node-header h1 { font-size: clamp(2.2rem, 6vw, 4.8rem); }
 .lede { max-width: 780px; color: var(--muted); font-size: 1.15rem; }
+
+.node-share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .55rem;
+  margin-top: 1rem;
+}
+
+.node-share-actions a {
+  font-size: .8rem;
+  font-weight: 800;
+  text-decoration: none;
+}
 
 .node-layout {
   display: grid;

@@ -4,6 +4,18 @@ Apologetics Map is a version-controlled knowledge graph for Christian theology, 
 
 The canonical data is plain Markdown with YAML frontmatter. Each file represents one reusable intellectual node. Relationships in frontmatter turn those files into a directed graph that powers article-style reference pages, a global atlas, and focused debate-line views.
 
+## Shareable deep links
+
+The site treats URLs as durable references to graph content and explorer state:
+
+- `/node/<id>/` is the canonical page for a note/node.
+- `/topic/<id>/` is the canonical page for a topic.
+- `/?node=<id>` opens Debate Explorer at a specific position; `path=a,b,c` preserves an exact conversational route when the same node is reachable multiple ways.
+- `/maps/?focus=<id>&depth=2` opens a focused subgraph around a node. Map mode, topic/type filters, source visibility, and search text are also kept in the URL.
+
+Use stable node IDs for links. Titles and presentation can change without invalidating those URLs. Explorer navigation updates browser history so Back/Forward restores prior debate positions.
+
+
 ## Live site
 
 The production viewer deploys from `main` to GitHub Pages:

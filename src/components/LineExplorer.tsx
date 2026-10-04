@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { GraphPayload } from "../lib/graph";
 
 type Props = {
@@ -127,15 +127,7 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
   const initialId = roots[0]?.id ?? lineNodes[0]?.id ?? "";
 
   const [path, setPath] = useState<string[]>(initialId ? [initialId] : []);
-
-  useEffect(() => {
-    if (!initialId) {
-      setPath([]);
-      return;
-    }
-    const current = path[path.length - 1];
-    if (!current || !visible.has(current)) setPath([initialId]);
-  }, [initialId, visible, path]);
+  const initializedFromUrl = useRef(false);
 
   const currentId = path[path.length - 1] ?? "";
   const current = byId.get(currentId);
@@ -158,13 +150,34 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
       .slice(0, 8);
   }, [graph.edges, currentId, byId]);
 
+  function writePathToUrl(nextPath: string[], replace = false) {
+    if (typeof window === "undefined") return;
+
+    const url = new URL(window.location.href);
+    const current = nextPath[nextPath.length - 1];
+
+    if (current) url.searchParams.set("node", current);
+    else url.searchParams.delete("node");
+
+    if (nextPath.length > 1) url.searchParams.set("path", nextPath.join(","));
+    else url.searchParams.delete("path");
+
+    if (replace) window.history.replaceState({}, "", url);
+    else window.history.pushState({}, "", url);
+  }
+
+  function commitPath(nextPath: string[], replace = false) {
+    setPath(nextPath);
+    writePathToUrl(nextPath, replace);
+  }
+
   function chooseMove(edge: FlowEdge) {
     const existing = path.indexOf(edge.target);
     if (existing >= 0) {
-      setPath(path.slice(0, existing + 1));
+      commitPath(path.slice(0, existing + 1));
       return;
     }
-    setPath([...path, edge.target]);
+    commitPath([...path, edge.target]);
   }
 
   function findPath(target: string): string[] {
@@ -186,8 +199,53 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
     return [target];
   }
 
+  function pathFromUrl(): string[] {
+    if (typeof window === "undefined") return initialId ? [initialId] : [];
+
+    const params = new URL(window.location.href).searchParams;
+    const target = params.get("node");
+    const serialized = params.get("path");
+
+    if (serialized) {
+      const candidate = serialized.split(",").filter(Boolean);
+      const allVisible = candidate.length > 0 && candidate.every((id) => visible.has(id));
+      const connected = candidate.every((id, index) =>
+        index === 0 ||
+        lineEdges.some((edge) => edge.source === candidate[index - 1] && edge.target === id)
+      );
+      const matchesTarget = !target || candidate[candidate.length - 1] === target;
+
+      if (allVisible && connected && matchesTarget) return candidate;
+    }
+
+    if (target && visible.has(target)) return findPath(target);
+    return initialId ? [initialId] : [];
+  }
+
+  useEffect(() => {
+    if (!initialId || initializedFromUrl.current) return;
+    initializedFromUrl.current = true;
+    setPath(pathFromUrl());
+  }, [initialId, lineEdges, roots, visible]);
+
+  useEffect(() => {
+    if (!initializedFromUrl.current || !initialId) return;
+    const current = path[path.length - 1];
+    if (!current || !visible.has(current)) commitPath([initialId], true);
+  }, [initialId, visible, path]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      if (!initializedFromUrl.current) return;
+      setPath(pathFromUrl());
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [initialId, lineEdges, roots, visible]);
+
   function jumpTo(id: string) {
-    setPath(findPath(id));
+    commitPath(findPath(id));
   }
 
   function OutlineBranch({
@@ -302,7 +360,7 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
               <button
                 key={id + index}
                 type="button"
-                onClick={() => setPath(path.slice(0, index + 1))}
+                onClick={() => commitPath(path.slice(0, index + 1))}
               >
                 <span>{index + 1}</span>
                 {node.title}
