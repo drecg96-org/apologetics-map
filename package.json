@@ -13,7 +13,8 @@
     "sources:packet": "tsx scripts/source-packet.ts",
     "scripture:lookup": "tsx scripts/scripture.ts lookup",
     "scripture:scan": "tsx scripts/scripture.ts scan",
-    "scripture:stats": "tsx scripts/scripture.ts stats"
+    "scripture:stats": "tsx scripts/scripture.ts stats",
+    "graph": "tsx scripts/graph-cli.ts"
   },
   "engines": {
     "node": ">=24"
