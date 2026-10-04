@@ -24,6 +24,7 @@ tags:
 conversation:
   follows:
     - why-christianity-rather-than-judaism-or-islam
+    - revelation-claims-require-comparative-testing
   label: compare revelation standards
   priority: 60
 origin:
