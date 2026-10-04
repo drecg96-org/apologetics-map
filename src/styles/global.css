@@ -318,20 +318,29 @@ a { color: inherit; }
 }
 
 .node-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
-  gap: clamp(2rem, 6vw, 5rem);
+  display: block;
   padding-top: 2rem;
 }
 
-.prose { max-width: 760px; }
+.prose { max-width: 780px; }
+
+.relationship-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
 .prose h1 { display: none; }
 .prose h2 { margin-top: 2.2rem; font-size: 1.35rem; }
 .prose p, .prose li { color: color-mix(in srgb, var(--text) 88%, var(--muted)); }
 
 .relationship-panel section {
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--line);
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
 }
 
 .relationship-panel h2 {
@@ -369,7 +378,7 @@ footer {
   .section-heading > p { margin-top: .5rem; }
   .graph-shell { min-height: 580px; }
   .graph-toolbar { align-items: stretch; flex-direction: column; }
-  .node-layout { grid-template-columns: 1fr; }
+  .relationship-panel { grid-template-columns: 1fr; }
 }
 
 
@@ -383,8 +392,8 @@ footer {
 
 .position-graph {
   width: 100%;
-  height: min(58vh, 560px);
-  min-height: 420px;
+  height: min(48vh, 480px);
+  min-height: 360px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -419,8 +428,8 @@ footer {
 @media (max-width: 760px) {
   .position-section { padding-top: 1.4rem; }
   .position-graph {
-    height: 520px;
-    min-height: 520px;
+    height: 400px;
+    min-height: 400px;
   }
 }
 
@@ -586,7 +595,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  margin: 1rem 0 0;
+  margin: 2rem 0 0;
 }
 
 .move-strip > div {
