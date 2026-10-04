@@ -1,4 +1,5 @@
 import { loadGraph } from "../src/lib/graph.js";
+import { findScriptureReferences, lookupScriptureReference } from "../src/lib/scripture.js";
 
 async function main() {
   const id = process.argv[2];
@@ -29,7 +30,22 @@ async function main() {
       relationships: node.relationships,
       conversation: node.conversation,
       references: node.references,
+      scripture: node.scripture,
     }));
+
+  const detectedScripture = findScriptureReferences([source.summary, source.body].filter(Boolean).join("\n")).slice(0, 10);
+  const explicitScripture = source.scripture.map((item) => item.reference);
+  const scriptureRefs = [...new Set([...explicitScripture, ...detectedScripture])].slice(0, 10);
+  const scriptureContext = (await Promise.all(scriptureRefs.map(async (reference) => {
+    const lookup = await lookupScriptureReference(reference);
+    if (!lookup) return null;
+    return {
+      reference: lookup.canonical,
+      web: lookup.verses.slice(0, 12),
+      youVersionEsvUrl: lookup.youVersionEsvUrl,
+      truncated: lookup.verses.length > 12,
+    };
+  }))).filter(Boolean);
 
   console.log(JSON.stringify({
     task: "Summarize this source from the original URL, then propose minimal evidence-backed graph integrations. Do not treat the source summary as an authority independent of the source.",
@@ -42,6 +58,7 @@ async function main() {
       currentBody: source.body,
     },
     currentIntegration: referencedBy,
+    scriptureContext,
     graphNeighborhood: neighborhood,
     outputContract: {
       sourceChanges: [
@@ -54,6 +71,7 @@ async function main() {
         "references with useful locators/notes",
         "only create new claim/objection/response nodes when the source exposes a genuine graph gap",
         "preserve distinction between advocacy, scholarship, and primary evidence",
+        "record relevant Bible passages in the node scripture field using canonical references",
       ],
       review: "Leave processing.reviewed=false until human review.",
     },

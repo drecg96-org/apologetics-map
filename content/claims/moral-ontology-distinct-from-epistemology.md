@@ -23,6 +23,9 @@ conversation:
 references:
   - source: apologia-moral-argument
   - source: sep-moral-realism
+scripture:
+  - reference: Romans 2:14-15
+    note: Christian theological context for moral knowledge and conscience; not offered as independent philosophical proof of moral realism.
 ---
 
 # Claim

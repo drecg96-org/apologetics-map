@@ -97,6 +97,18 @@ references:
 
 Referenced IDs must exist and have `type: source`.
 
+## Scripture
+
+Bible passages are first-class node metadata:
+
+```yaml
+scripture:
+  - reference: Romans 2:14-15
+    note: Christian theological context for conscience and moral knowledge.
+```
+
+References are parsed against the vendored 66-book World English Bible corpus in `data/scripture/web/`. Node pages show the local WEB text and generate a reader-facing ESV link on YouVersion. Scripture references are separate from scholarly/source references so biblical claims and external evidence remain distinguishable.
+
 ## Source processing
 
 Source nodes may track deterministic discovery and model-assisted summarization:
@@ -109,7 +121,7 @@ processing:
   reviewed: false
   summary_version: 1
   discovery:
-    provider: web
+    provider: web # web | openalex | crossref | rss | youtube | manual | other
     query: moral argument objective morality
     retrieved_at: 2026-10-04T12:45:00Z
 ```
