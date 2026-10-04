@@ -8,6 +8,8 @@ topics:
 relationships:
   - type: depends_on
     target: objective-morality
+  - type: depends_on
+    target: theistic-grounding-has-explanatory-advantages
   - type: supports
     target: moral-grounding-theism
   - type: addresses
@@ -25,6 +27,33 @@ conversation:
     - what-grounds-objective-morality
   label: theistic grounding argument
   priority: 20
+argument:
+  form: abductive
+  statements:
+    - id: p1
+      node: objective-morality
+      role: premise
+      label: P1
+      note: At least some moral truths, values, or obligations are objective rather than constituted merely by individual or social approval.
+    - id: p2
+      node: theistic-grounding-has-explanatory-advantages
+      role: premise
+      label: P2
+      note: A necessarily good personal ground is proposed to explain the relevant moral data better than leading impersonal alternatives.
+    - id: c1
+      node: moral-grounding-theism
+      role: conclusion
+      label: C
+      note: Objective morality therefore counts as evidence for a necessarily good personal moral foundation, if the comparative premise succeeds.
+  inferences:
+    - id: i1
+      from:
+        - p1
+        - p2
+      to: c1
+      kind: abductive
+      label: best explanation
+      note: This is an inference to the best explanation, not a claim that objective morality deductively entails Christian theism.
 references:
   - source: apologia-moral-argument
   - source: beliefmap-god-existence-morality
