@@ -20,11 +20,6 @@ conversation:
     - morality-is-subjective
   label: response
   priority: 30
-conversation:
-  follows:
-    - morality-is-subjective
-  label: response
-  priority: 30
 references:
   - source: sep-moral-realism
 ---
