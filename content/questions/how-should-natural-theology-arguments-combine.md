@@ -26,7 +26,15 @@ conversation:
     - evolutionary-naturalism-faces-a-cognitive-reliability-challenge
     - moral-grounding-theism
     - religious-experience-can-provide-defeasible-evidence
-    - christian-theism-is-necessary-precondition-of-intelligibility
+    - cosmic-beginning-would-support-a-transcendent-cause
+    - brute-contingent-reality-may-need-no-further-explanation
+    - cosmology-does-not-establish-an-absolute-beginning
+    - multiverse-and-observer-selection-can-reduce-fine-tuning-force
+    - fine-tuning-probability-measures-are-contested
+    - consciousness-explanatory-gap-does-not-entail-theism
+    - panpsychism-and-dualism-are-live-nontheistic-mind-alternatives
+    - evolutionary-epistemology-replies-to-global-reliability-defeat
+    - religious-diversity-and-psychology-limit-experiential-evidence
   label: combine the lines carefully
   priority: 10
 status:
