@@ -25,6 +25,8 @@ references:
   - source: wielenberg-robust-ethics
   - source: sep-moral-realism
   - source: apologia-moral-argument
+  - source: the-moral-argument-for-the-existence-of-god-an-evaluation-of-fe03754d
+    note: Included as an opposing recent source: Teh and Loke argue that a relaxed non-theistic realism does not answer the grounding challenge.
 ---
 
 # Objection
