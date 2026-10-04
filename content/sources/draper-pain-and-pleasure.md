@@ -1,6 +1,6 @@
 ---
 id: draper-pain-and-pleasure
-title: Paul Draper — Pain and Pleasure: An Evidential Problem for Theists
+title: "Paul Draper — Pain and Pleasure: An Evidential Problem for Theists"
 type: source
 summary: Draper's probabilistic argument compares the observed distribution of pain and pleasure under theism and an alternative hypothesis, arguing that the data provide prima facie evidence against theism.
 topics:
