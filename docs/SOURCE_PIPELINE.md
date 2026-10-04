@@ -74,3 +74,19 @@ A source becomes **integrated** automatically as soon as a graph node references
 ## Expansion path
 
 Next adapters can use the same candidate contract: YouTube channel upload metadata, RSS/Atom, curated sitemaps, Google Books/Open Library, and Scripture-reference extraction. Those adapters should keep the same rule: discover broadly, summarize selectively, and integrate only with provenance.
+
+
+## Curated creator hubs
+
+For recurring public thinkers, keep two levels of source records:
+
+1. a **creator hub** pointing to the official site/channel or ministry archive, tagged with perspective and areas of emphasis;
+2. **individual work records** for talks, debates, articles, podcast episodes, or books that make claims we actually want to cite.
+
+Current curated hubs include John Lennox; Cliffe and Stuart Knechtle / Give Me An Answer; Big Jon Steel; Nicholas Bowling; Bryce Crawford; Alex O'Connor / Within Reason; William Lane Craig / Reasonable Faith; and Wes Huff.
+
+Perspective tags are descriptive, not quality scores. Alex O'Connor is indexed as an atheist/agnostic-atheist skeptical source, while the Christian creators are tagged Christian and, where appropriate, apologetics or evangelism. A debate containing multiple perspectives should use `stance: mixed`.
+
+Creator hubs are also retained as explicit web seeds in `config/source-harvest.yml`. The repository does not mirror full copyrighted transcripts. Agent summaries should extract arguments, objections, distinctions, and useful locators while linking back to the original work.
+
+When a creator's claim is factual or technical, prefer integrating the argument formulation from the creator while also adding independent primary or scholarly corroboration. This keeps advocacy sources useful without confusing them with neutral evidence.
