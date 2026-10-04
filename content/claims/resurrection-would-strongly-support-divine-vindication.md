@@ -22,6 +22,11 @@ tags:
   - resurrection
   - vindication
   - christology
+conversation:
+  follows:
+    - what-follows-if-jesus-was-raised
+  label: resurrection would vindicate Jesus
+  priority: 25
 status:
   editorial: draft
   scholarship: contested
