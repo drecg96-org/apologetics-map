@@ -28,6 +28,20 @@ references:
     note: Wang develops the epistemic-defeater version of the evolutionary challenge against both nonnaturalist and naturalist realism.
   - source: moral-realism-and-evolutionary-debunking-arguments-237903db
     note: Realist treatment of the debunking debate, included here as a counterpoint within the same literature; full chapter access is limited.
+  - source: joyce-evolution-of-morality
+    note: Book-length evolutionary genealogy with skeptical implications for moral justification.
+  - source: kahane-evolutionary-debunking-arguments
+    note: Clarifies distinct debunking arguments and their required epistemic premises.
+  - source: shafer-landau-evolutionary-debunking-knowledge
+    note: Direct realist reply arguing evolutionary influence need not defeat independently warranted beliefs.
+  - source: vavova-evolutionary-debunking-moral-realism
+    note: Survey distinguishing major evolutionary attacks on moral realism.
+  - source: hanson-evolutionary-debunking
+    note: Critique arguing influential debunking arguments equivocate between readings with different force.
+  - source: fitzpatrick-debunking-evolutionary-debunking
+    note: Separates evolutionary explanations of capacities from explanations of belief contents.
+  - source: wielenberg-evolutionary-debunking-morality
+    note: Secular-realist reply to evolutionary debunking.
 ---
 
 # Objection
