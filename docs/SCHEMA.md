@@ -61,6 +61,52 @@ conversation:
 - `priority` is an optional non-negative integer used to keep common branches visually ordered.
 - `terminal` marks an intentional endpoint rather than an unmapped dead end. Supported kinds are `accepted-commitment`, `concession`, and `unresolved`. Use `label` and `note` to explain why the line ends.
 
+## Formal argument structure
+
+Argument nodes can optionally expose a machine-readable premise/inference/conclusion map in addition to their prose explanation.
+
+```yaml
+argument:
+  form: abductive
+  statements:
+    - id: p1
+      node: objective-morality
+      role: premise
+      label: P1
+      note: Optional explanation of this statement's role in this argument.
+    - id: p2
+      node: theistic-grounding-has-explanatory-advantages
+      role: premise
+      label: P2
+    - id: c1
+      node: moral-grounding-theism
+      role: conclusion
+      label: C
+  inferences:
+    - id: i1
+      from:
+        - p1
+        - p2
+      to: c1
+      kind: abductive
+      label: best explanation
+      note: Optional explanation of the inferential move.
+```
+
+Supported argument/inference forms are `deductive`, `inductive`, `abductive`, `transcendental`, `cumulative`, `analogical`, and `other`.
+
+### Authoring rules
+
+- Formal argument structure is valid only on nodes whose `type` is `argument`.
+- Every statement points to a reusable `claim` node. Do not hide a disputable proposition only inside the argument record.
+- `premise` statements are inputs. `intermediate-conclusion` and `conclusion` statements must be produced by an inference.
+- Inference `from` and `to` values refer to local statement IDs within that argument, not global node IDs.
+- Use semantic relationships on the referenced claim nodes for ordinary support and challenge. The formal structure answers a different question: **how are these propositions combined in this particular argument?**
+- An argument can reuse the same claim that another argument uses. This is intentional: evidence and objections attached to that claim become relevant wherever the premise appears.
+- The prose body should still explain the formulation, assumptions, limits, and strongest pressure points. The mapper is an inspectable logical skeleton, not a replacement for argumentation.
+
+The validator checks that statement references resolve to claim nodes, local statement/inference IDs are unique, and non-premise statements are actually produced by an inference.
+
 ## Topic membership
 
 ```yaml

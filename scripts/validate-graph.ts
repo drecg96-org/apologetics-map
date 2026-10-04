@@ -116,6 +116,66 @@ async function main() {
       );
     }
 
+    if (item.node.argument) {
+      if (item.node.type !== "argument") {
+        errors.push(`${item.file}: argument structure is only valid on argument nodes`);
+      }
+
+      const statementIds = new Set<string>();
+      for (const statement of item.node.argument.statements) {
+        if (statementIds.has(statement.id)) {
+          errors.push(`${item.file}: duplicate argument statement id "${statement.id}"`);
+        }
+        statementIds.add(statement.id);
+
+        const statementNode = byId.get(statement.node);
+        if (!statementNode) {
+          errors.push(`${item.file}: argument statement "${statement.id}" points to unknown node "${statement.node}"`);
+        } else if (statementNode.node.type !== "claim") {
+          errors.push(`${item.file}: argument statement "${statement.id}" must point to a claim node, not "${statementNode.node.type}"`);
+        }
+      }
+
+      const premiseCount = item.node.argument.statements.filter((statement) => statement.role === "premise").length;
+      const conclusionCount = item.node.argument.statements.filter((statement) => statement.role === "conclusion").length;
+      if (premiseCount === 0) errors.push(`${item.file}: argument structure must contain at least one premise`);
+      if (conclusionCount === 0) errors.push(`${item.file}: argument structure must contain at least one conclusion`);
+
+      const inferenceIds = new Set<string>();
+      const targetedStatements = new Set<string>();
+      const usedStatements = new Set<string>();
+      for (const inference of item.node.argument.inferences) {
+        if (inferenceIds.has(inference.id)) {
+          errors.push(`${item.file}: duplicate argument inference id "${inference.id}"`);
+        }
+        inferenceIds.add(inference.id);
+
+        for (const sourceId of inference.from) {
+          usedStatements.add(sourceId);
+          if (!statementIds.has(sourceId)) {
+            errors.push(`${item.file}: inference "${inference.id}" uses unknown statement "${sourceId}"`);
+          }
+        }
+        targetedStatements.add(inference.to);
+        usedStatements.add(inference.to);
+        if (!statementIds.has(inference.to)) {
+          errors.push(`${item.file}: inference "${inference.id}" targets unknown statement "${inference.to}"`);
+        }
+        if (inference.from.includes(inference.to)) {
+          errors.push(`${item.file}: inference "${inference.id}" cannot use its target as a source`);
+        }
+      }
+
+      for (const statement of item.node.argument.statements) {
+        if (!usedStatements.has(statement.id)) {
+          errors.push(`${item.file}: argument statement "${statement.id}" is not connected to any inference`);
+        }
+        if (statement.role !== "premise" && !targetedStatements.has(statement.id)) {
+          errors.push(`${item.file}: ${statement.role} "${statement.id}" must be produced by an inference`);
+        }
+      }
+    }
+
     if (item.node.processing && item.node.type !== "source") {
       errors.push(`${item.file}: processing metadata is only valid on source nodes`);
     }
