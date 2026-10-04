@@ -52,6 +52,20 @@ references:
     note: Historical context for the development of secular ethics and the modern moral-argument debate.
   - source: v-william-r-sorley-s-moral-argument-for-god-c4e72eee
     note: Historical provenance for William R. Sorley's place in the moral-argument tradition; detailed chapter access is limited.
+  - source: baggett-walls-good-god
+    note: Book-length cumulative case for theistic explanation of moral phenomena.
+  - source: baggett-walls-moral-apologia
+    note: Maps multiple moral arguments rather than reducing the case to one syllogism.
+  - source: baggett-walls-god-cosmos-moral-argument
+    note: Comparative moral argument using a broad range of moral data.
+  - source: baggett-walls-case-for-abduction
+    note: Defense of abductive moral argumentation over brittle counterfactual formulations.
+  - source: hare-moral-gap
+    note: Distinct moral argument from moral demand, human limitation, and practical hope.
+  - source: linville-moral-argument
+    note: Broad treatment engaging moral value, human dignity, and evolutionary naturalism.
+  - source: adams-moral-arguments-theistic-belief
+    note: Classic philosophical treatment of moral considerations supporting theistic belief.
 ---
 
 # Argument

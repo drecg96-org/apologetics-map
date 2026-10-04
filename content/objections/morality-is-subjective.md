@@ -25,6 +25,28 @@ conversation:
 references:
   - source: sep-moral-realism
   - source: mackie-ethics-inventing-right-and-wrong
+  - source: prinz-emotional-construction-morals
+    note: Emotion-based and culturally shaped relativist account.
+  - source: wong-natural-moralities
+    note: Pluralistic relativism with common human constraints but multiple viable moralities.
+  - source: copp-morality-normativity-society
+    note: Society-centered naturalistic account that preserves truth-apt moral claims.
+  - source: gibbard-wise-choices-apt-feelings
+    note: Canonical expressivist theory of normative judgment.
+  - source: blackburn-ruling-passions
+    note: Quasi-realist account explaining realist-seeming discourse without robust moral facts.
+  - source: finlay-confusion-of-tongues
+    note: End-relational semantics for normative language that resists inferring categorical normativity from ordinary ought-talk.
+  - source: olson-moral-error-theory
+    note: Contemporary systematic defense of moral error theory.
+  - source: streumer-unbelievable-errors
+    note: Error theory extended across moral, practical, epistemic, and instrumental normativity.
+  - source: street-constructivism-about-reasons
+    note: Humean constructivist account grounding reasons in evaluative standpoints.
+  - source: street-coming-to-terms-contingency
+    note: Developed account that explicitly accepts the contingency of practical reasons.
+  - source: sep-moral-anti-realism
+    note: Neutral reference distinguishing the major anti-realist families.
 ---
 
 # Objection

@@ -24,6 +24,12 @@ conversation:
 references:
   - source: sep-moral-realism
   - source: wielenberg-robust-ethics
+  - source: scanlon-being-realistic-about-reasons
+    note: Major realist account of irreducible normative reasons.
+  - source: korsgaard-sources-of-normativity
+    note: Constructivist account of practical normativity through reflective agency.
+  - source: sep-reasons-internal-external
+    note: Reference overview of the internal-versus-external reasons debate.
 ---
 
 # Crux question
