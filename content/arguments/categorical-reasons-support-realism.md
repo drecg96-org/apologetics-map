@@ -8,6 +8,9 @@ topics:
 relationships:
   - type: supports
     target: objective-morality
+  - type: challenges
+    target: morality-is-subjective
+    note: Most directly challenges simple actual-desire or actual-attitude versions of subjectivism.
   - type: related_to
     target: do-agents-have-reasons-independent-of-desire
 tags:
@@ -20,7 +23,7 @@ status:
 conversation:
   follows:
     - do-agents-have-reasons-independent-of-desire
-  label: yes — categorical reason admitted
+  label: yes — desire-independent reason
   priority: 15
 references:
   - source: wielenberg-robust-ethics
@@ -29,14 +32,30 @@ references:
 
 # Argument
 
-If a person can have a genuine reason not to harm someone even when none of that person's actual desires favors restraint, then at least some normative reasons are not reducible to current preference.
+If a person can have a genuine moral reason not to harm someone even when none of that person's actual desires favors restraint, then at least some normative reasons are not reducible to current preference.
 
-That weakens simple forms of subjectivism and opens the question of what makes those reasons valid.
+That directly pressures simple desire-based subjectivism: the agent's attitude no longer exhausts what reasons the agent has.
 
-## Important distinction
+## What follows
 
-Admitting a desire-independent normative reason is not yet equivalent to accepting a full theory of objective moral facts. Realists disagree about whether reasons are fundamental, naturalistically reducible, constructively generated, or grounded in some other way.
+At minimum, the discussion has admitted **desire-independent normativity**.
+
+That does not yet settle whether:
+
+- the reason is specifically moral rather than part of a broader theory of practical reason;
+- the reason is natural or non-natural;
+- the reason is fundamental or grounded in something else;
+- a constructivist account can generate it; or
+- God is required to explain it.
+
+So this branch supports realism but does not leap directly to theism.
+
+## Anti-realist reply
+
+A sophisticated anti-realist may argue that idealized desires, rational procedures, constitutive standards of agency, or shared practical commitments can generate reasons that outrun an agent's present desires without requiring stance-independent moral facts.
+
+The next debate is therefore whether those standards are genuinely independent or merely relocate the relevant standpoint.
 
 ## Conversational use
 
-After the anti-realist accepts that atrocities are not stance-independently wrong, ask whether an entirely indifferent wrongdoer nevertheless has a reason not to harm. If the answer is no, record that implication rather than pretending a contradiction has been found.
+Use this after the other person says that even a completely indifferent agent nevertheless has a reason not to harm. If they deny that premise, record the implication rather than treating the denial as a contradiction.
