@@ -2,7 +2,7 @@
 id: distinguish-punishment-from-self-exclusion
 title: Distinguish punishment from self-exclusion
 type: response
-summary: The phrase "God sends people to hell" can hide different models: imposed judgment, chosen separation, or a view in which divine judgment ratifies a person's settled rejection of God.
+summary: "The phrase \"God sends people to hell\" can hide different models: imposed judgment, chosen separation, or a view in which divine judgment ratifies a person's settled rejection of God."
 topics:
   - salvation-and-hell
 relationships:
