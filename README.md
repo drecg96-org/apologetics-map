@@ -16,6 +16,31 @@ The production viewer deploys from `main` to GitHub Pages:
 - **Debate Map** is a secondary spatial view for orienting yourself in conversational branches.
 - **Knowledge Graph** is a secondary semantic view for inspecting support, objections, dependencies, evidence, and related structure.
 
+## Agent / automation quick start
+
+**If you are an agent working in this repository, prefer the graph CLI over scanning every Markdown file.** The CLI loads the same validated canonical graph used by the site and returns bounded JSON that is cheaper and easier to reason over.
+
+For most tasks, start with a packet around the node you are working on:
+
+```bash
+npm run graph -- packet objective-morality --depth 2
+```
+
+Use the narrower commands when you only need one kind of context:
+
+- `node <id>` — complete node plus incoming/outgoing semantic and debate edges.
+- `line <id> --depth N` — conversational move tree, including terminal commitments.
+- `neighbors <id> --depth N` — bounded semantic/debate neighborhood.
+- `path <from> <to>` — shortest structural path between two nodes.
+- `search <query>` — find node IDs from titles, summaries, bodies, tags, topics, and aliases.
+- `topic <topic-id>` — retrieve a topic grouped by node type.
+- `sources <id>` — retrieve the sources cited by a node and their processing metadata.
+- `stats` — graph/source coverage and maintenance signals.
+
+The CLI is deterministic and contains no LLM logic. Treat the Markdown/YAML under `content/` as canonical; use CLI output as a read/query layer, and validate any edits with `npm run validate`.
+
+See [docs/AGENT_GRAPH_CLI.md](docs/AGENT_GRAPH_CLI.md) for the full command contract and workflow guidance.
+
 ## Repository layout
 
 ```text
