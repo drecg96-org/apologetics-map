@@ -23,7 +23,8 @@ tags:
   - burial
 conversation:
   follows:
-    - what-did-earliest-christians-mean-by-resurrection
+    - pauline-resurrection-language-is-embodied
+    - embodied-resurrection-language-does-not-by-itself-prove-empty-tomb
   label: test the empty tomb
   priority: 10
 status:
