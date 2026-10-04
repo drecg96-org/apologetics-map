@@ -27,13 +27,15 @@ processing:
 source:
   kind: paper
   authors:
-    - Kelly
+    - Thomas Kelly
   year: 2026
   publisher: Journal of the History of the Behavioral Sciences
   url: https://onlinelibrary.wiley.com/doi/full/10.1002/jhbs.70043
   role: scholarship
   difficulty: advanced
   stance: neutral
+  identifiers:
+    doi: 10.1002/jhbs.70043
 origin:
   kind: agent-research
   github_issues:
