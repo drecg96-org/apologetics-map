@@ -18,6 +18,8 @@ relationships:
     target: judgment-considers-knowledge-and-opportunity
   - type: addresses
     target: restrictivist-views-make-faith-in-christ-decisive
+  - type: related_to
+    target: why-would-a-loving-god-permit-nonresistant-nonbelief
 tags:
   - salvation
   - hell
