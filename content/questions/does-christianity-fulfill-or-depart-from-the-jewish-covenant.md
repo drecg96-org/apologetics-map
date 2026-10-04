@@ -16,6 +16,9 @@ references:
     note: Jewish perspective on why accepting Jesus is not part of mainstream Judaism.
   - source: my-jewish-learning-who-is-the-messiah
     note: Jewish presentation of messianic expectations and Torah-oriented criteria.
+  - source: maimonides-mishneh-torah-kings-wars-11
+    locator: "chapter 11"
+    note: Primary Jewish source linking the Messiah with Davidic restoration, Torah observance, the Temple, and the ingathering of Israel.
   - source: lim-learning-from-muslims-and-jews
     note: Historical discussion of Christian fulfillment claims in relation to Judaism and later Islamic fulfillment claims in relation to Christianity.
 tags:
