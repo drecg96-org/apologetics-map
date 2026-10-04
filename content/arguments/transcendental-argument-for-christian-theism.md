@@ -9,6 +9,14 @@ topics:
 relationships:
   - type: addresses
     target: what-makes-rational-thought-possible
+  - type: depends_on
+    target: genuine-rational-thought-occurs
+  - type: depends_on
+    target: rational-thought-requires-objective-norms-and-intelligible-order
+  - type: depends_on
+    target: rival-worldviews-fail-to-ground-intelligibility
+  - type: supports
+    target: christian-theism-is-necessary-precondition-of-intelligibility
   - type: related_to
     target: moral-argument-for-god
   - type: related_to
@@ -42,6 +50,57 @@ conversation:
     - what-makes-rational-thought-possible
   label: make the transcendental case
   priority: 10
+argument:
+  form: transcendental
+  statements:
+    - id: p1
+      node: genuine-rational-thought-occurs
+      role: premise
+      label: P1
+      note: Rational discourse and at least some knowledge actually occur.
+    - id: p2
+      node: rational-thought-requires-objective-norms-and-intelligible-order
+      role: premise
+      label: P2
+      note: Reasoning presupposes normative and metaphysical conditions not reducible to mere causal sequence.
+    - id: ic1
+      node: rational-thought-needs-an-adequate-worldview-ground
+      role: intermediate-conclusion
+      label: IC
+      note: A worldview should not undermine the conditions its own reasoning depends on.
+    - id: p3
+      node: christian-worldview-can-account-for-intelligibility
+      role: premise
+      label: P3
+      note: Christianity contains internal resources for an account of an intelligible world and rational creatures.
+    - id: p4
+      node: rival-worldviews-fail-to-ground-intelligibility
+      role: premise
+      label: P4
+      note: The ambitious and most disputed premise says relevant rival worldviews ultimately fail the same test.
+    - id: c1
+      node: christian-theism-is-necessary-precondition-of-intelligibility
+      role: conclusion
+      label: C
+      note: This is a necessity claim, not merely an inference that Christianity is one good explanation.
+  inferences:
+    - id: i1
+      from:
+        - p1
+        - p2
+      to: ic1
+      kind: transcendental
+      label: conditions of intelligibility
+      note: Move from actual rational activity to the requirement that a worldview preserve and account for its necessary conditions.
+    - id: i2
+      from:
+        - ic1
+        - p3
+        - p4
+      to: c1
+      kind: transcendental
+      label: worldview exclusivity
+      note: Move from the comparative worldview claims to the stronger conclusion that Christian theism is necessary for intelligibility.
 origin:
   kind: agent-research
 status:
