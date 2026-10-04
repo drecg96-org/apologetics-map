@@ -19,6 +19,12 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - objective-morality
+    - what-grounds-objective-morality
+  label: argument
+  priority: 20
 references:
   - source: apologia-moral-argument
   - source: beliefmap-god-existence-morality
