@@ -43,6 +43,13 @@ references:
     note: Re-evaluations of ethical intuitionism and moral epistemology.
   - source: cuneo-shafer-landau-moral-fixed-points
     note: Nonnaturalist proposal that some substantive moral claims function as conceptual fixed points.
+scripture:
+  - reference: Isaiah 5:20
+    note: Biblical warning against calling evil good and good evil; Christian context for moral error not being settled by labels or approval.
+  - reference: Micah 6:8
+    note: Speaks of the good as something God has shown rather than something a society invents.
+  - reference: Romans 2:14-15
+    note: Christian theological context for conscience and moral knowledge; not offered as independent philosophical proof of moral realism.
 ---
 
 # Claim
