@@ -21,9 +21,8 @@ status:
   scholarship: contested
 conversation:
   follows:
-    - objective-morality
     - what-grounds-objective-morality
-  label: argument
+  label: theistic grounding argument
   priority: 20
 references:
   - source: apologia-moral-argument
