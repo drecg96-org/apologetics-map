@@ -10,8 +10,6 @@ relationships:
     target: hell-includes-divine-judgment
   - type: related_to
     target: choice-and-judgment-need-not-be-exclusive
-  - type: challenged_by
-    target: sincere-nonbelief-is-not-the-same-as-rejecting-god
 tags:
   - hell
   - free-will
