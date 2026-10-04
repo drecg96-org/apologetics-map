@@ -23,10 +23,6 @@ conversation:
     - does-cosmic-beginning-point-to-a-cause
   label: cosmology does not settle the premise
   priority: 20
-  terminal:
-    kind: unresolved
-    label: beginning premise remains model-sensitive
-    note: The branch intentionally stops if the reader withholds an absolute cosmic beginning.
 origin:
   kind: agent-research
   github_issues:
