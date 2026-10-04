@@ -85,12 +85,16 @@ npm run graph -- stats
 Returns graph counts plus useful maintenance signals:
 
 - semantic edge and debate-move counts,
-- debate openings and terminal nodes,
-- nonterminal debate nodes without outgoing moves,
+- debate openings, terminal nodes, and accidental-looking dead ends,
+- structured vs. unstructured argument coverage,
+- premise claims that currently lack direct support or challenge,
+- evidence nodes with and without source references,
+- source-heavy debate nodes that may need evidence atomization,
 - indexed sources still awaiting summaries,
 - summarized sources not yet integrated,
 - unreviewed model-authored summaries,
-- debate nodes without references.
+- debate nodes without references,
+- orphaned debate nodes.
 
 This is intentionally descriptive. Not every reported dead end or unsourced node is necessarily a defect.
 
