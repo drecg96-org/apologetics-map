@@ -24,6 +24,11 @@ tags:
   - resurrection
   - appearances
   - historical-jesus
+conversation:
+  follows:
+    - what-do-appearance-reports-establish
+  label: sincere appearance experiences occurred
+  priority: 25
 status:
   editorial: draft
   scholarship: majority
