@@ -22,6 +22,12 @@ conversation:
 references:
   - source: apologia-moral-argument
   - source: evans-god-moral-obligation
+  - source: divine-command-theories-of-moral-obligations-6150a399
+    note: Lee and Evans survey social theories of obligation and contemporary divine-command accounts.
+  - source: what-is-a-divine-command-theory-of-moral-obligation-4db447d7
+    note: Evans directly argues that moral obligation is grounded in a social relation between humans and God.
+  - source: the-moral-argument-for-the-existence-of-god-an-evaluation-of-fe03754d
+    note: Recent defense addressing objections to the social or relational character of moral obligation.
 ---
 
 # Claim
