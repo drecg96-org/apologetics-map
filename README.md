@@ -53,6 +53,26 @@ The CLI is deterministic and contains no LLM logic. Treat the Markdown/YAML unde
 
 See [docs/AGENT_GRAPH_CLI.md](docs/AGENT_GRAPH_CLI.md) for the full command contract and workflow guidance.
 
+## Node feedback issues
+
+Every canonical node page includes **Respond / ask a question**. The form captures a reader's question, response, objection, correction, or request for evidence and hands it to GitHub as a prefilled issue.
+
+These issues use the title prefix `[Node feedback]` and include a `<!-- node-feedback:v1 -->` marker plus:
+
+- the contribution type and reader text,
+- canonical node ID, node type, page URL, and content-file path,
+- topic context,
+- previous debate moves and possible next moves.
+
+For agent triage, search open issues for the `[Node feedback]` prefix, extract the node ID, then start with:
+
+```bash
+npm run graph -- packet <node-id> --depth 2
+```
+
+Treat the issue as proposed conversational input, not automatically-correct graph content. Check sources and nearby argument structure before editing Markdown, and close or reference the issue from the integrating PR.
+
+
 ## Repository layout
 
 ```text
