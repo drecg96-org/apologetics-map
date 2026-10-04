@@ -7,6 +7,8 @@ topics: []
 relationships:
   - type: related_to
     target: abrahamic-faith-comparison
+  - type: related_to
+    target: sin-atonement-and-divine-power
 tags:
   - christianity
 status:
