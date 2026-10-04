@@ -32,6 +32,8 @@ conversation:
   label: but did they really choose it?
   priority: 10
 references:
+  - source: blanton-nonresistant-nonbelief-pervasive
+    note: Recent scholarship argues that nonresistant nonbelief may be relatively common and distinguishes acquisition from maintenance responsibility.
   - source: sep-divine-hiddenness
     note: Defines and surveys the philosophical literature on nonresistant nonbelief.
   - source: schellenberg-hiddenness-argument
