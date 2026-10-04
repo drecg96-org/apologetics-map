@@ -20,6 +20,9 @@ if (!node) {
 const base = import.meta.env.BASE_URL;
 const graph = toGraphPayload(nodes);
 const focusedMapUrl = base + "maps/?focus=" + encodeURIComponent(node.id) + "&depth=2" + (node.type === "source" ? "&sources=1" : "");
+const feedbackApiEndpoint = (import.meta.env.PUBLIC_NODE_FEEDBACK_ENDPOINT ?? "").trim();
+const turnstileSiteKey = (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "").trim();
+const directFeedbackEnabled = Boolean(feedbackApiEndpoint && turnstileSiteKey);
 
 const semanticOutgoing = node.relationships.map((relationship) => ({
   ...relationship,
@@ -323,6 +326,7 @@ function sourceClass(sourceNode: any) {
       data-node-title={node.title}
       data-node-type={node.type}
       data-node-file={node.file}
+      data-feedback-endpoint={feedbackApiEndpoint}
       data-node-topics={JSON.stringify(topicNodes.map((topic) => topic && ({ id: topic.id, title: topic.title })).filter(Boolean))}
       data-previous-moves={JSON.stringify(previousMoves.map((item) => ({ id: item.node.id, title: item.node.title, label: item.label })))}
       data-next-moves={JSON.stringify(nextMoves.map((item) => ({ id: item.node.id, title: item.node.title, label: item.label })))}
@@ -355,6 +359,17 @@ function sourceClass(sourceNode: any) {
           </label>
 
           <label>
+            <span>Name <small>(optional)</small></span>
+            <input
+              name="submitterName"
+              type="text"
+              maxlength="80"
+              autocomplete="name"
+              placeholder="Anonymous if left blank"
+            />
+          </label>
+
+          <label>
             <span>Your response</span>
             <textarea
               name="feedback"
@@ -365,6 +380,17 @@ function sourceClass(sourceNode: any) {
             ></textarea>
           </label>
 
+          {directFeedbackEnabled && (
+            <div class="node-feedback-turnstile">
+              <div
+                class="cf-turnstile"
+                data-sitekey={turnstileSiteKey}
+                data-action="node-feedback"
+                data-theme="auto"
+              ></div>
+            </div>
+          )}
+
           <div class="node-feedback-context">
             <strong>Attached context</strong>
             <span>{node.type} · {node.id}</span>
@@ -373,15 +399,23 @@ function sourceClass(sourceNode: any) {
 
           <div class="node-feedback-actions">
             <button type="button" data-close-node-feedback>Cancel</button>
-            <button type="submit" class="node-feedback-submit">Continue to GitHub →</button>
+            <button type="submit" class="node-feedback-submit">
+              {directFeedbackEnabled ? "Submit response" : "Continue to GitHub →"}
+            </button>
           </div>
-          <p class="node-feedback-note">
-            GitHub will open with a prefilled issue. Review it there, then submit it to the repository.
+          <p class="node-feedback-note" data-node-feedback-status aria-live="polite">
+            {directFeedbackEnabled
+              ? "This creates a public GitHub issue through Apologetics Map Bot. Your name is optional."
+              : "GitHub will open with a prefilled issue. Review it there, then submit it to the repository."}
           </p>
         </form>
       </div>
     </dialog>
   </article>
+
+  {directFeedbackEnabled && (
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  )}
 
   <script>
     document.querySelectorAll<HTMLButtonElement>("[data-copy-current-link]").forEach((button) => {
@@ -414,54 +448,52 @@ function sourceClass(sourceNode: any) {
       if (event.target === feedbackDialog) feedbackDialog.close();
     });
 
-    feedbackForm?.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (!feedbackDialog || !feedbackForm) return;
-
-      const formData = new FormData(feedbackForm);
-      const kind = String(formData.get("kind") || "Feedback");
-      const feedback = String(formData.get("feedback") || "").trim();
-      if (!feedback) return;
-
-      const nodeId = feedbackDialog.dataset.nodeId || "";
-      const nodeTitle = feedbackDialog.dataset.nodeTitle || nodeId;
-      const nodeType = feedbackDialog.dataset.nodeType || "";
-      const nodeFile = feedbackDialog.dataset.nodeFile || "";
-      const pageUrl = window.location.origin + window.location.pathname;
-      const topics = JSON.parse(feedbackDialog.dataset.nodeTopics || "[]") as Array<{ id: string; title: string }>;
-      const previousMoves = JSON.parse(feedbackDialog.dataset.previousMoves || "[]") as Array<{ id: string; title: string; label: string }>;
-      const nextMoves = JSON.parse(feedbackDialog.dataset.nextMoves || "[]") as Array<{ id: string; title: string; label: string }>;
-
+    function buildFallbackIssueUrl(payload: {
+      kind: string;
+      feedback: string;
+      submitterName: string;
+      node: {
+        id: string;
+        title: string;
+        type: string;
+        file: string;
+        pageUrl: string;
+        topics: Array<{ id: string; title: string }>;
+        previousMoves: Array<{ id: string; title: string; label: string }>;
+        nextMoves: Array<{ id: string; title: string; label: string }>;
+      };
+    }) {
       const formatMoves = (moves: Array<{ id: string; title: string; label: string }>) =>
         moves.length
           ? moves.map((move) => `- ${move.label}: ${move.title} (\`${move.id}\`)`).join("\n")
           : "- None";
 
-      const topicLines = topics.length
-        ? topics.map((topic) => `- ${topic.title} (\`${topic.id}\`)`).join("\n")
+      const topicLines = payload.node.topics.length
+        ? payload.node.topics.map((topic) => `- ${topic.title} (\`${topic.id}\`)`).join("\n")
         : "- None";
 
-      const issueTitle = `[Node feedback] ${kind}: ${nodeTitle}`;
+      const issueTitle = `[Node feedback] ${payload.kind}: ${payload.node.title}`;
       const issueBody = [
         "## Contribution",
-        `**Kind:** ${kind}`,
+        `**Kind:** ${payload.kind}`,
+        `**Submitted by:** ${payload.submitterName || "Anonymous"}`,
         "",
-        feedback,
+        payload.feedback,
         "",
         "## Node context",
-        `- **Node:** ${nodeTitle} (\`${nodeId}\`)`,
-        `- **Type:** ${nodeType}`,
-        `- **Page:** ${pageUrl}`,
-        `- **Content file:** \`${nodeFile}\``,
+        `- **Node:** ${payload.node.title} (\`${payload.node.id}\`)`,
+        `- **Type:** ${payload.node.type}`,
+        `- **Page:** ${payload.node.pageUrl}`,
+        `- **Content file:** \`${payload.node.file}\``,
         "",
         "### Topic",
         topicLines,
         "",
         "### Previous debate moves",
-        formatMoves(previousMoves),
+        formatMoves(payload.node.previousMoves),
         "",
         "### Possible next moves",
-        formatMoves(nextMoves),
+        formatMoves(payload.node.nextMoves),
         "",
         "<!-- node-feedback:v1 -->",
       ].join("\n");
@@ -469,7 +501,90 @@ function sourceClass(sourceNode: any) {
       const issueUrl = new URL("https://github.com/drecg96-org/apologetics-map/issues/new");
       issueUrl.searchParams.set("title", issueTitle);
       issueUrl.searchParams.set("body", issueBody);
-      window.location.href = issueUrl.toString();
+      return issueUrl.toString();
+    }
+
+    function showFeedbackStatus(message: string, fallbackUrl?: string) {
+      const status = feedbackDialog?.querySelector<HTMLElement>("[data-node-feedback-status]");
+      if (!status) return;
+      status.replaceChildren(document.createTextNode(message));
+      if (fallbackUrl) {
+        status.append(document.createTextNode(" "));
+        const link = document.createElement("a");
+        link.href = fallbackUrl;
+        link.textContent = "Open a prefilled GitHub issue instead.";
+        status.append(link);
+      }
+    }
+
+    feedbackForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!feedbackDialog || !feedbackForm) return;
+
+      const formData = new FormData(feedbackForm);
+      const kind = String(formData.get("kind") || "Feedback");
+      const feedback = String(formData.get("feedback") || "").trim();
+      const submitterName = String(formData.get("submitterName") || "").trim();
+      if (!feedback) return;
+
+      const payload = {
+        kind,
+        feedback,
+        submitterName,
+        node: {
+          id: feedbackDialog.dataset.nodeId || "",
+          title: feedbackDialog.dataset.nodeTitle || "",
+          type: feedbackDialog.dataset.nodeType || "",
+          file: feedbackDialog.dataset.nodeFile || "",
+          pageUrl: window.location.origin + window.location.pathname,
+          topics: JSON.parse(feedbackDialog.dataset.nodeTopics || "[]") as Array<{ id: string; title: string }>,
+          previousMoves: JSON.parse(feedbackDialog.dataset.previousMoves || "[]") as Array<{ id: string; title: string; label: string }>,
+          nextMoves: JSON.parse(feedbackDialog.dataset.nextMoves || "[]") as Array<{ id: string; title: string; label: string }>,
+        },
+      };
+
+      const fallbackUrl = buildFallbackIssueUrl(payload);
+      const endpoint = feedbackDialog.dataset.feedbackEndpoint || "";
+
+      if (!endpoint) {
+        window.location.href = fallbackUrl;
+        return;
+      }
+
+      const turnstileToken = String(formData.get("cf-turnstile-response") || "");
+      if (!turnstileToken) {
+        showFeedbackStatus("Complete the verification before submitting.");
+        return;
+      }
+
+      const submitButton = feedbackForm.querySelector<HTMLButtonElement>(".node-feedback-submit");
+      if (submitButton) submitButton.disabled = true;
+      showFeedbackStatus("Submitting…");
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ ...payload, turnstileToken }),
+        });
+        const result = await response.json() as { ok?: boolean; issueUrl?: string; error?: string };
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || "Submission failed");
+        }
+
+        feedbackForm.reset();
+        (window as any).turnstile?.reset();
+        showFeedbackStatus(
+          result.issueUrl ? "Submitted. Your response is now in the review queue." : "Submitted successfully.",
+          result.issueUrl,
+        );
+      } catch {
+        (window as any).turnstile?.reset();
+        showFeedbackStatus("Direct submission is unavailable right now.", fallbackUrl);
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
     });
   </script>
 </BaseLayout>
