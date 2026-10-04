@@ -19,6 +19,8 @@ relationships:
     target: does-islam-correct-or-continue-biblical-revelation
   - type: related_to
     target: how-should-competing-revelation-claims-be-compared
+  - type: related_to
+    target: does-transcendental-argument-establish-christianity-specifically
 references:
   - source: sep-comparative-philosophy-of-religion
     note: Neutral framework for comparing religious traditions without assuming one tradition's standards at the outset.
@@ -30,6 +32,8 @@ tags:
   - islam
 conversation:
   opening: true
+  follows:
+    - christian-specificity-requires-further-discriminators
   label: compare Abrahamic faiths
   priority: 25
 origin:
