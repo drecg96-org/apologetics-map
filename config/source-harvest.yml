@@ -222,6 +222,11 @@ providers:
         publisher: Cold-Case Christianity
         required_any: [Jesus, Bible, resurrection, gospel, evidence, Christianity, apologetic]
         tags: [entry-point, video, evidential-apologetics]
+      - topic: christianity
+        channel_url: https://www.youtube.com/@daily_dose_of_wisdom
+        publisher: Daily Dose Of Wisdom
+        required_any: [God, Jesus, Bible, resurrection, Christianity, atheist, atheism, evidence, apologetic, morality, moral, Islam, hell]
+        tags: [entry-point, video, apologetics]
 
   openalex:
     enabled: true
