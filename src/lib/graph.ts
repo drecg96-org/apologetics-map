@@ -14,7 +14,10 @@ export type LoadedNode = ApologeticsMapNode & {
 };
 
 export type GraphPayload = {
-  nodes: Array<Pick<ApologeticsMapNode, "id" | "title" | "type" | "summary" | "topics" | "tags">>;
+  nodes: Array<Pick<
+    ApologeticsMapNode,
+    "id" | "title" | "type" | "summary" | "topics" | "tags" | "conversation"
+  >>;
   edges: Array<{
     id: string;
     source: string;
@@ -22,6 +25,13 @@ export type GraphPayload = {
     type: string;
     label: string;
     note?: string;
+  }>;
+  flowEdges: Array<{
+    id: string;
+    source: string;
+    target: string;
+    label: string;
+    priority: number;
   }>;
 };
 
@@ -73,8 +83,8 @@ export async function loadGraph(): Promise<{ nodes: LoadedNode[]; byId: Map<stri
 
 export function toGraphPayload(nodes: LoadedNode[]): GraphPayload {
   return {
-    nodes: nodes.map(({ id, title, type, summary, topics, tags }) => ({
-      id, title, type, summary, topics, tags,
+    nodes: nodes.map(({ id, title, type, summary, topics, tags, conversation }) => ({
+      id, title, type, summary, topics, tags, conversation,
     })),
     edges: nodes.flatMap((node) =>
       node.relationships.map((relationship, index) => ({
@@ -84,6 +94,15 @@ export function toGraphPayload(nodes: LoadedNode[]): GraphPayload {
         type: relationship.type,
         label: relationship.type.replaceAll("_", " "),
         note: relationship.note,
+      })),
+    ),
+    flowEdges: nodes.flatMap((node) =>
+      (node.conversation?.follows ?? []).map((previous, index) => ({
+        id: `flow--${previous}--${node.id}--${index}`,
+        source: previous,
+        target: node.id,
+        label: node.conversation?.label ?? node.type,
+        priority: node.conversation?.priority ?? 50,
       })),
     ),
   };
