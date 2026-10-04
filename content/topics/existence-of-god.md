@@ -8,6 +8,10 @@ topics:
 relationships:
   - type: related_to
     target: christianity
+  - type: related_to
+    target: sin-atonement-and-divine-power
+  - type: related_to
+    target: why-did-god-make-the-fall-possible
 tags:
   - theism
   - atheism
