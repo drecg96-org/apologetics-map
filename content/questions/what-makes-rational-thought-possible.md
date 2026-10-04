@@ -21,6 +21,8 @@ tags:
   - intelligibility
 conversation:
   opening: true
+  follows:
+    - which-natural-theology-line-should-we-test
   label: ask about intelligibility
   priority: 18
 origin:
