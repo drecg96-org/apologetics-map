@@ -23,8 +23,9 @@ const base = import.meta.env.BASE_URL;
     <header class="site-header">
       <a class="brand" href={base}>Apologetics Map</a>
       <nav aria-label="Primary">
-        <a href={base}>Map</a>
+        <a href={base}>Debate Explorer</a>
         <a href={base + "topics/"}>Topics</a>
+        <a href={base + "maps/"}>Maps</a>
         <a href={base + "sources/"}>Sources</a>
         <a class="nav-secondary" href={base + "graph.json"}>Graph JSON</a>
         <a class="nav-secondary" href="https://github.com/drecg96-org/apologetics-map">GitHub</a>
@@ -34,7 +35,7 @@ const base = import.meta.env.BASE_URL;
       <slot />
     </main>
     <footer>
-      Canonical content is Markdown + YAML. Debate flow and the knowledge atlas are generated from the same graph.
+      Canonical content is Markdown + YAML. Debate Explorer, Debate Map, and Knowledge Graph are generated from the same source graph.
     </footer>
   </body>
 </html>
