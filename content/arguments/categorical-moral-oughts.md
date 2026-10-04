@@ -2,14 +2,14 @@
 id: categorical-moral-oughts
 title: Categorical moral "oughts" are stronger than preference-based "shoulds"
 type: argument
-summary: Moral realism is most clearly at issue when "ought" means that an agent has a reason or obligation regardless of their contingent desires or social approval.
+summary: A categorical moral ought remains authoritative even when the agent's contingent desires or social approval point the other way.
 topics:
   - morality
 relationships:
-  - type: supports
+  - type: qualifies
     target: objective-morality
-  - type: related_to
-    target: what-kind-of-ought
+  - type: addresses
+    target: morality-is-subjective
   - type: related_to
     target: categorical-reasons-support-realism
 tags:
@@ -40,13 +40,13 @@ It is:
 
 > You should do this even if your goals point the other way.
 
-That stronger claim is what creates pressure on simple subjectivism. If a person's actual desires fully determine their reasons, then an agent who sincerely wants to harm others and has no competing desire may lack a reason, on that account, to refrain.
+That stronger notion creates pressure on simple desire-based subjectivism. If a person's actual desires exhaust their normative reasons, then an agent with sufficiently different desires may lack a reason, on that theory, to refrain.
 
-By contrast, a categorical moral ought says that the agent still **should not** harm the innocent even when the agent does not care.
+A categorical moral ought says that the agent still has a reason or obligation even when the agent does not want to comply.
 
 ## What subjectivism can still retain
 
-Subjectivism does not imply that all practical reasoning disappears. It can retain:
+Denying categorical moral oughts does **not** eliminate all practical reasoning. A subjectivist can retain:
 
 - means-end reasoning;
 - self-interested reasons;
@@ -55,18 +55,20 @@ Subjectivism does not imply that all practical reasoning disappears. It can reta
 - shared preferences;
 - conditional moral language within a chosen framework.
 
-The pressure point is narrower: whether any moral "should" remains valid **independently of those contingent standpoints**.
+The pressure point is narrower: whether any moral "should" remains valid independently of those contingent standpoints.
+
+## What this node does and does not establish
+
+This node clarifies the stronger kind of normativity at issue. It does **not** by itself prove that categorical moral oughts exist.
+
+If such oughts are admitted, the next question is whether they amount to genuinely desire-independent reasons. If they are denied, the anti-realist can consistently retain conditional reasons while rejecting stance-independent obligation.
 
 ## Terminal implication if denied
 
-If the anti-realist denies categorical moral oughts, then the terminal commitment is not "everything is valid" or "nobody may interfere with anyone else."
+The terminal commitment is not "everything is valid" or "nobody may interfere with anyone else."
 
 It is:
 
-> There is no stance-independent moral fact that an agent ought not perform an action regardless of that agent's desires, approvals, or social framework.
+> No stance-independent moral fact settles that an agent ought not perform an action regardless of that agent's desires, approvals, or social framework.
 
-Others may still oppose, punish, restrain, or even use force against the agent based on their own values, laws, goals, or institutions. What is absent is an objective moral "ought" that settles the dispute independently of those standpoints.
-
-## Limit
-
-This line supports a realist picture of normativity but does not determine what grounds categorical reasons. Theistic, secular realist, naturalistic, and constructivist accounts remain live options after the existence of such reasons is accepted.
+Others may still oppose, punish, restrain, or use force based on their own values, laws, goals, or institutions. What is absent is an objective moral "ought" that settles the dispute independently of those standpoints.
