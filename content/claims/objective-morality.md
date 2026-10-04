@@ -27,6 +27,22 @@ references:
     note: Contemporary skeptical alternative that denies moral utterances report objective facts.
   - source: apologia-moral-argument
   - source: beliefmap-god-existence-morality
+  - source: shafer-landau-moral-realism-defence
+    note: Systematic secular defense of non-natural moral realism.
+  - source: enoch-taking-morality-seriously
+    note: Robust realist defense of objective irreducible normative truths.
+  - source: brink-moral-realism-foundations-ethics
+    note: Naturalistic realist defense combining moral ontology and epistemology.
+  - source: railton-moral-realism-1986
+    note: Classic naturalistic moral realism.
+  - source: huemer-ethical-intuitionism
+    note: Defense of objective morality, intuitionist justification, and desire-independent reasons.
+  - source: audi-moral-knowledge-ethical-character
+    note: Moderate intuitionist account of moral knowledge and fallible justification.
+  - source: stratton-lake-ethical-intuitionism-reevaluations
+    note: Re-evaluations of ethical intuitionism and moral epistemology.
+  - source: cuneo-shafer-landau-moral-fixed-points
+    note: Nonnaturalist proposal that some substantive moral claims function as conceptual fixed points.
 ---
 
 # Claim
