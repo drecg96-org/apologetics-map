@@ -20,8 +20,8 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
     <h1>Map the debate, not just the talking points.</h1>
     <p>
       Apologetics Map separates conversational move order from semantic relationships.
-      Follow a debate like a chess variation, then switch to the knowledge atlas when you
-      want to inspect the deeper support, challenge, dependency, and evidence structure.
+      Follow a debate like a chess variation, use Line Explorer to step through one response at a time,
+      then switch to the knowledge atlas when you want the deeper support, challenge, dependency, and evidence structure.
     </p>
     <div class="stats" aria-label="Graph statistics">
       <span><strong>{nodes.length}</strong> nodes</span>
@@ -66,8 +66,8 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
         <h2>Explore the current graph</h2>
       </div>
       <p>
-        Debate Flow is optimized for following an argument. Knowledge Atlas shows the
-        underlying semantic graph. Sources are hidden until requested.
+        Debate Flow gives the visual tree, Line Explorer gives a chess-like step-through view,
+        and Knowledge Atlas shows the underlying semantic graph. Sources are hidden until requested.
       </p>
     </div>
     <GraphExplorer client:load graph={graph} basePath={base} />
