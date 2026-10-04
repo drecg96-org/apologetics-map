@@ -47,6 +47,13 @@ references:
     note: Influential modified theistic metaethics.
   - source: alston-what-euthyphro-should-have-said
     note: Philosophical response to the Euthyphro problem.
+scripture:
+  - reference: Deuteronomy 32:4
+    note: Portrays God's character as faithful, just, and without iniquity; biblical grounding for a divine-nature account of goodness.
+  - reference: Psalm 119:68
+    note: Identifies God as good and as one who does good.
+  - reference: 1 John 4:8
+    note: Identifies love with God's character, supplying Christian theological content for a personal ground of value.
 ---
 
 # Claim
