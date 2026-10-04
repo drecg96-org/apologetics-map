@@ -1,10 +1,14 @@
 import { useMemo } from "react";
 import {
   Background,
+  BaseEdge,
   Controls,
+  EdgeLabelRenderer,
+  getBezierPath,
   MarkerType,
   ReactFlow,
   type Edge,
+  type EdgeProps,
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
@@ -63,12 +67,68 @@ function makeNode(
   };
 }
 
+function WrappedPositionEdge({
+  id,
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  markerEnd,
+  style,
+  label,
+}: EdgeProps) {
+  const [edgePath, labelX, labelY] = getBezierPath({
+    sourceX,
+    sourceY,
+    sourcePosition,
+    targetX,
+    targetY,
+    targetPosition,
+  });
+
+  const dx = targetX - sourceX;
+  const dy = targetY - sourceY;
+  const length = Math.hypot(dx, dy) || 1;
+  const offset = 12;
+  const offsetX = (-dy / length) * offset;
+  const offsetY = (dx / length) * offset;
+
+  return (
+    <>
+      <BaseEdge
+        id={id}
+        path={edgePath}
+        markerEnd={markerEnd}
+        style={style}
+      />
+      {label !== undefined && label !== null && label !== "" && (
+        <EdgeLabelRenderer>
+          <div
+            className="graph-edge-label"
+            style={{
+              transform:
+                `translate(-50%, -50%) translate(${labelX + offsetX}px, ${labelY + offsetY}px)`,
+            }}
+          >
+            {label}
+          </div>
+        </EdgeLabelRenderer>
+      )}
+    </>
+  );
+}
+
+const POSITION_EDGE_TYPES = { wrapped: WrappedPositionEdge };
+
 function makeEdge(id: string, source: string, target: string, label: string): Edge {
   return {
     id,
     source,
     target,
     label,
+    type: "wrapped",
     markerEnd: { type: MarkerType.ArrowClosed, color: "var(--accent)" },
     style: { stroke: "var(--accent)", strokeWidth: 1.8 },
     labelStyle: { fill: "var(--text)", fontSize: 10, fontWeight: 700 },
@@ -152,6 +212,7 @@ export default function DebatePosition({ graph, currentId, basePath }: Props) {
       <ReactFlow
         nodes={position.nodes}
         edges={position.edges}
+        edgeTypes={POSITION_EDGE_TYPES}
         fitView
         fitViewOptions={{ padding: 0.22, maxZoom: 1.15 }}
         minZoom={0.25}
