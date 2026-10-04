@@ -19,12 +19,13 @@ status:
 conversation:
   follows:
     - what-most-drives-your-skepticism
+    - free-will-does-not-explain-all-suffering
   label: evil and suffering
   priority: 5
   terminal:
     kind: unresolved
-    label: Response branch to map
-    note: The skeptical case is now represented; the corresponding theodicy, defense, and skeptical-theism replies should be added as separate nodes.
+    label: Further responses remain open
+    note: The evidential case is represented here; additional theodicy and skeptical-theism replies can continue from this node.
 references:
   - source: rowe-problem-of-evil
     note: Classic evidential formulation based on apparently gratuitous suffering.
