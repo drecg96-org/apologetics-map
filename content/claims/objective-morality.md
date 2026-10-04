@@ -20,6 +20,12 @@ conversation:
   follows: []
   label: opening
   priority: 20
+conversation:
+  opening: true
+  follows:
+    []
+  label: opening
+  priority: 20
 references:
   - source: apologia-moral-argument
   - source: beliefmap-god-existence-morality
