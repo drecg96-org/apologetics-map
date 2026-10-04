@@ -44,6 +44,34 @@ export const ConversationSchema = z.object({
   }).optional(),
 });
 
+export const ARGUMENT_FORMS = [
+  "deductive", "inductive", "abductive", "transcendental",
+  "cumulative", "analogical", "other",
+] as const;
+
+export const ArgumentStatementSchema = z.object({
+  id: slug,
+  node: slug,
+  role: z.enum(["premise", "intermediate-conclusion", "conclusion"]),
+  label: z.string().min(1).optional(),
+  note: z.string().min(1).optional(),
+}).strict();
+
+export const ArgumentInferenceSchema = z.object({
+  id: slug,
+  from: z.array(slug).min(1),
+  to: slug,
+  kind: z.enum(ARGUMENT_FORMS),
+  label: z.string().min(1).optional(),
+  note: z.string().min(1).optional(),
+}).strict();
+
+export const ArgumentStructureSchema = z.object({
+  form: z.enum(ARGUMENT_FORMS),
+  statements: z.array(ArgumentStatementSchema).min(2),
+  inferences: z.array(ArgumentInferenceSchema).min(1),
+}).strict();
+
 export const SourceProcessingSchema = z.object({
   discovered: z.boolean().default(true),
   indexed: z.boolean().default(false),
@@ -72,6 +100,7 @@ export const NodeSchema = z.object({
   topics: z.array(slug).default([]),
   relationships: z.array(RelationshipSchema).default([]),
   conversation: ConversationSchema.optional(),
+  argument: ArgumentStructureSchema.optional(),
   references: z.array(ReferenceSchema).default([]),
   scripture: z.array(ScriptureReferenceSchema).default([]),
   tags: z.array(slug).default([]),
