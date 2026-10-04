@@ -1,0 +1,59 @@
+---
+import GraphExplorer from "../components/GraphExplorer";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { loadGraph, toGraphPayload } from "../lib/graph";
+
+const { nodes } = await loadGraph();
+const graph = toGraphPayload(nodes);
+const base = import.meta.env.BASE_URL;
+const counts = nodes.reduce<Record<string, number>>((result, node) => {
+  result[node.type] = (result[node.type] ?? 0) + 1;
+  return result;
+}, {});
+---
+
+<BaseLayout title="Explore">
+  <section class="hero page-width">
+    <p class="eyebrow">A navigable argument atlas</p>
+    <h1>Map the debate, not just the talking points.</h1>
+    <p>
+      Apologetics Map models claims, objections, responses, evidence, doctrines, and sources
+      as reusable nodes. Follow a line of argument like a chess variation, or jump across
+      the wider graph when two debates reach the same underlying question.
+    </p>
+    <div class="stats" aria-label="Graph statistics">
+      <span><strong>{nodes.length}</strong> nodes</span>
+      <span><strong>{graph.edges.length}</strong> relationships</span>
+      {Object.entries(counts).map(([type, count]) => <span><strong>{count}</strong> {type}</span>)}
+    </div>
+  </section>
+
+  <section class="map-section">
+    <div class="section-heading page-width">
+      <div>
+        <p class="eyebrow">Interactive map</p>
+        <h2>Explore the current graph</h2>
+      </div>
+      <p>Search or filter, then tap a node to open its reference page.</p>
+    </div>
+    <GraphExplorer client:load graph={graph} basePath={base} />
+  </section>
+
+  <section class="page-width node-index">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Reference index</p>
+        <h2>All nodes</h2>
+      </div>
+    </div>
+    <div class="card-grid">
+      {nodes.map((node) => (
+        <a class="node-card" href={`${base}node/${node.id}/`}>
+          <span class={`type-badge type-${node.type}`}>{node.type}</span>
+          <h3>{node.title}</h3>
+          {node.summary && <p>{node.summary}</p>}
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

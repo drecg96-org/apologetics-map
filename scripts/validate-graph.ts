@@ -91,14 +91,14 @@ async function main() {
   if (files.length === 0) errors.push("content/: no graph nodes found");
 
   if (errors.length > 0) {
-    console.error("\nFaith Map validation failed:\n");
+    console.error("\nApologetics Map validation failed:\n");
     for (const error of errors) console.error(`- ${error}`);
     console.error("");
     process.exit(1);
   }
 
   const edgeCount = loaded.reduce((total, item) => total + item.node.relationships.length, 0);
-  console.log(`Faith Map valid: ${loaded.length} nodes, ${edgeCount} explicit relationships.`);
+  console.log(`Apologetics Map valid: ${loaded.length} nodes, ${edgeCount} explicit relationships.`);
 }
 
 main().catch((error) => {

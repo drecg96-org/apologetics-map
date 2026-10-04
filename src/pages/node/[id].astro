@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadGraph } from "../../lib/graph";
+
+export async function getStaticPaths() {
+  const { nodes } = await loadGraph();
+  return nodes.map((node) => ({ params: { id: node.id } }));
+}
+
+const { id } = Astro.params;
+const { nodes, byId } = await loadGraph();
+const node = byId.get(id!);
+
+if (!node) {
+  throw new Error(`Unknown node: ${id}`);
+}
+
+const base = import.meta.env.BASE_URL;
+const outgoing = node.relationships.map((relationship) => ({
+  ...relationship,
+  node: byId.get(relationship.target)!,
+}));
+
+const incoming = nodes.flatMap((candidate) =>
+  candidate.relationships
+    .filter((relationship) => relationship.target === node.id)
+    .map((relationship) => ({
+      ...relationship,
+      node: candidate,
+    })),
+);
+---
+
+<BaseLayout title={node.title} description={node.summary}>
+  <article class="node-page page-width">
+    <a class="back-link" href={base}>← Back to map</a>
+
+    <header class="node-header">
+      <span class={`type-badge type-${node.type}`}>{node.type}</span>
+      <h1>{node.title}</h1>
+      {node.summary && <p class="lede">{node.summary}</p>}
+      <div class="meta-row">
+        {node.status?.editorial && <span>Editorial: {node.status.editorial}</span>}
+        {node.status?.scholarship && <span>Scholarship: {node.status.scholarship}</span>}
+        {node.status?.christian && <span>Christian: {node.status.christian}</span>}
+      </div>
+    </header>
+
+    <div class="node-layout">
+      <div class="prose" set:html={node.html} />
+
+      <aside class="relationship-panel">
+        {node.topics.length > 0 && (
+          <section>
+            <h2>Topics</h2>
+            <div class="link-stack">
+              {node.topics.map((topicId) => {
+                const topic = byId.get(topicId);
+                return topic && <a href={`${base}node/${topic.id}/`}>{topic.title}</a>;
+              })}
+            </div>
+          </section>
+        )}
+
+        {outgoing.length > 0 && (
+          <section>
+            <h2>Outgoing</h2>
+            <div class="link-stack">
+              {outgoing.map((item) => (
+                <a href={`${base}node/${item.node.id}/`}>
+                  <span>{item.type.replaceAll("_", " ")}</span>
+                  <strong>{item.node.title}</strong>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {incoming.length > 0 && (
+          <section>
+            <h2>Incoming</h2>
+            <div class="link-stack">
+              {incoming.map((item) => (
+                <a href={`${base}node/${item.node.id}/`}>
+                  <span>{item.type.replaceAll("_", " ")} from</span>
+                  <strong>{item.node.title}</strong>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {node.tags.length > 0 && (
+          <section>
+            <h2>Tags</h2>
+            <div class="tag-row">
+              {node.tags.map((tag) => <span>#{tag}</span>)}
+            </div>
+          </section>
+        )}
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
