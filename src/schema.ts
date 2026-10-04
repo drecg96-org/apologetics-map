@@ -72,6 +72,12 @@ export const ArgumentStructureSchema = z.object({
   inferences: z.array(ArgumentInferenceSchema).min(1),
 }).strict();
 
+export const InferenceChallengeSchema = z.object({
+  argument: slug,
+  inference: slug,
+  note: z.string().min(1).optional(),
+}).strict();
+
 export const SourceProcessingSchema = z.object({
   discovered: z.boolean().default(true),
   indexed: z.boolean().default(false),
@@ -101,6 +107,7 @@ export const NodeSchema = z.object({
   relationships: z.array(RelationshipSchema).default([]),
   conversation: ConversationSchema.optional(),
   argument: ArgumentStructureSchema.optional(),
+  inference_challenges: z.array(InferenceChallengeSchema).default([]),
   references: z.array(ReferenceSchema).default([]),
   scripture: z.array(ScriptureReferenceSchema).default([]),
   tags: z.array(slug).default([]),

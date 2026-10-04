@@ -166,12 +166,69 @@ async function main() {
         }
       }
 
+      const sourceStatements = new Set(
+        item.node.argument.inferences.flatMap((inference) => inference.from),
+      );
+
       for (const statement of item.node.argument.statements) {
         if (!usedStatements.has(statement.id)) {
           errors.push(`${item.file}: argument statement "${statement.id}" is not connected to any inference`);
         }
         if (statement.role !== "premise" && !targetedStatements.has(statement.id)) {
           errors.push(`${item.file}: ${statement.role} "${statement.id}" must be produced by an inference`);
+        }
+        if (statement.role === "premise" && targetedStatements.has(statement.id)) {
+          errors.push(`${item.file}: premise "${statement.id}" cannot be produced by an inference`);
+        }
+        if (statement.role === "conclusion" && sourceStatements.has(statement.id)) {
+          errors.push(`${item.file}: conclusion "${statement.id}" cannot be reused as an input; use intermediate-conclusion instead`);
+        }
+      }
+
+      const adjacency = new Map<string, string[]>();
+      for (const inference of item.node.argument.inferences) {
+        for (const sourceId of inference.from) {
+          adjacency.set(sourceId, [...(adjacency.get(sourceId) ?? []), inference.to]);
+        }
+      }
+      const visiting = new Set<string>();
+      const visited = new Set<string>();
+      const hasCycle = (statementId: string): boolean => {
+        if (visiting.has(statementId)) return true;
+        if (visited.has(statementId)) return false;
+        visiting.add(statementId);
+        for (const next of adjacency.get(statementId) ?? []) {
+          if (hasCycle(next)) return true;
+        }
+        visiting.delete(statementId);
+        visited.add(statementId);
+        return false;
+      };
+      if ([...statementIds].some((statementId) => hasCycle(statementId))) {
+        errors.push(`${item.file}: formal argument structure contains an inference cycle`);
+      }
+    }
+
+    if (item.node.inference_challenges.length > 0) {
+      if (item.node.type !== "objection") {
+        errors.push(`${item.file}: inference_challenges are only valid on objection nodes`);
+      }
+      for (const challenge of item.node.inference_challenges) {
+        const argumentNode = byId.get(challenge.argument);
+        if (!argumentNode) {
+          errors.push(`${item.file}: inference challenge points to unknown argument "${challenge.argument}"`);
+          continue;
+        }
+        if (argumentNode.node.type !== "argument") {
+          errors.push(`${item.file}: inference challenge target "${challenge.argument}" is not an argument node`);
+          continue;
+        }
+        if (!argumentNode.node.argument) {
+          errors.push(`${item.file}: inference challenge target "${challenge.argument}" has no formal argument structure`);
+          continue;
+        }
+        if (!argumentNode.node.argument.inferences.some((inference) => inference.id === challenge.inference)) {
+          errors.push(`${item.file}: inference challenge targets unknown inference "${challenge.inference}" on "${challenge.argument}"`);
         }
       }
     }

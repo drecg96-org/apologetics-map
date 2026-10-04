@@ -65,9 +65,26 @@ const references = node.references
 const evidenceNodes = semanticIncoming
   .filter((item) => item.type === "evidence_for" || item.node.type === "evidence");
 
+const inferenceChallenges = node.argument
+  ? nodes.flatMap((candidate) =>
+      candidate.inference_challenges
+        .filter((challenge) => challenge.argument === node.id)
+        .map((challenge) => ({
+          inference: challenge.inference,
+          note: challenge.note,
+          nodeId: candidate.id,
+          title: candidate.title,
+          summary: candidate.summary,
+        })),
+    )
+  : [];
+
 const argumentMap = node.argument ? {
   form: node.argument.form,
-  inferences: node.argument.inferences,
+  inferences: node.argument.inferences.map((inference) => ({
+    ...inference,
+    challenges: inferenceChallenges.filter((challenge) => challenge.inference === inference.id),
+  })),
   statements: node.argument.statements.map((statement) => {
     const statementNode = byId.get(statement.node)!;
     const incoming = nodes.flatMap((candidate) =>

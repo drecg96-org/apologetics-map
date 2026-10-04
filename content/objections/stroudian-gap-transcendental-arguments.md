@@ -9,7 +9,13 @@ relationships:
   - type: challenges
     target: transcendental-argument-for-christian-theism
   - type: challenges
+    target: rational-thought-needs-an-adequate-worldview-ground
+  - type: challenges
     target: epistemological-argument-from-knowledge-to-god
+inference_challenges:
+  - argument: transcendental-argument-for-christian-theism
+    inference: i1
+    note: Even if rational thought requires certain commitments, the objection denies that this by itself establishes a reality-level worldview ground rather than a required conceptual scheme.
 references:
   - source: stroud-transcendental-arguments
     note: Classic objection to ambitious anti-skeptical transcendental arguments.

@@ -9,8 +9,14 @@ topics:
 relationships:
   - type: challenges
     target: christianity
+  - type: challenges
+    target: abductive-case-for-resurrection
   - type: related_to
     target: historical-method-does-not-by-itself-establish-supernatural-causation
+inference_challenges:
+  - argument: abductive-case-for-resurrection
+    inference: i2
+    note: The objection targets the abductive move by arguing that background expectations and the evidential burden for a miracle may outweigh apparent explanatory unification.
 tags:
   - miracles
   - testimony
@@ -23,6 +29,7 @@ status:
 conversation:
   follows:
     - what-most-drives-your-skepticism
+    - abductive-case-for-resurrection
   label: miracles need stronger evidence
   priority: 25
 references:

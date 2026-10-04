@@ -9,8 +9,14 @@ topics:
 relationships:
   - type: challenges
     target: transcendental-argument-for-christian-theism
+  - type: challenges
+    target: rival-worldviews-fail-to-ground-intelligibility
   - type: addresses
     target: does-transcendental-argument-establish-christianity-specifically
+inference_challenges:
+  - argument: transcendental-argument-for-christian-theism
+    inference: i2
+    note: The objection grants much of the transcendental setup but denies that the comparative premises uniquely establish Christianity rather than a rival monotheistic worldview.
 references:
   - source: johnson-muslim-van-til
     note: Develops the objection that a Muslim could employ parallel Van Tilian presuppositional claims.
