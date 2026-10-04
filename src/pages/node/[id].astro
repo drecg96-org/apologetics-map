@@ -110,53 +110,6 @@ function sourceClass(sourceNode: any) {
       </div>
     </header>
 
-    {(previousMoves.length > 0 || nextMoves.length > 0) && (
-      <section class="position-section" aria-labelledby="position-heading">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Debate line</p>
-            <h2 id="position-heading">Current position</h2>
-          </div>
-          <p>
-            This view follows conversational order rather than semantic arrow direction.
-            Tap a move to continue that branch.
-          </p>
-        </div>
-        <DebatePosition client:load graph={graph} currentId={node.id} basePath={base} />
-      </section>
-    )}
-
-    {(previousMoves.length > 0 || nextMoves.length > 0) && (
-      <section class="move-strip" aria-label="Debate navigation">
-        {previousMoves.length > 0 && (
-          <div>
-            <p class="eyebrow">Earlier move</p>
-            <div class="move-cards">
-              {previousMoves.map((item) => (
-                <a href={base + "node/" + item.node.id + "/"}>
-                  <span>{item.label}</span>
-                  <strong>{item.node.title}</strong>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-        {nextMoves.length > 0 && (
-          <div>
-            <p class="eyebrow">Continue from here</p>
-            <div class="move-cards">
-              {nextMoves.map((item) => (
-                <a href={base + "node/" + item.node.id + "/"}>
-                  <span>{item.label}</span>
-                  <strong>{item.node.title}</strong>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
-    )}
-
     <div class="node-layout">
       <div>
         {node.type === "source" && node.source && (
@@ -177,6 +130,53 @@ function sourceClass(sourceNode: any) {
         )}
 
         <div class="prose" set:html={node.html} />
+
+        {(previousMoves.length > 0 || nextMoves.length > 0) && (
+          <section class="move-strip" aria-label="Debate navigation">
+            {previousMoves.length > 0 && (
+              <div>
+                <p class="eyebrow">Earlier move</p>
+                <div class="move-cards">
+                  {previousMoves.map((item) => (
+                    <a href={base + "node/" + item.node.id + "/"}>
+                      <span>{item.label}</span>
+                      <strong>{item.node.title}</strong>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+            {nextMoves.length > 0 && (
+              <div>
+                <p class="eyebrow">Continue from here</p>
+                <div class="move-cards">
+                  {nextMoves.map((item) => (
+                    <a href={base + "node/" + item.node.id + "/"}>
+                      <span>{item.label}</span>
+                      <strong>{item.node.title}</strong>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
+        {(previousMoves.length > 0 || nextMoves.length > 0) && (
+          <section class="position-section" aria-labelledby="position-heading">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Debate line</p>
+                <h2 id="position-heading">Where this sits in the debate</h2>
+              </div>
+              <p>
+                This view follows conversational order rather than semantic arrow direction.
+                Tap a move to continue that branch.
+              </p>
+            </div>
+            <DebatePosition client:load graph={graph} currentId={node.id} basePath={base} />
+          </section>
+        )}
 
         {scriptureReferences.length > 0 && (
           <section class="scripture-section">
