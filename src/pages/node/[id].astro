@@ -102,6 +102,7 @@ function sourceClass(sourceNode: any) {
       </div>
       <div class="node-share-actions">
         <button type="button" data-copy-current-link>Copy direct link</button>
+        <button type="button" class="node-feedback-trigger" data-open-node-feedback>Respond / ask a question</button>
         <a href={focusedMapUrl}>Open focused map →</a>
       </div>
     </header>
@@ -314,6 +315,72 @@ function sourceClass(sourceNode: any) {
         )}
       </aside>
     </div>
+
+    <dialog
+      class="node-feedback-dialog"
+      data-node-feedback-dialog
+      data-node-id={node.id}
+      data-node-title={node.title}
+      data-node-type={node.type}
+      data-node-file={node.file}
+      data-node-topics={JSON.stringify(topicNodes.map((topic) => topic && ({ id: topic.id, title: topic.title })).filter(Boolean))}
+      data-previous-moves={JSON.stringify(previousMoves.map((item) => ({ id: item.node.id, title: item.node.title, label: item.label })))}
+      data-next-moves={JSON.stringify(nextMoves.map((item) => ({ id: item.node.id, title: item.node.title, label: item.label })))}
+    >
+      <div class="node-feedback-shell">
+        <div class="node-feedback-head">
+          <div>
+            <p class="eyebrow">Continue the argument</p>
+            <h2>Respond to this node</h2>
+          </div>
+          <button type="button" class="node-feedback-close" data-close-node-feedback aria-label="Close feedback form">×</button>
+        </div>
+
+        <p class="node-feedback-intro">
+          Ask a question, challenge a point, add a response, or flag missing evidence.
+          The node and nearby debate context will be attached automatically.
+        </p>
+
+        <form class="node-feedback-form" data-node-feedback-form>
+          <label>
+            <span>What kind of contribution is this?</span>
+            <select name="kind">
+              <option value="Question">Question</option>
+              <option value="Response">Response</option>
+              <option value="Objection">Objection</option>
+              <option value="Missing evidence">Missing evidence</option>
+              <option value="Correction">Correction</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Your response</span>
+            <textarea
+              name="feedback"
+              rows="7"
+              maxlength="4000"
+              required
+              placeholder="What would you ask, challenge, add, or want explained here?"
+            ></textarea>
+          </label>
+
+          <div class="node-feedback-context">
+            <strong>Attached context</strong>
+            <span>{node.type} · {node.id}</span>
+            {topicNodes[0] && <span>Topic: {topicNodes[0]!.title}</span>}
+          </div>
+
+          <div class="node-feedback-actions">
+            <button type="button" data-close-node-feedback>Cancel</button>
+            <button type="submit" class="node-feedback-submit">Continue to GitHub →</button>
+          </div>
+          <p class="node-feedback-note">
+            GitHub will open with a prefilled issue. Review it there, then submit it to the repository.
+          </p>
+        </form>
+      </div>
+    </dialog>
   </article>
 
   <script>
@@ -330,6 +397,79 @@ function sourceClass(sourceNode: any) {
           window.setTimeout(() => { button.textContent = "Copy direct link"; }, 1600);
         }
       });
+    });
+
+    const feedbackDialog = document.querySelector<HTMLDialogElement>("[data-node-feedback-dialog]");
+    const feedbackForm = feedbackDialog?.querySelector<HTMLFormElement>("[data-node-feedback-form]");
+
+    document.querySelectorAll<HTMLButtonElement>("[data-open-node-feedback]").forEach((button) => {
+      button.addEventListener("click", () => feedbackDialog?.showModal());
+    });
+
+    feedbackDialog?.querySelectorAll<HTMLButtonElement>("[data-close-node-feedback]").forEach((button) => {
+      button.addEventListener("click", () => feedbackDialog.close());
+    });
+
+    feedbackDialog?.addEventListener("click", (event) => {
+      if (event.target === feedbackDialog) feedbackDialog.close();
+    });
+
+    feedbackForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!feedbackDialog || !feedbackForm) return;
+
+      const formData = new FormData(feedbackForm);
+      const kind = String(formData.get("kind") || "Feedback");
+      const feedback = String(formData.get("feedback") || "").trim();
+      if (!feedback) return;
+
+      const nodeId = feedbackDialog.dataset.nodeId || "";
+      const nodeTitle = feedbackDialog.dataset.nodeTitle || nodeId;
+      const nodeType = feedbackDialog.dataset.nodeType || "";
+      const nodeFile = feedbackDialog.dataset.nodeFile || "";
+      const pageUrl = window.location.origin + window.location.pathname;
+      const topics = JSON.parse(feedbackDialog.dataset.nodeTopics || "[]") as Array<{ id: string; title: string }>;
+      const previousMoves = JSON.parse(feedbackDialog.dataset.previousMoves || "[]") as Array<{ id: string; title: string; label: string }>;
+      const nextMoves = JSON.parse(feedbackDialog.dataset.nextMoves || "[]") as Array<{ id: string; title: string; label: string }>;
+
+      const formatMoves = (moves: Array<{ id: string; title: string; label: string }>) =>
+        moves.length
+          ? moves.map((move) => `- ${move.label}: ${move.title} (\`${move.id}\`)`).join("\n")
+          : "- None";
+
+      const topicLines = topics.length
+        ? topics.map((topic) => `- ${topic.title} (\`${topic.id}\`)`).join("\n")
+        : "- None";
+
+      const issueTitle = `[Node feedback] ${kind}: ${nodeTitle}`;
+      const issueBody = [
+        "## Contribution",
+        `**Kind:** ${kind}`,
+        "",
+        feedback,
+        "",
+        "## Node context",
+        `- **Node:** ${nodeTitle} (\`${nodeId}\`)`,
+        `- **Type:** ${nodeType}`,
+        `- **Page:** ${pageUrl}`,
+        `- **Content file:** \`${nodeFile}\``,
+        "",
+        "### Topic",
+        topicLines,
+        "",
+        "### Previous debate moves",
+        formatMoves(previousMoves),
+        "",
+        "### Possible next moves",
+        formatMoves(nextMoves),
+        "",
+        "<!-- node-feedback:v1 -->",
+      ].join("\n");
+
+      const issueUrl = new URL("https://github.com/drecg96-org/apologetics-map/issues/new");
+      issueUrl.searchParams.set("title", issueTitle);
+      issueUrl.searchParams.set("body", issueBody);
+      window.location.href = issueUrl.toString();
     });
   </script>
 </BaseLayout>
