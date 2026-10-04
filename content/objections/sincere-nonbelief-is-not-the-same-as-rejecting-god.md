@@ -12,6 +12,8 @@ relationships:
     target: good-nonbeliever-thought-experiment
   - type: related_to
     target: when-is-unbelief-culpable
+  - type: related_to
+    target: why-would-a-loving-god-permit-nonresistant-nonbelief
 tags:
   - divine-hiddenness
   - nonresistant-nonbelief
@@ -30,8 +32,13 @@ conversation:
   label: but did they really choose it?
   priority: 10
 references:
+  - source: blanton-nonresistant-nonbelief-pervasive
+    note: Recent scholarship argues that nonresistant nonbelief may be relatively common and distinguishes acquisition from maintenance responsibility.
   - source: sep-divine-hiddenness
     note: Defines and surveys the philosophical literature on nonresistant nonbelief.
+  - source: schellenberg-hiddenness-argument
+    locator: Chapters 5–8
+    note: Gives the major contemporary argument from perfect love and nonresistant nonbelief.
   - source: sep-heaven-hell
     locator: Section 3.1
     note: Presses the problem of whether an uninformed or deluded rejection of God can count as a genuinely free eternal choice.
