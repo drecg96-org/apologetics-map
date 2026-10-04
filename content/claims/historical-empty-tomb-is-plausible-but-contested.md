@@ -24,6 +24,11 @@ tags:
   - resurrection
   - empty-tomb
   - burial
+conversation:
+  follows:
+    - how-strong-is-empty-tomb-case
+  label: empty tomb is historically plausible
+  priority: 25
 status:
   editorial: draft
   scholarship: contested
