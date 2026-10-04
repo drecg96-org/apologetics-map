@@ -24,6 +24,10 @@ references:
   - source: street-darwinian-dilemma
   - source: sep-moral-realism
   - source: apologia-moral-argument
+  - source: evolutionary-debunking-of-moral-realism-e7a7de4c
+    note: Wang develops the epistemic-defeater version of the evolutionary challenge against both nonnaturalist and naturalist realism.
+  - source: moral-realism-and-evolutionary-debunking-arguments-237903db
+    note: Realist treatment of the debunking debate, included here as a counterpoint within the same literature; full chapter access is limited.
 ---
 
 # Objection
