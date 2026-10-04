@@ -19,9 +19,9 @@ status:
   scholarship: contested
 conversation:
   follows:
-    - objective-morality
-  label: anti-realist objection
-  priority: 30
+    - is-moral-realism-true
+  label: no — anti-realist family
+  priority: 20
 references:
   - source: sep-moral-realism
   - source: mackie-ethics-inventing-right-and-wrong
