@@ -12,6 +12,12 @@ relationships:
     target: objective-morality
   - type: related_to
     target: moral-progress-presupposes-standard
+  - type: related_to
+    target: can-individual-be-morally-mistaken
+  - type: related_to
+    target: do-agents-have-reasons-independent-of-desire
+  - type: related_to
+    target: are-epistemic-norms-objective
 tags:
   - moral-relativism
   - anti-realism
@@ -27,7 +33,7 @@ conversation:
   terminal:
     kind: accepted-commitment
     label: Anti-realist commitment accepted
-    note: No contradiction has been established. The objective-morality line ends here unless independent reasons for moral realism are introduced.
+    note: No contradiction has been established on this line. Stop escalating atrocity examples and pivot to an independent realism argument such as moral fallibility, categorical reasons, or epistemic normativity.
 references:
   - source: sep-moral-realism
   - source: mackie-ethics-inventing-right-and-wrong
@@ -48,10 +54,17 @@ On the society-relative version of the position:
 
 ## Conversational consequence
 
-If the other person accepts these implications, the moral argument should not pretend that a contradiction has been established. This branch intentionally terminates.
+If the other person accepts these implications, do not keep escalating to increasingly disturbing cases as though one more example will produce a contradiction. This branch has done its job: the implication has been made explicit and accepted.
 
-A new line requires an independent reason to prefer moral realism: for example, whether ordinary moral claims purport to be objectively true, whether some moral judgments are better explained as discoveries rather than preferences, or whether anti-realism adequately captures moral obligation and moral error.
+The next move is a genuinely independent line of argument. Useful pivots now include:
+
+- **Moral fallibility:** Can an individual sincerely approve of something and nevertheless be morally mistaken?
+- **Categorical reasons:** Can someone have a genuine reason not to harm another person even if none of their desires favors restraint?
+- **Epistemic normativity:** Are there objective standards for what one ought to believe, and if so, why is objective normativity possible there but impossible in morality?
+- **Moral progress:** Is later moral judgment ever a correction of an earlier error rather than merely a change in preference?
+
+These pivots should be represented as new branches, not as continuations of the atrocity test.
 
 ## Important limit
 
-An uncomfortable implication is not automatically a logical refutation. The purpose of this endpoint is to identify the cost of the position accurately and then stop if that cost is knowingly accepted.
+An uncomfortable implication is not automatically a logical refutation. The purpose of this endpoint is to identify the cost of the position accurately and then change argumentative dimensions if further discussion is useful.
