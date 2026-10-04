@@ -15,6 +15,7 @@ import type { GraphPayload } from "../lib/graph";
 type Props = {
   graph: GraphPayload;
   basePath: string;
+  initialTopic?: string;
 };
 
 const TYPE_ORDER = [
@@ -225,10 +226,10 @@ function atlasLayout(
   return { nodes, edges };
 }
 
-export default function GraphExplorer({ graph, basePath }: Props) {
+export default function GraphExplorer({ graph, basePath, initialTopic = "all" }: Props) {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("all");
-  const [topic, setTopic] = useState("all");
+  const [topic, setTopic] = useState(initialTopic);
   const [mode, setMode] = useState<"debate" | "atlas">("debate");
   const [showSources, setShowSources] = useState(false);
 
