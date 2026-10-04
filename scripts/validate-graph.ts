@@ -5,6 +5,7 @@ import { NodeSchema, type ApologeticsMapNode } from "../src/schema.js";
 import { parseScriptureReference, scriptureStats } from "../src/lib/scripture.js";
 
 const CONTENT_ROOT = path.resolve("content");
+const SCRIPTURE_REQUIRED_TYPES = new Set(["claim", "argument", "response", "doctrine"]);
 
 type LoadedNode = { file: string; node: ApologeticsMapNode };
 
@@ -101,6 +102,18 @@ async function main() {
       if (!parseScriptureReference(scripture.reference)) {
         errors.push(`${item.file}: invalid Scripture reference "${scripture.reference}"`);
       }
+    }
+
+    const christianStatus = item.node.status?.christian;
+    if (
+      SCRIPTURE_REQUIRED_TYPES.has(item.node.type)
+      && christianStatus
+      && christianStatus !== "unknown"
+      && item.node.scripture.length === 0
+    ) {
+      errors.push(
+        `${item.file}: ${item.node.type} with status.christian=${christianStatus} must include at least one Scripture reference`,
+      );
     }
 
     if (item.node.processing && item.node.type !== "source") {
