@@ -1,6 +1,6 @@
 ---
 id: lim-learning-from-muslims-and-jews
-title: Learning from Muslims and Jews: In Search of the Identity of Christ from Eighth-century Baghdad to Seventeenth-century Hague
+title: "Learning from Muslims and Jews: In Search of the Identity of Christ from Eighth-century Baghdad to Seventeenth-century Hague"
 type: source
 summary: Historical study of Muslim-Christian and Jewish-Christian exchanges showing recurring disputes over Christology, Trinity, revelation, and claims of fulfillment.
 topics:
