@@ -23,6 +23,7 @@ status:
 conversation:
   follows:
     - cumulative-natural-theology-case
+    - cumulative-case-can-be-positive-without-ignoring-counterevidence
   label: accept the cumulative theistic case
   priority: 25
 origin:
