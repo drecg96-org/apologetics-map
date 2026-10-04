@@ -23,6 +23,8 @@ type Props = {
   availableModes?: ExplorerMode[];
 };
 
+type FlowEdge = GraphPayload["flowEdges"][number];
+
 const TYPE_ORDER = [
   "topic",
   "worldview",
@@ -76,29 +78,80 @@ function nodeStyle(type: string) {
   };
 }
 
-function debateLayout(
+function nodeKind(node: GraphPayload["nodes"][number]) {
+  if (node.tags.includes("debate-gate")) return "stage gate";
+  return node.type;
+}
+
+function topicScaffoldEdges(
   graph: GraphPayload,
   visibleIds: Set<string>,
-): { nodes: Node[]; edges: Edge[] } {
-  const participating = new Set<string>();
-  const flowEdges = graph.flowEdges
-    .filter((edge) => visibleIds.has(edge.source) && visibleIds.has(edge.target))
-    .sort((a, b) => a.priority - b.priority);
+): FlowEdge[] {
+  const result: FlowEdge[] = [];
 
-  for (const edge of flowEdges) {
+  for (const node of graph.nodes) {
+    if (!visibleIds.has(node.id)) continue;
+
+    if (node.type === "topic") {
+      for (const parent of node.topics) {
+        if (!visibleIds.has(parent)) continue;
+        result.push({
+          id: `structure--topic--${parent}--${node.id}`,
+          source: parent,
+          target: node.id,
+          label: "topic",
+          priority: 0,
+        });
+      }
+      continue;
+    }
+
+    if (!node.conversation?.opening) continue;
+    for (const topic of node.topics) {
+      if (!visibleIds.has(topic)) continue;
+      result.push({
+        id: `structure--opening--${topic}--${node.id}`,
+        source: topic,
+        target: node.id,
+        label: "main question",
+        priority: 0,
+      });
+    }
+  }
+
+  return result;
+}
+
+function visibleFlowEdges(graph: GraphPayload, visibleIds: Set<string>) {
+  return graph.flowEdges
+    .filter((edge) => visibleIds.has(edge.source) && visibleIds.has(edge.target))
+    .sort((a, b) => a.priority - b.priority || a.label.localeCompare(b.label));
+}
+
+function structuralDepths(
+  graph: GraphPayload,
+  visibleIds: Set<string>,
+  includeSources: boolean,
+) {
+  const flowEdges = visibleFlowEdges(graph, visibleIds);
+  const scaffoldEdges = topicScaffoldEdges(graph, visibleIds);
+  const structureEdges = [...scaffoldEdges, ...flowEdges];
+
+  const participating = new Set<string>();
+  for (const edge of structureEdges) {
     participating.add(edge.source);
     participating.add(edge.target);
   }
 
   for (const node of graph.nodes) {
     if (!visibleIds.has(node.id)) continue;
-    if (node.type === "source" || node.type === "topic") continue;
-    if (node.conversation) participating.add(node.id);
+    if (node.type === "source" && !includeSources) continue;
+    if (node.type === "topic" || node.conversation) participating.add(node.id);
   }
 
-  const incoming = new Map<string, typeof flowEdges>();
+  const incoming = new Map<string, FlowEdge[]>();
   for (const id of participating) incoming.set(id, []);
-  for (const edge of flowEdges) {
+  for (const edge of structureEdges) {
     const list = incoming.get(edge.target) ?? [];
     list.push(edge);
     incoming.set(edge.target, list);
@@ -108,20 +161,52 @@ function debateLayout(
   const resolveDepth = (id: string, stack = new Set<string>()): number => {
     if (depth.has(id)) return depth.get(id)!;
     if (stack.has(id)) return 0;
+
     stack.add(id);
     const parents = incoming.get(id) ?? [];
     const value = parents.length === 0
       ? 0
-      : Math.max(...parents.map((edge) => resolveDepth(edge.source, new Set(stack)) + 1));
+      : Math.max(...parents.map((edge) =>
+        resolveDepth(edge.source, new Set(stack)) + 1
+      ));
     depth.set(id, value);
     return value;
   };
 
   for (const id of participating) resolveDepth(id);
 
-  const columns = new Map<number, typeof graph.nodes>();
+  let maxDepth = Math.max(0, ...Array.from(depth.values()));
+
+  // A small number of reference/context nodes may have no conversational position.
+  // Keep them to the right of the structured debate instead of mixing them into roots.
   for (const node of graph.nodes) {
-    if (!participating.has(node.id)) continue;
+    if (!visibleIds.has(node.id) || depth.has(node.id)) continue;
+    if (node.type === "source") {
+      depth.set(node.id, maxDepth + 1);
+      continue;
+    }
+
+    const topicParent = node.topics.find((topic) => visibleIds.has(topic));
+    if (topicParent && depth.has(topicParent)) {
+      depth.set(node.id, (depth.get(topicParent) ?? 0) + 1);
+    } else {
+      depth.set(node.id, maxDepth + 1);
+    }
+  }
+
+  maxDepth = Math.max(maxDepth, ...Array.from(depth.values()));
+  return { depth, flowEdges, scaffoldEdges, structureEdges, maxDepth };
+}
+
+function makeNodes(
+  graph: GraphPayload,
+  visibleIds: Set<string>,
+  depth: Map<string, number>,
+): Node[] {
+  const columns = new Map<number, typeof graph.nodes>();
+
+  for (const node of graph.nodes) {
+    if (!visibleIds.has(node.id)) continue;
     const column = depth.get(node.id) ?? 0;
     const list = columns.get(column) ?? [];
     list.push(node);
@@ -129,23 +214,25 @@ function debateLayout(
   }
 
   const nodes: Node[] = [];
-  for (const [column, list] of columns) {
+  for (const [column, list] of Array.from(columns.entries()).sort((a, b) => a[0] - b[0])) {
     list.sort((a, b) =>
       (a.conversation?.priority ?? 50) - (b.conversation?.priority ?? 50) ||
+      TYPE_ORDER.indexOf(a.type) - TYPE_ORDER.indexOf(b.type) ||
       a.title.localeCompare(b.title)
     );
+
     list.forEach((node, row) => {
       const total = list.length;
       nodes.push({
         id: node.id,
         position: {
-          x: column * 300,
-          y: row * 145 - ((total - 1) * 145) / 2,
+          x: column * 310,
+          y: row * 155 - ((total - 1) * 155) / 2,
         },
         data: {
           label: (
             <div className="graph-node-label">
-              <span>{node.type}</span>
+              <span>{nodeKind(node)}</span>
               <strong>{node.title}</strong>
             </div>
           ),
@@ -155,7 +242,30 @@ function debateLayout(
     });
   }
 
-  const edges: Edge[] = flowEdges.map((edge) => ({
+  return nodes;
+}
+
+function scaffoldEdge(edge: FlowEdge): Edge {
+  return {
+    id: edge.id,
+    source: edge.source,
+    target: edge.target,
+    label: edge.label,
+    markerEnd: { type: MarkerType.ArrowClosed, color: "#74706a" },
+    style: { stroke: "#74706a", strokeWidth: 1.3, strokeDasharray: "5 5" },
+    labelStyle: { fill: "var(--muted)", fontSize: 9, fontWeight: 700 },
+    labelBgStyle: {
+      fill: "var(--panel)",
+      stroke: "var(--line)",
+      strokeWidth: 1,
+    },
+    labelBgPadding: [4, 2],
+    labelBgBorderRadius: 5,
+  };
+}
+
+function debateFlowEdge(edge: FlowEdge): Edge {
+  return {
     id: edge.id,
     source: edge.source,
     target: edge.target,
@@ -170,44 +280,56 @@ function debateLayout(
     },
     labelBgPadding: [5, 3],
     labelBgBorderRadius: 5,
-  }));
+  };
+}
 
-  return { nodes, edges };
+function debateLayout(
+  graph: GraphPayload,
+  visibleIds: Set<string>,
+): { nodes: Node[]; edges: Edge[] } {
+  const { depth, flowEdges, scaffoldEdges } = structuralDepths(
+    graph,
+    visibleIds,
+    false,
+  );
+
+  const participating = new Set<string>();
+  for (const edge of [...scaffoldEdges, ...flowEdges]) {
+    participating.add(edge.source);
+    participating.add(edge.target);
+  }
+  for (const node of graph.nodes) {
+    if (!visibleIds.has(node.id)) continue;
+    if (node.type === "source") continue;
+    if (node.type === "topic" || node.conversation) participating.add(node.id);
+  }
+
+  const debateVisible = new Set(
+    Array.from(visibleIds).filter((id) => participating.has(id)),
+  );
+
+  return {
+    nodes: makeNodes(graph, debateVisible, depth),
+    edges: [
+      ...scaffoldEdges.map(scaffoldEdge),
+      ...flowEdges.map(debateFlowEdge),
+    ],
+  };
 }
 
 function atlasLayout(
   graph: GraphPayload,
   visibleIds: Set<string>,
 ): { nodes: Node[]; edges: Edge[] } {
-  const grouped = new Map<string, typeof graph.nodes>();
-  for (const node of graph.nodes.filter((node) => visibleIds.has(node.id))) {
-    const list = grouped.get(node.type) ?? [];
-    list.push(node);
-    grouped.set(node.type, list);
-  }
+  const { depth, flowEdges, scaffoldEdges } = structuralDepths(
+    graph,
+    visibleIds,
+    true,
+  );
 
-  const nodes: Node[] = [];
-  for (const [type, list] of grouped) {
-    const column = Math.max(0, TYPE_ORDER.indexOf(type));
-    list.sort((a, b) => a.title.localeCompare(b.title));
-    list.forEach((node, row) => {
-      nodes.push({
-        id: node.id,
-        position: { x: column * 290, y: row * 145 },
-        data: {
-          label: (
-            <div className="graph-node-label">
-              <span>{node.type}</span>
-              <strong>{node.title}</strong>
-            </div>
-          ),
-        },
-        style: nodeStyle(node.type),
-      });
-    });
-  }
+  const nodes = makeNodes(graph, visibleIds, depth);
 
-  const edges: Edge[] = graph.edges
+  const semanticEdges: Edge[] = graph.edges
     .filter((edge) => visibleIds.has(edge.source) && visibleIds.has(edge.target))
     .filter((edge) => edge.type !== "related_to")
     .map((edge) => {
@@ -230,7 +352,22 @@ function atlasLayout(
       };
     });
 
-  return { nodes, edges };
+  // The knowledge graph keeps semantic edges primary, but uses a faint debate-flow
+  // scaffold so its spatial organization matches the Debate Map.
+  const flowScaffold = flowEdges.map((edge) => ({
+    ...scaffoldEdge({ ...edge, label: "" }),
+    id: `atlas--${edge.id}`,
+    label: undefined,
+  }));
+
+  return {
+    nodes,
+    edges: [
+      ...scaffoldEdges.map(scaffoldEdge),
+      ...flowScaffold,
+      ...semanticEdges,
+    ],
+  };
 }
 
 export default function GraphExplorer({
@@ -358,18 +495,21 @@ export default function GraphExplorer({
 
       <div className="graph-toolbar-footer">
         {mode === "atlas" ? (
-          <label className="source-toggle">
-            <input
-              type="checkbox"
-              checked={showSources}
-              onChange={(event) => setShowSources(event.target.checked)}
-            />
-            Show source nodes
-          </label>
+          <>
+            <label className="source-toggle">
+              <input
+                type="checkbox"
+                checked={showSources}
+                onChange={(event) => setShowSources(event.target.checked)}
+              />
+              Show source nodes
+            </label>
+            <span>Layout follows debate structure; colored edges show semantic relations</span>
+          </>
         ) : mode === "line" ? (
           <span>Follow one debate position at a time</span>
         ) : (
-          <span>Sources stay in reference views while using the Debate Map</span>
+          <span>Topic → main question → branches → stage gates</span>
         )}
         <span>{mode === "line" ? visibleIds.size : layout.nodes.length} shown</span>
       </div>

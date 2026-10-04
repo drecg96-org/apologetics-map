@@ -90,8 +90,10 @@ const outcomes = [
         <p class="eyebrow">Zoom out</p>
         <h3>Maps</h3>
         <p>
-          Debate Map shows conversational branches. Knowledge Graph shows logical and
-          evidential relationships such as support, challenge, dependency, and evidence.
+          Both maps use the same structural skeleton: topic, main question, branches,
+          and stage transitions. Debate Map emphasizes conversational moves; Knowledge
+          Graph overlays logical and evidential relationships such as support, challenge,
+          dependency, and evidence on that same structure.
         </p>
         <a href={base + "maps/"}>Open maps →</a>
       </article>
@@ -176,7 +178,8 @@ const outcomes = [
       <p>
         A debate move means “this commonly follows that in conversation.” A semantic
         relationship means “this supports, challenges, depends on, or otherwise bears on
-        that.” One is dialogue flow; the other is reasoning structure.
+        that.” The map layout uses debate/topic structure for orientation, while colored
+        Knowledge Graph edges preserve the distinct logical relationships underneath.
       </p>
     </div>
   </section>

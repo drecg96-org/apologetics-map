@@ -7,17 +7,9 @@ topics:
   - christianity
 relationships:
   - type: related_to
+    target: is-moral-realism-true
+  - type: related_to
     target: objective-morality
-  - type: related_to
-    target: objective-not-absolute
-  - type: related_to
-    target: what-kind-of-ought
-  - type: related_to
-    target: can-individual-be-morally-mistaken
-  - type: related_to
-    target: do-agents-have-reasons-independent-of-desire
-  - type: related_to
-    target: are-epistemic-norms-objective
   - type: related_to
     target: what-grounds-objective-morality
   - type: related_to
@@ -31,7 +23,7 @@ status:
 
 # Morality
 
-**Current development focus:** `objective-morality` is the primary deep vertical slice for the graph. New source ingestion and debate-line work should preferentially strengthen this branch before multiplying unrelated claims.
+**Current development focus:** `is-moral-realism-true` is the entry point to the primary deep vertical slice for the graph. New source ingestion and debate-line work should preferentially strengthen this branch before multiplying unrelated claims.
 
 This cluster is organized in two stages that should not be collapsed:
 
