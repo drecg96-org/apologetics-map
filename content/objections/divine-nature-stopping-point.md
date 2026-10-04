@@ -26,6 +26,10 @@ references:
   - source: alex-oconnor-morality-even-if-god-exists
   - source: alex-oconnor-ethical-emotivism
   - source: wielenberg-robust-ethics
+  - source: morriston-god-ontological-foundation-morality
+    note: Direct scholarly critique of the claim that objective morality requires a divine ontological foundation.
+  - source: morriston-standard-moral-goodness-apart-god
+    note: Presses whether loving and just properties rather than God as such are doing the normative explanatory work.
 ---
 
 # Objection
