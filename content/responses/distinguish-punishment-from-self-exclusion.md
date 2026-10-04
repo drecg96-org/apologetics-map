@@ -32,6 +32,11 @@ references:
     note: Distinguishes traditional punishment and free-will approaches to hell.
   - source: iep-hell
     note: Explicitly treats the traditional retributive and free-will views as different accounts.
+scripture:
+  - reference: Matthew 25:31-46
+    note: Preserves the judicial side of final judgment and punishment.
+  - reference: John 3:19-21
+    note: Connects judgment with a person's response to light, supplying biblical context for self-exclusion language.
 ---
 
 # Response

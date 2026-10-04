@@ -67,7 +67,10 @@ The packet contains source metadata plus the existing graph neighborhood for the
 2. write a neutral summary and limitations,
 3. set `processing.summarized: true` and increment `summary_version`,
 4. add narrowly justified references or graph nodes,
-5. leave `processing.reviewed: false` until a human reviews the change.
+5. for specifically Christian claims/arguments/responses/doctrines, set `status.christian` and add relevant `scripture` references from the local WEB corpus,
+6. leave `processing.reviewed: false` until a human reviews the change.
+
+A secondary source can suggest a biblical connection, but the agent should inspect the actual passage before adding it. Scripture should directly ground Christian doctrinal claims; on public philosophical arguments it may instead document the Christian worldview behind the reasoning without being treated as a premise the interlocutor must grant.
 
 A source becomes **integrated** automatically as soon as a graph node references it.
 
@@ -83,7 +86,7 @@ npm run scripture:lookup -- Romans 2:14-15
 npm run scripture:scan -- content/claims/example.md
 ```
 
-Graph nodes can declare a `scripture` list. The viewer renders the local WEB passage and generates an ESV link on YouVersion without storing copyrighted ESV text.
+Graph nodes can declare a `scripture` list. The viewer renders the local WEB passage and generates an ESV link on YouVersion without storing copyrighted ESV text. For substantive nodes with a declared Christian status, Scripture is an authoring requirement and is enforced by graph validation.
 
 Source packets also detect Bible references in the source record and attach local WEB context for the summarization/integration agent.
 

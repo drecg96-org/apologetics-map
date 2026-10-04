@@ -126,6 +126,27 @@ scripture:
 
 References are parsed against the vendored 66-book World English Bible corpus in `data/scripture/web/`. Node pages show the local WEB text and generate a reader-facing ESV link on YouVersion. Scripture references are separate from scholarly/source references so biblical claims and external evidence remain distinguishable.
 
+### Biblical grounding policy
+
+The Bible is the primary source for claims about what Christianity teaches. Secondary apologetic, philosophical, historical, and confessional sources can explain interpretation, development, or argumentation, but they should not silently replace Scripture as the basis of a specifically Christian claim.
+
+Use these rules when authoring or revising nodes:
+
+- **Christian doctrine/theology:** cite passages that directly establish or materially constrain the claim. The node body should not make a stronger claim than the cited texts support.
+- **Christian apologetic or philosophical argument:** include relevant Scripture when it shows the Christian worldview grounding behind the argument. If the argument is intended as public reason for a non-Christian interlocutor, make clear that the biblical passages are theological grounding rather than premises the interlocutor must first grant.
+- **Tradition-specific claims:** cite Scripture and also cite the relevant confession, catechism, theologian, or scholarly source that explains the tradition's interpretation.
+- **Objections, secular alternatives, and neutral analytical nodes:** Scripture is not required unless the objection or analysis itself turns on biblical interpretation.
+
+For substantive node types `claim`, `argument`, `response`, and `doctrine`, setting `status.christian` to `broad-consensus`, `tradition-specific`, or `contested` makes at least one `scripture` entry mandatory in validation. Agents creating a specifically Christian node must therefore set `status.christian` rather than omitting the classification.
+
+Before adding a passage, inspect the vendored text instead of relying on memory:
+
+```bash
+npm run scripture:lookup -- Matthew 22:37-40
+```
+
+Prefer a small set of passages with notes explaining exactly how each passage bears on the node. Do not use proof-text volume as a substitute for exegesis or for independent evidence where the debate requires it.
+
 ## Source processing
 
 Source nodes may track deterministic discovery and model-assisted summarization:

@@ -51,7 +51,15 @@ Use the narrower commands when you only need one kind of context:
 
 The CLI is deterministic and contains no LLM logic. Treat the Markdown/YAML under `content/` as canonical; use CLI output as a read/query layer, and validate any edits with `npm run validate`.
 
-See [docs/AGENT_GRAPH_CLI.md](docs/AGENT_GRAPH_CLI.md) for the full command contract and workflow guidance.
+**Biblical grounding rule:** specifically Christian claims, arguments, responses, and doctrines should be rooted in Scripture rather than only in later apologetic or theological sources. Mark the node's `status.christian` and add relevant `scripture:` references. Validation requires Scripture on substantive nodes with a declared Christian status. For public philosophical arguments, Scripture can document the Christian worldview behind the argument without being presented as a premise a non-Christian must already accept.
+
+Use the vendored World English Bible for reliable lookup:
+
+```bash
+npm run scripture:lookup -- Romans 2:14-15
+```
+
+Node pages render the local WEB text and provide an ESV YouVersion link automatically. See [docs/SCHEMA.md](docs/SCHEMA.md) for the authoring policy and [docs/AGENT_GRAPH_CLI.md](docs/AGENT_GRAPH_CLI.md) for the full graph command contract.
 
 ## Node feedback issues
 

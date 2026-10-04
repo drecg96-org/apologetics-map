@@ -17,6 +17,7 @@ tags:
 status:
   editorial: draft
   scholarship: contested
+  christian: contested
 conversation:
   follows:
     - euthyphro-dilemma
@@ -26,6 +27,13 @@ references:
   - source: adams-finite-infinite-goods
   - source: evans-god-moral-obligation
   - source: reasonable-faith-metaethical-foundations
+scripture:
+  - reference: Deuteronomy 32:4
+    note: Describes God as just, faithful, and without iniquity, giving biblical content to the claim that goodness is essential to God's character.
+  - reference: 1 John 4:8
+    note: Identifies love with God's character rather than presenting goodness as an arbitrary command.
+  - reference: Titus 1:2
+    note: Describes God as unable to lie, illustrating a moral perfection treated as essential rather than optional.
 ---
 
 # Response

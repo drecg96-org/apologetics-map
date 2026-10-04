@@ -26,6 +26,13 @@ references:
   - source: adams-finite-infinite-goods
   - source: evans-god-moral-obligation
   - source: apologia-moral-argument
+scripture:
+  - reference: Deuteronomy 32:4
+    note: Describes God's nature as just, faithful, and without iniquity.
+  - reference: 1 John 4:8
+    note: Identifies love with God's character, supporting the Christian divine-nature framework.
+  - reference: Titus 1:2
+    note: Describes God as unable to lie, illustrating that moral perfection is treated as essential to God's nature.
 ---
 
 # Response
