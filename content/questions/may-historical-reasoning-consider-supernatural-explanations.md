@@ -36,6 +36,7 @@ conversation:
     - mistaken-identity-can-explain-some-appearance-stories
     - body-relocation-can-explain-empty-tomb-without-resurrection
     - mixed-naturalistic-explanations-can-be-preferable-to-single-cause
+    - visionary-development-model-has-explanatory-gaps
   label: test the miracle inference
   priority: 10
 status:
