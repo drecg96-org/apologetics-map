@@ -744,6 +744,31 @@ footer {
   stroke-width: 1px;
 }
 
+.graph-edge-label {
+  position: absolute;
+  z-index: 5;
+  width: max-content;
+  max-width: 128px;
+  padding: 3px 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, .18);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+
+.graph-edge-label.muted {
+  color: var(--muted);
+  font-size: 9px;
+}
+
 @media (max-width: 760px) {
   .site-header {
     gap: .55rem;
@@ -770,6 +795,10 @@ footer {
 
   .graph-toolbar {
     width: min(340px, calc(100vw - 3rem));
+  }
+
+  .graph-edge-label {
+    max-width: 110px;
   }
 
   .graph-filter-row {
