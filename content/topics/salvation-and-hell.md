@@ -12,6 +12,12 @@ relationships:
     target: good-nonbeliever-thought-experiment
   - type: related_to
     target: distinguish-punishment-from-self-exclusion
+  - type: related_to
+    target: when-is-unbelief-culpable
+  - type: related_to
+    target: judgment-considers-knowledge-and-opportunity
+  - type: related_to
+    target: restrictivist-views-make-faith-in-christ-decisive
 tags:
   - salvation
   - hell
@@ -35,5 +41,8 @@ The line then separates several issues that are often compressed into the phrase
 2. Some accounts of hell emphasize **divine judgment and punishment**.
 3. Other accounts emphasize **freely chosen separation or self-exclusion from God**.
 4. Some accounts combine the two: a person's settled orientation is genuinely chosen, while God's final judgment genuinely confirms and judges it.
-5. The self-exclusion model faces a serious follow-up: **what about sincere or nonresistant nonbelief?**
-6. Christian traditions do not all answer that final question in the same way.
+5. The question of **culpability** asks whether a person merely lacks belief or has blamefully resisted, neglected, or rejected available truth.
+6. Philosophical work on voluntary belief matters because a person may have indirect control over inquiry without being able to produce belief by a simple act of will.
+7. Some Christian traditions make explicit saving faith in Christ normatively decisive; others allow possible salvation where explicit knowledge is absent through no fault of the person.
+8. The self-exclusion model faces a serious follow-up: **what about sincere or nonresistant nonbelief?**
+9. Christian traditions do not all answer that final question in the same way.

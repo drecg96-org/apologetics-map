@@ -10,6 +10,10 @@ relationships:
     target: sincere-nonbelief-is-not-the-same-as-rejecting-god
   - type: qualifies
     target: is-unbelief-itself-a-just-basis-for-exclusion-from-heaven
+  - type: related_to
+    target: judgment-considers-knowledge-and-opportunity
+  - type: related_to
+    target: restrictivist-views-make-faith-in-christ-decisive
 tags:
   - salvation
   - inclusivism
@@ -22,6 +26,8 @@ status:
 conversation:
   follows:
     - sincere-nonbelief-is-not-the-same-as-rejecting-god
+    - judgment-considers-knowledge-and-opportunity
+    - restrictivist-views-make-faith-in-christ-decisive
   label: traditions split here
   priority: 10
   terminal:

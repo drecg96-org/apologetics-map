@@ -10,6 +10,8 @@ relationships:
     target: hell-as-self-exclusion-from-god
   - type: related_to
     target: good-nonbeliever-thought-experiment
+  - type: related_to
+    target: when-is-unbelief-culpable
 tags:
   - divine-hiddenness
   - nonresistant-nonbelief
@@ -23,6 +25,8 @@ conversation:
   follows:
     - hell-as-self-exclusion-from-god
     - choice-and-judgment-need-not-be-exclusive
+    - when-is-unbelief-culpable
+    - judgment-considers-knowledge-and-opportunity
   label: but did they really choose it?
   priority: 10
 references:
@@ -31,6 +35,8 @@ references:
   - source: sep-heaven-hell
     locator: Section 3.1
     note: Presses the problem of whether an uninformed or deluded rejection of God can count as a genuinely free eternal choice.
+  - source: sep-doxastic-voluntarism
+    note: Adds the distinct question of how much direct or indirect voluntary control a person has over belief itself.
 ---
 
 # Objection
@@ -53,6 +59,8 @@ So the Christian cannot simply say:
 > "Everyone in hell chose to be there."
 
 The next question is **what kind of choice, knowledge, resistance, or culpability is actually required**.
+
+The problem becomes sharper if belief is not something a person can directly produce at will. Responsibility may instead have to attach to things such as inquiry, attention, intellectual honesty, avoidance, or resistance.
 
 ## Connection to divine hiddenness
 
