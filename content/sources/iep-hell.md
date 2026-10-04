@@ -28,3 +28,5 @@ source:
 Useful for keeping several different doctrines from being collapsed into one.
 
 The article distinguishes a traditional retributive view, where hell functions as punishment for sin, from a free-will view, where hell is permitted in order to respect a person's settled refusal of communion with God. It also surveys objections to both models.
+
+For the postmortem-salvation branch, the article is especially useful because it distinguishes free-will views that **deny** meaningful freedom after death from versions that allow the damned to continue choosing and shaping their character. Its universalism section also describes views in which postmortem suffering is temporary and reconciliation ultimately occurs.
