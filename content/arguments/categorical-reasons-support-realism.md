@@ -23,6 +23,7 @@ status:
 conversation:
   follows:
     - do-agents-have-reasons-independent-of-desire
+    - do-practical-judgments-match-desire-relative-reasons
   label: yes — desire-independent reason
   priority: 15
 references:
@@ -62,4 +63,6 @@ That creates a real dispute about the nature of normative reasons rather than a 
 
 ## Conversational use
 
-Use this after the other person says that even a completely indifferent agent nevertheless has a reason not to harm. If they deny that premise, follow the internalist branch and record its implications.
+Use this after the other person says that even a completely indifferent agent nevertheless has a reason not to harm. It can also follow the practical-consistency test if someone initially denied categorical reasons but then clarifies that, in ordinary moral judgment, they really do mean the indifferent agent still has a reason.
+
+If they deny that premise consistently, follow the internalist branch and record its implications.

@@ -48,6 +48,8 @@ This is the categorical sense of "ought": the claim remains valid even when the 
 
 The position accepts that an agent whose desires are sufficiently different may have no categorical moral reason to refrain. Social sanctions, prudential reasons, other people's preferences, and instrumental "shoulds" can remain, but no desire-independent moral reason has been admitted.
 
+The next useful move is a **practical consistency test**, not simply a more shocking example: when you make ordinary moral judgments, do you still mean that some reasons apply to an agent regardless of what that agent wants? If so, that practical judgment is in tension with the theoretical answer. If not, the desire-relative implication has been accepted consistently.
+
 ## Why this is useful
 
 This question converts an abstract dispute about "objective morality" into a narrower issue about reasons for action. It is therefore a useful pivot after someone consistently accepts the society-relative consequences of subjectivism.
@@ -55,3 +57,5 @@ This question converts an abstract dispute about "objective morality" into a nar
 ## Limit
 
 A yes answer does not establish theism or a complete moral realism. It establishes, at most, that some normativity appears to outrun the agent's contingent desires.
+
+A no answer is not self-refuting merely because the person continues to behave morally. Anti-realists can retain moral practices for social, prudential, expressive, or other reasons; the follow-up test is whether their **judgments about what reasons other agents have** match the theory they have endorsed.
