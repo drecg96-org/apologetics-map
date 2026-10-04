@@ -23,6 +23,10 @@ conversation:
     - moral-queerness
   label: pivot — epistemic normativity
   priority: 30
+references:
+  - source: cuneo-normative-web
+    locator: "Introduction; chapters 2–4"
+    note: Cuneo treats objective epistemic facts as the central companion used to pressure moral anti-realism.
 ---
 
 # Crux question
