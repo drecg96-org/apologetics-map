@@ -18,6 +18,13 @@ status:
 conversation:
   follows:
     - objective-morality
+    - moral-progress-presupposes-standard
+    - cross-standpoint-progress-supports-objectivity
+    - moral-fallibility-supports-realism
+    - idealization-relocates-normativity
+    - categorical-reasons-support-realism
+    - motivation-does-not-exhaust-normative-reasons
+    - epistemic-norms-companions-in-guilt
   label: grant realism for next stage
   priority: 90
 references:

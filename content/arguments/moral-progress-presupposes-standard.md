@@ -23,32 +23,33 @@ conversation:
 references:
   - source: apologia-moral-argument
   - source: sep-moral-realism
+  - source: sep-moral-relativism
+  - source: perez-navarro-friends-with-good
+    note: Important contemporary reply arguing that assessment-sensitive relativism can retain rational talk of moral progress.
+  - source: wong-natural-moralities
+    note: Strong pluralistic relativist alternative with universal human constraints and more than one adequate morality.
 ---
 
 # Argument
 
-When we say a society became morally **better** rather than merely different, we appear to compare both its earlier and later norms against some standard.
+When we say a society became morally **better** rather than merely different, we often appear to compare both its earlier and later norms against some standard.
 
 If current social approval itself constituted moral truth, then whatever a society approved would be correct by definition while it was approved. That makes it harder to interpret reform as the discovery or correction of a genuine moral error.
 
 ## Strong anti-realist reply
 
-An anti-realist does not have to give up the word **progress**. Progress can be defined relative to a chosen or constructed standard—for example:
+A sophisticated relativist does not have to give up the word **progress**.
 
-- reduced suffering;
-- greater consistency;
-- wider inclusion;
-- improved cooperation;
-- values the speaker or society endorses after reflection.
+Progress can be defined relative to an evaluative standpoint, an assessment context, or constrained pluralistic standards such as human needs, cooperation, agency, and flourishing. Pérez-Navarro explicitly argues that an assessment-sensitive relativism can make rational sense of moral progress; Wong defends a pluralistic relativism in which not every social code is adequate even though there is no single uniquely true complete morality.
 
-That response is coherent. The next question is whether the standard itself is merely selected from a standpoint or whether it is genuinely better independently of anyone's approval.
+That reply is coherent. The next question is therefore not "can a relativist use the word progress?" but **what kind of claim is being made when progress is asserted?**
 
 ## What this argument establishes
 
-The argument does not prove moral realism merely from the word "progress."
+The argument does not prove moral realism merely from ordinary progress language.
 
-Its force is conditional: if some historical change really was a **correction of moral error** rather than simply movement toward values we now endorse, then the earlier and later standpoints must be answerable to something beyond their own current approval.
+Its force is conditional: if some historical change really was a correction of moral error in a sense that can judge both earlier and later standpoints independently of their approval, then social acceptance alone cannot constitute moral truth.
 
 ## Conversational use
 
-This is a useful independent pivot after someone accepts a society-relative morality. Do not argue over labels; ask whether any society can improve by discovering that its previously approved norm was actually wrong.
+Ask whether the reform is better only from our present standpoint or whether the earlier society was mistaken by a standard that does not depend on either society's approval. That distinction generates the next branch cleanly.

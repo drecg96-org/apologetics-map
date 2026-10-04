@@ -28,17 +28,21 @@ conversation:
 references:
   - source: wielenberg-robust-ethics
   - source: sep-moral-realism
+  - source: sep-reasons-internal-external
+  - source: scanlon-being-realistic-about-reasons
+  - source: street-constructivism-about-reasons
+  - source: korsgaard-sources-of-normativity
 ---
 
 # Argument
 
 If a person can have a genuine moral reason not to harm someone even when none of that person's actual desires favors restraint, then at least some normative reasons are not reducible to current preference.
 
-That directly pressures simple desire-based subjectivism: the agent's attitude no longer exhausts what reasons the agent has.
+That directly pressures simple desire-based subjectivism: the agent's present attitude no longer exhausts what reasons the agent has.
 
 ## What follows
 
-At minimum, the discussion has admitted **desire-independent normativity**.
+At minimum, the discussion has admitted **desire-independent normativity** relative to actual desires.
 
 That does not yet settle whether:
 
@@ -50,12 +54,12 @@ That does not yet settle whether:
 
 So this branch supports realism but does not leap directly to theism.
 
-## Anti-realist reply
+## Strong reply
 
-A sophisticated anti-realist may argue that idealized desires, rational procedures, constitutive standards of agency, or shared practical commitments can generate reasons that outrun an agent's present desires without requiring stance-independent moral facts.
+Reasons internalists deny that a genuine normative reason can float wholly free of an agent's motivational set. Some sophisticated views use not the person's immediate desire but what the agent could be motivated to do through sound deliberation.
 
-The next debate is therefore whether those standards are genuinely independent or merely relocate the relevant standpoint.
+That creates a real dispute about the nature of normative reasons rather than a simple contradiction.
 
 ## Conversational use
 
-Use this after the other person says that even a completely indifferent agent nevertheless has a reason not to harm. If they deny that premise, record the implication rather than treating the denial as a contradiction.
+Use this after the other person says that even a completely indifferent agent nevertheless has a reason not to harm. If they deny that premise, follow the internalist branch and record its implications.

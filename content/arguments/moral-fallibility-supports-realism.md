@@ -27,6 +27,9 @@ conversation:
   priority: 15
 references:
   - source: sep-moral-realism
+  - source: sep-constructivism-metaethics
+  - source: street-constructivism-about-reasons
+  - source: korsgaard-sources-of-normativity
 ---
 
 # Argument
@@ -39,10 +42,10 @@ That does not yet tell us what makes the judgment true or false. It shows only t
 
 A subjectivist can move from **actual** attitudes to **idealized** attitudes: what the person would endorse under fuller information, greater coherence, impartial reflection, or rational scrutiny.
 
-That avoids the simplest fallibility problem. But it creates a new question: why do those idealized conditions have normative authority, and do they merely refine a standpoint or track something independent of it?
+Constructivists go further and attempt to ground normative authority in procedures or standards internal to practical reason and agency. This is a serious alternative, not a verbal escape.
 
-Constructivists can give further answers here, so the line should not be treated as a knock-down proof.
+The next question is why the idealizing conditions have normative authority.
 
 ## Conversational use
 
-This line is especially useful after someone accepts the society-relative implication of subjectivism. Do not repeat more extreme examples. Change dimensions and ask whether genuine moral correction—as opposed to mere change—is possible.
+This line is especially useful after someone accepts the society-relative implication of simple subjectivism. If they answer with an idealized or constructivist standard, follow that theory rather than returning to actual preference.
