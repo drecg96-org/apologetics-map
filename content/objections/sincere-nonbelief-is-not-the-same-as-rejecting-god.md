@@ -5,6 +5,7 @@ type: objection
 summary: A person may sincerely lack belief while remaining open to God, so describing every nonbeliever as freely choosing separation risks assuming the very point that needs to be shown.
 topics:
   - salvation-and-hell
+  - existence-of-god
 relationships:
   - type: challenges
     target: hell-as-self-exclusion-from-god
@@ -29,6 +30,7 @@ conversation:
     - choice-and-judgment-need-not-be-exclusive
     - when-is-unbelief-culpable
     - judgment-considers-knowledge-and-opportunity
+    - what-most-drives-your-skepticism
   label: but did they really choose it?
   priority: 10
 references:
