@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Background,
   Controls,
@@ -317,6 +317,44 @@ function debateLayout(
   };
 }
 
+function graphNeighborhood(
+  graph: GraphPayload,
+  focusId: string,
+  depth: number,
+) {
+  const adjacency = new Map<string, Set<string>>();
+  const connect = (a: string, b: string) => {
+    if (!adjacency.has(a)) adjacency.set(a, new Set());
+    if (!adjacency.has(b)) adjacency.set(b, new Set());
+    adjacency.get(a)!.add(b);
+    adjacency.get(b)!.add(a);
+  };
+
+  for (const edge of graph.edges) connect(edge.source, edge.target);
+  for (const edge of graph.flowEdges) connect(edge.source, edge.target);
+  for (const node of graph.nodes) {
+    for (const topic of node.topics) connect(node.id, topic);
+  }
+
+  const seen = new Set<string>([focusId]);
+  let frontier = new Set<string>([focusId]);
+
+  for (let step = 0; step < depth; step += 1) {
+    const next = new Set<string>();
+    for (const id of frontier) {
+      for (const neighbor of adjacency.get(id) ?? []) {
+        if (seen.has(neighbor)) continue;
+        seen.add(neighbor);
+        next.add(neighbor);
+      }
+    }
+    frontier = next;
+    if (frontier.size === 0) break;
+  }
+
+  return seen;
+}
+
 function atlasLayout(
   graph: GraphPayload,
   visibleIds: Set<string>,
@@ -384,15 +422,113 @@ export default function GraphExplorer({
   const startingMode = allowedModes.includes(initialMode) ? initialMode : allowedModes[0];
   const [mode, setMode] = useState<ExplorerMode>(startingMode);
   const [showSources, setShowSources] = useState(false);
+  const [focusId, setFocusId] = useState("");
+  const [focusDepth, setFocusDepth] = useState(2);
+  const [shareStatus, setShareStatus] = useState("");
+  const [urlHydrated, setUrlHydrated] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const params = new URL(window.location.href).searchParams;
+    const requestedMode = params.get("mode") as ExplorerMode | null;
+    if (requestedMode && allowedModes.includes(requestedMode)) setMode(requestedMode);
+
+    const requestedTopic = params.get("topic");
+    if (
+      requestedTopic === "all" ||
+      (requestedTopic && graph.nodes.some((node) => node.type === "topic" && node.id === requestedTopic))
+    ) {
+      setTopic(requestedTopic);
+    }
+
+    const requestedType = params.get("type");
+    if (
+      requestedType === "all" ||
+      (requestedType && graph.nodes.some((node) => node.type === requestedType))
+    ) {
+      setType(requestedType);
+    }
+
+    setQuery(params.get("q") ?? "");
+    setShowSources(params.get("sources") === "1");
+
+    const requestedFocus = params.get("focus");
+    if (requestedFocus && graph.nodes.some((node) => node.id === requestedFocus)) {
+      setFocusId(requestedFocus);
+    }
+
+    const requestedDepth = Number(params.get("depth"));
+    if (Number.isInteger(requestedDepth) && requestedDepth >= 1 && requestedDepth <= 4) {
+      setFocusDepth(requestedDepth);
+    }
+
+    setUrlHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!urlHydrated || typeof window === "undefined") return;
+
+    const url = new URL(window.location.href);
+    if (allowedModes.length > 1) url.searchParams.set("mode", mode);
+    else url.searchParams.delete("mode");
+
+    if (topic === "all") url.searchParams.delete("topic");
+    else url.searchParams.set("topic", topic);
+
+    if (type === "all") url.searchParams.delete("type");
+    else url.searchParams.set("type", type);
+
+    if (query.trim()) url.searchParams.set("q", query.trim());
+    else url.searchParams.delete("q");
+
+    if (showSources) url.searchParams.set("sources", "1");
+    else url.searchParams.delete("sources");
+
+    if (mode !== "line" && focusId) {
+      url.searchParams.set("focus", focusId);
+      url.searchParams.set("depth", String(focusDepth));
+    } else {
+      url.searchParams.delete("focus");
+      url.searchParams.delete("depth");
+    }
+
+    if (mode !== "line") {
+      url.searchParams.delete("node");
+      url.searchParams.delete("path");
+    }
+
+    window.history.replaceState({}, "", url);
+  }, [urlHydrated, mode, topic, type, query, showSources, focusId, focusDepth]);
+
+  async function copyViewLink() {
+    if (typeof window === "undefined") return;
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setShareStatus("Copied");
+      window.setTimeout(() => setShareStatus(""), 1600);
+    } catch {
+      setShareStatus("Copy failed");
+      window.setTimeout(() => setShareStatus(""), 1600);
+    }
+  }
 
   const topics = graph.nodes
     .filter((node) => node.type === "topic")
     .sort((a, b) => a.title.localeCompare(b.title));
 
+  const focusedIds = useMemo(
+    () => focusId && mode !== "line"
+      ? graphNeighborhood(graph, focusId, focusDepth)
+      : null,
+    [graph, focusId, focusDepth, mode],
+  );
+
   const visibleIds = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     return new Set(
       graph.nodes
+        .filter((node) => !focusedIds || focusedIds.has(node.id))
         .filter((node) => showSources || node.type !== "source")
         .filter((node) => type === "all" || node.type === type)
         .filter((node) =>
@@ -409,7 +545,7 @@ export default function GraphExplorer({
         })
         .map((node) => node.id),
     );
-  }, [graph.nodes, query, type, topic, showSources]);
+  }, [graph.nodes, query, type, topic, showSources, focusedIds]);
 
   const layout = useMemo(
     () => mode === "debate"
@@ -493,6 +629,25 @@ export default function GraphExplorer({
         </select>
       </div>
 
+      {mode !== "line" && focusId && (
+        <div className="graph-focus-row">
+          <span title={graph.nodes.find((node) => node.id === focusId)?.title}>
+            Focused subgraph
+          </span>
+          <select
+            aria-label="Focused subgraph depth"
+            value={focusDepth}
+            onChange={(event) => setFocusDepth(Number(event.target.value))}
+          >
+            <option value={1}>1 hop</option>
+            <option value={2}>2 hops</option>
+            <option value={3}>3 hops</option>
+            <option value={4}>4 hops</option>
+          </select>
+          <button type="button" onClick={() => setFocusId("")}>Clear</button>
+        </div>
+      )}
+
       <div className="graph-toolbar-footer">
         {mode === "atlas" ? (
           <>
@@ -512,6 +667,13 @@ export default function GraphExplorer({
           <span>Topic → main question → branches → stage gates</span>
         )}
         <span>{mode === "line" ? visibleIds.size : layout.nodes.length} shown</span>
+        <button
+          type="button"
+          className="graph-share-button"
+          onClick={copyViewLink}
+        >
+          {shareStatus || "Copy view link"}
+        </button>
       </div>
     </div>
   );
