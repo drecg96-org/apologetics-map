@@ -9,8 +9,6 @@ relationships:
   - type: challenges
     target: objective-morality
   - type: related_to
-    target: moral-queerness
-  - type: related_to
     target: morality-is-subjective
 tags:
   - error-theory
@@ -47,3 +45,5 @@ The cost is revisionary: many ordinary moral claims we take to be straightforwar
 Error theory belongs **upstream of the grounding debate**. If error theory is accepted, the question "what grounds objective morality?" does not yet arise, because the view denies that there are objective moral facts of the relevant kind to ground.
 
 This distinguishes error theory from secular moral realism. Both can reject theism, but the secular realist accepts objective moral facts while the error theorist denies them.
+
+The semantic graph therefore treats queerness and disagreement as motivations that can lead into error theory through debate flow, rather than duplicating the same relationship in both directions.
