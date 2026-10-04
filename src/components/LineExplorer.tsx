@@ -88,6 +88,7 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
   const currentId = path[path.length - 1] ?? "";
   const current = byId.get(currentId);
   const responses = currentId ? outgoing.get(currentId) ?? [] : [];
+  const terminal = current?.conversation?.terminal;
 
   const semantic = useMemo(() => {
     if (!currentId) return [];
@@ -176,7 +177,11 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
           className={"line-tree-jump" + (active ? " active" : "")}
           onClick={() => jumpTo(node.id)}
         >
-          <span>{node.type}</span>
+          <span>
+            {node.conversation?.terminal
+              ? "endpoint · " + node.conversation.terminal.kind.replaceAll("-", " ")
+              : node.type}
+          </span>
           <strong>{node.title}</strong>
         </button>
       );
@@ -269,8 +274,12 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
         <section className="line-responses">
           <div className="line-section-head">
             <div>
-              <span className="line-kicker">Next moves</span>
-              <h4>{responses.length ? "Common responses" : "End of this mapped line"}</h4>
+              <span className="line-kicker">{terminal && responses.length === 0 ? "Line outcome" : "Next moves"}</span>
+              <h4>
+                {responses.length
+                  ? "Common responses"
+                  : terminal?.label ?? "End of this mapped line"}
+              </h4>
             </div>
             {responses.length > 0 && <span>{responses.length} choices</span>}
           </div>
@@ -297,6 +306,14 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
                   </button>
                 );
               })}
+            </div>
+          ) : terminal ? (
+            <div className={"line-terminal line-terminal-" + terminal.kind}>
+              <span className="line-terminal-kind">
+                {terminal.kind.replaceAll("-", " ")}
+              </span>
+              <strong>{terminal.label ?? "Intentional endpoint"}</strong>
+              {terminal.note && <p>{terminal.note}</p>}
             </div>
           ) : (
             <p className="line-empty-copy">
