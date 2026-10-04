@@ -19,6 +19,7 @@ type ArgumentStatement = {
   label?: string;
   note?: string;
   scholarship?: string;
+  sourceCount: number;
   supportCount: number;
   challengeCount: number;
 };
@@ -105,8 +106,9 @@ export default function ArgumentMapper({
                 <strong>{statement.title}</strong>
                 <div className="argument-statement-meta">
                   {statement.scholarship && <span>{statement.scholarship}</span>}
-                  <span>{statement.supportCount} support</span>
-                  <span>{statement.challengeCount} challenge</span>
+                  <span>{statement.sourceCount} sources</span>
+                  <span>{statement.supportCount} linked supports</span>
+                  <span>{statement.challengeCount} linked challenges</span>
                 </div>
               </div>
             ),
