@@ -145,6 +145,81 @@ providers:
           - skeptic
           - creator-hub
 
+      - id: sep-atheism-agnosticism
+        topic: existence-of-god
+        url: https://plato.stanford.edu/entries/atheism-agnosticism/
+        title: Stanford Encyclopedia of Philosophy — Atheism and Agnosticism
+        kind: website
+        authors: [Paul Draper]
+        publisher: Stanford Encyclopedia of Philosophy
+        role: scholarship
+        difficulty: advanced
+        stance: neutral
+        tags: [academic-reference, atheism, agnosticism]
+
+      - id: oppy-arguing-about-gods
+        topic: existence-of-god
+        url: https://www.cambridge.org/core/books/arguing-about-gods/5546FFB3A3EAFF997B12183EA38026D7
+        title: Graham Oppy — Arguing about Gods
+        kind: book
+        authors: [Graham Oppy]
+        year: 2006
+        publisher: Cambridge University Press
+        role: objection
+        difficulty: advanced
+        stance: challenges
+        tags: [atheism, philosophy-of-religion, natural-theology]
+
+      - id: schellenberg-hiddenness-argument
+        topic: existence-of-god
+        url: https://academic.oup.com/book/12756
+        title: J. L. Schellenberg — The Hiddenness Argument
+        kind: book
+        authors: [J. L. Schellenberg]
+        year: 2015
+        publisher: Oxford University Press
+        role: objection
+        difficulty: advanced
+        stance: challenges
+        tags: [atheism, divine-hiddenness, nonresistant-nonbelief]
+
+      - id: sep-problem-of-evil
+        topic: existence-of-god
+        url: https://plato.stanford.edu/entries/evil/
+        title: Stanford Encyclopedia of Philosophy — The Problem of Evil
+        kind: website
+        authors: [Michael Tooley]
+        publisher: Stanford Encyclopedia of Philosophy
+        role: scholarship
+        difficulty: advanced
+        stance: neutral
+        tags: [academic-reference, problem-of-evil]
+
+      - id: hume-of-miracles
+        topic: christianity
+        url: https://davidhume.org/texts/e/10
+        title: David Hume — Of Miracles
+        kind: primary-source
+        authors: [David Hume]
+        year: 1748
+        publisher: Hume Texts Online
+        role: objection
+        difficulty: advanced
+        stance: challenges
+        tags: [skeptic, miracles, testimony, primary-source]
+
+      - id: bart-ehrman-resource-library
+        topic: christianity
+        url: https://www.bartehrman.com/
+        title: Bart D. Ehrman — New Testament and Early Christianity
+        kind: website
+        authors: [Bart D. Ehrman]
+        publisher: BartEhrman.com
+        role: reference
+        difficulty: intermediate
+        stance: mixed
+        tags: [new-testament, early-christianity, historical-criticism, creator-hub]
+
       - id: william-lane-craig-reasonable-faith
         topic: christianity
         url: https://www.reasonablefaith.org/
@@ -241,6 +316,15 @@ providers:
       - topic: morality
         query: secular moral realism God
         required_any: [secular]
+      - topic: existence-of-god
+        query: evidential problem of evil theism atheism suffering
+        required_any: [evil, suffering, theism, atheism]
+      - topic: existence-of-god
+        query: divine hiddenness nonresistant nonbelief
+        required_any: [hiddenness, nonbelief]
+      - topic: existence-of-god
+        query: religious diversity disagreement epistemology
+        required_any: [religious, diversity, disagreement]
 
   crossref:
     enabled: true
@@ -252,3 +336,12 @@ providers:
       - topic: morality
         query: evolutionary debunking moral realism
         required_any: [evolution, evolutionary, debunking]
+      - topic: existence-of-god
+        query: problem of evil atheism theism
+        required_any: [evil, atheism, theism]
+      - topic: existence-of-god
+        query: divine hiddenness nonresistant nonbelief
+        required_any: [hiddenness, nonbelief]
+      - topic: christianity
+        query: miracle testimony resurrection historical method
+        required_any: [miracle, resurrection, testimony]
