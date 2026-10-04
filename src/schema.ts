@@ -27,6 +27,13 @@ export const ReferenceSchema = z.object({
   note: z.string().min(1).optional(),
 });
 
+export const ConversationSchema = z.object({
+  follows: z.array(slug).default([]),
+  opening: z.boolean().optional(),
+  label: z.string().min(1).optional(),
+  priority: z.number().int().min(0).optional(),
+});
+
 export const NodeSchema = z.object({
   id: slug,
   title: z.string().min(1),
@@ -34,6 +41,7 @@ export const NodeSchema = z.object({
   summary: z.string().min(1).optional(),
   topics: z.array(slug).default([]),
   relationships: z.array(RelationshipSchema).default([]),
+  conversation: ConversationSchema.optional(),
   references: z.array(ReferenceSchema).default([]),
   tags: z.array(slug).default([]),
   aliases: z.array(z.string().min(1)).default([]),
