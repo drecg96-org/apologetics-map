@@ -141,7 +141,7 @@ function validatePayload(raw: unknown):
 }
 
 function cleanLine(value: unknown, max: number): string {
-  return typeof value === "string" ? value.replace(/[\\r\\n\\t]+/g, " ").trim().slice(0, max) : "";
+  return typeof value === "string" ? value.replace(/[\r\n\t]+/g, " ").trim().slice(0, max) : "";
 }
 
 function cleanText(value: unknown, max: number): string {
@@ -222,17 +222,17 @@ async function createIssue(
 ): Promise<{ number: number; html_url: string }> {
   const tick = String.fromCharCode(96);
   const pageUrl =
-    env.SITE_ORIGIN.replace(/\\\/$/, "") + "/" +
-    env.SITE_BASE_PATH.replace(/^\\/+|\\/+$/g, "") +
+    env.SITE_ORIGIN.replace(/\/$/, "") + "/" +
+    env.SITE_BASE_PATH.replace(/^\/+|\/+$/g, "") +
     "/node/" + encodeURIComponent(payload.node.id) + "/";
 
   const formatMoves = (moves: Move[] = []) =>
     moves.length
-      ? moves.map((move) => "- " + move.label + ": " + move.title + " (" + tick + move.id + tick + ")").join("\\n")
+      ? moves.map((move) => "- " + move.label + ": " + move.title + " (" + tick + move.id + tick + ")").join("\n")
       : "- None";
 
   const topicLines = payload.node.topics?.length
-    ? payload.node.topics.map((topic) => "- " + topic.title + " (" + tick + topic.id + tick + ")").join("\\n")
+    ? payload.node.topics.map((topic) => "- " + topic.title + " (" + tick + topic.id + tick + ")").join("\n")
     : "- None";
 
   const title = ("[Node feedback] " + payload.kind + ": " + payload.node.title).slice(0, 240);
@@ -259,7 +259,7 @@ async function createIssue(
     formatMoves(payload.node.nextMoves),
     "",
     "<!-- node-feedback:v1 -->",
-  ].join("\\n");
+  ].join("\n");
 
   const response = await githubFetch(
     "https://api.github.com/repos/" + encodeURIComponent(env.GITHUB_OWNER) + "/" +
@@ -309,12 +309,12 @@ async function createAppJwt(clientId: string, privateKeyPem: string): Promise<st
 }
 
 function pemToPkcs8(pem: string): Uint8Array {
-  const normalized = pem.replace(/\\\\n/g, "\\n").trim();
+  const normalized = pem.replace(/\\n/g, "\n").trim();
   const isPkcs1 = normalized.includes("BEGIN RSA PRIVATE KEY");
   const base64 = normalized
     .replace(/-----BEGIN (?:RSA )?PRIVATE KEY-----/g, "")
     .replace(/-----END (?:RSA )?PRIVATE KEY-----/g, "")
-    .replace(/\\s+/g, "");
+    .replace(/\s+/g, "");
   if (!base64) throw new Error("GitHub private key is empty");
   const der = Uint8Array.from(atob(base64), (char) => char.charCodeAt(0));
   return isPkcs1 ? wrapPkcs1AsPkcs8(der) : der;
@@ -354,5 +354,5 @@ function concatBytes(...parts: Uint8Array[]): Uint8Array {
 function base64Url(bytes: Uint8Array): string {
   let binary = "";
   for (const byte of bytes) binary += String.fromCharCode(byte);
-  return btoa(binary).replace(/=/g, "").replace(/\\+/g, "-").replace(/\\//g, "_");
+  return btoa(binary).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
 }
