@@ -8,6 +8,10 @@ topics:
 relationships:
   - type: challenges
     target: objective-morality
+  - type: related_to
+    target: moral-queerness
+  - type: related_to
+    target: morality-is-subjective
 tags:
   - error-theory
   - anti-realism
@@ -16,9 +20,11 @@ status:
   scholarship: minority
 conversation:
   follows:
-    - what-grounds-objective-morality
-  label: alternative
-  priority: 40
+    - objective-morality
+    - moral-queerness
+    - moral-disagreement
+  label: error-theory alternative
+  priority: 45
 references:
   - source: mackie-ethics-inventing-right-and-wrong
   - source: sep-moral-realism
@@ -35,3 +41,9 @@ The error theorist then denies that the world contains the objective normative p
 Classic motivations include persistent disagreement and the apparent metaphysical strangeness of objective prescriptive properties.
 
 The cost is revisionary: many ordinary moral claims we take to be straightforwardly true would turn out to be false.
+
+## Place in the map
+
+Error theory belongs **upstream of the grounding debate**. If error theory is accepted, the question "what grounds objective morality?" does not yet arise, because the view denies that there are objective moral facts of the relevant kind to ground.
+
+This distinguishes error theory from secular moral realism. Both can reject theism, but the secular realist accepts objective moral facts while the error theorist denies them.
