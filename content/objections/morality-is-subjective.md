@@ -14,6 +14,14 @@ relationships:
     target: moral-error-theory
   - type: related_to
     target: moral-noncognitivism-emotivism
+  - type: related_to
+    target: can-society-be-morally-wrong
+  - type: related_to
+    target: can-individual-be-morally-mistaken
+  - type: related_to
+    target: do-agents-have-reasons-independent-of-desire
+  - type: related_to
+    target: are-epistemic-norms-objective
 tags:
   - moral-relativism
   - ethics
@@ -47,3 +55,15 @@ This label covers positions that should not be conflated:
 The next useful move in conversation is therefore usually a clarification question: *subjective in what sense?*
 
 This matters because the responses diverge. A cultural relativist needs an account of society-wide moral error; an error theorist accepts truth-apt moral language but denies the relevant facts; an emotivist questions whether moral utterances were truth-claims in the first place.
+
+## Main realism-pressure lines
+
+Once the position is clear, test different dimensions rather than relying on one intuition pump:
+
+- Can an entire approving society still be morally wrong?
+- Can an individual sincerely approve of something and still be morally mistaken?
+- Can there be genuine moral progress rather than mere preference change?
+- Can an agent have a moral reason to refrain from harm regardless of what they desire?
+- Are there objective epistemic norms, and if so, why reject objective normativity specifically in morality?
+
+If the person consistently accepts the anti-realist implications of one line, that line should terminate and the conversation should pivot to another independent question.
