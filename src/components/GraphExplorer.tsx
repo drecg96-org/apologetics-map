@@ -13,10 +13,14 @@ import "@xyflow/react/dist/style.css";
 import type { GraphPayload } from "../lib/graph";
 import LineExplorer from "./LineExplorer";
 
+type ExplorerMode = "line" | "debate" | "atlas";
+
 type Props = {
   graph: GraphPayload;
   basePath: string;
   initialTopic?: string;
+  initialMode?: ExplorerMode;
+  availableModes?: ExplorerMode[];
 };
 
 const TYPE_ORDER = [
@@ -229,11 +233,19 @@ function atlasLayout(
   return { nodes, edges };
 }
 
-export default function GraphExplorer({ graph, basePath, initialTopic = "all" }: Props) {
+export default function GraphExplorer({
+  graph,
+  basePath,
+  initialTopic = "all",
+  initialMode = "line",
+  availableModes = ["line", "debate", "atlas"],
+}: Props) {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("all");
   const [topic, setTopic] = useState(initialTopic);
-  const [mode, setMode] = useState<"debate" | "line" | "atlas">("debate");
+  const allowedModes = availableModes.length > 0 ? availableModes : ["line"];
+  const startingMode = allowedModes.includes(initialMode) ? initialMode : allowedModes[0];
+  const [mode, setMode] = useState<ExplorerMode>(startingMode);
   const [showSources, setShowSources] = useState(false);
 
   const topics = graph.nodes
@@ -275,29 +287,42 @@ export default function GraphExplorer({ graph, basePath, initialTopic = "all" }:
 
   const toolbar = (
     <div className="graph-toolbar">
-      <div className="graph-mode" role="group" aria-label="Explorer mode">
-        <button
-          type="button"
-          className={mode === "debate" ? "active" : ""}
-          onClick={() => setMode("debate")}
+      {allowedModes.length > 1 && (
+        <div
+          className="graph-mode"
+          role="group"
+          aria-label="Explorer mode"
+          style={{ gridTemplateColumns: `repeat(${allowedModes.length}, minmax(0, 1fr))` }}
         >
-          Debate flow
-        </button>
-        <button
-          type="button"
-          className={mode === "line" ? "active" : ""}
-          onClick={() => setMode("line")}
-        >
-          Line explorer
-        </button>
-        <button
-          type="button"
-          className={mode === "atlas" ? "active" : ""}
-          onClick={() => setMode("atlas")}
-        >
-          Knowledge atlas
-        </button>
-      </div>
+          {allowedModes.includes("line") && (
+            <button
+              type="button"
+              className={mode === "line" ? "active" : ""}
+              onClick={() => setMode("line")}
+            >
+              Debate Explorer
+            </button>
+          )}
+          {allowedModes.includes("debate") && (
+            <button
+              type="button"
+              className={mode === "debate" ? "active" : ""}
+              onClick={() => setMode("debate")}
+            >
+              Debate Map
+            </button>
+          )}
+          {allowedModes.includes("atlas") && (
+            <button
+              type="button"
+              className={mode === "atlas" ? "active" : ""}
+              onClick={() => setMode("atlas")}
+            >
+              Knowledge Graph
+            </button>
+          )}
+        </div>
+      )}
 
       <input
         aria-label="Search map"
@@ -344,7 +369,7 @@ export default function GraphExplorer({ graph, basePath, initialTopic = "all" }:
         ) : mode === "line" ? (
           <span>Follow one debate position at a time</span>
         ) : (
-          <span>Semantic sources hidden in debate mode</span>
+          <span>Sources stay in reference views while using the Debate Map</span>
         )}
         <span>{mode === "line" ? visibleIds.size : layout.nodes.length} shown</span>
       </div>
