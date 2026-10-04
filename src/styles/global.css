@@ -926,6 +926,15 @@ footer {
   margin-top: auto;
 }
 
+.evidence-card .evidence-card-trail {
+  font-size: .72rem;
+  line-height: 1.35;
+}
+
+.evidence-card .evidence-card-trail strong {
+  color: var(--text);
+}
+
 .evidence-card p,
 .source-card p {
   margin: 0;
