@@ -1,0 +1,89 @@
+---
+import GraphExplorer from "../../components/GraphExplorer";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { loadGraph, toGraphPayload } from "../../lib/graph";
+
+export async function getStaticPaths() {
+  const { nodes } = await loadGraph();
+  return nodes
+    .filter((node) => node.type === "topic")
+    .map((node) => ({ params: { id: node.id } }));
+}
+
+const { id } = Astro.params;
+const { nodes, byId } = await loadGraph();
+const topic = byId.get(id!);
+
+if (!topic || topic.type !== "topic") throw new Error("Unknown topic: " + id);
+
+const base = import.meta.env.BASE_URL;
+const members = nodes.filter((node) => node.id !== topic.id && node.topics.includes(topic.id));
+const debateNodes = members.filter((node) => node.type !== "source");
+const sourceNodes = members.filter((node) => node.type === "source");
+const graph = toGraphPayload(nodes);
+---
+
+<BaseLayout title={topic.title} description={topic.summary}>
+  <section class="hero page-width hero-compact">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={base}>Map</a><span>›</span><a href={base + "topics/"}>Topics</a><span>›</span>
+      <span aria-current="page">{topic.title}</span>
+    </nav>
+    <p class="eyebrow">Topic</p>
+    <h1>{topic.title}</h1>
+    {topic.summary && <p>{topic.summary}</p>}
+    <div class="stats">
+      <span><strong>{debateNodes.length}</strong> debate nodes</span>
+      <span><strong>{sourceNodes.length}</strong> sources</span>
+    </div>
+  </section>
+
+  <section class="map-section">
+    <div class="section-heading page-width">
+      <div>
+        <p class="eyebrow">Debate map</p>
+        <h2>{topic.title} debate flow</h2>
+      </div>
+      <p>Debate Flow shows conversational order; switch to Knowledge Atlas for semantic relationships.</p>
+    </div>
+    <GraphExplorer client:load graph={graph} basePath={base} initialTopic={topic.id} />
+  </section>
+
+  <section class="page-width node-index">
+    <div class="section-heading">
+      <div><p class="eyebrow">Reference index</p><h2>Debate nodes</h2></div>
+    </div>
+    <div class="card-grid">
+      {debateNodes.map((node) => (
+        <a class="node-card" href={base + "node/" + node.id + "/"}>
+          <span class={"type-badge type-" + node.type}>{node.type}</span>
+          <h3>{node.title}</h3>
+          {node.summary && <p>{node.summary}</p>}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {sourceNodes.length > 0 && (
+    <section class="page-width node-index">
+      <div class="section-heading">
+        <div><p class="eyebrow">Research shelf</p><h2>Sources</h2></div>
+        <a href={base + "sources/"}>Browse all sources →</a>
+      </div>
+      <div class="source-grid">
+        {sourceNodes.map((source) => (
+          <article class="source-card">
+            <div class="source-card-head">
+              <span>{source.source?.kind ?? "source"}</span>
+            </div>
+            <h3><a href={base + "node/" + source.id + "/"}>{source.title}</a></h3>
+            <p class="source-meta">
+              {source.source?.authors?.join(", ")}
+              {source.source?.year && " · " + source.source.year}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
