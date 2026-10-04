@@ -33,6 +33,20 @@ references:
   - source: wielenberg-robust-ethics
   - source: reasonable-faith-metaethical-foundations
     note: Theistic advocacy source defending the grounding step and distinguishing grounding from moral behavior.
+  - source: sep-moral-arguments-god
+    note: Academic survey of the history, major formulations, and metaethical pressure points of moral arguments for God.
+  - source: reasonable-faith-formulating-moral-argument
+    note: Apologetic discussion of conditional, counterfactual, and inference-to-the-best-explanation formulations.
+  - source: moral-arguments-and-natural-signs-for-god-9f9c8dbf
+    note: Evans develops the theoretical argument from binding obligation and compares several secular alternatives.
+  - source: the-moral-argument-for-god-s-existence-1e1d2769
+    note: Introductory philosophical treatment framing moral experience as explanatory data rather than a knock-down proof.
+  - source: the-moral-argument-for-the-existence-of-god-an-evaluation-of-fe03754d
+    note: Recent peer-reviewed defense engaging relaxed moral realism and objections about obligation and responsibility.
+  - source: the-secular-moral-project-and-the-moral-argument-for-god-a-b-7d876ae7
+    note: Historical context for the development of secular ethics and the modern moral-argument debate.
+  - source: v-william-r-sorley-s-moral-argument-for-god-c4e72eee
+    note: Historical provenance for William R. Sorley's place in the moral-argument tradition; detailed chapter access is limited.
 ---
 
 # Argument
