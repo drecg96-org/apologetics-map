@@ -14,6 +14,7 @@ tags:
 status:
   editorial: draft
   scholarship: contested
+  christian: contested
 conversation:
   follows:
     - divine-nature-tautology
@@ -22,6 +23,13 @@ conversation:
 references:
   - source: apologia-moral-argument
   - source: adams-finite-infinite-goods
+scripture:
+  - reference: Deuteronomy 32:4
+    note: Attributes justice, faithfulness, and moral perfection to God's character.
+  - reference: 1 John 4:8
+    note: Gives love as concrete content of God's character.
+  - reference: Titus 1:2
+    note: Grounds truthfulness in God's character by describing God as unable to lie.
 ---
 
 # Response
