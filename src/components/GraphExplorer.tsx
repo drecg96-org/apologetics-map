@@ -1,12 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Background,
+  BaseEdge,
   Controls,
+  EdgeLabelRenderer,
+  getBezierPath,
   MiniMap,
   Panel,
   ReactFlow,
   MarkerType,
   type Edge,
+  type EdgeProps,
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
@@ -82,6 +86,64 @@ function nodeKind(node: GraphPayload["nodes"][number]) {
   if (node.tags.includes("debate-gate")) return "stage gate";
   return node.type;
 }
+
+function WrappedGraphEdge({
+  id,
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  sourcePosition,
+  targetPosition,
+  markerEnd,
+  style,
+  label,
+  data,
+}: EdgeProps) {
+  const [edgePath, labelX, labelY] = getBezierPath({
+    sourceX,
+    sourceY,
+    sourcePosition,
+    targetX,
+    targetY,
+    targetPosition,
+  });
+
+  const dx = targetX - sourceX;
+  const dy = targetY - sourceY;
+  const length = Math.hypot(dx, dy) || 1;
+  const offset = 12;
+  const offsetX = (-dy / length) * offset;
+  const offsetY = (dx / length) * offset;
+  const muted =
+    (data as { labelTone?: string } | undefined)?.labelTone === "muted";
+
+  return (
+    <>
+      <BaseEdge
+        id={id}
+        path={edgePath}
+        markerEnd={markerEnd}
+        style={style}
+      />
+      {label !== undefined && label !== null && label !== "" && (
+        <EdgeLabelRenderer>
+          <div
+            className={`graph-edge-label${muted ? " muted" : ""}`}
+            style={{
+              transform:
+                `translate(-50%, -50%) translate(${labelX + offsetX}px, ${labelY + offsetY}px)`,
+            }}
+          >
+            {label}
+          </div>
+        </EdgeLabelRenderer>
+      )}
+    </>
+  );
+}
+
+const EDGE_TYPES = { wrapped: WrappedGraphEdge };
 
 function topicScaffoldEdges(
   graph: GraphPayload,
@@ -251,6 +313,8 @@ function scaffoldEdge(edge: FlowEdge): Edge {
     source: edge.source,
     target: edge.target,
     label: edge.label,
+    type: "wrapped",
+    data: { labelTone: "muted" },
     markerEnd: { type: MarkerType.ArrowClosed, color: "#74706a" },
     style: { stroke: "#74706a", strokeWidth: 1.3, strokeDasharray: "5 5" },
     labelStyle: { fill: "var(--muted)", fontSize: 9, fontWeight: 700 },
@@ -270,6 +334,7 @@ function debateFlowEdge(edge: FlowEdge): Edge {
     source: edge.source,
     target: edge.target,
     label: edge.label,
+    type: "wrapped",
     markerEnd: { type: MarkerType.ArrowClosed, color: "var(--accent)" },
     style: { stroke: "var(--accent)", strokeWidth: 1.8 },
     labelStyle: { fill: "var(--text)", fontSize: 10, fontWeight: 700 },
@@ -377,6 +442,7 @@ function atlasLayout(
         source: edge.source,
         target: edge.target,
         label: edge.label,
+        type: "wrapped",
         markerEnd: { type: MarkerType.ArrowClosed, color: accent },
         style: { stroke: accent, strokeWidth: 1.6 },
         labelStyle: { fill: "var(--text)", fontSize: 10, fontWeight: 700 },
@@ -697,6 +763,7 @@ export default function GraphExplorer({
         key={mode + ":" + topic + ":" + type + ":" + showSources}
         nodes={layout.nodes}
         edges={layout.edges}
+        edgeTypes={EDGE_TYPES}
         fitView
         fitViewOptions={{ padding: 0.18, maxZoom: 1.1 }}
         minZoom={mode === "debate" ? 0.32 : 0.18}
