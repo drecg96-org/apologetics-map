@@ -30,6 +30,8 @@ references:
     note: Legal positivism sharply distinguishes what the law is from whether the law is morally good or justified.
   - source: sep-moral-relativism
     note: Descriptive variation in moral practices and judgments is not identical to metaethical relativism.
+  - source: catholic-catechism-chastity-homosexuality
+    note: Illustrates a traditional Christian ethic that distinguishes moral disapproval from unjust discrimination against persons.
 ---
 
 # Response
