@@ -25,6 +25,14 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
     [graph.flowEdges, visible],
   );
 
+  const topicNodes = useMemo(
+    () => graph.nodes.filter((node) =>
+      visible.has(node.id) &&
+      node.type === "topic"
+    ),
+    [graph.nodes, visible],
+  );
+
   const debateNodes = useMemo(
     () => graph.nodes.filter((node) =>
       visible.has(node.id) &&
@@ -35,30 +43,74 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
     [graph.nodes, visible],
   );
 
+  const topicEdges = useMemo(() => {
+    const edges: FlowEdge[] = [];
+
+    for (const topic of topicNodes) {
+      const openings = debateNodes
+        .filter((node) =>
+          node.conversation?.opening &&
+          node.topics.includes(topic.id)
+        )
+        .sort((a, b) =>
+          (a.conversation?.priority ?? 50) - (b.conversation?.priority ?? 50) ||
+          a.title.localeCompare(b.title)
+        );
+
+      openings.forEach((node, index) => {
+        edges.push({
+          id: `line-topic--${topic.id}--${node.id}--${index}`,
+          source: topic.id,
+          target: node.id,
+          label: "main question",
+          priority: node.conversation?.priority ?? 50,
+        });
+      });
+    }
+
+    return edges;
+  }, [topicNodes, debateNodes]);
+
+  const lineNodes = useMemo(
+    () => [...topicNodes, ...debateNodes],
+    [topicNodes, debateNodes],
+  );
+
+  const lineEdges = useMemo(
+    () => sortEdges([...topicEdges, ...flowEdges]),
+    [topicEdges, flowEdges],
+  );
+
   const incoming = useMemo(() => {
     const map = new Map<string, FlowEdge[]>();
-    for (const node of debateNodes) map.set(node.id, []);
-    for (const edge of flowEdges) {
+    for (const node of lineNodes) map.set(node.id, []);
+    for (const edge of lineEdges) {
       const list = map.get(edge.target) ?? [];
       list.push(edge);
       map.set(edge.target, list);
     }
     return map;
-  }, [debateNodes, flowEdges]);
+  }, [lineNodes, lineEdges]);
 
   const outgoing = useMemo(() => {
     const map = new Map<string, FlowEdge[]>();
-    for (const node of debateNodes) map.set(node.id, []);
-    for (const edge of flowEdges) {
+    for (const node of lineNodes) map.set(node.id, []);
+    for (const edge of lineEdges) {
       const list = map.get(edge.source) ?? [];
       list.push(edge);
       map.set(edge.source, list);
     }
     for (const [id, edges] of map) map.set(id, sortEdges(edges));
     return map;
-  }, [debateNodes, flowEdges]);
+  }, [lineNodes, lineEdges]);
 
   const roots = useMemo(() => {
+    const activeTopics = topicNodes
+      .filter((topic) => (outgoing.get(topic.id) ?? []).length > 0)
+      .sort((a, b) => a.title.localeCompare(b.title));
+
+    if (activeTopics.length > 0) return activeTopics;
+
     const explicit = debateNodes
       .filter((node) => node.conversation?.opening)
       .sort((a, b) =>
@@ -67,12 +119,12 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
       );
     if (explicit.length > 0) return explicit;
 
-    return debateNodes
+    return lineNodes
       .filter((node) => (incoming.get(node.id) ?? []).length === 0)
       .sort((a, b) => a.title.localeCompare(b.title));
-  }, [debateNodes, incoming]);
+  }, [topicNodes, debateNodes, lineNodes, incoming, outgoing]);
 
-  const initialId = roots[0]?.id ?? debateNodes[0]?.id ?? "";
+  const initialId = roots[0]?.id ?? lineNodes[0]?.id ?? "";
 
   const [path, setPath] = useState<string[]>(initialId ? [initialId] : []);
 
@@ -226,8 +278,8 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
     <div className="line-explorer">
       <aside className="line-outline" aria-label="Debate outline">
         <div className="line-outline-head">
-          <span>Full debate</span>
-          <strong>{debateNodes.length} positions</strong>
+          <span>Debate structure</span>
+          <strong>{lineNodes.length} mapped notes</strong>
         </div>
         <div className="line-tree">
           {roots.map((root) => (
@@ -262,22 +314,34 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
         <article className="line-current">
           <div className="line-current-head">
             <span className={"type-badge type-" + current.type}>{current.type}</span>
-            <span className="line-move-number">Position {path.length}</span>
+            <span className="line-move-number">{current.type === "topic" ? "Start here" : `Position ${path.length - 1}`}</span>
           </div>
           <h3>{current.title}</h3>
           {current.summary && <p>{current.summary}</p>}
           <div className="line-current-actions">
-            <a href={basePath + "node/" + current.id + "/"}>Open full reference →</a>
+            <a href={current.type === "topic"
+              ? basePath + "topic/" + current.id + "/"
+              : basePath + "node/" + current.id + "/"}>
+              {current.type === "topic" ? "Open topic →" : "Open full reference →"}
+            </a>
           </div>
         </article>
 
         <section className="line-responses">
           <div className="line-section-head">
             <div>
-              <span className="line-kicker">{terminal && responses.length === 0 ? "Line outcome" : "Next moves"}</span>
+              <span className="line-kicker">
+                {terminal && responses.length === 0
+                  ? "Line outcome"
+                  : current.type === "topic"
+                    ? "Start with a question"
+                    : "Next moves"}
+              </span>
               <h4>
                 {responses.length
-                  ? "Common responses"
+                  ? current.type === "topic"
+                    ? "Main questions"
+                    : "Common responses"
                   : terminal?.label ?? "End of this mapped line"}
               </h4>
             </div>

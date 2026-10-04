@@ -16,16 +16,12 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
 
 <BaseLayout title="Debate Explorer">
   <section class="hero page-width">
-    <p class="eyebrow">Interactive apologetics reference</p>
-    <h1>Follow the argument one move at a time.</h1>
-    <p>
-      Debate Explorer is the primary way to use Apologetics Map: start from a claim or
-      question, choose a common response, and follow the line while keeping the wider
-      debate visible. Maps remain available for orientation and deeper graph exploration.
-    </p>
+    <p class="eyebrow">Debate Explorer</p>
+    <h1>Pick a topic. Follow the line.</h1>
+    <p>Start with the main question, choose the response that fits, and keep going.</p>
     <div class="hero-onboarding">
-      <span>New to the map?</span>
-      <a href={base + "guide/"}>Start with the 3-minute orientation →</a>
+      <span>Need the legend?</span>
+      <a href={base + "guide/"}>Get oriented →</a>
     </div>
     <div class="stats" aria-label="Graph statistics">
       <span><strong>{nodes.length}</strong> nodes</span>
@@ -41,10 +37,7 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
         <p class="eyebrow">Primary view</p>
         <h2>Debate Explorer</h2>
       </div>
-      <p>
-        Choose responses like moves in a variation. Open any position for its full
-        explanation, evidence, and sources.
-      </p>
+      <p>Topic → question → position → reasons and counters. Open any note for the details.</p>
     </div>
     <GraphExplorer
       client:load
