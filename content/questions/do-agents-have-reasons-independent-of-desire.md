@@ -10,6 +10,8 @@ relationships:
     target: morality-is-subjective
   - type: supports
     target: categorical-reasons-support-realism
+  - type: related_to
+    target: what-kind-of-ought
 tags:
   - normativity
   - moral-reasons
@@ -31,15 +33,17 @@ references:
 
 Suppose a person wants to harm an innocent person, does not care about the victim, does not fear punishment, does not value social cooperation, and has no desire that would be served by refraining.
 
-Does that person nevertheless have a genuine moral reason not to do it?
+Does that person nevertheless have a genuine moral reason not to do it? In ordinary language: **should** the person refrain even if the person does not want to, and even if no social or prudential incentive changes their mind?
 
 ## If the answer is yes
 
-The reason appears not to depend entirely on the agent's present desires. The discussion can then ask what makes such a reason valid or authoritative.
+The reason appears not to depend entirely on the agent's present desires. The discussion can then ask what gives that **ought** or **should** its authority.
+
+This is the categorical sense of "ought": the claim remains valid even when the agent's preferences point in the opposite direction.
 
 ## If the answer is no
 
-The position accepts that an agent whose desires are sufficiently different may have no categorical moral reason to refrain from serious wrongdoing. Social sanctions, prudential reasons, or other people's preferences may remain, but no desire-independent moral reason has been admitted.
+The position accepts that an agent whose desires are sufficiently different may have no categorical moral reason to refrain from serious wrongdoing. Social sanctions, prudential reasons, other people's preferences, and instrumental "shoulds" may remain, but no desire-independent moral "ought" has been admitted.
 
 ## Limit
 
