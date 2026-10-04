@@ -1,4 +1,5 @@
 ---
+import ArgumentMapper from "../../components/ArgumentMapper";
 import DebatePosition from "../../components/DebatePosition";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { loadGraph, toGraphPayload } from "../../lib/graph";
@@ -63,6 +64,28 @@ const references = node.references
 
 const evidenceNodes = semanticIncoming
   .filter((item) => item.type === "evidence_for" || item.node.type === "evidence");
+
+const argumentMap = node.argument ? {
+  form: node.argument.form,
+  inferences: node.argument.inferences,
+  statements: node.argument.statements.map((statement) => {
+    const statementNode = byId.get(statement.node)!;
+    const incoming = nodes.flatMap((candidate) =>
+      candidate.relationships
+        .filter((relationship) => relationship.target === statement.node)
+        .map((relationship) => ({ type: relationship.type, node: candidate })),
+    );
+    return {
+      ...statement,
+      nodeId: statementNode.id,
+      title: statementNode.title,
+      summary: statementNode.summary,
+      scholarship: statementNode.status?.scholarship,
+      supportCount: incoming.filter((item) => item.type === "supports" || item.type === "evidence_for").length,
+      challengeCount: incoming.filter((item) => item.type === "challenges" || item.type === "contradicts").length,
+    };
+  }),
+} : null;
 
 const scriptureReferences = (await Promise.all(
   node.scripture.map(async (entry) => {
@@ -130,6 +153,28 @@ function sourceClass(sourceNode: any) {
         )}
 
         <div class="prose" set:html={node.html} />
+
+        {argumentMap && (
+          <section class="argument-structure-section" aria-labelledby="argument-structure-heading">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Formal argument</p>
+                <h2 id="argument-structure-heading">Argument anatomy</h2>
+              </div>
+              <p>
+                Premises and conclusions are reusable claim nodes. Open any proposition to inspect
+                its support, objections, sources, and place in the wider debate.
+              </p>
+            </div>
+            <ArgumentMapper
+              client:load
+              form={argumentMap.form}
+              statements={argumentMap.statements}
+              inferences={argumentMap.inferences}
+              basePath={base}
+            />
+          </section>
+        )}
 
         {(previousMoves.length > 0 || nextMoves.length > 0) && (
           <section class="move-strip" aria-label="Debate navigation">
