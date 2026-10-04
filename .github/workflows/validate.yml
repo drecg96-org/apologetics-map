@@ -19,6 +19,12 @@ jobs:
           node-version: 24
       - run: npm install --no-audit --no-fund
       - run: npm run validate
+      - name: Smoke test agent graph CLI
+        run: |
+          npm run graph -- stats > /tmp/graph-stats.json
+          npm run graph -- node objective-morality > /tmp/graph-node.json
+          npm run graph -- line morality-is-subjective --depth 2 > /tmp/graph-line.json
+          npm run graph -- packet objective-morality --depth 1 > /tmp/graph-packet.json
 
   build:
     name: Build viewer
