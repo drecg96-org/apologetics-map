@@ -1,0 +1,260 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+
+const nodeTypes = [
+  ["topic", "A subject area that groups related material, such as objective morality or the resurrection."],
+  ["question", "A question that opens or organizes a line of inquiry."],
+  ["claim", "A proposition someone is asserting as true or asking the other person to grant."],
+  ["argument", "A reasoned case made from one or more premises toward a conclusion."],
+  ["objection", "A challenge to a claim, argument, doctrine, or inference."],
+  ["response", "A reply that answers, qualifies, or reframes an objection or earlier move."],
+  ["evidence", "A factual, historical, philosophical, textual, or other evidential consideration used to support a claim."],
+  ["doctrine", "A theological teaching that may depend on, explain, or connect several claims."],
+  ["worldview", "A larger interpretive framework whose commitments affect how individual arguments are evaluated."],
+  ["source", "A book, paper, article, video, primary text, Scripture reference, or other source used to ground the map."],
+];
+
+const relationships = [
+  ["supports", "The source node gives a reason to accept the target."],
+  ["challenges", "The source node raises a difficulty for the target."],
+  ["responds to", "The source node directly answers the target."],
+  ["depends on", "The source node relies on the target being true or established first."],
+  ["qualifies", "The source node narrows, clarifies, or adds an important condition to the target."],
+  ["contradicts", "The source node and target cannot both be true in the relevant sense."],
+  ["related to", "The nodes are meaningfully connected without a stronger directional claim."],
+  ["evidence for", "The source node supplies evidence for the target."],
+  ["addresses", "The source node discusses or bears directly on the target."],
+];
+
+const outcomes = [
+  ["Accepted commitment", "The line intentionally stops because the person has accepted a consequence or commitment. It is not being presented as a logical contradiction by itself."],
+  ["Concession", "The line reaches a point where a disputed claim has been granted or an objection has been yielded."],
+  ["Unresolved", "The issue remains open and needs more argument, evidence, or a new branch."],
+];
+---
+
+<BaseLayout
+  title="Start Here"
+  description="Learn how to navigate Apologetics Map, read its node types, and follow debate and evidence relationships."
+>
+  <section class="hero page-width hero-compact guide-hero">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={base}>Debate Explorer</a><span>›</span><span aria-current="page">Start Here</span>
+    </nav>
+    <p class="eyebrow">Orientation guide</p>
+    <h1>How to read the map.</h1>
+    <p>
+      Apologetics Map separates a live conversational line from the deeper web of
+      reasons, objections, evidence, and sources underneath it. Start with the debate
+      line, then zoom out only when you need more context.
+    </p>
+    <div class="guide-actions">
+      <a class="guide-primary-action" href={base}>Open Debate Explorer →</a>
+      <a href={base + "maps/"}>See the maps</a>
+    </div>
+  </section>
+
+  <section class="page-width guide-section" aria-labelledby="mental-model">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">The mental model</p>
+        <h2 id="mental-model">Three layers, one shared graph</h2>
+      </div>
+      <p>Each view emphasizes a different question. They are not separate databases.</p>
+    </div>
+    <div class="guide-step-grid">
+      <article class="guide-step">
+        <span class="guide-step-number">1</span>
+        <p class="eyebrow">Use most often</p>
+        <h3>Debate Explorer</h3>
+        <p>
+          Follow a conversation one move at a time. Pick the response a person actually
+          gives, then continue that branch. Think of it like following a chess variation.
+        </p>
+        <a href={base}>Follow a line →</a>
+      </article>
+      <article class="guide-step">
+        <span class="guide-step-number">2</span>
+        <p class="eyebrow">Open when needed</p>
+        <h3>Full reference pages</h3>
+        <p>
+          Open a position to see the fuller explanation, earlier and later moves,
+          Scripture, evidence, sources, tags, and semantic relationships.
+        </p>
+        <span class="guide-muted">Use these to understand why a move works.</span>
+      </article>
+      <article class="guide-step">
+        <span class="guide-step-number">3</span>
+        <p class="eyebrow">Zoom out</p>
+        <h3>Maps</h3>
+        <p>
+          Debate Map shows conversational branches. Knowledge Graph shows logical and
+          evidential relationships such as support, challenge, dependency, and evidence.
+        </p>
+        <a href={base + "maps/"}>Open maps →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="page-width guide-section" aria-labelledby="read-debate">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Following an argument</p>
+        <h2 id="read-debate">What the Debate Explorer is showing you</h2>
+      </div>
+    </div>
+    <div class="guide-two-column">
+      <article class="guide-panel">
+        <h3>The left outline</h3>
+        <p>
+          This is the wider mapped conversation. Expanding branches lets you see where
+          alternate replies lead without losing your current position.
+        </p>
+      </article>
+      <article class="guide-panel">
+        <h3>The current position</h3>
+        <p>
+          This is the claim, objection, response, or other move you are currently
+          discussing. “Open full reference” takes you to its detailed note.
+        </p>
+      </article>
+      <article class="guide-panel">
+        <h3>Common responses</h3>
+        <p>
+          These are conversational next moves, not necessarily logical entailments.
+          Choose the response that best matches what the other person actually says.
+        </p>
+      </article>
+      <article class="guide-panel">
+        <h3>Semantic context</h3>
+        <p>
+          These links expose the deeper logical graph underneath the conversation:
+          support, challenges, dependencies, evidence, and related concepts.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="page-width guide-section" aria-labelledby="node-types">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Glossary</p>
+        <h2 id="node-types">Node types</h2>
+      </div>
+      <p>A node is one reusable unit of knowledge in the map.</p>
+    </div>
+    <div class="guide-definition-grid">
+      {nodeTypes.map(([type, description]) => (
+        <article class="guide-definition">
+          <span class={"type-badge type-" + type}>{type}</span>
+          <p>{description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-width guide-section" aria-labelledby="relationships">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Knowledge Graph</p>
+        <h2 id="relationships">Semantic relationships</h2>
+      </div>
+      <p>These arrows describe what one node is doing in relation to another.</p>
+    </div>
+    <div class="guide-relationship-list">
+      {relationships.map(([name, description]) => (
+        <article>
+          <strong>{name}</strong>
+          <p>{description}</p>
+        </article>
+      ))}
+    </div>
+    <div class="guide-note">
+      <strong>Conversation order is different.</strong>
+      <p>
+        A debate move means “this commonly follows that in conversation.” A semantic
+        relationship means “this supports, challenges, depends on, or otherwise bears on
+        that.” One is dialogue flow; the other is reasoning structure.
+      </p>
+    </div>
+  </section>
+
+  <section class="page-width guide-section" aria-labelledby="endpoints">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">End of a branch</p>
+        <h2 id="endpoints">Terminal outcomes</h2>
+      </div>
+      <p>An endpoint tells you why the mapped conversational line stops there.</p>
+    </div>
+    <div class="guide-outcome-grid">
+      {outcomes.map(([name, description]) => (
+        <article class="guide-panel">
+          <h3>{name}</h3>
+          <p>{description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-width guide-section" aria-labelledby="sources">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Evidence discipline</p>
+        <h2 id="sources">How to read sources and status</h2>
+      </div>
+    </div>
+    <div class="guide-two-column">
+      <article class="guide-panel">
+        <h3>Sources are traceable</h3>
+        <p>
+          Reference pages distinguish primary texts, scholarship, apologetics,
+          skeptical material, and other references. Important claims should ultimately
+          be traceable to the strongest available underlying material.
+        </p>
+        <a href={base + "sources/"}>Browse Source Library →</a>
+      </article>
+      <article class="guide-panel">
+        <h3>Pipeline status is not truth status</h3>
+        <p>
+          Discovered, indexed, summarized, and integrated describe how far a source has
+          moved through the research workflow. They do not mean the source is correct.
+        </p>
+      </article>
+      <article class="guide-panel">
+        <h3>Editorial status</h3>
+        <p>
+          Draft, reviewed, and stable indicate maturity of the note itself. They are a
+          cue for how settled the map entry is, not a substitute for checking evidence.
+        </p>
+      </article>
+      <article class="guide-panel">
+        <h3>Consensus labels</h3>
+        <p>
+          Scholarship and Christian-consensus fields indicate how a position is situated
+          within those communities when that metadata is available.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="page-width guide-section guide-last" aria-labelledby="workflow">
+    <div class="guide-start-card">
+      <p class="eyebrow">Recommended workflow</p>
+      <h2 id="workflow">When you are actually in a conversation</h2>
+      <ol>
+        <li><strong>Find the topic</strong> or start in Debate Explorer.</li>
+        <li><strong>Match the other person’s response</strong> instead of forcing a memorized script.</li>
+        <li><strong>Follow that branch</strong> until you need more explanation or evidence.</li>
+        <li><strong>Open the full reference</strong> to understand premises, qualifications, and sources.</li>
+        <li><strong>Use the maps</strong> when you need to see alternate routes or how several arguments connect.</li>
+      </ol>
+      <div class="guide-actions">
+        <a class="guide-primary-action" href={base}>Start exploring →</a>
+        <a href={base + "topics/"}>Browse topics</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
