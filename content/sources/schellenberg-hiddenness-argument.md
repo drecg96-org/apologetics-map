@@ -26,7 +26,7 @@ source:
   stance: challenges
   identifiers:
     doi: 10.1093/acprof:oso/9780198733089.001.0001
-    isbn: 9780198733089
+    isbn: "9780198733089"
 ---
 
 # Source
