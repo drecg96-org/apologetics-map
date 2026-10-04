@@ -13,9 +13,9 @@ tags:
   - moral-ontology
 conversation:
   follows:
-    - objective-morality
-  label: grounding question
-  priority: 70
+    - moral-realism-provisionally-accepted
+  label: move to grounding
+  priority: 10
 status:
   editorial: draft
   scholarship: contested
