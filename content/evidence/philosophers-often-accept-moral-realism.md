@@ -2,14 +2,12 @@
 id: philosophers-often-accept-moral-realism
 title: Moral realism is a mainstream position among philosophers
 type: evidence
-summary: "The PhilPapers 2020 survey found 62.07% of responding philosophers accepted or leaned toward moral realism, showing that stance-independent morality is a mainstream philosophical position rather than a uniquely religious assumption."
+summary: "The PhilPapers 2020 survey found 62.07% of responding philosophers accepted or leaned toward moral realism, showing that realism is a mainstream philosophical position rather than a uniquely religious assumption."
 topics:
   - morality
 relationships:
   - type: evidence_for
     target: objective-morality
-  - type: qualifies
-    target: morality-is-subjective
 tags:
   - survey
   - moral-realism
@@ -20,7 +18,7 @@ status:
 conversation:
   follows:
     - objective-morality
-  label: context
+  label: context, not proof
   priority: 60
 references:
   - source: philpapers-2020-metaethics
@@ -40,8 +38,12 @@ A related question found **69.25%** accepting or leaning toward cognitivism and 
 
 ## What this does show
 
-Objective or realist approaches to morality are not merely a Christian apologetic invention. They are mainstream options in contemporary philosophy, including among many non-theists.
+Realist approaches to morality are mainstream options in contemporary philosophy and are not uniquely Christian or even uniquely theistic.
+
+That matters apologetically because the conversation should not be framed as "Christianity versus obviously subjective morality." Secular philosophers occupy serious positions on both sides of the realism debate.
 
 ## What this does not show
 
-Philosophers can be wrong, survey populations have selection effects, and majority opinion is not a truth-maker. This node therefore supplies intellectual context rather than a premise from authority.
+This is not evidence from majority authority that realism is true. Philosophers can be wrong, survey populations have selection effects, and professional consensus is not a moral truth-maker.
+
+This node therefore supplies intellectual context about the live philosophical landscape rather than a premise in the argument for realism.
