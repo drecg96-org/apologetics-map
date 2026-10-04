@@ -86,7 +86,9 @@ function debateLayout(
   }
 
   for (const node of graph.nodes) {
-    if (visibleIds.has(node.id) && node.conversation?.opening) participating.add(node.id);
+    if (!visibleIds.has(node.id)) continue;
+    if (node.type === "source" || node.type === "topic") continue;
+    if (node.conversation) participating.add(node.id);
   }
 
   const incoming = new Map<string, typeof flowEdges>();
@@ -278,7 +280,7 @@ export default function GraphExplorer({ graph, basePath, initialTopic = "all" }:
         edges={layout.edges}
         fitView
         fitViewOptions={{ padding: 0.18, maxZoom: 1.1 }}
-        minZoom={0.18}
+        minZoom={mode === "debate" ? 0.32 : 0.18}
         maxZoom={1.8}
         nodesDraggable={mode === "atlas"}
         nodesConnectable={false}
@@ -347,14 +349,18 @@ export default function GraphExplorer({ graph, basePath, initialTopic = "all" }:
             </div>
 
             <div className="graph-toolbar-footer">
-              <label className="source-toggle">
-                <input
-                  type="checkbox"
-                  checked={showSources}
-                  onChange={(event) => setShowSources(event.target.checked)}
-                />
-                Show source nodes
-              </label>
+              {mode === "atlas" ? (
+                <label className="source-toggle">
+                  <input
+                    type="checkbox"
+                    checked={showSources}
+                    onChange={(event) => setShowSources(event.target.checked)}
+                  />
+                  Show source nodes
+                </label>
+              ) : (
+                <span>Semantic sources hidden in debate mode</span>
+              )}
               <span>{layout.nodes.length} shown</span>
             </div>
           </div>
