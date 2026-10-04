@@ -18,6 +18,7 @@ status:
 conversation:
   follows:
     - reasons-internalism-reply
+    - do-practical-judgments-match-desire-relative-reasons
   label: accept internalist implication
   priority: 20
   terminal:
@@ -34,6 +35,12 @@ references:
 On this view, reasons for action are not wholly independent of the agent's motivational or evaluative standpoint.
 
 A person with radically different motivations may therefore lack a categorical reason that another person has. Social sanctions, persuasion, coordination, and conditional reasons can still apply.
+
+## Practical consistency
+
+This position is not refuted merely because its defender behaves kindly, follows laws, or continues to use moral language. Those practices can be supported by the defender's own values, social commitments, prudential concerns, or a nonliteral use of moral discourse.
+
+The sharper test is what the defender thinks is true **of an agent whose motivations differ radically from theirs**. If they consistently deny that such an agent has a stance-independent reason to refrain, they have accepted the internalist implication rather than contradicted themselves.
 
 ## Debate consequence
 
