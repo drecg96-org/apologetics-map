@@ -107,6 +107,29 @@ Supported argument/inference forms are `deductive`, `inductive`, `abductive`, `t
 
 The validator checks that statement references resolve to claim nodes, local statement/inference IDs are unique, and non-premise statements are actually produced by an inference.
 
+### Challenging an inference
+
+Sometimes an interlocutor grants the stated premises but rejects the move from those premises to the conclusion. Do not force that objection onto one premise if the real target is the inference itself.
+
+Objection nodes can declare:
+
+```yaml
+inference_challenges:
+  - argument: transcendental-argument-for-christian-theism
+    inference: i2
+    note: The objection grants the prior statements but denies that they establish the stronger conclusion.
+```
+
+Rules:
+
+- `inference_challenges` is valid only on `objection` nodes.
+- `argument` must resolve to an argument node with formal structure.
+- `inference` must be a local inference ID on that argument.
+- Keep the objection as a normal canonical node with sources, conversation flow, and semantic relationships as appropriate.
+- Replies target the objection node normally with `responds_to`; do not create a second inference-specific response system.
+
+This field is intentionally narrow. Premise objections should continue to challenge the reusable premise claim itself.
+
 ## Topic membership
 
 ```yaml
