@@ -29,18 +29,6 @@ const TYPE_ACCENT: Record<string, string> = {
   source: "#646464",
 };
 
-const RELATION_ACCENT: Record<string, string> = {
-  supports: "#3f6f55",
-  evidence_for: "#3f6f55",
-  challenges: "#9a3f3f",
-  contradicts: "#9a3f3f",
-  responds_to: "#315c8a",
-  depends_on: "#6750a4",
-  qualifies: "#8a5a17",
-  related_to: "#74706a",
-  addresses: "#315c8a",
-};
-
 function makeNode(
   id: string,
   title: string,
@@ -75,17 +63,22 @@ function makeNode(
   };
 }
 
-function makeEdge(id: string, source: string, target: string, type: string): Edge {
-  const accent = RELATION_ACCENT[type] ?? "#74706a";
+function makeEdge(id: string, source: string, target: string, label: string): Edge {
   return {
     id,
     source,
     target,
-    label: type.replaceAll("_", " "),
-    markerEnd: { type: MarkerType.ArrowClosed, color: accent },
-    style: { stroke: accent, strokeWidth: 1.6 },
-    labelStyle: { fill: "var(--muted)", fontSize: 10, fontWeight: 650 },
-    labelBgStyle: { fill: "var(--panel)", fillOpacity: 0.92 },
+    label,
+    markerEnd: { type: MarkerType.ArrowClosed, color: "var(--accent)" },
+    style: { stroke: "var(--accent)", strokeWidth: 1.8 },
+    labelStyle: { fill: "var(--text)", fontSize: 10, fontWeight: 700 },
+    labelBgStyle: {
+      fill: "var(--panel)",
+      stroke: "var(--line)",
+      strokeWidth: 1,
+    },
+    labelBgPadding: [5, 3],
+    labelBgBorderRadius: 5,
   };
 }
 
@@ -95,12 +88,17 @@ export default function DebatePosition({ graph, currentId, basePath }: Props) {
     const current = byId.get(currentId);
     if (!current) return { nodes: [] as Node[], edges: [] as Edge[] };
 
-    const incoming = graph.edges.filter((edge) => edge.target === currentId);
-    const outgoing = graph.edges.filter((edge) => edge.source === currentId);
+    const incoming = graph.flowEdges
+      .filter((edge) => edge.target === currentId)
+      .sort((a, b) => a.priority - b.priority);
+    const outgoing = graph.flowEdges
+      .filter((edge) => edge.source === currentId)
+      .sort((a, b) => a.priority - b.priority);
+
     const secondHop = outgoing.flatMap((reply) =>
-      graph.edges
+      graph.flowEdges
         .filter((edge) => edge.source === reply.target)
-        .filter((edge) => edge.target !== currentId),
+        .sort((a, b) => a.priority - b.priority),
     );
 
     const nodes: Node[] = [];
@@ -127,12 +125,12 @@ export default function DebatePosition({ graph, currentId, basePath }: Props) {
 
     incoming.forEach((edge, index) => {
       place(edge.source, -1, index, incoming.length);
-      edges.push(makeEdge(edge.id, edge.source, edge.target, edge.type));
+      edges.push(makeEdge(edge.id, edge.source, edge.target, edge.label));
     });
 
     outgoing.forEach((edge, index) => {
       place(edge.target, 1, index, outgoing.length);
-      edges.push(makeEdge(edge.id, edge.source, edge.target, edge.type));
+      edges.push(makeEdge(edge.id, edge.source, edge.target, edge.label));
     });
 
     const counterIds = Array.from(new Set(secondHop.map((edge) => edge.target)));
@@ -140,12 +138,14 @@ export default function DebatePosition({ graph, currentId, basePath }: Props) {
 
     secondHop.forEach((edge) => {
       if (placed.has(edge.source) && placed.has(edge.target)) {
-        edges.push(makeEdge(edge.id, edge.source, edge.target, edge.type));
+        edges.push(makeEdge(edge.id, edge.source, edge.target, edge.label));
       }
     });
 
     return { nodes, edges };
   }, [graph, currentId]);
+
+  if (position.edges.length === 0) return null;
 
   return (
     <div className="position-graph">
