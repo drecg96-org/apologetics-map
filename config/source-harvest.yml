@@ -203,7 +203,7 @@ providers:
       - topic: morality
         query: secular moral realism God
         required_any:
-          - secular
+          - moral
 
   crossref:
     enabled: true
