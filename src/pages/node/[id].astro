@@ -463,7 +463,9 @@ function sourceClass(sourceNode: any) {
         feedbackIssueLink.removeAttribute("href");
       }
       showFeedbackStatus(
-        "This creates a public GitHub issue through Apologetics Map Bot. Your name is optional.",
+        feedbackDialog?.dataset.feedbackEndpoint
+          ? "This creates a public GitHub issue through Apologetics Map Bot. Your name is optional."
+          : "GitHub will open with a prefilled issue. Review it there, then submit it to the repository.",
       );
       (window as any).turnstile?.reset();
     }
