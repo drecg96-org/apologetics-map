@@ -1,4 +1,4 @@
-# Faith Map node schema
+# Apologetics Map node schema
 
 Every Markdown file beneath `content/` except README files is a graph node.
 
@@ -36,7 +36,7 @@ relationships:
 
 Supported types: `supports`, `challenges`, `responds_to`, `depends_on`, `qualifies`, `contradicts`, `related_to`, `evidence_for`, `addresses`.
 
-Do not duplicate inverse edges. The viewer can derive incoming relationships.
+Do not duplicate inverse edges. The viewer derives incoming relationships from the canonical outgoing edges.
 
 ## Topic membership
 

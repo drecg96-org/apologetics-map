@@ -7,7 +7,7 @@ Intended policy:
 - code-owner review is required, with `@drecg96` as code owner;
 - stale approvals are dismissed after new commits;
 - review conversations must be resolved;
-- the **Validate graph** check must pass;
+- both **Validate graph** and **Build viewer** checks must pass;
 - force pushes and branch deletion are blocked.
 
 The repository owner may retain an administrator bypass for intentional direct pushes or recovery. Everyone else should use pull requests.

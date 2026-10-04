@@ -1,6 +1,6 @@
 # Contributing
 
-Faith Map should make disagreements clearer, not merely accumulate apologetics talking points.
+Apologetics Map should make disagreements clearer, not merely accumulate apologetics talking points.
 
 ## Content rules
 
@@ -19,4 +19,5 @@ Normal changes should go through pull requests. CI must pass before merge. The r
 ```bash
 npm install
 npm run validate
+npm run build
 ```

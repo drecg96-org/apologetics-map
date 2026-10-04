@@ -54,4 +54,4 @@ export const NodeSchema = z.object({
   }).optional(),
 }).strict();
 
-export type FaithMapNode = z.infer<typeof NodeSchema>;
+export type ApologeticsMapNode = z.infer<typeof NodeSchema>;

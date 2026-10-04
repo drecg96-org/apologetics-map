@@ -1,8 +1,8 @@
-# Faith Map
+# Apologetics Map
 
-Faith Map is a version-controlled knowledge graph for Christian theology, apologetics, objections, counterarguments, evidence, sources, and worldview comparisons.
+Apologetics Map is a version-controlled knowledge graph for Christian theology, apologetics, objections, counterarguments, evidence, sources, and worldview comparisons.
 
-The canonical data is plain Markdown with YAML frontmatter. Each file represents one reusable intellectual node. Relationships in frontmatter turn those files into a directed graph that can later power a debate-tree ("chess line") viewer, a global atlas, topic pages, search, and study tools.
+The canonical data is plain Markdown with YAML frontmatter. Each file represents one reusable intellectual node. Relationships in frontmatter turn those files into a directed graph that powers both article-style reference pages and an interactive debate map.
 
 ## Repository layout
 
@@ -15,22 +15,39 @@ content/
   responses/
   evidence/
   sources/
-src/schema.ts
-scripts/validate-graph.ts
-docs/SCHEMA.md
+src/
+  components/
+  layouts/
+  lib/
+  pages/
+  styles/
+  schema.ts
+scripts/
+  validate-graph.ts
+docs/
+  SCHEMA.md
 ```
 
 See [docs/SCHEMA.md](docs/SCHEMA.md) before adding content.
 
-## Validate
+## Run locally
 
 Requires Node.js 24+.
 
 ```bash
 npm install
-npm run validate
+npm run dev
 ```
 
-Pull requests run the same validation automatically.
+Then open the local Astro URL shown in the terminal.
 
-**Design rule:** the viewer may render a tree, but the source data remains a graph.
+## Validate and build
+
+```bash
+npm run validate
+npm run build
+```
+
+Pull requests run both graph validation and the production Astro build automatically.
+
+**Design rule:** the viewer may render a tree or map, but the canonical source data remains a graph.
