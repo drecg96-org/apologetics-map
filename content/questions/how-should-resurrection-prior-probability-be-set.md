@@ -24,6 +24,7 @@ tags:
 conversation:
   follows:
     - may-historical-reasoning-consider-supernatural-explanations
+    - bayesian-comparison-can-include-miracles-without-assuming-them
   label: surface the prior
   priority: 10
 status:
