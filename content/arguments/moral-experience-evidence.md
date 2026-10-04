@@ -26,6 +26,8 @@ references:
   - source: alex-oconnor-ethical-emotivism
     note: Direct anti-realist alternative to treating moral experience as perception of objective facts.
   - source: apologia-moral-argument
+  - source: the-moral-argument-for-god-s-existence-1e1d2769
+    note: Wood presents moral phenomena as pervasive experiential data that can motivate an explanatory argument for God.
 ---
 
 # Argument
