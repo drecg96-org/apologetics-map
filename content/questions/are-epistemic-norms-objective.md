@@ -10,8 +10,6 @@ relationships:
     target: morality-is-subjective
   - type: addresses
     target: moral-queerness
-  - type: supports
-    target: epistemic-norms-companions-in-guilt
 tags:
   - normativity
   - epistemology
