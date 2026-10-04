@@ -4,16 +4,25 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const nodeTypes = [
-  ["topic", "A subject area that groups related material, such as objective morality or the resurrection."],
-  ["question", "A question that opens or organizes a line of inquiry."],
-  ["claim", "A proposition someone is asserting as true or asking the other person to grant."],
-  ["argument", "A reasoned case made from one or more premises toward a conclusion."],
-  ["objection", "A challenge to a claim, argument, doctrine, or inference."],
-  ["response", "A reply that answers, qualifies, or reframes an objection or earlier move."],
-  ["evidence", "A factual, historical, philosophical, textual, or other evidential consideration used to support a claim."],
+  ["topic", "A subject area that groups related debate material, such as morality or the resurrection."],
+  ["question", "A decision point or fork. It asks which position is being taken; it should not secretly do the work of an argument."],
+  ["claim", "A proposition that can be affirmed, denied, qualified, supported, or challenged."],
+  ["argument", "Reasons offered for accepting a claim. This is where premises and inferential pressure toward a conclusion live."],
+  ["objection", "A challenge to a claim, argument, doctrine, or inference: a reason it may be false, incomplete, or unsuccessful."],
+  ["response", "A reply to an objection or earlier move that answers, qualifies, distinguishes, or reframes it."],
+  ["evidence", "A factual, historical, philosophical, textual, or other consideration that raises or lowers confidence in a claim."],
   ["doctrine", "A theological teaching that may depend on, explain, or connect several claims."],
   ["worldview", "A larger interpretive framework whose commitments affect how individual arguments are evaluated."],
-  ["source", "A book, paper, article, video, primary text, Scripture reference, or other source used to ground the map."],
+  ["source", "A book, paper, article, video, primary text, Scripture reference, or other reference from which claims and evidence can be checked."],
+];
+
+const debateFlow = [
+  ["question", "Where does the debate branch?", "Ask what the person actually believes or grants."],
+  ["claim", "What position is being asserted?", "State the proposition clearly enough that it can be accepted or denied."],
+  ["argument", "Why accept that claim?", "Give reasons rather than smuggling the conclusion into a question."],
+  ["objection", "What is the strongest challenge?", "Represent the serious alternative or failure point."],
+  ["response", "How does the argument answer?", "Reply, distinguish, concede, or revise rather than ignoring the objection."],
+  ["evidence", "What should change our confidence?", "Anchor important premises and historical or factual claims in checkable material."],
 ];
 
 const relationships = [
@@ -100,10 +109,44 @@ const outcomes = [
     </div>
   </section>
 
+  <section class="page-width guide-section" aria-labelledby="note-flow">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">How the notes fit together</p>
+        <h2 id="note-flow">Questions structure the debate. Arguments provide reasons within it.</h2>
+      </div>
+      <p>This is the core mental model for reading a large argument tree without getting lost.</p>
+    </div>
+
+    <div class="guide-note-flow" aria-label="Typical debate-note flow">
+      {debateFlow.map(([type, prompt, description], index) => (
+        <>
+          <article class="guide-flow-card">
+            <span class={"type-badge type-" + type}>{type}</span>
+            <strong>{prompt}</strong>
+            <p>{description}</p>
+          </article>
+          {index < debateFlow.length - 1 && <span class="guide-flow-arrow" aria-hidden="true">→</span>}
+        </>
+      ))}
+    </div>
+
+    <div class="guide-note">
+      <strong>Think in roles, not a rigid formula.</strong>
+      <p>
+        A real debate can jump between these note types, and one claim may have several
+        independent arguments, objections, and responses. The discipline is that each
+        note should have one clear job: questions create forks, claims state positions,
+        arguments give reasons, objections challenge them, responses answer challenges,
+        and evidence anchors factual premises.
+      </p>
+    </div>
+  </section>
+
   <section class="page-width guide-section" aria-labelledby="read-debate">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Following an argument</p>
+        <p class="eyebrow">Following a debate line</p>
         <h2 id="read-debate">What the Debate Explorer is showing you</h2>
       </div>
     </div>
@@ -118,8 +161,9 @@ const outcomes = [
       <article class="guide-panel">
         <h3>The current position</h3>
         <p>
-          This is the claim, objection, response, or other move you are currently
-          discussing. “Open full reference” takes you to its detailed note.
+          This is the question, claim, argument, objection, response, or other move you
+          are currently discussing. Its type tells you what job that note is doing.
+          “Open full reference” takes you to its detailed note.
         </p>
       </article>
       <article class="guide-panel">
