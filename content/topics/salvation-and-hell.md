@@ -18,6 +18,10 @@ relationships:
     target: judgment-considers-knowledge-and-opportunity
   - type: related_to
     target: restrictivist-views-make-faith-in-christ-decisive
+  - type: related_to
+    target: can-someone-be-saved-after-death
+  - type: related_to
+    target: why-would-anyone-reject-god-after-clear-revelation
 tags:
   - salvation
   - hell
@@ -46,3 +50,6 @@ The line then separates several issues that are often compressed into the phrase
 7. Some Christian traditions make explicit saving faith in Christ normatively decisive; others allow possible salvation where explicit knowledge is absent through no fault of the person.
 8. The self-exclusion model faces a serious follow-up: **what about sincere or nonresistant nonbelief?**
 9. Christian traditions do not all answer that final question in the same way.
+10. A further fork asks whether **death fixes a person's response to God** or whether meaningful repentance can continue after death.
+11. Traditional Catholic and Reformed accounts treat death as decisive, while some free-will and universalist models allow postmortem opportunity or eventual reconciliation.
+12. If postmortem freedom is allowed, clearer knowledge still does not automatically equal love—but universalists press the further question of why free resistance would need to last forever.
