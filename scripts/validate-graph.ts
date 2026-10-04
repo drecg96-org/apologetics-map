@@ -1,11 +1,11 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import YAML from "yaml";
-import { NodeSchema, type FaithMapNode } from "../src/schema.js";
+import { NodeSchema, type ApologeticsMapNode } from "../src/schema.js";
 
 const CONTENT_ROOT = path.resolve("content");
 
-type LoadedNode = { file: string; node: FaithMapNode };
+type LoadedNode = { file: string; node: ApologeticsMapNode };
 
 async function markdownFiles(dir: string): Promise<string[]> {
   const entries = await readdir(dir, { withFileTypes: true });

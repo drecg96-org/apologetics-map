@@ -3,18 +3,18 @@ import path from "node:path";
 import { marked } from "marked";
 import sanitizeHtml from "sanitize-html";
 import YAML from "yaml";
-import { NodeSchema, type FaithMapNode } from "../schema.js";
+import { NodeSchema, type ApologeticsMapNode } from "../schema.js";
 
 const CONTENT_ROOT = path.resolve(process.cwd(), "content");
 
-export type LoadedNode = FaithMapNode & {
+export type LoadedNode = ApologeticsMapNode & {
   body: string;
   html: string;
   file: string;
 };
 
 export type GraphPayload = {
-  nodes: Array<Pick<FaithMapNode, "id" | "title" | "type" | "summary" | "topics" | "tags">>;
+  nodes: Array<Pick<ApologeticsMapNode, "id" | "title" | "type" | "summary" | "topics" | "tags">>;
   edges: Array<{
     id: string;
     source: string;
