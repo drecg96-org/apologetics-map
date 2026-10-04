@@ -79,6 +79,15 @@ async function main() {
       }
     }
 
+    for (const previousId of item.node.conversation?.follows ?? []) {
+      if (!byId.has(previousId)) {
+        errors.push(`${item.file}: conversation follows unknown node "${previousId}"`);
+      }
+      if (previousId === item.node.id) {
+        errors.push(`${item.file}: conversation cannot follow itself`);
+      }
+    }
+
     for (const reference of item.node.references) {
       const source = byId.get(reference.source);
       if (!source) errors.push(`${item.file}: reference points to unknown source "${reference.source}"`);
