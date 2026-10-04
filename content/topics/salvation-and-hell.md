@@ -22,6 +22,12 @@ relationships:
     target: can-someone-be-saved-after-death
   - type: related_to
     target: why-would-anyone-reject-god-after-clear-revelation
+  - type: related_to
+    target: sin-atonement-and-divine-power
+  - type: related_to
+    target: why-did-an-omnipotent-god-require-the-cross
+  - type: related_to
+    target: why-not-save-everyone-by-default
 tags:
   - salvation
   - hell
