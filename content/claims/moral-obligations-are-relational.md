@@ -14,6 +14,7 @@ tags:
 status:
   editorial: draft
   scholarship: contested
+  christian: contested
 conversation:
   follows:
     - moral-grounding-theism
@@ -28,6 +29,11 @@ references:
     note: Evans directly argues that moral obligation is grounded in a social relation between humans and God.
   - source: the-moral-argument-for-the-existence-of-god-an-evaluation-of-fe03754d
     note: Recent defense addressing objections to the social or relational character of moral obligation.
+scripture:
+  - reference: Matthew 22:37-40
+    note: Jesus frames the greatest commandments relationally as love owed to God and neighbor.
+  - reference: Romans 13:8-10
+    note: Paul describes love of neighbor as fulfilling the law, connecting obligation to interpersonal relation.
 ---
 
 # Claim
