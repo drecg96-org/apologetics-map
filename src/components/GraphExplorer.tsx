@@ -128,8 +128,14 @@ export default function GraphExplorer({ graph, basePath }: Props) {
         }}
       >
         <Background gap={24} size={1} />
-        <Controls />
-        <MiniMap pannable zoomable />
+        <Controls showInteractive={false} />
+        <MiniMap
+          pannable
+          zoomable
+          bgColor="var(--panel)"
+          maskColor="color-mix(in srgb, var(--bg) 78%, transparent)"
+          nodeColor="var(--muted)"
+        />
         <Panel position="top-left">
           <div className="graph-toolbar">
             <input
