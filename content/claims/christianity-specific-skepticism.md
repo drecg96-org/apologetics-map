@@ -20,6 +20,7 @@ status:
 conversation:
   follows:
     - what-kind-of-nonbelief-is-being-defended
+    - natural-theology-does-not-by-itself-establish-christianity
   label: maybe God, not Christianity
   priority: 15
 references:
