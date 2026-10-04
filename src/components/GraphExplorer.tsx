@@ -11,6 +11,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import type { GraphPayload } from "../lib/graph";
+import LineExplorer from "./LineExplorer";
 
 type Props = {
   graph: GraphPayload;
@@ -232,7 +233,7 @@ export default function GraphExplorer({ graph, basePath, initialTopic = "all" }:
   const [query, setQuery] = useState("");
   const [type, setType] = useState("all");
   const [topic, setTopic] = useState(initialTopic);
-  const [mode, setMode] = useState<"debate" | "atlas">("debate");
+  const [mode, setMode] = useState<"debate" | "line" | "atlas">("debate");
   const [showSources, setShowSources] = useState(false);
 
   const topics = graph.nodes
@@ -272,6 +273,97 @@ export default function GraphExplorer({ graph, basePath, initialTopic = "all" }:
     (a, b) => TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b),
   );
 
+  const toolbar = (
+    <div className="graph-toolbar">
+      <div className="graph-mode" role="group" aria-label="Explorer mode">
+        <button
+          type="button"
+          className={mode === "debate" ? "active" : ""}
+          onClick={() => setMode("debate")}
+        >
+          Debate flow
+        </button>
+        <button
+          type="button"
+          className={mode === "line" ? "active" : ""}
+          onClick={() => setMode("line")}
+        >
+          Line explorer
+        </button>
+        <button
+          type="button"
+          className={mode === "atlas" ? "active" : ""}
+          onClick={() => setMode("atlas")}
+        >
+          Knowledge atlas
+        </button>
+      </div>
+
+      <input
+        aria-label="Search map"
+        type="search"
+        value={query}
+        placeholder="Search claims, objections…"
+        onChange={(event) => setQuery(event.target.value)}
+      />
+
+      <div className="graph-filter-row">
+        <select
+          aria-label="Filter by topic"
+          value={topic}
+          onChange={(event) => setTopic(event.target.value)}
+        >
+          <option value="all">All topics</option>
+          {topics.map((item) => (
+            <option key={item.id} value={item.id}>{item.title}</option>
+          ))}
+        </select>
+
+        <select
+          aria-label="Filter by node type"
+          value={type}
+          onChange={(event) => setType(event.target.value)}
+        >
+          <option value="all">All node types</option>
+          {nodeTypes.map((nodeType) => (
+            <option key={nodeType} value={nodeType}>{nodeType}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="graph-toolbar-footer">
+        {mode === "atlas" ? (
+          <label className="source-toggle">
+            <input
+              type="checkbox"
+              checked={showSources}
+              onChange={(event) => setShowSources(event.target.checked)}
+            />
+            Show source nodes
+          </label>
+        ) : mode === "line" ? (
+          <span>Follow one debate position at a time</span>
+        ) : (
+          <span>Semantic sources hidden in debate mode</span>
+        )}
+        <span>{mode === "line" ? visibleIds.size : layout.nodes.length} shown</span>
+      </div>
+    </div>
+  );
+
+  if (mode === "line") {
+    return (
+      <div className="graph-shell line-shell">
+        <div className="line-toolbar-wrap">{toolbar}</div>
+        <LineExplorer
+          graph={graph}
+          visibleIds={Array.from(visibleIds)}
+          basePath={basePath}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="graph-shell">
       <ReactFlow
@@ -298,72 +390,7 @@ export default function GraphExplorer({ graph, basePath, initialTopic = "all" }:
           nodeColor="var(--muted)"
         />
         <Panel position="top-left">
-          <div className="graph-toolbar">
-            <div className="graph-mode" role="group" aria-label="Graph mode">
-              <button
-                type="button"
-                className={mode === "debate" ? "active" : ""}
-                onClick={() => setMode("debate")}
-              >
-                Debate flow
-              </button>
-              <button
-                type="button"
-                className={mode === "atlas" ? "active" : ""}
-                onClick={() => setMode("atlas")}
-              >
-                Knowledge atlas
-              </button>
-            </div>
-
-            <input
-              aria-label="Search map"
-              type="search"
-              value={query}
-              placeholder="Search claims, objections…"
-              onChange={(event) => setQuery(event.target.value)}
-            />
-
-            <div className="graph-filter-row">
-              <select
-                aria-label="Filter by topic"
-                value={topic}
-                onChange={(event) => setTopic(event.target.value)}
-              >
-                <option value="all">All topics</option>
-                {topics.map((item) => (
-                  <option key={item.id} value={item.id}>{item.title}</option>
-                ))}
-              </select>
-
-              <select
-                aria-label="Filter by node type"
-                value={type}
-                onChange={(event) => setType(event.target.value)}
-              >
-                <option value="all">All node types</option>
-                {nodeTypes.map((nodeType) => (
-                  <option key={nodeType} value={nodeType}>{nodeType}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="graph-toolbar-footer">
-              {mode === "atlas" ? (
-                <label className="source-toggle">
-                  <input
-                    type="checkbox"
-                    checked={showSources}
-                    onChange={(event) => setShowSources(event.target.checked)}
-                  />
-                  Show source nodes
-                </label>
-              ) : (
-                <span>Semantic sources hidden in debate mode</span>
-              )}
-              <span>{layout.nodes.length} shown</span>
-            </div>
-          </div>
+          {toolbar}
         </Panel>
       </ReactFlow>
     </div>

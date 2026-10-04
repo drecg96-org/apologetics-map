@@ -44,7 +44,7 @@ const graph = toGraphPayload(nodes);
         <p class="eyebrow">Debate map</p>
         <h2>{topic.title} debate flow</h2>
       </div>
-      <p>Debate Flow shows conversational order; switch to Knowledge Atlas for semantic relationships.</p>
+      <p>Debate Flow shows conversational order; Line Explorer lets you step through a branch; Knowledge Atlas shows semantic relationships.</p>
     </div>
     <GraphExplorer client:load graph={graph} basePath={base} initialTopic={topic.id} />
   </section>
