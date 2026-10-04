@@ -8,8 +8,14 @@ topics:
 relationships:
   - type: challenges
     target: christianity
+  - type: challenges
+    target: abductive-case-for-resurrection
   - type: related_to
     target: miracle-claims-face-a-high-evidential-burden
+inference_challenges:
+  - argument: abductive-case-for-resurrection
+    inference: i2
+    note: The objection may grant much of the historical core while denying that historical method can identify divine resurrection as the best causal explanation.
 tags:
   - resurrection
   - historical-method
@@ -21,12 +27,9 @@ status:
 conversation:
   follows:
     - miracle-claims-face-a-high-evidential-burden
+    - abductive-case-for-resurrection
   label: history can study the claim, not prove the miracle
   priority: 5
-  terminal:
-    kind: unresolved
-    label: Resurrection methodology debate
-    note: Future replies should distinguish methodological naturalism, inference to the best explanation, and the specific historical evidence for the resurrection.
 references:
   - source: ehrman-resurrection-historical-method
     note: Public-scholarly statement of the methodological objection as applied to Jesus' resurrection.
