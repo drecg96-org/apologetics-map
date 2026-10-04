@@ -110,21 +110,28 @@ function sourceClass(sourceNode: any) {
       </div>
     </header>
 
-    {(previousMoves.length > 0 || nextMoves.length > 0) && (
-      <section class="position-section" aria-labelledby="position-heading">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Debate line</p>
-            <h2 id="position-heading">Current position</h2>
-          </div>
-          <p>
-            This view follows conversational order rather than semantic arrow direction.
-            Tap a move to continue that branch.
-          </p>
-        </div>
-        <DebatePosition client:load graph={graph} currentId={node.id} basePath={base} />
-      </section>
-    )}
+
+
+    <div class="node-layout">
+      <div>
+        {node.type === "source" && node.source && (
+          <section class="source-detail">
+            <p class="eyebrow">Source details</p>
+            <dl>
+              {node.source.kind && <><dt>Type</dt><dd>{node.source.kind}</dd></>}
+              {node.source.authors && <><dt>Author</dt><dd>{node.source.authors.join(", ")}</dd></>}
+              {node.source.year && <><dt>Year</dt><dd>{node.source.year}</dd></>}
+              {node.source.publisher && <><dt>Publisher</dt><dd>{node.source.publisher}</dd></>}
+            </dl>
+            {node.source.url && (
+              <a class="external-source" href={node.source.url} target="_blank" rel="noreferrer">
+                Open original source ↗
+              </a>
+            )}
+          </section>
+        )}
+
+        <div class="prose" set:html={node.html} />
 
     {(previousMoves.length > 0 || nextMoves.length > 0) && (
       <section class="move-strip" aria-label="Debate navigation">
@@ -157,26 +164,21 @@ function sourceClass(sourceNode: any) {
       </section>
     )}
 
-    <div class="node-layout">
-      <div>
-        {node.type === "source" && node.source && (
-          <section class="source-detail">
-            <p class="eyebrow">Source details</p>
-            <dl>
-              {node.source.kind && <><dt>Type</dt><dd>{node.source.kind}</dd></>}
-              {node.source.authors && <><dt>Author</dt><dd>{node.source.authors.join(", ")}</dd></>}
-              {node.source.year && <><dt>Year</dt><dd>{node.source.year}</dd></>}
-              {node.source.publisher && <><dt>Publisher</dt><dd>{node.source.publisher}</dd></>}
-            </dl>
-            {node.source.url && (
-              <a class="external-source" href={node.source.url} target="_blank" rel="noreferrer">
-                Open original source ↗
-              </a>
-            )}
-          </section>
-        )}
-
-        <div class="prose" set:html={node.html} />
+    {(previousMoves.length > 0 || nextMoves.length > 0) && (
+      <section class="position-section" aria-labelledby="position-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Debate line</p>
+            <h2 id="position-heading">Where this sits in the debate</h2>
+          </div>
+          <p>
+            This view follows conversational order rather than semantic arrow direction.
+            Tap a move to continue that branch.
+          </p>
+        </div>
+        <DebatePosition client:load graph={graph} currentId={node.id} basePath={base} />
+      </section>
+    )}
 
         {scriptureReferences.length > 0 && (
           <section class="scripture-section">
