@@ -14,10 +14,10 @@ status:
   scholarship: contested
   christian: broad-consensus
 conversation:
-  opening: true
-  follows: []
-  label: opening
-  priority: 20
+  follows:
+    - is-moral-realism-true
+  label: yes — realist thesis
+  priority: 10
 references:
   - source: sep-moral-realism
     note: Neutral orientation to moral realism and its main competitors.
