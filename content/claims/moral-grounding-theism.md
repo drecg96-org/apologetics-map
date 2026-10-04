@@ -27,6 +27,12 @@ references:
   - source: wielenberg-robust-ethics
   - source: reasonable-faith-metaethical-foundations
     note: A contemporary apologetic defense of the claim that theism grounds value, obligation, and accountability.
+  - source: moral-arguments-and-natural-signs-for-god-9f9c8dbf
+    note: Philosophical defense comparing theistic grounding of obligation with naturalistic, contractarian, and neo-Kantian alternatives.
+  - source: the-moral-argument-for-the-existence-of-god-an-evaluation-of-fe03754d
+    note: Recent theistic defense arguing that objective moral truths require a divine personal ground.
+  - source: what-is-a-divine-command-theory-of-moral-obligation-4db447d7
+    note: Evans develops the specific divine-command account of how a personal God could ground binding obligation.
 ---
 
 # Claim
