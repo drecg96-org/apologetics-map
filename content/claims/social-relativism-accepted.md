@@ -35,10 +35,13 @@ conversation:
   terminal:
     kind: accepted-commitment
     label: Anti-realist commitment accepted
-    note: No contradiction has been established on this line. Stop escalating atrocity examples and pivot to an independent realism argument such as moral fallibility, categorical oughts and reasons, or epistemic normativity.
+    note: No contradiction has been established on this line. Stop escalating atrocity examples and pivot to an independent realism argument such as moral fallibility, categorical oughts and reasons, moral progress, or epistemic normativity.
 references:
   - source: sep-moral-realism
+  - source: sep-moral-relativism
   - source: mackie-ethics-inventing-right-and-wrong
+  - source: wong-natural-moralities
+    note: Stronger pluralistic relativism constrains viable moralities without reducing truth to whatever a society happens to approve.
 ---
 
 # Accepted commitment
@@ -59,15 +62,14 @@ On the society-relative version of the position:
 
 If the other person accepts these implications, do not keep escalating to increasingly disturbing cases as though one more example will produce a contradiction. This branch has done its job: the implication has been made explicit and accepted.
 
-The next move is a genuinely independent line of argument. Useful pivots now include:
+The next move is a genuinely independent line of argument:
 
-- **Clarify the ought:** When you say someone "should" not do something, is that conditional on a goal or preference, or is it true regardless of what anyone wants?
-- **Moral fallibility:** Can an individual sincerely approve of something and nevertheless be morally mistaken?
-- **Categorical reasons:** Can someone have a genuine reason not to harm another person even if none of their desires favors restraint?
-- **Epistemic normativity:** Are there objective standards for what one ought to believe, and if so, why is objective normativity possible there but impossible in morality?
-- **Moral progress:** Is later moral judgment ever a correction of an earlier error rather than merely a change in preference?
+- **Moral fallibility:** can an individual sincerely approve of something and nevertheless be morally mistaken?
+- **Categorical reasons:** can someone have a genuine reason not to harm another person even if none of their desires favors restraint?
+- **Moral progress:** is a reform better only by our present lights, or can both earlier and later societies be judged by a standard beyond either one's approval?
+- **Epistemic normativity:** if there are objective standards for what one ought to believe, why is objective normativity possible there but impossible in morality?
 
-These pivots should be represented as new branches, not as continuations of the atrocity test.
+Each branch should then face its strongest anti-realist reply rather than immediately returning to the original society-wide-error example.
 
 ## Important limit
 

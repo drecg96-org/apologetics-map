@@ -30,6 +30,8 @@ references:
     note: Cuneo develops the epistemic-normativity companion into a positive argument for moral realism.
   - source: cowie-companions-in-guilt
     note: Survey of companions-in-guilt strategies and their epistemic, prudential, and mathematical variants.
+  - source: cowie-companions-wont-work
+    note: Direct challenge arguing that prominent epistemic companions-in-guilt arguments face a structural problem.
 ---
 
 # Argument
@@ -44,20 +46,18 @@ The moral realist can therefore ask what relevant difference allows objective ep
 
 For this map's conversational use, the argument is strongest as a **defeater-defeater** against a general queerness objection. It does not directly prove that any particular moral claim is true.
 
-Instead, it argues that if we already tolerate objective normativity in epistemology, then normativity as such cannot be dismissed merely for being non-descriptive or action-guiding.
+Cuneo develops a stronger version: if moral facts do not exist, then relevantly similar epistemic facts do not exist; epistemic facts do exist; therefore moral facts exist. Accepting that argument requires defending both objective epistemic normativity and the claimed parity between the two domains.
 
-Cuneo develops a stronger version. His core argument is that if moral facts do not exist, then relevantly similar epistemic facts do not exist; epistemic facts do exist; therefore moral facts exist and moral realism follows. Accepting that stronger conclusion requires defending both the moral-epistemic parity premise and objective epistemic normativity.
-
-## Anti-realist replies
+## Strong anti-realist replies
 
 The anti-realist can:
 
 - deny objective epistemic normativity as well;
 - give a naturalistic or constructivist account of epistemic norms;
-- accept objective epistemic norms but argue that moral norms differ in a relevant way.
+- accept objective epistemic norms but argue that moral and epistemic normativity differ in a relevant way.
 
-The burden then shifts to explaining that asymmetry.
+Cowie's work shows why the parity premise itself must be defended rather than assumed.
 
 ## Conversational use
 
-Use this as a later pivot, especially after the other person appeals to the strangeness of objective normativity. It is weaker as an opening argument than as a response to a broad anti-realist challenge.
+Use this as a later pivot, especially after the other person appeals to the strangeness of objective normativity. Then follow whichever reply they actually choose: global normative anti-realism or a specific disanalogy.
