@@ -29,6 +29,8 @@ conversation:
   label: why would God stay hidden?
   priority: 10
 references:
+  - source: blanton-nonresistant-nonbelief-pervasive
+    note: Recent scholarship argues that nonresistant nonbelief may be relatively common and distinguishes acquisition from maintenance responsibility.
   - source: sep-divine-hiddenness
     note: Provides the neutral scholarly map of the hiddenness argument and its main theistic replies.
   - source: schellenberg-hiddenness-argument
