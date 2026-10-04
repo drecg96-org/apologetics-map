@@ -58,6 +58,12 @@ export const SourceProcessingSchema = z.object({
   }).strict().optional(),
 }).strict();
 
+export const OriginSchema = z.object({
+  kind: z.enum(["authored", "user-feedback", "source-integration", "agent-research"]),
+  github_issues: z.array(z.number().int().positive()).default([]),
+  note: z.string().min(1).optional(),
+}).strict();
+
 export const NodeSchema = z.object({
   id: slug,
   title: z.string().min(1),
@@ -70,6 +76,7 @@ export const NodeSchema = z.object({
   scripture: z.array(ScriptureReferenceSchema).default([]),
   tags: z.array(slug).default([]),
   aliases: z.array(z.string().min(1)).default([]),
+  origin: OriginSchema.optional(),
   status: z.object({
     editorial: z.enum(["draft", "reviewed", "stable"]).optional(),
     scholarship: z.enum(["unknown", "consensus", "majority", "contested", "minority"]).optional(),
