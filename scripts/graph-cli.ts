@@ -496,6 +496,16 @@ async function main() {
         total: argumentNodes.length,
         structured: argumentNodes.filter((node) => node.argument).map((node) => node.id).sort(),
         unstructured: argumentNodes.filter((node) => !node.argument).map((node) => node.id).sort(),
+        inferenceChallenges: nodes.reduce((total, node) => total + node.inference_challenges.length, 0),
+        inferencesWithoutChallenge: argumentNodes.flatMap((argumentNode) =>
+          (argumentNode.argument?.inferences ?? [])
+            .filter((inference) => !nodes.some((candidate) =>
+              candidate.inference_challenges.some((challenge) =>
+                challenge.argument === argumentNode.id && challenge.inference === inference.id
+              )
+            ))
+            .map((inference) => `${argumentNode.id}#${inference.id}`)
+        ).sort(),
         premiseClaims: [...structuredPremiseIds].sort(),
         premiseClaimsWithoutSupport: [...structuredPremiseIds].filter((id) => {
           const node = byId.get(id);
@@ -562,6 +572,8 @@ async function main() {
         body: node.body,
         relationships: node.relationships,
         conversation: node.conversation,
+        argument: node.argument,
+        inference_challenges: node.inference_challenges,
         references: node.references,
         scripture: node.scripture,
       },
