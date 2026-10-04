@@ -33,6 +33,12 @@ references:
   - source: wielenberg-robust-ethics
   - source: reasonable-faith-metaethical-foundations
     note: Theistic advocacy source defending the grounding step and distinguishing grounding from moral behavior.
+  - source: john-lennox-foundation-morality
+    note: Popular Christian grounding argument connecting objective value and human dignity to the image of God.
+  - source: give-me-an-answer-cliffe-stuart
+    note: Popular campus-apologetics source for the common God-versus-human-authority formulation.
+  - source: bryce-crawford
+    note: Contemporary evangelistic source using the common claim that without God morality reduces to human standards.
 ---
 
 # Argument
@@ -49,7 +55,11 @@ Some versions are framed deductively, but the comparative version is more transp
 
 Popular apologetic presentations often use a conditional form: without God there would be no objective moral values or duties; objective moral values and duties exist; therefore God exists.
 
-This map uses the comparative formulation above because it makes the contested explanatory step explicit and gives rival accounts—such as secular moral realism and naturalistic theories—a clear place in the debate.
+Lennox, the Knechtles, Bryce Crawford, and many other popular Christian communicators often express the contrast more rhetorically: if right and wrong ultimately come from individuals, majorities, rulers, or evolutionary convention, then morality appears contingent on human attitudes; God supplies a standard beyond those attitudes.
+
+That move is useful against **simple relativism**, but it is not yet enough against the strongest secular alternatives. A secular realist can deny that morality is created by individuals or societies in the first place.
+
+This map therefore uses the comparative formulation above because it exposes the real pressure point: whether a necessarily good personal foundation explains value and obligation better than secular moral realism, moral naturalism, constructivism, or anti-realism.
 
 ## What the argument is not
 
