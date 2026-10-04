@@ -22,6 +22,7 @@ relationships:
 conversation:
   follows:
     - did-jesus-rise-from-the-dead
+    - which-explanation-best-fits-resurrection-data
   label: compare historical explanations
   priority: 10
 argument:
