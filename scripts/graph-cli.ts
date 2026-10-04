@@ -442,6 +442,15 @@ async function main() {
     const payload = toGraphPayload(nodes);
     const sources = nodes.filter((node) => node.type === "source");
     const debateNodes = nodes.filter((node) => node.type !== "source" && node.type !== "topic");
+    const argumentNodes = nodes.filter((node) => node.type === "argument");
+    const evidenceNodes = nodes.filter((node) => node.type === "evidence");
+    const structuredPremiseIds = new Set(
+      argumentNodes.flatMap((node) =>
+        (node.argument?.statements ?? [])
+          .filter((statement) => statement.role === "premise")
+          .map((statement) => statement.node),
+      ),
+    );
     const referenceCounts = new Map<string, number>();
     for (const node of nodes) {
       for (const reference of node.references) {
@@ -483,8 +492,44 @@ async function main() {
           node.processing?.summarized && !node.processing?.reviewed
         ).map((node) => node.id).sort(),
       },
+      formalArguments: {
+        total: argumentNodes.length,
+        structured: argumentNodes.filter((node) => node.argument).map((node) => node.id).sort(),
+        unstructured: argumentNodes.filter((node) => !node.argument).map((node) => node.id).sort(),
+        premiseClaims: [...structuredPremiseIds].sort(),
+        premiseClaimsWithoutSupport: [...structuredPremiseIds].filter((id) => {
+          const node = byId.get(id);
+          const incoming = indexes.semanticIncoming.get(id) ?? [];
+          return Boolean(node)
+            && node!.references.length === 0
+            && !incoming.some((edge) => edge.type === "supports" || edge.type === "evidence_for");
+        }).sort(),
+        premiseClaimsWithoutChallenge: [...structuredPremiseIds].filter((id) => {
+          const incoming = indexes.semanticIncoming.get(id) ?? [];
+          return !incoming.some((edge) => edge.type === "challenges" || edge.type === "contradicts");
+        }).sort(),
+      },
+      evidence: {
+        total: evidenceNodes.length,
+        withSources: evidenceNodes.filter((node) => node.references.length > 0).length,
+        withoutSources: evidenceNodes.filter((node) => node.references.length === 0).map((node) => node.id).sort(),
+      },
       sourcing: {
         debateNodesWithoutReferences: debateNodes.filter((node) => node.references.length === 0).map((node) => node.id).sort(),
+        sourceHeavyWithoutEvidence: debateNodes.filter((node) => {
+          if (node.type === "evidence" || node.references.length < 8) return false;
+          const incoming = indexes.semanticIncoming.get(node.id) ?? [];
+          return !incoming.some((edge) => edge.type === "evidence_for" || byId.get(edge.source)?.type === "evidence");
+        }).map((node) => node.id).sort(),
+      },
+      graphHealth: {
+        orphanedDebateNodes: debateNodes.filter((node) =>
+          (indexes.semanticIncoming.get(node.id) ?? []).length === 0
+          && (indexes.semanticOutgoing.get(node.id) ?? []).length === 0
+          && (indexes.flowIncoming.get(node.id) ?? []).length === 0
+          && (indexes.flowOutgoing.get(node.id) ?? []).length === 0
+          && !node.conversation?.opening
+        ).map((node) => node.id).sort(),
       },
     }, compact);
     return;
