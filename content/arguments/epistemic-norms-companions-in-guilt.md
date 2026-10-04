@@ -28,6 +28,8 @@ references:
   - source: cuneo-normative-web
     locator: "Introduction; chapters 2–4"
     note: Cuneo develops the epistemic-normativity companion into a positive argument for moral realism.
+  - source: cowie-companions-in-guilt
+    note: Survey of companions-in-guilt strategies and their epistemic, prudential, and mathematical variants.
 ---
 
 # Argument
