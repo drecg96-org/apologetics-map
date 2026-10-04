@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "validate": "tsx scripts/validate-graph.ts",
-    "build": "npm run validate && astro build",
-    "preview": "astro preview"
+    "build": "npm run validate && astro build && npm run check:links",
+    "preview": "astro preview",
+    "check:links": "tsx scripts/check-links.ts"
   },
   "engines": {
     "node": ">=24"
