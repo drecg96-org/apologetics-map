@@ -70,11 +70,11 @@ Add the required Worker secrets. Wrangler will prompt for the values; do not put
 
 ```bash
 npx wrangler@latest secret put GITHUB_APP_CLIENT_ID
-npx wrangler@latest secret put GITHUB_PRIVATE_KEY
+npx wrangler@latest secret put GITHUB_APP_PEM
 npx wrangler@latest secret put TURNSTILE_SECRET_KEY
 ```
 
-For `GITHUB_PRIVATE_KEY`, paste the entire PEM, including the BEGIN/END lines.
+For `GITHUB_APP_PEM`, paste the entire PEM, including the BEGIN/END lines.
 
 Deploy:
 
