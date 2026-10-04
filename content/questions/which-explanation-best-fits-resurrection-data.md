@@ -23,7 +23,8 @@ tags:
   - alternatives
 conversation:
   follows:
-    - what-do-appearance-reports-establish
+    - early-followers-had-experiences-interpreted-as-risen-jesus
+    - appearance-reports-do-not-identify-their-cause
   label: compare explanations
   priority: 10
 status:
