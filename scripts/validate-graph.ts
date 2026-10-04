@@ -176,6 +176,30 @@ async function main() {
       }
     }
 
+    if (item.node.inference_challenges.length > 0) {
+      if (item.node.type !== "objection") {
+        errors.push(`${item.file}: inference_challenges are only valid on objection nodes`);
+      }
+      for (const challenge of item.node.inference_challenges) {
+        const argumentNode = byId.get(challenge.argument);
+        if (!argumentNode) {
+          errors.push(`${item.file}: inference challenge points to unknown argument "${challenge.argument}"`);
+          continue;
+        }
+        if (argumentNode.node.type !== "argument") {
+          errors.push(`${item.file}: inference challenge target "${challenge.argument}" is not an argument node`);
+          continue;
+        }
+        if (!argumentNode.node.argument) {
+          errors.push(`${item.file}: inference challenge target "${challenge.argument}" has no formal argument structure`);
+          continue;
+        }
+        if (!argumentNode.node.argument.inferences.some((inference) => inference.id === challenge.inference)) {
+          errors.push(`${item.file}: inference challenge targets unknown inference "${challenge.inference}" on "${challenge.argument}"`);
+        }
+      }
+    }
+
     if (item.node.processing && item.node.type !== "source") {
       errors.push(`${item.file}: processing metadata is only valid on source nodes`);
     }
