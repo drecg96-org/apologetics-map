@@ -35,6 +35,11 @@ argument:
       node: classical-divine-attributes-require-further-argument
       role: premise
       label: P4
+    - id: p5
+      node: cumulative-theism-must-count-counterevidence
+      role: premise
+      label: P5
+      note: Evil, hiddenness, diversity, and other negative evidence belong in the same total-evidence comparison.
     - id: c1
       node: cumulative-theistic-case-remains-rationally-contestable
       role: conclusion
@@ -46,6 +51,7 @@ argument:
         - p2
         - p3
         - p4
+        - p5
       to: c1
       kind: cumulative
       label: underdetermination
