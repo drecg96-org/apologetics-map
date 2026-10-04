@@ -32,6 +32,11 @@ export const ConversationSchema = z.object({
   opening: z.boolean().optional(),
   label: z.string().min(1).optional(),
   priority: z.number().int().min(0).optional(),
+  terminal: z.object({
+    kind: z.enum(["accepted-commitment", "concession", "unresolved"]),
+    label: z.string().min(1).optional(),
+    note: z.string().min(1).optional(),
+  }).optional(),
 });
 
 export const NodeSchema = z.object({
