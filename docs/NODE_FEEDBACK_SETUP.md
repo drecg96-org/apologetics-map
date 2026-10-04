@@ -170,4 +170,7 @@ See `data/feedback-stage/README.md` for the structured record format.
 - Installation tokens are minted on demand and narrowed to the configured repository with `issues: write`.
 - Turnstile is always validated server-side.
 - CORS is restricted to the configured site origin.
-- Generated issues visibly mark reader text as untrusted and render the submission as literal code-block text rather than executable-looking Markdown.\n- Agents must follow the three-phase boundary in `AGENTS.md`; a fresh agent/chat is preferred between phases.\n- Staged records summarize semantic content and do not copy raw user text.\n- GitHub may apply secondary rate limits if issue creation is abused. Turnstile is the first anti-spam layer; add a Cloudflare rate-limiting rule/binding if real traffic shows the need.
+- Generated issues visibly mark reader text as untrusted and render the submission as literal code-block text rather than executable-looking Markdown.
+- Agents must follow the three-phase boundary in `AGENTS.md`; a fresh agent/chat is preferred between phases.
+- Staged records summarize semantic content and do not copy raw user text.
+- GitHub may apply secondary rate limits if issue creation is abused. Turnstile is the first anti-spam layer; add a Cloudflare rate-limiting rule/binding if real traffic shows the need.
