@@ -613,12 +613,12 @@ export default function GraphExplorer({
     );
   }, [graph.nodes, query, type, topic, showSources, focusedIds]);
 
-  const layout = useMemo(
-    () => mode === "debate"
+  const layout = useMemo(() => {
+    if (mode === "line") return { nodes: [], edges: [] };
+    return mode === "debate"
       ? debateLayout(graph, visibleIds)
-      : atlasLayout(graph, visibleIds),
-    [graph, visibleIds, mode],
-  );
+      : atlasLayout(graph, visibleIds);
+  }, [graph, visibleIds, mode]);
 
   const nodeTypes = Array.from(new Set(graph.nodes.map((node) => node.type))).sort(
     (a, b) => TYPE_ORDER.indexOf(a) - TYPE_ORDER.indexOf(b),
