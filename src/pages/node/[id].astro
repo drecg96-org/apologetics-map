@@ -188,6 +188,39 @@ function sourceClass(sourceNode: any) {
 
         <div class="prose" set:html={node.html} />
 
+        {node.crux && (
+          <section class="crux-section" aria-labelledby="crux-heading">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Key crux</p>
+                <h2 id="crux-heading">{node.crux.question}</h2>
+              </div>
+              <p>{node.crux.note ?? "The disagreement turns on which live position best explains the evidence."}</p>
+            </div>
+            <div class="crux-position-grid">
+              {node.crux.positions.map((position) => {
+                const positionNode = byId.get(position.node);
+                if (!positionNode) return null;
+                return (
+                  <a class="crux-position-card" href={base + "node/" + position.node + "/"}>
+                    <span>{position.label}</span>
+                    <strong>{positionNode.title}</strong>
+                    {position.note && <p>{position.note}</p>}
+                  </a>
+                );
+              })}
+            </div>
+            {node.crux.deciding_evidence.length > 0 && (
+              <div class="crux-evidence">
+                <strong>What evidence would move the dispute?</strong>
+                <ul>
+                  {node.crux.deciding_evidence.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
+
         {argumentMap && (
           <section class="argument-structure-section" aria-labelledby="argument-structure-heading">
             <div class="section-heading">
