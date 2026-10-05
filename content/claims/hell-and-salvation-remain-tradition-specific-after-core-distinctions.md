@@ -20,6 +20,23 @@ tags:
   - hell
   - salvation
   - unresolved
+crux:
+  question: "Which model of final judgment best fits the biblical texts, divine justice, human freedom, and God's saving purpose?"
+  positions:
+    - label: "Conditional immortality"
+      node: conditional-immortality-is-a-third-major-hell-model
+      note: "The finally lost cease to live rather than experience everlasting conscious punishment."
+    - label: "Universal reconciliation"
+      node: universal-reconciliation-is-a-coherent-christian-option
+      note: "God ultimately succeeds in reconciling all persons without making present judgment unreal."
+    - label: "Self-exclusion / continuing rejection"
+      node: hell-as-self-exclusion-from-god
+      note: "Final loss is understood substantially through a person's continuing refusal of communion with God."
+  deciding_evidence:
+    - "How judgment texts using eternal, destruction, death, and restoration language should be synthesized."
+    - "Whether creaturely freedom can remain permanently resistant to God."
+    - "How God's stated desire to save all relates to final judgment and human agency."
+  note: "The map can clarify model-specific objections without pretending the major Christian models are interchangeable."
 status:
   editorial: stable
   scholarship: contested
