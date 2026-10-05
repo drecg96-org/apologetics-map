@@ -20,6 +20,12 @@ relationships:
     target: does-islam-correct-or-continue-biblical-revelation
   - type: related_to
     target: how-should-competing-revelation-claims-be-compared
+  - type: related_to
+    target: how-do-biblical-and-quranic-textual-transmission-compare
+  - type: related_to
+    target: what-evidence-supports-muhammad-as-a-prophet
+  - type: related_to
+    target: does-the-new-covenant-replace-israels-covenant
 tags:
   - comparative-religion
   - judaism
@@ -29,7 +35,7 @@ origin:
   kind: agent-research
   note: Initial scaffold created from a balanced source scan so later debate lines can deepen each discriminator separately.
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 
@@ -58,4 +64,4 @@ Separate three tasks that are often blurred together:
 
 A Jewish or Muslim source is not included merely as an objection to Christianity; it should be used to state that tradition's own case accurately. Christian responses should then answer the strongest version of the claim rather than a simplified substitute.
 
-This is only the comparison scaffold. Each discriminator should later fan out into arguments, objections, responses, evidence, and primary-source nodes rather than trying to settle the whole comparison on one page.
+The discriminator branches now fan out into arguments, objections, responses, shared historical evidence, and primary or representative sources. Shared questions—especially the resurrection evidence—reuse the existing graph rather than creating religion-specific duplicates.
