@@ -90,6 +90,24 @@ async function main() {
       }
     }
 
+    if (item.node.crux) {
+      const seenCruxPositions = new Set<string>();
+      for (const position of item.node.crux.positions) {
+        const target = byId.get(position.node);
+        if (!target) {
+          errors.push(`${item.file}: crux position points to unknown node "${position.node}"`);
+          continue;
+        }
+        if (position.node === item.node.id) {
+          errors.push(`${item.file}: crux position cannot point to the crux node itself`);
+        }
+        if (seenCruxPositions.has(position.node)) {
+          errors.push(`${item.file}: duplicate crux position "${position.node}"`);
+        }
+        seenCruxPositions.add(position.node);
+      }
+    }
+
     for (const reference of item.node.references) {
       const source = byId.get(reference.source);
       if (!source) errors.push(`${item.file}: reference points to unknown source "${reference.source}"`);
