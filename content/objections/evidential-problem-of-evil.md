@@ -16,6 +16,10 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+aliases:
+  - "why does God allow suffering"
+  - "why is there so much evil if God is good"
+  - "problem of evil"
 conversation:
   follows:
     - what-most-drives-your-skepticism
