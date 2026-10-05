@@ -17,6 +17,11 @@ tags:
 status:
   editorial: reviewed
   scholarship: contested
+conversation:
+  follows:
+    - theological-fatalism-challenge
+  label: knowledge is not causation
+  priority: 15
 origin:
   kind: agent-research
   github_issues:
