@@ -6,6 +6,8 @@ summary: Serious philosophical work allows that more than one logical consequenc
 topics:
   - existence-of-god
 relationships:
+  - type: evidence_for
+    target: logical-pluralism-is-a-live-account-of-logical-consequence
   - type: challenges
     target: rival-worldviews-fail-to-ground-intelligibility
 references:
