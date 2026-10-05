@@ -18,7 +18,7 @@ conversation:
   label: make the skeptical-theist reply
   priority: 10
 argument:
-  form: defeater
+  form: other
   statements:
     - id: p1
       node: humans-may-be-poorly-positioned-to-survey-all-divine-reasons
@@ -38,7 +38,7 @@ argument:
         - p1
         - p2
       to: c1
-      kind: defeater
+      kind: other
       label: undercut the no-seeum inference
       note: The response weakens one inference from evil; it does not itself provide a positive explanation of suffering.
 references:
