@@ -19,6 +19,12 @@ relationships:
     target: quran-affirms-earlier-torah-and-gospel-as-revelation
   - type: related_to
     target: textual-corruption-could-reconcile-quran-bible-conflicts
+  - type: related_to
+    target: how-do-biblical-and-quranic-textual-transmission-compare
+  - type: related_to
+    target: what-evidence-supports-muhammad-as-a-prophet
+  - type: related_to
+    target: later-revelation-correction-requires-independent-warrant
 references:
   - source: quran-an-nisa-4-157-171
     note: Primary Islamic text on Jesus, crucifixion, and the rejection of divine plurality.
@@ -45,7 +51,7 @@ conversation:
 origin:
   kind: agent-research
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 
