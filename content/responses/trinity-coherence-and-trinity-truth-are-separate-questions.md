@@ -23,7 +23,6 @@ conversation:
 status:
   editorial: reviewed
   scholarship: contested
-  christian: contested
 origin:
   kind: agent-research
   github_issues:
