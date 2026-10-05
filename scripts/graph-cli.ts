@@ -1,4 +1,4 @@
-import { loadGraph, toGraphPayload, type LoadedNode } from "../src/lib/graph.js";
+import { loadGraph, toDiscoveryIndex, toGraphPayload, type LoadedNode } from "../src/lib/graph.js";
 import { rankDiscoveryResults } from "../src/lib/discovery.js";
 import { lookupScriptureReference } from "../src/lib/scripture.js";
 
@@ -378,7 +378,7 @@ async function main() {
     const query = args.positionals.join(" ").trim();
     if (!query) throw new Error("search requires a query");
     const limit = intFlag(args.flags, "limit", 20);
-    const ranked = rankDiscoveryResults(toGraphPayload(nodes), query, limit);
+    const ranked = rankDiscoveryResults(toDiscoveryIndex(nodes), query, limit);
     const results = ranked.map((result) => {
       const node = byId.get(result.id)!;
       return { ...brief(node), score: result.score, reason: result.reason };
