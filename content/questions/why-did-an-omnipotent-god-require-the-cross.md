@@ -24,6 +24,7 @@ status:
 conversation:
   follows:
     - salvation-is-not-a-moral-merit-score
+    - which-hard-objection-should-we-examine
   label: why was the cross needed?
   priority: 20
 references:
