@@ -9,6 +9,13 @@ relationships: []
 references:
   - source: sep-heaven-hell
   - source: iep-hell
+scripture:
+  - reference: Matthew 25:46
+    note: Central to traditional everlasting-punishment readings.
+  - reference: Matthew 10:28
+    note: Important to annihilationist or conditional-immortality readings.
+  - reference: 1 Timothy 2:3-4
+    note: Important to universalist arguments from God's saving desire.
 tags:
   - hell
   - salvation
