@@ -15,6 +15,20 @@ references:
 tags:
   - problem-of-evil
   - unresolved
+crux:
+  question: "Does apparently gratuitous suffering remain significantly more expected on naturalism than on perfect theism?"
+  positions:
+    - label: "Counts against theism"
+      node: evidential-evil-counts-against-perfect-theism
+      note: "The amount and distribution of suffering are treated as evidence against perfect theism."
+    - label: "Inference is undercut"
+      node: no-seeum-inference-from-evil-is-defeasible
+      note: "Human limits may weaken the move from seeing no justifying reason to there being no justifying reason."
+  deciding_evidence:
+    - "How much confidence humans should have when judging that no morally sufficient reason exists."
+    - "Whether skeptical theism can undercut the evil inference without causing broader skeptical spillover."
+    - "Whether proposed goods and eschatological defeat plausibly address horrendous, natural, and animal suffering."
+  note: "Standard theodicies can reduce parts of the objection without settling the total evidential balance."
 status:
   editorial: stable
   scholarship: contested
