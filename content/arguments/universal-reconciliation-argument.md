@@ -46,6 +46,13 @@ argument:
 references:
   - source: sep-heaven-hell
   - source: iep-hell
+scripture:
+  - reference: 1 Timothy 2:3-4
+    note: Supplies a biblical premise concerning God's universal saving desire.
+  - reference: Colossians 1:19-20
+    note: Supplies broad reconciliation language used in universalist arguments.
+  - reference: 1 Corinthians 15:22-28
+    note: Supplies broad resurrection and final-victory language central to the debate.
 tags:
   - universalism
   - salvation
