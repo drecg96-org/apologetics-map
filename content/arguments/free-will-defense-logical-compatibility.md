@@ -19,7 +19,7 @@ conversation:
   label: test the free-will defense
   priority: 10
 argument:
-  form: modal
+  form: deductive
   statements:
     - id: p1
       node: morally-significant-freedom-can-explain-some-moral-evil
