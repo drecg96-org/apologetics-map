@@ -10,6 +10,11 @@ relationships:
     target: the-cross-is-gods-own-act-of-reconciliation
 references:
   - source: sep-atonement
+scripture:
+  - reference: 2 Corinthians 5:18-21
+    note: Describes God as acting in Christ to reconcile the world to himself.
+  - reference: John 10:17-18
+    note: Presents Christ's self-giving as voluntary rather than imposed by a power external to God.
 tags:
   - atonement
   - trinity
