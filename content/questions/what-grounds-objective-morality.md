@@ -11,6 +11,10 @@ relationships:
 tags:
   - metaethics
   - moral-ontology
+aliases:
+  - "where do objective morals come from"
+  - "does morality require God"
+  - "what grounds morality"
 conversation:
   follows:
     - moral-realism-provisionally-accepted
