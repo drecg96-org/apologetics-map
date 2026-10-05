@@ -11,6 +11,8 @@ relationships:
     target: why-christianity-rather-than-judaism-or-islam
   - type: related_to
     target: was-jesus-the-messiah-expected-by-judaism
+  - type: related_to
+    target: does-the-new-covenant-replace-israels-covenant
 references:
   - source: my-jewish-learning-what-do-jews-believe-about-jesus
     note: Jewish perspective on why accepting Jesus is not part of mainstream Judaism.
@@ -21,6 +23,8 @@ references:
     note: Primary Jewish source linking the Messiah with Davidic restoration, Torah observance, the Temple, and the ingathering of Israel.
   - source: lim-learning-from-muslims-and-jews
     note: Historical discussion of Christian fulfillment claims in relation to Judaism and later Islamic fulfillment claims in relation to Christianity.
+  - source: my-jewish-learning-covenant-process
+    note: Jewish account of Sinai and Torah as an ongoing covenantal relationship.
 tags:
   - covenant
   - torah
@@ -34,7 +38,7 @@ conversation:
 origin:
   kind: agent-research
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 
