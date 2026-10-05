@@ -28,10 +28,6 @@ conversation:
     - knowing-god-exists-does-not-force-love-or-repentance
   label: but why forever?
   priority: 10
-  terminal:
-    kind: unresolved
-    label: Freedom vs. eventual reconciliation
-    note: The line now depends on disputed accounts of freedom, the permanence of character, divine persuasion, and universalist readings of Scripture.
 references:
   - source: sep-heaven-hell
     locator: Section 4.2
