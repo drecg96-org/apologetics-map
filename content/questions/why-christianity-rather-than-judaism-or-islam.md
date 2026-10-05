@@ -20,6 +20,12 @@ relationships:
   - type: related_to
     target: how-should-competing-revelation-claims-be-compared
   - type: related_to
+    target: how-do-biblical-and-quranic-textual-transmission-compare
+  - type: related_to
+    target: what-evidence-supports-muhammad-as-a-prophet
+  - type: related_to
+    target: does-the-new-covenant-replace-israels-covenant
+  - type: related_to
     target: does-transcendental-argument-establish-christianity-specifically
 references:
   - source: sep-comparative-philosophy-of-religion
@@ -40,7 +46,7 @@ conversation:
 origin:
   kind: agent-research
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 
