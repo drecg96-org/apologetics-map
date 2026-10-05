@@ -21,6 +21,10 @@ tags:
 status:
   editorial: reviewed
   christian: contested
+aliases:
+  - "why did Jesus have to die"
+  - "why couldnt God just forgive us"
+  - "why was the cross necessary"
 conversation:
   follows:
     - salvation-is-not-a-moral-merit-score
