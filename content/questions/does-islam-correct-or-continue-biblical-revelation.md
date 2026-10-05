@@ -13,6 +13,18 @@ relationships:
     target: did-jesus-rise-from-the-dead
   - type: related_to
     target: how-should-competing-revelation-claims-be-compared
+  - type: related_to
+    target: what-would-count-as-a-warranted-later-revelation
+  - type: related_to
+    target: quran-affirms-earlier-torah-and-gospel-as-revelation
+  - type: related_to
+    target: textual-corruption-could-reconcile-quran-bible-conflicts
+  - type: related_to
+    target: how-do-biblical-and-quranic-textual-transmission-compare
+  - type: related_to
+    target: what-evidence-supports-muhammad-as-a-prophet
+  - type: related_to
+    target: later-revelation-correction-requires-independent-warrant
 references:
   - source: quran-an-nisa-4-157-171
     note: Primary Islamic text on Jesus, crucifixion, and the rejection of divine plurality.
@@ -22,6 +34,10 @@ references:
     note: Academic overview of how the Qur'an and later Islamic tradition present Jesus.
   - source: lim-learning-from-muslims-and-jews
     note: Historical analysis of Islam's use of fulfillment/correction claims in relation to Christianity.
+  - source: quran-al-maidah-5-44-48
+    note: Primary Qur'anic material affirming the Torah and Gospel while presenting the Qur'an as criterion.
+  - source: abdelnour-quran-bible-tasdiq-2023
+    note: Muslim scholarly treatment of confirmation, abrogation, and competing meanings of tahrif.
 tags:
   - islam
   - quran
@@ -35,7 +51,7 @@ conversation:
 origin:
   kind: agent-research
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 

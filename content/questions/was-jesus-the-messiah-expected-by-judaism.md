@@ -9,6 +9,14 @@ topics:
 relationships:
   - type: related_to
     target: why-christianity-rather-than-judaism-or-islam
+  - type: related_to
+    target: second-temple-messianic-expectation-was-diverse
+  - type: related_to
+    target: jesus-did-not-complete-classic-restoration-expectations
+  - type: related_to
+    target: two-stage-messianic-fulfillment-is-the-christian-reply
+  - type: related_to
+    target: two-stage-messianic-fulfillment-can-be-ad-hoc
 references:
   - source: my-jewish-learning-what-do-jews-believe-about-jesus
     note: Jewish overview of why Judaism does not accept Jesus as Messiah and how messianic expectations are framed.
@@ -19,6 +27,8 @@ references:
     note: Primary rabbinic formulation of messianic criteria and an explicit rejection of Jesus as the promised Messiah.
   - source: williams-history-of-faith-in-jesus
     note: Historical context for how rapidly devotion to Jesus emerged among his earliest followers.
+  - source: green-messiah-judaism-2010
+    note: Scholarly warning against treating Jewish messianic expectation around the turn of the era as one uniform checklist.
 tags:
   - messiah
   - judaism
@@ -31,7 +41,7 @@ conversation:
 origin:
   kind: agent-research
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 

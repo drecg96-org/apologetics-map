@@ -11,6 +11,8 @@ relationships:
     target: why-christianity-rather-than-judaism-or-islam
   - type: related_to
     target: does-islam-correct-or-continue-biblical-revelation
+  - type: related_to
+    target: what-would-count-as-a-warranted-later-revelation
 references:
   - source: sep-comparative-philosophy-of-religion
     note: Philosophical framework for cross-tradition comparison and the problem of using tradition-internal standards.
