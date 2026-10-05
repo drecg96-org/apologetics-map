@@ -20,9 +20,9 @@ const graph = toGraphPayload(nodes);
 const failures: string[] = [];
 for (const [query, expected] of cases) {
   const results = rankDiscoveryResults(graph, query, 3);
-  if (!results.some((result) => result.id === expected)) {
+  if (results[0]?.id !== expected) {
     failures.push(
-      `${JSON.stringify(query)} expected ${expected} in top 3; got ${results.map((result) => result.id).join(", ") || "no results"}`,
+      `${JSON.stringify(query)} expected best match ${expected}; got ${results.map((result) => result.id).join(", ") || "no results"}`,
     );
   }
 }
@@ -33,4 +33,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Discovery smoke test passed: ${cases.length} common-language questions routed successfully.`);
+console.log(`Discovery smoke test passed: ${cases.length} common-language questions routed to the intended best starting node.`);
