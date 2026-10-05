@@ -11,6 +11,11 @@ relationships:
 references:
   - source: sep-atonement
   - source: sep-omnipotence
+scripture:
+  - reference: John 10:17-18
+    note: Presents Christ's death as a voluntary act within divine purpose rather than external compulsion.
+  - reference: Romans 3:23-26
+    note: Connects the cross with grace and divine justice without by itself proving metaphysical necessity.
 tags:
   - atonement
   - necessity
