@@ -11,7 +11,7 @@ relationships:
   - type: depends_on
     target: not-every-logically-describable-free-creature-world-must-be-feasible-for-god
   - type: supports
-    target: creating-free-agents-need-not-mean-god-ceases-to-be-omnipotent
+    target: libertarian-freedom-and-divine-omnipotence-can-be-logically-compatible
 conversation:
   follows:
     - why-did-god-make-the-fall-possible
@@ -30,7 +30,7 @@ argument:
       role: premise
       label: P2
     - id: c1
-      node: creating-free-agents-need-not-mean-god-ceases-to-be-omnipotent
+      node: libertarian-freedom-and-divine-omnipotence-can-be-logically-compatible
       role: conclusion
       label: C
   inferences:
