@@ -8,6 +8,11 @@ topics:
 relationships: []
 references:
   - source: sep-atonement
+scripture:
+  - reference: Colossians 2:13-15
+    note: Combines forgiveness with victory over hostile powers.
+  - reference: 2 Corinthians 5:18-20
+    note: Centers atonement language on reconciliation.
 tags:
   - christus-victor
   - moral-influence
