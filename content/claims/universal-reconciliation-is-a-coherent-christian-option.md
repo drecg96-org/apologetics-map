@@ -9,6 +9,13 @@ relationships: []
 references:
   - source: sep-heaven-hell
   - source: iep-hell
+scripture:
+  - reference: 1 Timothy 2:3-4
+    note: Universalist readings emphasize God's desire that all people be saved.
+  - reference: Colossians 1:19-20
+    note: Universalist arguments appeal to the reconciliation of all things through Christ.
+  - reference: 1 Corinthians 15:22-28
+    note: The scope of Christ's victory and God becoming all in all is central to universalist interpretation.
 tags:
   - universalism
   - hell
