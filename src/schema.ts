@@ -32,6 +32,17 @@ export const ScriptureReferenceSchema = z.object({
   note: z.string().min(1).optional(),
 });
 
+export const CruxSchema = z.object({
+  question: z.string().min(1),
+  positions: z.array(z.object({
+    label: z.string().min(1),
+    node: slug,
+    note: z.string().min(1).optional(),
+  }).strict()).min(2).max(6),
+  deciding_evidence: z.array(z.string().min(1)).default([]),
+  note: z.string().min(1).optional(),
+}).strict();
+
 export const ConversationSchema = z.object({
   follows: z.array(slug).default([]),
   opening: z.boolean().optional(),
@@ -112,6 +123,7 @@ export const NodeSchema = z.object({
   scripture: z.array(ScriptureReferenceSchema).default([]),
   tags: z.array(slug).default([]),
   aliases: z.array(z.string().min(1)).default([]),
+  crux: CruxSchema.optional(),
   origin: OriginSchema.optional(),
   status: z.object({
     editorial: z.enum(["draft", "reviewed", "stable"]).optional(),
