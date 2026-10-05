@@ -32,11 +32,11 @@ argument:
       role: premise
       label: P1
     - id: p2
-      text: A later revelatory contradiction of earlier historically supported testimony is evidentially favored only if the later revelation has sufficient independent warrant.
+      node: later-revelatory-contradiction-needs-independent-warrant
       role: premise
       label: P2
     - id: c1
-      text: The Qur'anic treatment of Jesus' death must be assessed together with independent evidence for Qur'anic and Muhammadan authority rather than used as its own sole warrant.
+      node: quranic-crucifixion-correction-depends-on-independent-islamic-warrant
       role: conclusion
       label: C
   inferences:
