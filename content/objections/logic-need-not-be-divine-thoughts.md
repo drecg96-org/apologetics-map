@@ -8,11 +8,15 @@ topics:
 relationships:
   - type: challenges
     target: argument-from-logic-to-god
+  - type: challenges
+    target: rival-worldviews-fail-to-ground-intelligibility
 references:
   - source: malpass-problems-argument-from-logic
     note: Develops objections concerning necessity, intentionality, and a dilemma for divine conceptualism.
   - source: anderson-welty-lord-noncontradiction
     note: Primary target of the objection.
+  - source: sep-logical-pluralism-2023
+    note: Adds a separate precision challenge by surveying views on which more than one logical consequence relation can be correct.
 tags:
   - logic
   - abstract-objects
@@ -40,4 +44,8 @@ The defender therefore has to justify the bridge:
 
 **necessary logical truths → necessarily existing thoughts → a necessarily existing divine thinker.**
 
-Alternative views can treat logical truths as abstract objects, structural facts, rules, modal truths, or primitives. Those alternatives have their own costs, but their existence means the theistic conceptualist cannot simply assume that only minds can ground logical necessity.
+Alternative views can treat logical truths as abstract objects, structural facts, rules, modal truths, or primitives. Contemporary logical pluralism also raises a prior question about exactly which consequence relation or logical structure is being grounded.
+
+Those alternatives have their own costs, but their existence means the theistic conceptualist cannot simply assume that only minds can ground logical necessity.
+
+For the stronger rival-worldview-failure premise, it is not enough to argue that divine conceptualism is elegant or unifying. The alternatives must be shown to be internally inadequate rather than merely less explanatory.
