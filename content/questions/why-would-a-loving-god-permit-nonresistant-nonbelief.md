@@ -23,6 +23,10 @@ status:
   christian: contested
 origin:
   kind: agent-research
+aliases:
+  - "why is God hidden"
+  - "why doesnt God make himself obvious"
+  - "why do sincere seekers fail to find God"
 conversation:
   follows:
     - sincere-nonbelief-is-not-the-same-as-rejecting-god

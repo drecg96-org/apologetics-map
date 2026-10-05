@@ -16,6 +16,20 @@ references:
 tags:
   - divine-hiddenness
   - unresolved
+crux:
+  question: "Would a perfectly loving God permit prolonged nonresistant nonbelief of the kind we appear to observe?"
+  positions:
+    - label: "Hiddenness is evidence against"
+      node: divine-hiddenness-is-evidence-against-perfectly-loving-theism
+      note: "Sincere nonresistant nonbelief is argued to be surprising under perfect divine love."
+    - label: "Distance may serve relationship"
+      node: hiddenness-may-preserve-morally-significant-freedom
+      note: "Some epistemic distance may protect morally significant freedom and relational goods."
+  deciding_evidence:
+    - "Whether genuinely nonresistant nonbelief exists and how common or prolonged it is."
+    - "Whether clearer awareness of God would actually undermine meaningful freedom or relationship."
+    - "What access to conscious relationship perfect love would normally provide."
+  note: "The key issue is not whether any hiddenness can be justified, but whether the observed pattern is expected under perfect love."
 status:
   editorial: stable
   scholarship: contested

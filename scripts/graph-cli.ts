@@ -1,4 +1,5 @@
-import { loadGraph, toGraphPayload, type LoadedNode } from "../src/lib/graph.js";
+import { loadGraph, toDiscoveryIndex, toGraphPayload, type LoadedNode } from "../src/lib/graph.js";
+import { rankDiscoveryResults } from "../src/lib/discovery.js";
 import { lookupScriptureReference } from "../src/lib/scripture.js";
 
 type Mode = "all" | "semantic" | "flow";
@@ -283,7 +284,7 @@ function usage() {
       neighbors: "neighbors <id> [--depth 1] [--mode all|semantic|flow]",
       line: "line <id> [--depth 4] — outgoing debate tree with terminal commitments",
       path: "path <from> <to> [--mode all|semantic|flow] — shortest traversable path",
-      search: "search <query> [--limit 20] — ids/titles/summaries/tags/aliases",
+      search: "search <query> [--limit 20] — natural-language discovery across titles, aliases, bodies, sources, and argument premises",
       topic: "topic <topic-id> — topic members grouped by node type",
       sources: "sources <id> — source records cited by a node",
       stats: "stats — graph/source/debate coverage summary",
@@ -374,35 +375,14 @@ async function main() {
   }
 
   if (args.command === "search") {
-    const query = args.positionals.join(" ").trim().toLowerCase();
+    const query = args.positionals.join(" ").trim();
     if (!query) throw new Error("search requires a query");
     const limit = intFlag(args.flags, "limit", 20);
-    const results = nodes
-      .map((node) => {
-        const fields = [
-          node.id,
-          node.title,
-          node.summary ?? "",
-          node.body,
-          ...node.tags,
-          ...node.aliases,
-          ...node.topics,
-        ].join(" ").toLowerCase();
-        const title = node.title.toLowerCase();
-        const id = node.id.toLowerCase();
-        const score =
-          (id === query ? 100 : 0) +
-          (title === query ? 90 : 0) +
-          (id.includes(query) ? 30 : 0) +
-          (title.includes(query) ? 25 : 0) +
-          (node.tags.some((tag) => tag.includes(query)) ? 10 : 0) +
-          (fields.includes(query) ? 1 : 0);
-        return { node, score };
-      })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || a.node.title.localeCompare(b.node.title))
-      .slice(0, limit)
-      .map((item) => ({ ...brief(item.node), score: item.score }));
+    const ranked = rankDiscoveryResults(toDiscoveryIndex(nodes), query, limit);
+    const results = ranked.map((result) => {
+      const node = byId.get(result.id)!;
+      return { ...brief(node), score: result.score, reason: result.reason };
+    });
     emit({ query, count: results.length, results }, compact);
     return;
   }
@@ -472,6 +452,13 @@ async function main() {
       byType,
       semanticEdges: payload.edges.length,
       debateMoves: payload.flowEdges.length,
+      cruxes: {
+        total: debateNodes.filter((node) => Boolean(node.crux)).length,
+        nodes: debateNodes.filter((node) => Boolean(node.crux)).map((node) => node.id).sort(),
+        unresolvedWithoutCrux: debateNodes.filter((node) =>
+          node.conversation?.terminal?.kind === "unresolved" && !node.crux
+        ).map((node) => node.id).sort(),
+      },
       debate: {
         openings: debateNodes.filter((node) => node.conversation?.opening).map((node) => node.id).sort(),
         terminals: debateNodes.filter((node) => node.conversation?.terminal).map((node) => ({

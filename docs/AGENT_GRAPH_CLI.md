@@ -58,7 +58,7 @@ npm run graph -- search "moral error"
 npm run graph -- search "evolutionary debunking" --limit 5
 ```
 
-Searches ids, titles, summaries, bodies, topics, aliases, and tags. Exact id/title matches rank highest.
+Uses the same natural-language discovery ranking as the public viewer. It searches ids, titles, aliases, summaries, full node bodies, topics/tags, cited-source text, and formal-argument premise nodes. Exact titles/aliases rank highest, while question/opening nodes receive a small starting-point boost.
 
 ### Topic
 
@@ -75,6 +75,10 @@ npm run graph -- sources objective-morality
 ```
 
 Returns sources cited by the node, including reference notes, source metadata, and processing state.
+
+### Crux coverage
+
+Nodes may include a lightweight `crux` that names the key question, links the live positions to canonical nodes, and records what evidence could move the dispute. `stats` reports crux coverage and unresolved terminals that still lack one.
 
 ### Stats
 

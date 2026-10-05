@@ -18,6 +18,10 @@ tags:
   - islam
   - muhammad
   - prophethood
+aliases:
+  - "why believe Muhammad was a prophet"
+  - "evidence for Muhammad"
+  - "was Muhammad really a prophet"
 conversation:
   follows:
     - what-would-count-as-a-warranted-later-revelation

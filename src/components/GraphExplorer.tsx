@@ -14,13 +14,15 @@ import {
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import type { GraphPayload } from "../lib/graph";
+import type { DiscoveryIndex, GraphPayload } from "../lib/graph";
+import { rankDiscoveryResults } from "../lib/discovery";
 import LineExplorer from "./LineExplorer";
 
 type ExplorerMode = "line" | "debate" | "atlas";
 
 type Props = {
   graph: GraphPayload;
+  discoveryIndex: DiscoveryIndex;
   basePath: string;
   initialTopic?: string;
   initialMode?: ExplorerMode;
@@ -476,6 +478,7 @@ function atlasLayout(
 
 export default function GraphExplorer({
   graph,
+  discoveryIndex,
   basePath,
   initialTopic = "all",
   initialMode = "line",
@@ -583,6 +586,23 @@ export default function GraphExplorer({
     .filter((node) => node.type === "topic")
     .sort((a, b) => a.title.localeCompare(b.title));
 
+  const rankedDiscovery = useMemo(
+    () => rankDiscoveryResults(discoveryIndex, query, discoveryIndex.length),
+    [discoveryIndex, query],
+  );
+  const discoveryResults = rankedDiscovery.slice(0, 6);
+  const discoveryMatchIds = useMemo(
+    () => new Set(rankedDiscovery.map((result) => result.id)),
+    [rankedDiscovery],
+  );
+
+  function discoveryHref(id: string) {
+    const params = new URLSearchParams();
+    params.set("node", id);
+    if (query.trim()) params.set("q", query.trim());
+    return basePath + "?" + params.toString();
+  }
+
   const focusedIds = useMemo(
     () => focusId && mode !== "line"
       ? graphNeighborhood(graph, focusId, focusDepth)
@@ -603,15 +623,12 @@ export default function GraphExplorer({
           node.topics.includes(topic)
         )
         .filter((node) => {
-          if (!normalized) return true;
-          return [node.title, node.summary ?? "", node.id, ...node.tags]
-            .join(" ")
-            .toLowerCase()
-            .includes(normalized);
+          if (!normalized || mode === "line") return true;
+          return discoveryMatchIds.has(node.id);
         })
         .map((node) => node.id),
     );
-  }, [graph.nodes, query, type, topic, showSources, focusedIds]);
+  }, [graph.nodes, query, type, topic, showSources, focusedIds, mode, discoveryMatchIds]);
 
   const layout = useMemo(() => {
     if (mode === "line") return { nodes: [], edges: [] };
@@ -663,13 +680,47 @@ export default function GraphExplorer({
         </div>
       )}
 
-      <input
-        aria-label="Search map"
-        type="search"
-        value={query}
-        placeholder="Search claims, objections…"
-        onChange={(event) => setQuery(event.target.value)}
-      />
+      <div className="discovery-search">
+        <input
+          aria-label="Ask or search the map"
+          type="search"
+          value={query}
+          placeholder="Ask a question or search the map…"
+          onChange={(event) => setQuery(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key !== "Enter" || !discoveryResults[0]) return;
+            event.preventDefault();
+            window.location.href = discoveryHref(discoveryResults[0].id);
+          }}
+        />
+        {query.trim() && (
+          <div className="discovery-results" aria-label="Suggested starting points">
+            <div className="discovery-results-head">
+              <strong>Best starting points</strong>
+              <span>Searches titles, aliases, text, sources, and argument premises</span>
+            </div>
+            {discoveryResults.length > 0 ? discoveryResults.map((result, index) => {
+              return (
+                <a
+                  className="discovery-result"
+                  href={discoveryHref(result.id)}
+                  key={result.id}
+                >
+                  <span className="discovery-rank">{index + 1}</span>
+                  <span className="discovery-result-copy">
+                    <small>{index === 0 ? "Best match" : result.reason} · {result.type}</small>
+                    <strong>{result.title}</strong>
+                    {result.summary && <em>{result.summary}</em>}
+                  </span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              );
+            }) : (
+              <p className="discovery-empty">No strong match yet. Try fewer or different words.</p>
+            )}
+          </div>
+        )}
+      </div>
 
       <div className="graph-filter-row">
         <select

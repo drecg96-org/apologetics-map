@@ -19,6 +19,10 @@ tags:
 status:
   editorial: reviewed
   christian: contested
+aliases:
+  - "why did God allow the fall"
+  - "why create people who could sin"
+  - "why allow free will"
 conversation:
   follows:
     - forgiveness-and-reconciliation-are-not-identical

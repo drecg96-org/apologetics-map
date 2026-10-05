@@ -26,6 +26,10 @@ tags:
   - jesus
   - islam
   - history
+aliases:
+  - "did Jesus really rise from the dead"
+  - "what is the evidence for the resurrection"
+  - "was the resurrection historical"
 conversation:
   follows:
     - why-christianity-rather-than-judaism-or-islam

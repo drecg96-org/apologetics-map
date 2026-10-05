@@ -61,6 +61,41 @@ conversation:
 - `priority` is an optional non-negative integer used to keep common branches visually ordered.
 - `terminal` marks an intentional endpoint rather than an unmapped dead end. Supported kinds are `accepted-commitment`, `concession`, and `unresolved`. Use `label` and `note` to explain why the line ends.
 
+## Discovery aliases and cruxes
+
+Use `aliases` for ordinary-language formulations that should route to this node even when the public wording differs from the canonical title.
+
+```yaml
+aliases:
+  - why does God allow suffering
+  - problem of evil
+```
+
+Aliases are search/discovery metadata, not alternate canonical answers. Keep them short, natural, and semantically faithful.
+
+When an important dispute reaches a responsible point of disagreement, add a lightweight `crux`:
+
+```yaml
+crux:
+  question: What background probability should a historian assign to a divine resurrection explanation?
+  positions:
+    - label: Resurrection explanation
+      node: resurrection-is-best-explanation-of-core-data
+      note: The resurrection hypothesis is argued to unify the central historical data.
+    - label: Naturalistic explanation
+      node: vision-and-tradition-development-can-cover-core-resurrection-data
+  deciding_evidence:
+    - Independent reasons for or against personal theism.
+    - Whether historical method may compare supernatural explanations.
+  note: The disagreement is partly methodological rather than one missing historical fact.
+```
+
+- `question` states the disagreement as neutrally as possible.
+- `positions` must link to at least two existing graph nodes; do not invent prose-only positions that cannot be inspected.
+- `deciding_evidence` names observations, arguments, or methodological judgments that could rationally move the dispute.
+- A crux does **not** declare both sides equally strong. It identifies what the live disagreement currently turns on.
+- Prefer cruxes on unresolved endpoints or major branch points. Do not add one merely because two nodes disagree.
+
 ## Formal argument structure
 
 Argument nodes can optionally expose a machine-readable premise/inference/conclusion map in addition to their prose explanation.

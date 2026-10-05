@@ -17,6 +17,10 @@ tags:
   - textual-criticism
   - new-testament
   - quran
+aliases:
+  - "was the Bible corrupted"
+  - "has the Quran been perfectly preserved"
+  - "Bible versus Quran preservation"
 conversation:
   follows:
     - what-would-count-as-a-warranted-later-revelation

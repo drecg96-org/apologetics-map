@@ -19,6 +19,7 @@ jobs:
           node-version: 24
       - run: npm install --no-audit --no-fund
       - run: npm run validate
+      - run: npm run discovery:test
       - name: Smoke test agent graph CLI
         run: |
           npm run graph -- stats > /tmp/graph-stats.json

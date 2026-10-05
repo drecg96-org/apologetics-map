@@ -402,6 +402,44 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
           </div>
         </article>
 
+        {current.crux && (
+          <section className="line-crux" aria-label="Key crux">
+            <div className="line-section-head">
+              <div>
+                <span className="line-kicker">Key crux</span>
+                <h4>{current.crux.question}</h4>
+              </div>
+              <span>{current.crux.positions.length} live positions</span>
+            </div>
+            {current.crux.note && <p className="line-crux-note">{current.crux.note}</p>}
+            <div className="line-crux-positions">
+              {current.crux.positions.map((position) => {
+                const positionNode = byId.get(position.node);
+                if (!positionNode) return null;
+                return (
+                  <a
+                    key={position.node}
+                    href={basePath + "node/" + position.node + "/"}
+                    className="line-crux-position"
+                  >
+                    <small>{position.label}</small>
+                    <strong>{positionNode.title}</strong>
+                    {position.note && <span>{position.note}</span>}
+                  </a>
+                );
+              })}
+            </div>
+            {current.crux.deciding_evidence.length > 0 && (
+              <div className="line-crux-evidence">
+                <strong>What would move this?</strong>
+                <ul>
+                  {current.crux.deciding_evidence.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
+
         <section className="line-responses">
           <div className="line-section-head">
             <div>

@@ -36,6 +36,11 @@ tags:
   - comparative-religion
   - judaism
   - islam
+aliases:
+  - "why Christianity"
+  - "why Christianity instead of Islam"
+  - "why Christianity instead of Judaism"
+  - "which Abrahamic religion is true"
 conversation:
   opening: true
   follows:

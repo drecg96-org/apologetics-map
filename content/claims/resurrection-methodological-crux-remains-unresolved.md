@@ -14,6 +14,20 @@ tags:
   - miracles
   - methodology
   - unresolved
+crux:
+  question: "What background probability should a historian assign to a divine resurrection explanation?"
+  positions:
+    - label: "Resurrection explanation"
+      node: resurrection-is-best-explanation-of-core-data
+      note: "The resurrection hypothesis is argued to unify the central historical data."
+    - label: "Naturalistic explanation"
+      node: vision-and-tradition-development-can-cover-core-resurrection-data
+      note: "Visionary experience plus tradition development is argued to cover the core data without a miracle."
+  deciding_evidence:
+    - "Independent reasons for or against personal theism before examining the resurrection."
+    - "Whether historical method may compare supernatural explanations rather than excluding them by rule."
+    - "How well rival naturalistic accounts jointly explain the early proclamation, appearances, and other accepted data."
+  note: "The remaining disagreement is substantially about priors and explanatory standards, not merely one missing historical fact."
 status:
   editorial: reviewed
   scholarship: contested

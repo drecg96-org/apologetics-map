@@ -16,6 +16,10 @@ references:
 tags:
   - fine-tuning
   - design
+aliases:
+  - "does fine tuning prove God"
+  - "is the universe designed"
+  - "fine tuning argument"
 conversation:
   follows:
     - which-natural-theology-line-should-we-test

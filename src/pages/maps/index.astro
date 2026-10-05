@@ -1,10 +1,11 @@
 ---
 import GraphExplorer from "../../components/GraphExplorer";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { loadGraph, toGraphPayload } from "../../lib/graph";
+import { loadGraph, toDiscoveryIndex, toGraphPayload } from "../../lib/graph";
 
 const { nodes } = await loadGraph();
 const graph = toGraphPayload(nodes);
+const discoveryIndex = toDiscoveryIndex(nodes);
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -36,6 +37,7 @@ const base = import.meta.env.BASE_URL;
     <GraphExplorer
       client:load
       graph={graph}
+      discoveryIndex={discoveryIndex}
       basePath={base}
       initialMode="debate"
       availableModes={["debate", "atlas"]}

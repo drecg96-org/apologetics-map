@@ -48,7 +48,7 @@ Use the narrower commands when you only need one kind of context:
 - `line <id> --depth N` — conversational move tree, including terminal commitments.
 - `neighbors <id> --depth N` — bounded semantic/debate neighborhood.
 - `path <from> <to>` — shortest structural path between two nodes.
-- `search <query>` — find node IDs from titles, summaries, bodies, tags, topics, and aliases.
+- `search <query>` — natural-language discovery across titles, aliases, full node text, cited-source text, tags/topics, and formal-argument premise nodes.
 - `topic <topic-id>` — retrieve a topic grouped by node type.
 - `sources <id>` — retrieve the sources cited by a node and their processing metadata.
 - `stats` — graph/source coverage and maintenance signals.
@@ -156,5 +156,7 @@ npm run build
 ```
 
 Pull requests run graph validation, graph-CLI smoke tests, and the production Astro build automatically. A merge to `main` triggers the GitHub Pages deployment workflow.
+
+**Discovery rule:** search and question routing never generate canonical answers. They rank existing graph nodes and route readers into the version-controlled content. Ordinary-language aliases help bridge user phrasing to canonical terminology, while optional crux metadata makes important unresolved disagreements explicit.
 
 **Design rule:** the canonical source data remains a graph. Semantic relationships describe what claims do to one another; conversation flow separately describes which move can follow which in a debate.

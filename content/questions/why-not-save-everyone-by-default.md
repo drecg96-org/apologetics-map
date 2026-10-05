@@ -21,6 +21,10 @@ tags:
 status:
   editorial: reviewed
   christian: contested
+aliases:
+  - "why doesnt God save everyone"
+  - "why isnt everyone saved"
+  - "why is salvation not automatic"
 conversation:
   follows:
     - the-cross-is-gods-own-act-of-reconciliation

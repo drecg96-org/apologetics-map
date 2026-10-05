@@ -1,10 +1,11 @@
 ---
 import GraphExplorer from "../components/GraphExplorer";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { loadGraph, toGraphPayload } from "../lib/graph";
+import { loadGraph, toDiscoveryIndex, toGraphPayload } from "../lib/graph";
 
 const { nodes } = await loadGraph();
 const graph = toGraphPayload(nodes);
+const discoveryIndex = toDiscoveryIndex(nodes);
 const base = import.meta.env.BASE_URL;
 const topics = nodes.filter((node) => node.type === "topic");
 const debateNodes = nodes.filter((node) => node.type !== "source" && node.type !== "topic");
@@ -17,8 +18,8 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
 <BaseLayout title="Debate Explorer">
   <section class="hero page-width">
     <p class="eyebrow">Debate Explorer</p>
-    <h1>Pick a topic. Start with the question.</h1>
-    <p>Then follow the claims, arguments, objections, and responses.</p>
+    <h1>Ask a question. Find the real point of disagreement.</h1>
+    <p>Use ordinary language or browse by topic, then follow the claims, arguments, objections, responses, and explicit cruxes.</p>
     <div class="hero-onboarding">
       <span>Need the legend?</span>
       <a href={base + "guide/"}>Get oriented →</a>
@@ -37,11 +38,12 @@ const counts = nodes.reduce<Record<string, number>>((result, node) => {
         <p class="eyebrow">Primary view</p>
         <h2>Debate Explorer</h2>
       </div>
-      <p>Typical flow: topic → question → claim → argument → objection → response.</p>
+      <p>Ask in your own words, jump to a useful starting node, then follow the mapped debate.</p>
     </div>
     <GraphExplorer
       client:load
       graph={graph}
+      discoveryIndex={discoveryIndex}
       basePath={base}
       initialMode="line"
       availableModes={["line"]}

@@ -19,6 +19,10 @@ tags:
   - consciousness
   - physicalism
   - mind
+aliases:
+  - "can materialism explain consciousness"
+  - "does consciousness point to God"
+  - "mind body problem"
 conversation:
   follows:
     - which-natural-theology-line-should-we-test
