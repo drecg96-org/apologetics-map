@@ -24,7 +24,7 @@ processing:
     retrieved_at: 2026-10-05T03:45:00Z
     external_id: https://www.cambridge.org/core/books/abs/judaisms-and-their-messiahs-at-the-turn-of-the-christian-era/introduction-messiah-in-judaism-rethinking-the-question/8E84528F770BDB4F347F9E4F9F3CDA29
 source:
-  kind: book-chapter
+  kind: book
   authors:
     - William Scott Green
   year: 2010
