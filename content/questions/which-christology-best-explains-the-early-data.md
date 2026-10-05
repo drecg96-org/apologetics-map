@@ -29,6 +29,20 @@ conversation:
     kind: unresolved
     label: Christological inference remains disputed
     note: Early devotion is real historical data, but its best metaphysical explanation remains contested and must be combined with the wider resurrection, scriptural, and philosophical case.
+crux:
+  question: "Does early Christian devotion to Jesus require divine identity, or can an exalted-agent model explain it?"
+  positions:
+    - label: "Divine-identity inference"
+      node: early-devotion-plus-resurrection-supports-a-high-christological-inference
+      note: "Early devotion plus resurrection-vindication is argued to support an unusually high account of Jesus."
+    - label: "Exalted-agent alternative"
+      node: exalted-agent-christology-can-explain-early-jesus-devotion
+      note: "An extraordinary but created heavenly agent may explain the early data without Nicene metaphysics."
+  deciding_evidence:
+    - "Which first-century devotional practices were normally reserved for Israel's God."
+    - "How earliest Christological texts should be read within Jewish monotheistic categories."
+    - "How much theological weight should be assigned to the resurrection as divine vindication."
+  note: "Early devotion is agreed data more readily than the metaphysical conclusion drawn from it."
 status:
   editorial: reviewed
   scholarship: contested
