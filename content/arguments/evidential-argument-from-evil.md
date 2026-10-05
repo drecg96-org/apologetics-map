@@ -15,7 +15,7 @@ relationships:
   - type: depends_on
     target: observed-suffering-may-be-less-expected-on-perfect-theism
   - type: supports
-    target: evidential-problem-of-evil
+    target: evidential-evil-counts-against-perfect-theism
 conversation:
   follows:
     - evidential-problem-of-evil
@@ -38,7 +38,7 @@ argument:
       role: premise
       label: P3
     - id: c1
-      node: evidential-problem-of-evil
+      node: evidential-evil-counts-against-perfect-theism
       role: conclusion
       label: C
       note: Suffering is evidence against perfect theism to the degree the likelihood comparison succeeds.
