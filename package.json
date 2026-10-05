@@ -15,6 +15,7 @@
     "scripture:scan": "tsx scripts/scripture.ts scan",
     "scripture:stats": "tsx scripts/scripture.ts stats",
     "graph": "tsx scripts/graph-cli.ts",
+    "discovery:test": "tsx scripts/discovery-smoke.ts",
     "check:worker": "tsc --noEmit -p worker/tsconfig.json"
   },
   "engines": {
