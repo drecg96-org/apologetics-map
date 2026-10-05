@@ -127,6 +127,7 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
   const initialId = roots[0]?.id ?? lineNodes[0]?.id ?? "";
 
   const [path, setPath] = useState<string[]>(initialId ? [initialId] : []);
+  const [expandedBranches, setExpandedBranches] = useState<Set<string>>(new Set());
   const initializedFromUrl = useRef(false);
 
   const currentId = path[path.length - 1] ?? "";
@@ -263,6 +264,7 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
 
     const active = currentId === node.id;
     const inPath = path.includes(node.id);
+    const branchOpen = depth === 0 || inPath || expandedBranches.has(node.id);
 
     if (ancestors.has(node.id)) {
       return (
@@ -298,7 +300,20 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
     }
 
     return (
-      <details className="line-tree-branch" open={depth === 0 || inPath}>
+      <details
+        className="line-tree-branch"
+        open={branchOpen}
+        onToggle={(event) => {
+          if (depth === 0 || inPath) return;
+          const isOpen = event.currentTarget.open;
+          setExpandedBranches((current) => {
+            const next = new Set(current);
+            if (isOpen) next.add(node.id);
+            else next.delete(node.id);
+            return next;
+          });
+        }}
+      >
         <summary>
           <button
             type="button"
@@ -312,14 +327,16 @@ export default function LineExplorer({ graph, visibleIds, basePath }: Props) {
             <strong>{node.title}</strong>
           </button>
         </summary>
-        <div className="line-tree-children">
-          {children.map(({ edge, node: child }) => (
-            <div className="line-tree-child" key={edge.id}>
-              <span className="line-tree-edge">{edge.label}</span>
-              <OutlineBranch node={child} depth={depth + 1} ancestors={nextAncestors} />
-            </div>
-          ))}
-        </div>
+        {branchOpen && (
+          <div className="line-tree-children">
+            {children.map(({ edge, node: child }) => (
+              <div className="line-tree-child" key={edge.id}>
+                <span className="line-tree-edge">{edge.label}</span>
+                <OutlineBranch node={child} depth={depth + 1} ancestors={nextAncestors} />
+              </div>
+            ))}
+          </div>
+        )}
       </details>
     );
   }
