@@ -1,4 +1,5 @@
 import { loadGraph, toGraphPayload, type LoadedNode } from "../src/lib/graph.js";
+import { rankDiscoveryResults } from "../src/lib/discovery.js";
 import { lookupScriptureReference } from "../src/lib/scripture.js";
 
 type Mode = "all" | "semantic" | "flow";
@@ -374,35 +375,14 @@ async function main() {
   }
 
   if (args.command === "search") {
-    const query = args.positionals.join(" ").trim().toLowerCase();
+    const query = args.positionals.join(" ").trim();
     if (!query) throw new Error("search requires a query");
     const limit = intFlag(args.flags, "limit", 20);
-    const results = nodes
-      .map((node) => {
-        const fields = [
-          node.id,
-          node.title,
-          node.summary ?? "",
-          node.body,
-          ...node.tags,
-          ...node.aliases,
-          ...node.topics,
-        ].join(" ").toLowerCase();
-        const title = node.title.toLowerCase();
-        const id = node.id.toLowerCase();
-        const score =
-          (id === query ? 100 : 0) +
-          (title === query ? 90 : 0) +
-          (id.includes(query) ? 30 : 0) +
-          (title.includes(query) ? 25 : 0) +
-          (node.tags.some((tag) => tag.includes(query)) ? 10 : 0) +
-          (fields.includes(query) ? 1 : 0);
-        return { node, score };
-      })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score || a.node.title.localeCompare(b.node.title))
-      .slice(0, limit)
-      .map((item) => ({ ...brief(item.node), score: item.score }));
+    const ranked = rankDiscoveryResults(toGraphPayload(nodes), query, limit);
+    const results = ranked.map((result) => {
+      const node = byId.get(result.id)!;
+      return { ...brief(node), score: result.score, reason: result.reason };
+    });
     emit({ query, count: results.length, results }, compact);
     return;
   }
