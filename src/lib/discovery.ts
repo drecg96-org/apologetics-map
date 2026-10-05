@@ -1,4 +1,4 @@
-import type { GraphPayload } from "./graph";
+import type { DiscoveryIndex } from "./graph";
 
 export type DiscoveryResult = {
   id: string;
@@ -80,7 +80,7 @@ function occurrences(haystack: string, needle: string) {
 }
 
 export function rankDiscoveryResults(
-  graph: GraphPayload,
+  index: DiscoveryIndex,
   query: string,
   limit = 6,
 ): DiscoveryResult[] {
@@ -91,7 +91,7 @@ export function rankDiscoveryResults(
   const rawTokens = normalize(query).split(/\s+/).filter((token) => token.length > 1);
   if (tokens.length === 0 && rawTokens.length === 0) return [];
 
-  return graph.nodes
+  return index
     .map((node) => {
       const title = normalize(node.title);
       const id = normalize(node.id.replaceAll("-", " "));
