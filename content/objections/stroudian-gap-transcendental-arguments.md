@@ -12,6 +12,8 @@ relationships:
     target: rational-thought-needs-an-adequate-worldview-ground
   - type: challenges
     target: epistemological-argument-from-knowledge-to-god
+  - type: challenges
+    target: rival-worldviews-fail-to-ground-intelligibility
 inference_challenges:
   - argument: transcendental-argument-for-christian-theism
     inference: i1
@@ -52,5 +54,7 @@ Suppose an argument shows that we cannot think or speak coherently without takin
 **Why does that prove S is true, rather than only that creatures like us must believe S, experience things as if S were true, or organize thought using S?**
 
 Applied to a theistic transcendental argument, perhaps rational thought requires certain commitments, but it does not immediately follow that the Christian God exists as the external reality making those commitments true.
+
+The same problem bears on the claim that rival worldviews "fail." Showing that a rival does not reconstruct rational practice in the Christian's preferred metaphysical vocabulary is not yet the same as showing that rational practice is impossible if that rival worldview is true.
 
 Békefi argues that several Van Tilian replies to this problem remain inadequate. A defender therefore needs either a successful bridge to reality or a more modest claim about what transcendental reasoning can establish.
