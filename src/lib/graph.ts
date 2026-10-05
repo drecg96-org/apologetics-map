@@ -17,7 +17,7 @@ export type GraphPayload = {
   nodes: Array<Pick<
     ApologeticsMapNode,
     "id" | "title" | "type" | "summary" | "topics" | "tags" | "aliases" | "conversation" | "crux"
-  > & { searchText: string }>;
+  >>;
   edges: Array<{
     id: string;
     source: string;
@@ -81,51 +81,63 @@ export async function loadGraph(): Promise<{ nodes: LoadedNode[]; byId: Map<stri
   return { nodes, byId: new Map(nodes.map((node) => [node.id, node])) };
 }
 
-export function toGraphPayload(nodes: LoadedNode[]): GraphPayload {
+export type DiscoveryIndex = Array<Pick<
+  ApologeticsMapNode,
+  "id" | "title" | "type" | "summary" | "topics" | "tags" | "aliases" | "conversation" | "crux"
+> & { searchText: string }>;
+
+export function toDiscoveryIndex(nodes: LoadedNode[]): DiscoveryIndex {
   const byId = new Map(nodes.map((node) => [node.id, node]));
-  return {
-    nodes: nodes.map(({ id, title, type, summary, topics, tags, aliases, conversation, crux, body, references, argument, source }) => {
-      const referencedSources = references
-        .map((reference) => byId.get(reference.source))
-        .filter((item): item is LoadedNode => Boolean(item))
-        .flatMap((item) => [
-          item.title,
-          item.summary ?? "",
-          item.body,
-          ...(item.source?.authors ?? []),
-          item.source?.publisher ?? "",
-        ]);
 
-      const argumentStatements = (argument?.statements ?? [])
-        .map((statement) => byId.get(statement.node))
-        .filter((item): item is LoadedNode => Boolean(item))
-        .flatMap((item) => [item.title, item.summary ?? "", item.body]);
+  return nodes.map(({ id, title, type, summary, topics, tags, aliases, conversation, crux, body, references, argument, source }) => {
+    const referencedSources = references
+      .map((reference) => byId.get(reference.source))
+      .filter((item): item is LoadedNode => Boolean(item))
+      .flatMap((item) => [
+        item.title,
+        item.summary ?? "",
+        item.body,
+        ...(item.source?.authors ?? []),
+        item.source?.publisher ?? "",
+      ]);
 
-      return {
+    const argumentStatements = (argument?.statements ?? [])
+      .map((statement) => byId.get(statement.node))
+      .filter((item): item is LoadedNode => Boolean(item))
+      .flatMap((item) => [item.title, item.summary ?? "", item.body]);
+
+    return {
+      id,
+      title,
+      type,
+      summary,
+      topics,
+      tags,
+      aliases,
+      conversation,
+      crux,
+      searchText: [
         id,
         title,
-        type,
-        summary,
-        topics,
-        tags,
-        aliases,
-        conversation,
-        crux,
-        searchText: [
-          id,
-          title,
-          summary ?? "",
-          body,
-          ...tags,
-          ...aliases,
-          ...topics,
-          ...referencedSources,
-          ...argumentStatements,
-          source?.publisher ?? "",
-          ...(source?.authors ?? []),
-        ].join("\n"),
-      };
-    }),
+        summary ?? "",
+        body,
+        ...tags,
+        ...aliases,
+        ...topics,
+        ...referencedSources,
+        ...argumentStatements,
+        source?.publisher ?? "",
+        ...(source?.authors ?? []),
+      ].join("\n"),
+    };
+  });
+}
+
+export function toGraphPayload(nodes: LoadedNode[]): GraphPayload {
+  return {
+    nodes: nodes.map(({ id, title, type, summary, topics, tags, aliases, conversation, crux }) => ({
+      id, title, type, summary, topics, tags, aliases, conversation, crux,
+    })),
     edges: nodes.flatMap((node) =>
       node.relationships.map((relationship, index) => ({
         id: `${node.id}--${relationship.type}--${relationship.target}--${index}`,
