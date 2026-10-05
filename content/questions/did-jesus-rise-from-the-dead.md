@@ -11,6 +11,8 @@ relationships:
     target: why-christianity-rather-than-judaism-or-islam
   - type: related_to
     target: does-islam-correct-or-continue-biblical-revelation
+  - type: related_to
+    target: which-resurrection-data-are-historically-supported
 references:
   - source: cambridge-historicity-of-jesus-resurrection
     note: Recent scholarly discussion of what it means to assess the resurrection historically.
@@ -52,3 +54,7 @@ The historical question should be separated into smaller claims:
 - How should a seventh-century revelatory denial or reinterpretation be weighed against earlier sources about a first-century event?
 
 This branch should compare the strongest historical explanations and then ask what follows for Christianity and Islam.
+
+## Shared evidence graph
+
+M5 does not create a second resurrection case. Continue into `which-resurrection-data-are-historically-supported` and the existing M2 resurrection trunk for crucifixion, burial, appearances, empty-tomb evidence, alternative explanations, and methodological disputes. The comparative-religion branch then asks what that shared evidence does to Christian, Jewish, and Islamic claims.
