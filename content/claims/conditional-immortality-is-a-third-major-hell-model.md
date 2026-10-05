@@ -9,6 +9,11 @@ relationships: []
 references:
   - source: sep-heaven-hell
   - source: iep-hell
+scripture:
+  - reference: Matthew 10:28
+    note: Conditionalist interpreters emphasize language about God destroying both body and soul in Gehenna.
+  - reference: Romans 6:23
+    note: Contrasts death with eternal life, a contrast central to conditional-immortality readings.
 tags:
   - annihilationism
   - conditional-immortality
