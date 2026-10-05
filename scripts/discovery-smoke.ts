@@ -1,5 +1,5 @@
 import { rankDiscoveryResults } from "../src/lib/discovery.js";
-import { loadGraph, toGraphPayload } from "../src/lib/graph.js";
+import { loadGraph, toDiscoveryIndex } from "../src/lib/graph.js";
 
 const cases = [
   ["why does God allow suffering", "evidential-problem-of-evil"],
@@ -15,11 +15,11 @@ const cases = [
 ] as const;
 
 const { nodes } = await loadGraph();
-const graph = toGraphPayload(nodes);
+const discoveryIndex = toDiscoveryIndex(nodes);
 
 const failures: string[] = [];
 for (const [query, expected] of cases) {
-  const results = rankDiscoveryResults(graph, query, 3);
+  const results = rankDiscoveryResults(discoveryIndex, query, 3);
   if (results[0]?.id !== expected) {
     failures.push(
       `${JSON.stringify(query)} expected best match ${expected}; got ${results.map((result) => result.id).join(", ") || "no results"}`,
