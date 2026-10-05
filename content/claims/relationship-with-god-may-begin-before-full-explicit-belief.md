@@ -16,6 +16,11 @@ status:
   editorial: reviewed
   scholarship: contested
   christian: tradition-specific
+conversation:
+  follows:
+    - divine-hiddenness-is-evidence-against-perfectly-loving-theism
+  label: relationship may begin before explicit belief
+  priority: 20
 origin:
   kind: agent-research
   github_issues:
