@@ -15,6 +15,14 @@ relationships:
     target: early-devotion-does-not-by-itself-establish-nicene-trinity
   - type: related_to
     target: trinity-coherence-and-trinity-truth-are-separate-questions
+  - type: related_to
+    target: trinity-appears-to-compromise-jewish-and-islamic-monotheism
+  - type: related_to
+    target: early-jesus-devotion-and-resurrection-form-a-christological-case
+  - type: related_to
+    target: which-christology-best-explains-the-early-data
+  - type: related_to
+    target: does-the-quran-reject-the-classical-trinity
 references:
   - source: quran-an-nisa-4-157-171
     locator: "4:171"
@@ -42,7 +50,7 @@ conversation:
 origin:
   kind: agent-research
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 
