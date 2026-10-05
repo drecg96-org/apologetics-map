@@ -1,7 +1,7 @@
 ---
 import GraphExplorer from "../../components/GraphExplorer";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { loadGraph, toGraphPayload } from "../../lib/graph";
+import { loadGraph, toDiscoveryIndex, toGraphPayload } from "../../lib/graph";
 
 export async function getStaticPaths() {
   const { nodes } = await loadGraph();
@@ -21,6 +21,7 @@ const members = nodes.filter((node) => node.id !== topic.id && node.topics.inclu
 const debateNodes = members.filter((node) => node.type !== "source");
 const sourceNodes = members.filter((node) => node.type === "source");
 const graph = toGraphPayload(nodes);
+const discoveryIndex = toDiscoveryIndex(nodes);
 ---
 
 <BaseLayout title={topic.title} description={topic.summary}>
@@ -49,6 +50,7 @@ const graph = toGraphPayload(nodes);
     <GraphExplorer
       client:load
       graph={graph}
+      discoveryIndex={discoveryIndex}
       basePath={base}
       initialTopic={topic.id}
       initialMode="line"
