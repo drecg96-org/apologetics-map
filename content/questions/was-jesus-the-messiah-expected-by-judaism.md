@@ -13,6 +13,10 @@ relationships:
     target: second-temple-messianic-expectation-was-diverse
   - type: related_to
     target: jesus-did-not-complete-classic-restoration-expectations
+  - type: related_to
+    target: two-stage-messianic-fulfillment-is-the-christian-reply
+  - type: related_to
+    target: two-stage-messianic-fulfillment-can-be-ad-hoc
 references:
   - source: my-jewish-learning-what-do-jews-believe-about-jesus
     note: Jewish overview of why Judaism does not accept Jesus as Messiah and how messianic expectations are framed.
@@ -37,7 +41,7 @@ conversation:
 origin:
   kind: agent-research
 status:
-  editorial: draft
+  editorial: reviewed
   scholarship: contested
 ---
 
