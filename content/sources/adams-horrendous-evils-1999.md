@@ -19,7 +19,7 @@ source:
     - Marilyn McCord Adams
   year: 1999
   publisher: Cornell University Press
-  role: advocacy
+  role: defense
   difficulty: advanced
   stance: supports
 origin:
