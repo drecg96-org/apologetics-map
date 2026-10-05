@@ -584,10 +584,22 @@ export default function GraphExplorer({
     .filter((node) => node.type === "topic")
     .sort((a, b) => a.title.localeCompare(b.title));
 
-  const discoveryResults = useMemo(
-    () => rankDiscoveryResults(graph, query, 6),
+  const rankedDiscovery = useMemo(
+    () => rankDiscoveryResults(graph, query, graph.nodes.length),
     [graph, query],
   );
+  const discoveryResults = rankedDiscovery.slice(0, 6);
+  const discoveryMatchIds = useMemo(
+    () => new Set(rankedDiscovery.map((result) => result.id)),
+    [rankedDiscovery],
+  );
+
+  function discoveryHref(id: string) {
+    const params = new URLSearchParams();
+    params.set("node", id);
+    if (query.trim()) params.set("q", query.trim());
+    return basePath + "?" + params.toString();
+  }
 
   const focusedIds = useMemo(
     () => focusId && mode !== "line"
@@ -610,11 +622,11 @@ export default function GraphExplorer({
         )
         .filter((node) => {
           if (!normalized || mode === "line") return true;
-          return node.searchText.toLowerCase().includes(normalized);
+          return discoveryMatchIds.has(node.id);
         })
         .map((node) => node.id),
     );
-  }, [graph.nodes, query, type, topic, showSources, focusedIds, mode]);
+  }, [graph.nodes, query, type, topic, showSources, focusedIds, mode, discoveryMatchIds]);
 
   const layout = useMemo(() => {
     if (mode === "line") return { nodes: [], edges: [] };
@@ -673,6 +685,11 @@ export default function GraphExplorer({
           value={query}
           placeholder="Ask a question or search the map…"
           onChange={(event) => setQuery(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key !== "Enter" || !discoveryResults[0]) return;
+            event.preventDefault();
+            window.location.href = discoveryHref(discoveryResults[0].id);
+          }}
         />
         {query.trim() && (
           <div className="discovery-results" aria-label="Suggested starting points">
@@ -681,13 +698,10 @@ export default function GraphExplorer({
               <span>Searches titles, aliases, text, sources, and argument premises</span>
             </div>
             {discoveryResults.length > 0 ? discoveryResults.map((result, index) => {
-              const params = new URLSearchParams();
-              params.set("node", result.id);
-              params.set("q", query.trim());
               return (
                 <a
                   className="discovery-result"
-                  href={basePath + "?" + params.toString()}
+                  href={discoveryHref(result.id)}
                   key={result.id}
                 >
                   <span className="discovery-rank">{index + 1}</span>
