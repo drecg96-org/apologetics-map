@@ -9,6 +9,12 @@ topics:
 relationships:
   - type: related_to
     target: why-christianity-rather-than-judaism-or-islam
+  - type: related_to
+    target: elevated-jesus-devotion-appears-before-nicene-formulation
+  - type: related_to
+    target: early-devotion-does-not-by-itself-establish-nicene-trinity
+  - type: related_to
+    target: trinity-coherence-and-trinity-truth-are-separate-questions
 references:
   - source: quran-an-nisa-4-157-171
     locator: "4:171"
@@ -19,6 +25,10 @@ references:
     note: Historical scholarship on Muslim-Christian debate over the logical coherence of Trinity and Christology.
   - source: williams-history-of-faith-in-jesus
     note: Evidence for very early Christian devotion directed toward Jesus.
+  - source: hurtado-lord-jesus-christ-2003
+    note: Major historical case that devotion to Jesus arose very early inside a Jewish monotheistic setting.
+  - source: sep-trinity-2025
+    note: Neutral philosophical survey of Trinity models, coherence problems, and competing historical narratives.
 tags:
   - trinity
   - incarnation
