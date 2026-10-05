@@ -19,6 +19,10 @@ tags:
   - epistemology
   - logic
   - intelligibility
+aliases:
+  - "transcendental argument for God"
+  - "what grounds logic and reason"
+  - "can naturalism explain reason"
 conversation:
   opening: true
   follows:
