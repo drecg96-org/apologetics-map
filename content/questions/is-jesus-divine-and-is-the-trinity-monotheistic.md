@@ -42,6 +42,10 @@ tags:
   - incarnation
   - monotheism
   - jesus
+aliases:
+  - "is Jesus God"
+  - "is the Trinity contradictory"
+  - "does the Trinity mean three gods"
 conversation:
   follows:
     - why-christianity-rather-than-judaism-or-islam
