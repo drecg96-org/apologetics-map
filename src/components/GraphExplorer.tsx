@@ -14,7 +14,7 @@ import {
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import type { GraphPayload } from "../lib/graph";
+import type { DiscoveryIndex, GraphPayload } from "../lib/graph";
 import { rankDiscoveryResults } from "../lib/discovery";
 import LineExplorer from "./LineExplorer";
 
@@ -22,6 +22,7 @@ type ExplorerMode = "line" | "debate" | "atlas";
 
 type Props = {
   graph: GraphPayload;
+  discoveryIndex: DiscoveryIndex;
   basePath: string;
   initialTopic?: string;
   initialMode?: ExplorerMode;
@@ -477,6 +478,7 @@ function atlasLayout(
 
 export default function GraphExplorer({
   graph,
+  discoveryIndex,
   basePath,
   initialTopic = "all",
   initialMode = "line",
@@ -585,8 +587,8 @@ export default function GraphExplorer({
     .sort((a, b) => a.title.localeCompare(b.title));
 
   const rankedDiscovery = useMemo(
-    () => rankDiscoveryResults(graph, query, graph.nodes.length),
-    [graph, query],
+    () => rankDiscoveryResults(discoveryIndex, query, discoveryIndex.length),
+    [discoveryIndex, query],
   );
   const discoveryResults = rankedDiscovery.slice(0, 6);
   const discoveryMatchIds = useMemo(
