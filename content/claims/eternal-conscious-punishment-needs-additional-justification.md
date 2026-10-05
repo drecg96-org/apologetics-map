@@ -8,6 +8,11 @@ topics:
 relationships: []
 references:
   - source: sep-heaven-hell
+scripture:
+  - reference: Matthew 25:46
+    note: A central text for everlasting punishment and life whose interpretation is central to the proportionality debate.
+  - reference: Luke 12:47-48
+    note: Supports differentiated accountability according to knowledge and responsibility.
 tags:
   - hell
   - proportionality
