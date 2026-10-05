@@ -18,7 +18,7 @@ source:
     - Alvin Plantinga
   year: 1974
   publisher: William B. Eerdmans
-  role: advocacy
+  role: defense
   difficulty: advanced
   stance: supports
 origin:
