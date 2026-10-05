@@ -21,6 +21,7 @@ status:
 conversation:
   follows:
     - distinguish-punishment-from-self-exclusion
+    - which-hell-model-is-being-defended
   label: judgment / punishment
   priority: 10
 references:

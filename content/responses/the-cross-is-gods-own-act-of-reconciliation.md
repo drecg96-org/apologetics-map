@@ -24,6 +24,7 @@ status:
 conversation:
   follows:
     - god-could-forgive-without-sacrifice
+    - atonement-need-not-be-understood-as-external-constraint-on-god
   label: God bears the cost
   priority: 10
 references:

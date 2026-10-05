@@ -24,6 +24,7 @@ origin:
 conversation:
   follows:
     - why-would-a-loving-god-permit-nonresistant-nonbelief
+    - divine-hiddenness-is-evidence-against-perfectly-loving-theism
   label: would total clarity distort choice?
   priority: 10
 references:

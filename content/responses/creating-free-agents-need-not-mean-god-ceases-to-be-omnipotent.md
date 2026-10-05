@@ -23,6 +23,7 @@ status:
 conversation:
   follows:
     - god-could-have-created-free-creatures-who-never-sin
+    - free-will-defense-logical-compatibility
   label: power is not determination
   priority: 10
 references:

@@ -22,6 +22,7 @@ status:
 conversation:
   follows:
     - forgiveness-and-reconciliation-are-not-identical
+    - which-hard-objection-should-we-examine
   label: why permit a fall at all?
   priority: 20
 references:

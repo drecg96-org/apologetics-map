@@ -30,10 +30,6 @@ conversation:
     - restrictivist-views-make-faith-in-christ-decisive
   label: traditions split here
   priority: 10
-  terminal:
-    kind: unresolved
-    label: Tradition-specific fork
-    note: The line now depends on which account of salvation, grace, faith, and culpability is being defended.
 references:
   - source: catholic-catechism-invincible-ignorance
     locator: §§846–848

@@ -26,6 +26,7 @@ origin:
 conversation:
   follows:
     - sincere-nonbelief-is-not-the-same-as-rejecting-god
+    - which-hard-objection-should-we-examine
   label: why would God stay hidden?
   priority: 10
 references:
