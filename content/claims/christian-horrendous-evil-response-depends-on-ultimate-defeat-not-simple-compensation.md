@@ -9,6 +9,11 @@ topics:
 relationships: []
 references:
   - source: adams-horrendous-evils-1999
+scripture:
+  - reference: Revelation 21:3-5
+    note: Christian eschatological hope includes the defeat of death, mourning, pain, and the renewal of all things.
+  - reference: Romans 8:18-25
+    note: Places present suffering within a larger hope of liberation and glory without making each suffering instrumentally necessary.
 tags:
   - horrendous-evil
   - redemption
