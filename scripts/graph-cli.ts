@@ -284,7 +284,7 @@ function usage() {
       neighbors: "neighbors <id> [--depth 1] [--mode all|semantic|flow]",
       line: "line <id> [--depth 4] — outgoing debate tree with terminal commitments",
       path: "path <from> <to> [--mode all|semantic|flow] — shortest traversable path",
-      search: "search <query> [--limit 20] — ids/titles/summaries/tags/aliases",
+      search: "search <query> [--limit 20] — natural-language discovery across titles, aliases, bodies, sources, and argument premises",
       topic: "topic <topic-id> — topic members grouped by node type",
       sources: "sources <id> — source records cited by a node",
       stats: "stats — graph/source/debate coverage summary",
@@ -317,6 +317,13 @@ async function main() {
       semantic: {
         incoming: indexes.semanticIncoming.get(node.id) ?? [],
         outgoing: indexes.semanticOutgoing.get(node.id) ?? [],
+      },
+      cruxes: {
+        total: debateNodes.filter((node) => Boolean(node.crux)).length,
+        nodes: debateNodes.filter((node) => Boolean(node.crux)).map((node) => node.id).sort(),
+        unresolvedWithoutCrux: debateNodes.filter((node) =>
+          node.conversation?.terminal?.kind === "unresolved" && !node.crux
+        ).map((node) => node.id).sort(),
       },
       debate: {
         previous: indexes.flowIncoming.get(node.id) ?? [],
