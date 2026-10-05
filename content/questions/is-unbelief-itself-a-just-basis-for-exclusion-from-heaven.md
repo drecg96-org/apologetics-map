@@ -31,7 +31,8 @@ status:
   christian: contested
 conversation:
   opening: true
-  follows: []
+  follows:
+    - which-hard-objection-should-we-examine
   label: main question
   priority: 5
 references:
