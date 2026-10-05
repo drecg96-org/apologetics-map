@@ -8,6 +8,13 @@ topics:
 relationships: []
 references:
   - source: sep-atonement
+scripture:
+  - reference: Romans 3:23-26
+    note: Provides justice and sacrificial language important to satisfaction and substitution accounts.
+  - reference: Colossians 2:13-15
+    note: Provides forgiveness and victory language important to Christus Victor accounts.
+  - reference: 2 Corinthians 5:18-21
+    note: Provides reconciliation language important across multiple models.
 tags:
   - atonement
   - satisfaction
