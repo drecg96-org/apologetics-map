@@ -27,15 +27,15 @@ argument:
   form: cumulative
   statements:
     - id: p1
-      text: Multiple features of Muhammad's message, life, Qur'anic proclamation, and reported signs are offered as evidence of prophetic credibility.
+      node: muslim-apologetic-case-cites-multiple-prophetic-signs
       role: premise
       label: P1
     - id: p2
-      text: A cumulative explanation can be stronger than any one sign considered in isolation if the evidences are sufficiently independent and discriminating.
+      node: cumulative-prophetic-evidence-needs-independent-discriminating-lines
       role: premise
       label: P2
     - id: c1
-      text: Muhammad's prophethood should be evaluated as a live explanatory hypothesis rather than dismissed merely because Islam is historically later.
+      node: muhammads-prophethood-is-a-live-hypothesis-requiring-comparative-testing
       role: conclusion
       label: C
   inferences:
