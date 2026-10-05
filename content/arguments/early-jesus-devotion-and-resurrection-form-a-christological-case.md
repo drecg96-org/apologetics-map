@@ -45,7 +45,7 @@ argument:
       role: premise
       label: P2
     - id: c1
-      text: An unusually strong account of Jesus' status within the identity and action of Israel's God gains explanatory support.
+      node: early-devotion-plus-resurrection-supports-a-high-christological-inference
       role: conclusion
       label: C
   inferences:
