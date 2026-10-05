@@ -15,6 +15,10 @@ tags:
   - kalam
   - cosmology
   - beginning
+aliases:
+  - "does the universe need a cause"
+  - "what caused the universe"
+  - "cosmological argument"
 conversation:
   follows:
     - which-natural-theology-line-should-we-test
