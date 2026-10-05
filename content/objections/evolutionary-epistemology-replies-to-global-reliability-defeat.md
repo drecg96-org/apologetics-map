@@ -8,6 +8,8 @@ topics:
 relationships:
   - type: challenges
     target: evolutionary-naturalism-faces-a-cognitive-reliability-challenge
+  - type: challenges
+    target: rival-worldviews-fail-to-ground-intelligibility
 inference_challenges:
   - argument: evolutionary-reliability-challenge-to-naturalism
     inference: i1
@@ -40,5 +42,9 @@ origin:
 Adaptive behavior often depends on tracking real environmental structure.
 
 Moreover, even if the probability of reliable cognition given naturalism and evolution were difficult to estimate, it does not follow without further argument that a naturalist acquires a global defeater for cognition.
+
+This matters for the broader TAG comparison because naturalism cannot be declared unable to account for rational reliability merely by observing that natural selection directly favors fitness. The naturalist has a serious mechanism-level reply: accurate representation can contribute to adaptive success.
+
+The remaining dispute concerns whether that account extends adequately to abstract reasoning, higher-order reflection, semantic content, and worldview-level epistemic trust.
 
 This targets the argument's inferential bridge rather than denying evolution or cognitive fallibility.
