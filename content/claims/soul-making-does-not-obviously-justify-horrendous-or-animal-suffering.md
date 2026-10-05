@@ -19,6 +19,11 @@ tags:
 status:
   editorial: stable
   scholarship: contested
+conversation:
+  follows:
+    - some-suffering-can-have-soul-making-value
+  label: but what about horrors and animals?
+  priority: 20
 origin:
   kind: agent-research
   github_issues:
