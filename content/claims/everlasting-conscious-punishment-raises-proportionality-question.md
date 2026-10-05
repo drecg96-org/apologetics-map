@@ -11,6 +11,11 @@ relationships:
 references:
   - source: sep-heaven-hell
   - source: iep-hell
+scripture:
+  - reference: Matthew 25:46
+    note: The traditional everlasting-punishment reading creates the proportionality question this claim addresses.
+  - reference: Luke 12:47-48
+    note: Biblical differentiation of punishment sharpens rather than removes the need for a proportional account.
 tags:
   - hell
   - proportionality
