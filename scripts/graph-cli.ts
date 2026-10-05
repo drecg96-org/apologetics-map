@@ -318,13 +318,6 @@ async function main() {
         incoming: indexes.semanticIncoming.get(node.id) ?? [],
         outgoing: indexes.semanticOutgoing.get(node.id) ?? [],
       },
-      cruxes: {
-        total: debateNodes.filter((node) => Boolean(node.crux)).length,
-        nodes: debateNodes.filter((node) => Boolean(node.crux)).map((node) => node.id).sort(),
-        unresolvedWithoutCrux: debateNodes.filter((node) =>
-          node.conversation?.terminal?.kind === "unresolved" && !node.crux
-        ).map((node) => node.id).sort(),
-      },
       debate: {
         previous: indexes.flowIncoming.get(node.id) ?? [],
         next: indexes.flowOutgoing.get(node.id) ?? [],
@@ -459,6 +452,13 @@ async function main() {
       byType,
       semanticEdges: payload.edges.length,
       debateMoves: payload.flowEdges.length,
+      cruxes: {
+        total: debateNodes.filter((node) => Boolean(node.crux)).length,
+        nodes: debateNodes.filter((node) => Boolean(node.crux)).map((node) => node.id).sort(),
+        unresolvedWithoutCrux: debateNodes.filter((node) =>
+          node.conversation?.terminal?.kind === "unresolved" && !node.crux
+        ).map((node) => node.id).sort(),
+      },
       debate: {
         openings: debateNodes.filter((node) => node.conversation?.opening).map((node) => node.id).sort(),
         terminals: debateNodes.filter((node) => node.conversation?.terminal).map((node) => ({
