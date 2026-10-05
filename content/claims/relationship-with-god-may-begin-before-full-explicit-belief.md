@@ -8,6 +8,11 @@ topics:
 relationships: []
 references:
   - source: rea-hiddenness-of-god
+scripture:
+  - reference: Acts 17:26-28
+    note: Paul describes people seeking God while also saying God is not far from each person.
+  - reference: Romans 2:14-16
+    note: Provides biblical context for conscience and moral response outside explicit covenantal knowledge.
 tags:
   - divine-hiddenness
   - relationship
