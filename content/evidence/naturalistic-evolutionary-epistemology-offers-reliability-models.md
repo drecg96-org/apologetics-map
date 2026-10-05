@@ -6,6 +6,8 @@ summary: Natural selection can favor perceptual and cognitive systems that track
 topics:
   - existence-of-god
 relationships:
+  - type: evidence_for
+    target: naturalistic-evolution-can-support-cognitive-reliability
   - type: challenges
     target: rival-worldviews-fail-to-ground-intelligibility
 references:
