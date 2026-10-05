@@ -8,6 +8,11 @@ topics:
 relationships: []
 references:
   - source: sep-atonement
+scripture:
+  - reference: Romans 3:23-26
+    note: A central text for justice, grace, and Christ's atoning work that different theories interpret differently.
+  - reference: Colossians 2:13-15
+    note: Combines forgiveness with victory over hostile powers, illustrating the New Testament's multiple atonement motifs.
 tags:
   - atonement
   - unresolved
